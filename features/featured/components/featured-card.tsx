@@ -6,6 +6,7 @@ export type FeaturedType = "hero" | "app" | "skill" | "service";
 interface FeaturedOfTheDayCardProps {
   type: FeaturedType;
   title: string;
+  subtitle?: string;
   name: string;
   description: string;
   href: string;
@@ -26,6 +27,7 @@ function getSourceLabel(url: string): string {
 export const FeaturedOfTheDayCard = ({ 
   type, 
   title, 
+  subtitle,
   name, 
   description, 
   href, 
@@ -55,8 +57,8 @@ export const FeaturedOfTheDayCard = ({
             <div className="flex items-center gap-2 mb-1">
               <div className="flex items-center gap-1.5 font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400">
                 <Trophy className="w-3 h-3" />
-                <span className="text-xs">{title.split(" ")[0]}</span>
-                <span className="text-[9px] text-amber-600/70 dark:text-amber-400/70">{title.split(" ").slice(1).join(" ")}</span>
+                <span className="text-xs">{title}</span>
+                {subtitle && <span className="text-[9px] text-amber-600/70 dark:text-amber-400/70">{subtitle}</span>}
               </div>
             </div>
             <h4 className="font-semibold text-sm text-foreground group-hover:text-primary transition-colors mb-0.5 truncate">

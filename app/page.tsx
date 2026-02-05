@@ -228,7 +228,8 @@ export default function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <FeaturedOfTheDayCard
               type="hero"
-              title="Hero of the Day"
+              title="Hero"
+              subtitle="of the Day"
               name={FEATURED_OF_THE_DAY.hero.handle}
               description={FEATURED_OF_THE_DAY.hero.description}
               href={`https://github.com/${FEATURED_OF_THE_DAY.hero.handle}`}
@@ -238,7 +239,8 @@ export default function Home() {
             />
             <FeaturedOfTheDayCard
               type="app"
-              title="Claw App of the Day"
+              title="Claw App"
+              subtitle="of the Day"
               name={FEATURED_OF_THE_DAY.app.name}
               description={FEATURED_OF_THE_DAY.app.description}
               href={`/apps/${FEATURED_OF_THE_DAY.app.slug}`}
@@ -248,7 +250,8 @@ export default function Home() {
             />
             <FeaturedOfTheDayCard
               type="skill"
-              title="Skill of the Day"
+              title="Skill"
+              subtitle="of the Day"
               name={FEATURED_OF_THE_DAY.skill.name}
               description={FEATURED_OF_THE_DAY.skill.description}
               href={`/@${FEATURED_OF_THE_DAY.skill.author}/${FEATURED_OF_THE_DAY.skill.slug}`}
@@ -257,7 +260,8 @@ export default function Home() {
             />
             <FeaturedOfTheDayCard
               type="service"
-              title="Service of the Day"
+              title="Service"
+              subtitle="of the Day"
               name={FEATURED_OF_THE_DAY.service.name}
               description={FEATURED_OF_THE_DAY.service.description}
               href={FEATURED_OF_THE_DAY.service.website}
