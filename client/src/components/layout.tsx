@@ -17,8 +17,8 @@ import {
 export function Layout({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
   const [theme, setTheme] = useState<{ style: "slate" | "warm"; mode: "light" | "dark" }>({
-    style: "slate",
-    mode: "dark", // Default to dark as requested previously
+    style: "warm",
+    mode: "dark", 
   });
 
   useEffect(() => {
