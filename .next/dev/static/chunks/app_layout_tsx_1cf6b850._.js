@@ -2,8 +2,10 @@
     script: typeof document === "object" ? document.currentScript : undefined,
     chunks: [
   "static/chunks/app_globals_71f961d1.css",
-  "static/chunks/node_modules_ca161092._.js",
-  "static/chunks/_cf53f809._.js"
+  "static/chunks/node_modules_tailwind-merge_dist_bundle-mjs_mjs_56b6fd65._.js",
+  "static/chunks/node_modules_@firebase_auth_dist_esm_41d6d1e7._.js",
+  "static/chunks/node_modules_5b58e05a._.js",
+  "static/chunks/_6ccb1567._.js"
 ],
     source: "dynamic"
 });

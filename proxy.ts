@@ -4,7 +4,7 @@ import type { NextRequest } from "next/server";
 const protectedPaths = ["/dashboard", "/settings", "/submissions"];
 const publicPaths = ["/", "/login", "/register", "/api/auth", "/skills", "/categories", "/news", "/jobs", "/community", "/deploy"];
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   if (

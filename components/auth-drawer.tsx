@@ -29,7 +29,7 @@ interface AuthDrawerProps {
 export function AuthDrawer({ open, onOpenChange, defaultTab = "login" }: AuthDrawerProps) {
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState<string | null>(null);
-  const { signInWithGoogle, signInWithGithub, sendMagicLink, error, clearError, magicLinkSent, user } = useAuth();
+  const { signInWithGoogle, signInWithGithub, sendMagicLink, error, clearError, magicLinkSent, user, isConfigured } = useAuth();
 
   const handleGoogleSignIn = async () => {
     setIsLoading("google");

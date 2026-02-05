@@ -12,7 +12,7 @@ import {
   GithubAuthProvider,
   type User as FirebaseUser,
 } from "firebase/auth";
-import { auth } from "@/lib/firebase/client";
+import { auth, isConfigured } from "@/lib/firebase/client";
 
 interface AppUser {
   id: string;
@@ -24,6 +24,7 @@ interface AppUser {
 interface AuthContextType {
   user: AppUser | null;
   loading: boolean;
+  isConfigured: boolean;
   signInWithGoogle: () => Promise<void>;
   signInWithGithub: () => Promise<void>;
   sendMagicLink: (email: string) => Promise<void>;
@@ -54,6 +55,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [magicLinkSent, setMagicLinkSent] = useState(false);
 
   useEffect(() => {
+    if (!isConfigured || !auth) {
+      setLoading(false);
+      return;
+    }
+
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
       if (firebaseUser) {
         try {
@@ -72,12 +78,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   useEffect(() => {
+    if (!isConfigured || !auth) return;
+    
     if (isSignInWithEmailLink(auth, window.location.href)) {
       completeMagicLinkSignIn();
     }
   }, []);
 
   const signInWithGoogle = async () => {
+    if (!auth) throw new Error("Firebase not configured");
     setError(null);
     try {
       const provider = new GoogleAuthProvider();
@@ -91,6 +100,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const signInWithGithub = async () => {
+    if (!auth) throw new Error("Firebase not configured");
     setError(null);
     try {
       const provider = new GithubAuthProvider();
@@ -104,6 +114,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const sendMagicLink = async (email: string) => {
+    if (!auth) throw new Error("Firebase not configured");
     setError(null);
     try {
       const actionCodeSettings = {
@@ -120,6 +131,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const completeMagicLinkSignIn = async () => {
+    if (!auth) return;
     if (!isSignInWithEmailLink(auth, window.location.href)) return;
     
     setError(null);
@@ -139,7 +151,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const logout = async () => {
-    await signOut(auth);
+    if (auth) {
+      await signOut(auth);
+    }
     await fetch("/api/auth/session", { method: "DELETE" });
     setUser(null);
   };
@@ -151,6 +165,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       value={{
         user,
         loading,
+        isConfigured,
         signInWithGoogle,
         signInWithGithub,
         sendMagicLink,
