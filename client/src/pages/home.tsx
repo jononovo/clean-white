@@ -3,6 +3,8 @@ import { topScorers, latestSubmissions, threats, infrastructureProviders, Listin
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { FullPageModal, ConfirmationModal } from "@/components/modals";
+import { useState } from "react";
 import { Shield, CheckCircle, Download, ExternalLink, Calendar, Star, AlertTriangle, Terminal, Lock, ChevronRight, Zap, Globe, Server, Activity, ArrowUpRight, Mail, Box, Cloud, Search, Newspaper } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
@@ -90,8 +92,50 @@ const FeaturedCard = ({ item, color = "emerald" }: { item: Listing, color?: "eme
 
 
 export default function Home() {
+  const [showFullModal, setShowFullModal] = useState(false);
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
+
   return (
     <Layout>
+      <FullPageModal 
+        open={showFullModal} 
+        onOpenChange={setShowFullModal}
+        title="Security Audit Details"
+      >
+        <div className="space-y-6 max-w-4xl mx-auto">
+          <div className="p-6 rounded-xl bg-muted/30 border border-border">
+            <h3 className="text-xl font-bold mb-4">Audit Report: skill-guard-pro</h3>
+            <p className="text-muted-foreground mb-4">
+              This skill has undergone a rigorous Level 3 security audit. The following checks were performed:
+            </p>
+            <ul className="space-y-2 text-sm">
+              <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-emerald-500"/> Static Code Analysis</li>
+              <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-emerald-500"/> Dependency Vulnerability Scan</li>
+              <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-emerald-500"/> Runtime Behavior Monitoring</li>
+              <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-emerald-500"/> Manual Peer Review</li>
+            </ul>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+             <div className="h-64 rounded-xl bg-card border border-border p-6 flex items-center justify-center text-muted-foreground">
+               Chart Placeholder
+             </div>
+             <div className="h-64 rounded-xl bg-card border border-border p-6 flex items-center justify-center text-muted-foreground">
+               Logs Placeholder
+             </div>
+          </div>
+        </div>
+      </FullPageModal>
+
+      <ConfirmationModal
+        open={showConfirmModal}
+        onOpenChange={setShowConfirmModal}
+        title="Report Malicious Skill?"
+        description="Are you sure you want to flag 'crypto-wallet-tracker' as malicious? This will trigger an immediate automated review and may suspend the listing."
+        confirmLabel="Yes, Report Threat"
+        variant="destructive"
+        onConfirm={() => console.log("Reported!")}
+      />
+
       <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
         
         {/* Quick Links Row */}
@@ -102,7 +146,11 @@ export default function Home() {
           <span className="text-border mx-2">|</span>
           <a href="#" className="hover:text-primary transition-colors hover:underline">Enterprise</a>
           <span className="text-border mx-2">|</span>
-          <a href="https://discord.gg/gduUaXMQ" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors hover:underline">Community</a>
+          <a href="#" className="hover:text-primary transition-colors hover:underline">Jobs</a>
+          <span className="text-border mx-2">|</span>
+          <a href="#" className="hover:text-primary transition-colors hover:underline">Community</a>
+          <span className="text-border mx-2">|</span>
+          <a href="https://discord.gg/gduUaXMQ" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors hover:underline">Discord</a>
           <span className="text-border mx-2">|</span>
           <a href="#" className="hover:text-primary transition-colors hover:underline">Feedback</a>
           <span className="text-border mx-2">|</span>
