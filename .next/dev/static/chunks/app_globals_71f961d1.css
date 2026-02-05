@@ -601,8 +601,9 @@
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 20% 98%;
     --border: 220 10% 90%;
-    --input: 220 10% 90%;
+    --input: 220 10% 85%;
     --ring: 220 15% 10%;
+    --placeholder: 220 10% 55%;
     --radius: .5rem;
   }
 
@@ -624,8 +625,9 @@
     --destructive: 0 62% 30%;
     --destructive-foreground: 240 5% 96%;
     --border: 240 4% 16%;
-    --input: 240 4% 16%;
+    --input: 240 4% 22%;
     --ring: 240 5% 84%;
+    --placeholder: 240 5% 50%;
   }
 
   [data-theme="warm"] {
@@ -648,35 +650,52 @@
     --destructive: 0 70% 60%;
     --destructive-foreground: 40 20% 98%;
     --border: 30 15% 88%;
-    --input: 30 15% 88%;
+    --input: 30 15% 82%;
     --ring: 25 15% 20%;
+    --placeholder: 25 10% 60%;
     --radius: .75rem;
   }
 
   [data-theme="warm"].dark, [data-theme="warm"] .dark {
-    --background: 30 15% 9%;
+    --background: 30 12% 14%;
     --foreground: 38 30% 96%;
-    --card: 30 12% 11%;
+    --card: 30 15% 8%;
     --card-foreground: 38 30% 96%;
-    --popover: 30 12% 11%;
+    --popover: 30 15% 8%;
     --popover-foreground: 38 30% 96%;
     --primary: 38 30% 96%;
-    --primary-foreground: 30 15% 9%;
-    --secondary: 30 12% 14%;
+    --primary-foreground: 30 15% 8%;
+    --secondary: 30 12% 11%;
     --secondary-foreground: 38 30% 96%;
-    --muted: 30 12% 14%;
-    --muted-foreground: 30 10% 60%;
-    --accent: 160 60% 30%;
-    --accent-foreground: 38 30% 96%;
-    --destructive: 0 60% 40%;
+    --muted: 30 10% 18%;
+    --muted-foreground: 30 15% 55%;
+    --accent: 160 70% 42%;
+    --accent-foreground: 30 15% 8%;
+    --destructive: 0 65% 45%;
     --destructive-foreground: 38 30% 96%;
-    --border: 30 12% 18%;
-    --input: 30 12% 18%;
-    --ring: 30 15% 9%;
+    --border: 30 10% 25%;
+    --input: 30 12% 22%;
+    --ring: 38 30% 96%;
+    --placeholder: 30 10% 45%;
   }
 
   * {
     border-color: hsl(var(--border));
+  }
+
+  input::-moz-placeholder {
+    color: hsl(var(--placeholder));
+    opacity: 1;
+  }
+
+  textarea::-moz-placeholder {
+    color: hsl(var(--placeholder));
+    opacity: 1;
+  }
+
+  input::placeholder, textarea::placeholder {
+    color: hsl(var(--placeholder));
+    opacity: 1;
   }
 
   body {
