@@ -4350,6 +4350,16 @@
     color: var(--color-amber-600);
   }
 
+  .text-amber-600\/70 {
+    color: #dd7400b3;
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .text-amber-600\/70 {
+      color: color-mix(in oklab, var(--color-amber-600) 70%, transparent);
+    }
+  }
+
   .text-amber-700 {
     color: var(--color-amber-700);
   }
@@ -7809,6 +7819,16 @@
 
   .dark\:text-amber-400:where(.dark, .dark *) {
     color: var(--color-amber-400);
+  }
+
+  .dark\:text-amber-400\/70:where(.dark, .dark *) {
+    color: #fcbb00b3;
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .dark\:text-amber-400\/70:where(.dark, .dark *) {
+      color: color-mix(in oklab, var(--color-amber-400) 70%, transparent);
+    }
   }
 
   .dark\:text-blue-400:where(.dark, .dark *) {

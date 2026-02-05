@@ -53,9 +53,10 @@ export const FeaturedOfTheDayCard = ({
           )}
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 mb-1">
-              <div className="flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400">
+              <div className="flex items-center gap-1.5 font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400">
                 <Trophy className="w-3 h-3" />
-                {title}
+                <span className="text-xs">{title.split(" ")[0]}</span>
+                <span className="text-[9px] text-amber-600/70 dark:text-amber-400/70">{title.split(" ").slice(1).join(" ")}</span>
               </div>
             </div>
             <h4 className="font-semibold text-sm text-foreground group-hover:text-primary transition-colors mb-0.5 truncate">
