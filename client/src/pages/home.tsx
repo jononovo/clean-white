@@ -103,42 +103,42 @@ export default function Home() {
           <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
             <div className="space-y-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-medium text-emerald-400 backdrop-blur-md">
-                <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800/50 border border-slate-700/50 text-xs font-medium text-slate-300 backdrop-blur-md">
+                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
                 Hub Operational • Community Verified
               </div>
               
               <div className="space-y-4">
                 <h1 className="text-4xl md:text-5xl font-display font-bold tracking-tight text-white leading-[1.1]">
-                  The <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300">SecureClawHub</span>
+                  The <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-400">SecureClawHub</span>
                 </h1>
-                <p className="text-lg text-slate-300 max-w-md leading-relaxed">
+                <p className="text-lg text-slate-400 max-w-md leading-relaxed">
                   The community-driven registry for autonomous agents. Discover audited skills, compare infrastructure providers, and verify security badges in real-time.
                 </p>
               </div>
 
               <div className="flex flex-wrap items-center gap-3 pt-2">
-                <Button size="lg" className="h-12 px-6 bg-emerald-500 hover:bg-emerald-600 text-white border-none font-semibold shadow-[0_0_20px_-5px_rgba(16,185,129,0.4)] transition-all">
+                <Button size="lg" className="h-12 px-6 bg-white text-slate-900 hover:bg-slate-200 border-none font-bold shadow-[0_0_20px_-5px_rgba(255,255,255,0.2)] transition-all">
                   <Search className="w-4 h-4 mr-2" />
                   Single-Click-Setup
                 </Button>
-                <Button size="lg" variant="outline" className="h-12 px-6 bg-white/5 border-white/10 text-white hover:bg-white/10 hover:text-white backdrop-blur-sm ring-1 ring-white/5">
+                <Button size="lg" variant="outline" className="h-12 px-6 bg-slate-800/30 border-slate-700/50 text-slate-300 hover:bg-slate-800/50 hover:text-white backdrop-blur-sm ring-1 ring-white/5">
                   <Shield className="w-4 h-4 mr-2" />
                   Get Audited
                 </Button>
               </div>
               
-              <div className="flex items-center gap-6 text-xs text-slate-400 pt-4">
+              <div className="flex items-center gap-6 text-xs text-slate-500 pt-4">
                 <div className="flex items-center gap-2">
-                  <Box className="w-4 h-4 text-emerald-500/80" />
+                  <Box className="w-4 h-4 text-blue-400/80" />
                   <span>Verified Skills</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Server className="w-4 h-4 text-emerald-500/80" />
+                  <Server className="w-4 h-4 text-blue-400/80" />
                   <span>Infrastructure Services</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Users className="w-4 h-4 text-emerald-500/80" />
+                  <Users className="w-4 h-4 text-blue-400/80" />
                   <span>Community Partners</span>
                 </div>
               </div>
