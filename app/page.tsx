@@ -153,7 +153,7 @@ export default function Home() {
               
               <div className="space-y-4">
                 <h1 className="text-4xl md:text-5xl font-display font-bold tracking-tight text-foreground leading-[1.1]">
-                  The Trust Hub for <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-500 dark:from-emerald-400 dark:to-teal-300">OpenClaw</span>
+                  The Business Hub for <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-500 dark:from-emerald-400 dark:to-teal-300">OpenClaw</span>
                 </h1>
                 <p className="text-lg text-muted-foreground max-w-md leading-relaxed">
                   The official security registry for autonomous agents. We audit, rank, and monitor skills so you can run bots with confidence.
