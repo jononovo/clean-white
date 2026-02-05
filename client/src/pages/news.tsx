@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Calendar, Clock, ArrowRight, Share2, Bookmark, Link, Plus } from "lucide-react";
 import { useState } from "react";
+import { useLocation } from "wouter";
 import {
   Dialog,
   DialogContent,
@@ -18,8 +19,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 
-// Mock News Data
-const initialNewsArticles = [
+// Mock News Data (Exported for use in ReadNews)
+export const initialNewsArticles = [
   {
     id: "n-1",
     title: "OpenClaw v2.0 Release: Enhanced Security Primitives",
@@ -96,17 +97,9 @@ const initialNewsArticles = [
 
 export default function News() {
   const [newsArticles, setNewsArticles] = useState(initialNewsArticles);
-  const [activeArticle, setActiveArticle] = useState<string | null>(null);
+  const [location, setLocation] = useLocation();
   const [isSubmitOpen, setIsSubmitOpen] = useState(false);
   const { toast } = useToast();
-
-  const scrollToArticle = (id: string) => {
-    setActiveArticle(id);
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
 
   const handleSubmitArticle = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -172,21 +165,21 @@ export default function News() {
         }
       />
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-        {/* Main Feed - Continuous Reading */}
-        <div className="lg:col-span-8 space-y-12">
-          {newsArticles.map((article, index) => (
+      <div className="grid grid-cols-1 gap-8 max-w-5xl mx-auto">
+        {/* Main Feed - List View */}
+        <div className="space-y-6">
+          {newsArticles.map((article) => (
             <article 
               key={article.id} 
               id={article.id}
-              className={`scroll-mt-24 transition-opacity duration-500 cursor-pointer ${activeArticle && activeArticle !== article.id ? 'opacity-40 hover:opacity-100' : 'opacity-100'}`}
-              onClick={() => setActiveArticle(article.id)}
+              className="group cursor-pointer bg-card border border-border/60 hover:border-primary/50 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300"
+              onClick={() => setLocation(`/read-news`)} // In a real app we'd pass the ID, but for mockup we just load the reading page
             >
-              <div className="flex flex-col md:flex-row gap-6 md:gap-8 items-start">
+              <div className="flex flex-col md:flex-row h-full">
                 
-                {/* Compact Image - Left Side */}
+                {/* Image - Left Side */}
                 {article.image && (
-                  <div className="w-full md:w-48 lg:w-56 shrink-0 aspect-[4/3] rounded-lg overflow-hidden border border-border/40 relative group">
+                  <div className="w-full md:w-64 shrink-0 aspect-[16/9] md:aspect-auto overflow-hidden relative">
                     <img 
                       src={article.image} 
                       alt={article.title}
@@ -196,99 +189,45 @@ export default function News() {
                 )}
 
                 {/* Content - Right Side */}
-                <div className="flex-1 min-w-0">
-                  <div className="mb-3 flex items-center gap-3">
-                    <Badge variant={article.category === 'Security' ? 'destructive' : 'secondary'} className="text-[10px] h-5 px-1.5 uppercase tracking-wider">
-                      {article.category}
-                    </Badge>
-                    <span className="text-xs text-muted-foreground flex items-center gap-1">
-                      <Calendar className="w-3 h-3" /> {article.date}
-                    </span>
-                    <span className="text-xs text-muted-foreground flex items-center gap-1">
-                      <Clock className="w-3 h-3" /> {article.readTime}
-                    </span>
-                  </div>
-                  
-                  <h2 className="text-2xl font-display font-bold text-foreground mb-3 leading-tight">
-                    {article.title}
-                  </h2>
+                <div className="flex-1 p-6 flex flex-col justify-between">
+                  <div>
+                    <div className="mb-3 flex items-center gap-3">
+                      <Badge variant={article.category === 'Security' ? 'destructive' : 'secondary'} className="text-[10px] h-5 px-1.5 uppercase tracking-wider">
+                        {article.category}
+                      </Badge>
+                      <span className="text-xs text-muted-foreground flex items-center gap-1">
+                        <Calendar className="w-3 h-3" /> {article.date}
+                      </span>
+                      <span className="text-xs text-muted-foreground flex items-center gap-1">
+                        <Clock className="w-3 h-3" /> {article.readTime}
+                      </span>
+                    </div>
+                    
+                    <h2 className="text-xl font-display font-bold text-foreground mb-3 leading-tight group-hover:text-primary transition-colors">
+                      {article.title}
+                    </h2>
 
-                  <div className="prose prose-sm prose-slate dark:prose-invert max-w-none text-muted-foreground leading-relaxed line-clamp-6">
-                     <div dangerouslySetInnerHTML={{ __html: article.content }} />
+                    <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3 mb-4">
+                       {article.summary}
+                    </p>
                   </div>
 
-                  <div className="flex items-center justify-between pt-4 mt-4 border-t border-border/40">
+                  <div className="flex items-center justify-between pt-4 border-t border-border/40 mt-auto">
                     <div className="flex items-center gap-2 text-xs font-medium text-foreground">
                       By {article.author}
                     </div>
-                    <div className="flex gap-2">
-                       <Button size="sm" variant="ghost" className="h-7 text-xs gap-1.5 cursor-pointer">
-                         <Share2 className="w-3.5 h-3.5" /> Share
-                       </Button>
-                       <Button size="sm" variant="ghost" className="h-7 text-xs gap-1.5 cursor-pointer">
-                         <Bookmark className="w-3.5 h-3.5" /> Save
-                       </Button>
+                    <div className="flex items-center text-xs font-medium text-primary opacity-0 group-hover:opacity-100 transition-opacity transform translate-x-2 group-hover:translate-x-0">
+                       Read Story <ArrowRight className="w-3 h-3 ml-1" />
                     </div>
                   </div>
                 </div>
               </div>
-              
-              {/* Visual Divider between articles */}
-              {index !== newsArticles.length - 1 && (
-                 <div className="flex items-center justify-center py-10">
-                    <div className="h-px bg-border/40 w-full max-w-[150px]" />
-                    <div className="mx-4 text-[10px] text-muted-foreground uppercase tracking-widest font-mono">Next</div>
-                    <div className="h-px bg-border/40 w-full max-w-[150px]" />
-                 </div>
-              )}
             </article>
           ))}
           
-          <div className="py-12 text-center">
-             <p className="text-muted-foreground mb-4">You've reached the end of the feed for this week.</p>
+          <div className="py-8 text-center">
              <Button variant="outline" className="cursor-pointer">Load Older Articles</Button>
           </div>
-        </div>
-
-        {/* Sidebar - Table of Contents */}
-        <div className="hidden lg:block lg:col-span-4 pl-6">
-           <div className="sticky top-24 space-y-6">
-              <Card className="p-5 border-border shadow-sm">
-                <h3 className="font-bold text-sm mb-4 text-foreground">In this feed</h3>
-                <nav className="space-y-1">
-                   {newsArticles.map(article => (
-                     <button
-                       key={article.id}
-                       onClick={() => scrollToArticle(article.id)}
-                       className={`w-full text-left px-3 py-2 rounded-md text-sm transition-colors line-clamp-1 border-l-2 cursor-pointer
-                         ${activeArticle === article.id 
-                           ? 'bg-muted border-primary text-foreground font-medium' 
-                           : 'border-transparent text-muted-foreground hover:bg-muted/50 hover:text-foreground'
-                         }`}
-                     >
-                       {article.title}
-                     </button>
-                   ))}
-                </nav>
-              </Card>
-
-              <Card className="p-5 bg-gradient-to-br from-primary to-primary/80 text-primary-foreground border-none shadow-md">
-                 <h3 className="font-bold text-lg mb-2">Subscribe to Updates</h3>
-                 <p className="text-sm text-primary-foreground/90 mb-4 leading-relaxed">
-                   Get security advisories and release notes delivered straight to your inbox.
-                 </p>
-                 <div className="space-y-2">
-                   <input 
-                     type="email" 
-                     placeholder="email@company.com" 
-                     className="w-full h-9 rounded-md border-0 bg-white/10 text-white placeholder:text-white/60 px-3 text-sm focus:ring-2 focus:ring-white/30 outline-none"
-                   />
-                   <Button size="sm" className="w-full bg-white text-primary hover:bg-white/90 font-bold border-none cursor-pointer">
-                     Subscribe
-                   </Button>
-                 </div>
-              </Card>
-           </div>
         </div>
       </div>
     </Layout>

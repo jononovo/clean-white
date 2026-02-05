@@ -7,6 +7,7 @@ import Home from "@/pages/home";
 import Community from "@/pages/community";
 import Media from "@/pages/media";
 import News from "@/pages/news";
+import ReadNews from "@/pages/read-news";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -16,6 +17,7 @@ function Router() {
       <Route path="/community" component={Community} />
       <Route path="/media" component={Media} />
       <Route path="/news" component={News} />
+      <Route path="/read-news" component={ReadNews} />
       <Route component={NotFound} />
     </Switch>
   );
