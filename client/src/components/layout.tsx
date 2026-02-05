@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 import { AuthDrawer } from "@/components/auth-drawer";
+import { Footer } from "@/components/footer";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
@@ -191,6 +192,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <div className="flex-1 p-6 md:p-8 max-w-7xl mx-auto w-full">
           {children}
         </div>
+        
+        <Footer />
       </main>
     </div>
   );
