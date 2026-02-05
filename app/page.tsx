@@ -243,7 +243,7 @@ export default function Home() {
               subtitle="of the Day"
               name={FEATURED_OF_THE_DAY.app.name}
               description={FEATURED_OF_THE_DAY.app.description}
-              href={`/apps/${FEATURED_OF_THE_DAY.app.slug}`}
+              href={FEATURED_OF_THE_DAY.app.sourceUrl || `/apps/${FEATURED_OF_THE_DAY.app.slug}`}
               imageUrl={FEATURED_OF_THE_DAY.app.imageUrl}
               sourceUrl={FEATURED_OF_THE_DAY.app.sourceUrl}
               isVerified={FEATURED_OF_THE_DAY.app.isVerified}

@@ -8,12 +8,12 @@ export const FEATURED_OF_THE_DAY = {
     isVerified: true,
   },
   app: {
-    slug: "openclaw-desktop",
-    name: "OpenClaw Desktop",
-    description: "The AI assistant that actually does things. Control your PC via WhatsApp, Telegram, or Discord with 145k+ GitHub stars.",
-    imageUrl: "/images/featured/app-openclaw.png",
-    sourceUrl: "https://openclaw.ai",
-    author: "openclaw",
+    slug: "excalidraw-agent",
+    name: "Excalidraw Agent",
+    description: "Say 'draw this flow' and get instant diagrams. Natural language to visual flowcharts, architecture maps, and wireframes.",
+    imageUrl: "/images/featured/app-excalidraw-agent.png",
+    sourceUrl: "https://github.com/swiftlysingh",
+    author: "swiftlysingh",
     isVerified: true,
   },
   skill: {
