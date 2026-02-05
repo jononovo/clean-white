@@ -233,6 +233,7 @@ export default function Home() {
               description={FEATURED_OF_THE_DAY.hero.description}
               href={`https://github.com/${FEATURED_OF_THE_DAY.hero.handle}`}
               imageUrl={FEATURED_OF_THE_DAY.hero.imageUrl}
+              sourceUrl={FEATURED_OF_THE_DAY.hero.sourceUrl}
               isVerified={FEATURED_OF_THE_DAY.hero.isVerified}
             />
             <FeaturedOfTheDayCard
@@ -242,6 +243,7 @@ export default function Home() {
               description={FEATURED_OF_THE_DAY.app.description}
               href={`/apps/${FEATURED_OF_THE_DAY.app.slug}`}
               imageUrl={FEATURED_OF_THE_DAY.app.imageUrl}
+              sourceUrl={FEATURED_OF_THE_DAY.app.sourceUrl}
               isVerified={FEATURED_OF_THE_DAY.app.isVerified}
             />
             <FeaturedOfTheDayCard
@@ -260,6 +262,7 @@ export default function Home() {
               description={FEATURED_OF_THE_DAY.service.description}
               href={FEATURED_OF_THE_DAY.service.website}
               imageUrl={FEATURED_OF_THE_DAY.service.imageUrl}
+              sourceUrl={FEATURED_OF_THE_DAY.service.sourceUrl}
               isVerified={FEATURED_OF_THE_DAY.service.isVerified}
             />
           </div>

@@ -4,6 +4,7 @@ export const FEATURED_OF_THE_DAY = {
     displayName: "joshp123",
     description: "Shipped SSRF DNS pinning and system prompt safety guardrails — hardening OpenClaw against injection attacks and request forgery.",
     imageUrl: "/images/featured/hero-joshp123.png",
+    sourceUrl: "https://github.com/joshp123",
     isVerified: true,
   },
   app: {
@@ -11,6 +12,7 @@ export const FEATURED_OF_THE_DAY = {
     name: "OpenClaw Desktop",
     description: "The AI assistant that actually does things. Control your PC via WhatsApp, Telegram, or Discord with 145k+ GitHub stars.",
     imageUrl: "/images/featured/app-openclaw.png",
+    sourceUrl: "https://openclaw.ai",
     author: "openclaw",
     isVerified: true,
   },
@@ -28,6 +30,7 @@ export const FEATURED_OF_THE_DAY = {
     providerHandle: "xcloud",
     description: "One-click managed OpenClaw hosting. Live in under 5 minutes with 24/7 support.",
     imageUrl: "/images/featured/service-xcloud.png",
+    sourceUrl: "https://xcloud.host",
     website: "https://xcloud.host/openclaw-hosting",
     isVerified: true,
   },
