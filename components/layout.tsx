@@ -339,23 +339,23 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
         <div className="flex-1 p-6 md:p-8 max-w-7xl mx-auto w-full">
             <div className="hidden md:flex items-center text-[11px] text-muted-foreground font-medium mb-6 relative z-20 overflow-x-auto">
-              <Link href="#" className="py-2 px-2 -my-2 hover:text-primary transition-colors hover:underline whitespace-nowrap">Developer Hub</Link>
+              <Link href="#" className="inline-block py-2 px-2 -my-2 hover:text-primary transition-colors hover:underline whitespace-nowrap">Developer Hub</Link>
               <span className="text-border">|</span>
-              <Link href="/news" className="py-2 px-2 -my-2 hover:text-primary transition-colors hover:underline whitespace-nowrap">News</Link>
+              <Link href="/news" className="inline-block py-2 px-2 -my-2 hover:text-primary transition-colors hover:underline whitespace-nowrap">News</Link>
               <span className="text-border">|</span>
-              <Link href="#" className="py-2 px-2 -my-2 hover:text-primary transition-colors hover:underline whitespace-nowrap">Enterprise</Link>
+              <Link href="#" className="inline-block py-2 px-2 -my-2 hover:text-primary transition-colors hover:underline whitespace-nowrap">Enterprise</Link>
               <span className="text-border">|</span>
-              <Link href="#" className="py-2 px-2 -my-2 hover:text-primary transition-colors hover:underline whitespace-nowrap">Jobs</Link>
+              <Link href="#" className="inline-block py-2 px-2 -my-2 hover:text-primary transition-colors hover:underline whitespace-nowrap">Jobs</Link>
               <span className="text-border">|</span>
-              <Link href="/community" className="py-2 px-2 -my-2 hover:text-primary transition-colors hover:underline whitespace-nowrap">Community</Link>
+              <Link href="/community" className="inline-block py-2 px-2 -my-2 hover:text-primary transition-colors hover:underline whitespace-nowrap">Community</Link>
               <span className="text-border">|</span>
-              <a href="https://discord.gg/gduUaXMQ" target="_blank" rel="noopener noreferrer" className="py-2 px-2 -my-2 hover:text-primary transition-colors hover:underline whitespace-nowrap">Discord</a>
+              <a href="https://discord.gg/gduUaXMQ" target="_blank" rel="noopener noreferrer" className="inline-block py-2 px-2 -my-2 hover:text-primary transition-colors hover:underline whitespace-nowrap">Discord</a>
               <span className="text-border">|</span>
-              <Link href="#" className="py-2 px-2 -my-2 hover:text-primary transition-colors hover:underline whitespace-nowrap">Feedback</Link>
+              <Link href="#" className="inline-block py-2 px-2 -my-2 hover:text-primary transition-colors hover:underline whitespace-nowrap">Feedback</Link>
               <span className="text-border">|</span>
-              <Link href="#" className="py-2 px-2 -my-2 hover:text-primary transition-colors hover:underline whitespace-nowrap">Security Advisory</Link>
+              <Link href="#" className="inline-block py-2 px-2 -my-2 hover:text-primary transition-colors hover:underline whitespace-nowrap">Security Advisory</Link>
               <span className="text-border">|</span>
-              <Link href="/media" className="py-2 px-2 -my-2 hover:text-primary transition-colors hover:underline whitespace-nowrap">Media Advisory</Link>
+              <Link href="/media" className="inline-block py-2 px-2 -my-2 hover:text-primary transition-colors hover:underline whitespace-nowrap">Media Advisory</Link>
               <span className="text-border">|</span>
               <Link href="/threats" className="py-2 px-2 -my-2 hover:text-destructive transition-colors hover:underline flex items-center gap-1 group whitespace-nowrap">
                 <AlertTriangle className="w-3 h-3 text-muted-foreground group-hover:text-destructive transition-colors" />

@@ -3379,7 +3379,7 @@ function Layout({ children }) {
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
                                         href: "#",
-                                        className: "py-2 px-2 -my-2 hover:text-primary transition-colors hover:underline whitespace-nowrap",
+                                        className: "inline-block py-2 px-2 -my-2 hover:text-primary transition-colors hover:underline whitespace-nowrap",
                                         children: "Developer Hub"
                                     }, void 0, false, {
                                         fileName: "[project]/components/layout.tsx",
@@ -3396,7 +3396,7 @@ function Layout({ children }) {
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
                                         href: "/news",
-                                        className: "py-2 px-2 -my-2 hover:text-primary transition-colors hover:underline whitespace-nowrap",
+                                        className: "inline-block py-2 px-2 -my-2 hover:text-primary transition-colors hover:underline whitespace-nowrap",
                                         children: "News"
                                     }, void 0, false, {
                                         fileName: "[project]/components/layout.tsx",
@@ -3413,7 +3413,7 @@ function Layout({ children }) {
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
                                         href: "#",
-                                        className: "py-2 px-2 -my-2 hover:text-primary transition-colors hover:underline whitespace-nowrap",
+                                        className: "inline-block py-2 px-2 -my-2 hover:text-primary transition-colors hover:underline whitespace-nowrap",
                                         children: "Enterprise"
                                     }, void 0, false, {
                                         fileName: "[project]/components/layout.tsx",
@@ -3430,7 +3430,7 @@ function Layout({ children }) {
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
                                         href: "#",
-                                        className: "py-2 px-2 -my-2 hover:text-primary transition-colors hover:underline whitespace-nowrap",
+                                        className: "inline-block py-2 px-2 -my-2 hover:text-primary transition-colors hover:underline whitespace-nowrap",
                                         children: "Jobs"
                                     }, void 0, false, {
                                         fileName: "[project]/components/layout.tsx",
@@ -3447,7 +3447,7 @@ function Layout({ children }) {
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
                                         href: "/community",
-                                        className: "py-2 px-2 -my-2 hover:text-primary transition-colors hover:underline whitespace-nowrap",
+                                        className: "inline-block py-2 px-2 -my-2 hover:text-primary transition-colors hover:underline whitespace-nowrap",
                                         children: "Community"
                                     }, void 0, false, {
                                         fileName: "[project]/components/layout.tsx",
@@ -3466,7 +3466,7 @@ function Layout({ children }) {
                                         href: "https://discord.gg/gduUaXMQ",
                                         target: "_blank",
                                         rel: "noopener noreferrer",
-                                        className: "py-2 px-2 -my-2 hover:text-primary transition-colors hover:underline whitespace-nowrap",
+                                        className: "inline-block py-2 px-2 -my-2 hover:text-primary transition-colors hover:underline whitespace-nowrap",
                                         children: "Discord"
                                     }, void 0, false, {
                                         fileName: "[project]/components/layout.tsx",
@@ -3483,7 +3483,7 @@ function Layout({ children }) {
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
                                         href: "#",
-                                        className: "py-2 px-2 -my-2 hover:text-primary transition-colors hover:underline whitespace-nowrap",
+                                        className: "inline-block py-2 px-2 -my-2 hover:text-primary transition-colors hover:underline whitespace-nowrap",
                                         children: "Feedback"
                                     }, void 0, false, {
                                         fileName: "[project]/components/layout.tsx",
@@ -3500,7 +3500,7 @@ function Layout({ children }) {
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
                                         href: "#",
-                                        className: "py-2 px-2 -my-2 hover:text-primary transition-colors hover:underline whitespace-nowrap",
+                                        className: "inline-block py-2 px-2 -my-2 hover:text-primary transition-colors hover:underline whitespace-nowrap",
                                         children: "Security Advisory"
                                     }, void 0, false, {
                                         fileName: "[project]/components/layout.tsx",
@@ -3517,7 +3517,7 @@ function Layout({ children }) {
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
                                         href: "/media",
-                                        className: "py-2 px-2 -my-2 hover:text-primary transition-colors hover:underline whitespace-nowrap",
+                                        className: "inline-block py-2 px-2 -my-2 hover:text-primary transition-colors hover:underline whitespace-nowrap",
                                         children: "Media Advisory"
                                     }, void 0, false, {
                                         fileName: "[project]/components/layout.tsx",
