@@ -12,8 +12,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
   const SidebarContent = () => (
     <div className="flex flex-col h-full bg-card border-r border-border">
-      <div className="p-6 flex items-center gap-3 border-b border-border/50">
-        <img src="/logo_v2.png" alt="SecureClawHub" className="w-10 h-10 object-contain" />
+      <div className="p-4 flex items-center gap-3 border-b border-border/50">
+        <img src="/logo_v2.png" alt="SecureClawHub" className="w-12 h-12 object-contain" />
         <div>
           <h1 className="font-display font-bold text-xl leading-none tracking-tight">SecureClawHub</h1>
           <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold mt-0.5">Verified Registry</p>
