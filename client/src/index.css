@@ -3,14 +3,12 @@
 
 @variant dark (&:where(.dark, .dark *));
 
-@import "tailwindcss";
-@import "tw-animate-css";
-
-@variant dark (&:where(.dark, .dark *));
-
 @layer base {
   /* --- Base / Slate Theme (Default) --- */
   :root, [data-theme="slate"] {
+    --font-sans-base: 'Inter', sans-serif;
+    --font-display-base: 'Plus Jakarta Sans', sans-serif;
+
     --background: 210 20% 98%;
     --foreground: 220 15% 10%;
     
@@ -74,6 +72,9 @@
 
   /* --- Warm / Comfort Theme --- */
   [data-theme="warm"] {
+    --font-sans-base: 'Crimson Pro', serif;
+    --font-display-base: 'Plus Jakarta Sans', sans-serif;
+
     --background: 40 20% 97%; /* Warm Beige Paper */
     --foreground: 25 10% 15%; /* Warm Grey */
     
@@ -167,8 +168,8 @@
   
   --radius: var(--radius);
   
-  --font-sans: 'Inter', sans-serif;
-  --font-display: 'Plus Jakarta Sans', sans-serif;
+  --font-sans: var(--font-sans-base);
+  --font-display: var(--font-display-base);
   --font-mono: 'JetBrains Mono', monospace;
   
   --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
