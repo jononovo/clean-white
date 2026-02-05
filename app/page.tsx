@@ -1,193 +1,22 @@
 "use client";
 
 import { Layout } from "@/components/layout";
-import { topScorers, latestSubmissions, threats, infrastructureProviders, Listing } from "@/lib/mock-data";
+import { topScorers, latestSubmissions, threats, infrastructureProviders } from "@/lib/mock-data";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import { FullPageModal, ConfirmationModal } from "@/components/modals";
-import { ThreatTicker } from "@/components/threat-ticker";
 import { AuthDrawer } from "@/components/auth-drawer";
-import { ServiceRegistrationDrawer } from "@/components/service-registration-drawer";
 import { useState } from "react";
-import { Shield, CheckCircle, Download, ExternalLink, Calendar, Star, AlertTriangle, Terminal, Lock, ChevronRight, Zap, Globe, Server, Activity, ArrowUpRight, Mail, Box, Cloud, Search, Newspaper, Wrench, Database, Users, GraduationCap, Handshake, Receipt, Trophy, BadgeCheck, Sparkles } from "lucide-react";
+import { Shield, CheckCircle, ExternalLink, Calendar, AlertTriangle, ChevronRight, Zap, Globe, Server, Activity, ArrowUpRight, Mail, Box, Cloud, Search, Newspaper, Sparkles, Star, Terminal, Lock, Handshake } from "lucide-react";
+import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
 
-const SERVICE_CATEGORIES = [
-  { id: "setup_installation", label: "Setup & Install", icon: Wrench },
-  { id: "managed_hosting", label: "Managed Hosting", icon: Database },
-  { id: "consulting", label: "Consulting", icon: Users },
-  { id: "training", label: "Training", icon: GraduationCap },
-  { id: "partnerships", label: "Partnerships", icon: Handshake },
-  { id: "finance_tax", label: "Finance & Tax", icon: Receipt },
-];
-
-const FEATURED_OF_THE_DAY = {
-  provider: {
-    handle: "steipete",
-    displayName: "Peter Steinberger",
-    description: "Creator of OpenClaw. Austrian developer who sold PSPDFKit for ~$100M. Building the future of autonomous AI agents.",
-    imageUrl: "/images/featured/provider-steipete.png",
-    isVerified: true,
-  },
-  app: {
-    slug: "openclaw-desktop",
-    name: "OpenClaw Desktop",
-    description: "The AI assistant that actually does things. Control your PC via WhatsApp, Telegram, or Discord with 145k+ GitHub stars.",
-    imageUrl: "/images/featured/app-openclaw.png",
-    author: "openclaw",
-    isVerified: true,
-  },
-  skill: {
-    slug: "browser-automation",
-    name: "Browser Automation",
-    description: "Playwright-based browser control for web scraping, form filling, and automated navigation. One of the most popular skills.",
-    imageUrl: "/images/featured/skill-browser-automation.png",
-    author: "steipete",
-    isVerified: true,
-  },
-  service: {
-    name: "xCloud Managed Hosting",
-    provider: "xCloud",
-    providerHandle: "xcloud",
-    description: "One-click managed OpenClaw hosting. Live in under 5 minutes with 24/7 support.",
-    imageUrl: "/images/featured/service-xcloud.png",
-    website: "https://xcloud.host/openclaw-hosting",
-    isVerified: true,
-  },
-};
-
-const FeaturedOfTheDayCard = ({ 
-  type, 
-  title, 
-  name, 
-  description, 
-  href, 
-  imageUrl,
-  isVerified 
-}: { 
-  type: "provider" | "app" | "skill" | "service";
-  title: string;
-  name: string;
-  description: string;
-  href: string;
-  imageUrl?: string;
-  isVerified: boolean;
-}) => (
-  <Link href={href} className="group block">
-    <div className="p-4 rounded-xl bg-gradient-to-b from-card to-card/50 border border-border hover:border-primary/40 hover:shadow-lg transition-all duration-200 h-full">
-      <div className="flex gap-3">
-        {imageUrl && (
-          <div className="flex-shrink-0">
-            <img 
-              src={imageUrl} 
-              alt={name}
-              className="w-12 h-12 rounded-lg object-cover border border-border/50"
-            />
-          </div>
-        )}
-        <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-2 mb-1">
-            <div className="flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400">
-              <Trophy className="w-3 h-3" />
-              {title}
-            </div>
-            {isVerified && (
-              <div className="flex items-center gap-0.5 text-[10px] font-medium text-emerald-600 dark:text-emerald-400">
-                <BadgeCheck className="w-3 h-3" />
-              </div>
-            )}
-          </div>
-          <h4 className="font-semibold text-sm text-foreground group-hover:text-primary transition-colors mb-0.5 truncate">
-            {type === "provider" ? `@${name}` : name}
-          </h4>
-          <p className="text-xs text-muted-foreground line-clamp-2">{description}</p>
-        </div>
-      </div>
-    </div>
-  </Link>
-);
-
-const AuditBadge = ({ level }: { level: Listing["auditLevel"] }) => {
-  if (level === "none") return <span className="text-[10px] text-muted-foreground font-medium uppercase tracking-wider">Unverified</span>;
-  
-  const colors = {
-    gold: "bg-amber-100/50 text-amber-800 border-amber-200/60 shadow-[0_0_10px_-3px_rgba(251,191,36,0.4)]",
-    silver: "bg-slate-100/50 text-slate-700 border-slate-200/60",
-    bronze: "bg-orange-50/50 text-orange-700 border-orange-200/60",
-  };
-
-  return (
-    <div className={cn("flex items-center gap-1 px-1.5 py-0.5 rounded border text-[9px] font-bold uppercase tracking-wider", colors[level])}>
-      {level === 'gold' && <Lock className="w-2.5 h-2.5" />}
-      {level}
-    </div>
-  );
-};
-
-const CompressedListRow = ({ item, rank }: { item: Listing, rank?: number }) => (
-  <div className="flex items-center gap-3 py-2 border-b border-border/40 last:border-0 hover:bg-muted/30 px-2 rounded-sm transition-colors group cursor-pointer">
-    {rank && (
-      <span className="w-4 text-xs font-mono text-muted-foreground text-center">{rank}</span>
-    )}
-    <div className="flex-1 min-w-0">
-      <div className="flex items-center gap-2">
-        <span className="font-semibold text-sm truncate text-foreground group-hover:text-primary transition-colors">{item.name}</span>
-        <AuditBadge level={item.auditLevel} />
-      </div>
-      <div className="flex items-center gap-2 text-[10px] text-muted-foreground mt-0.5">
-         <span>v{item.version}</span>
-         <span className="w-0.5 h-0.5 rounded-full bg-border" />
-         <span>{item.author}</span>
-      </div>
-    </div>
-    <div className="text-right shrink-0">
-      {item.rating ? (
-         <div className="flex items-center justify-end gap-1 text-xs font-medium text-emerald-700">
-            <Star className="w-3 h-3 fill-emerald-600 text-emerald-600" />
-            {item.rating}
-         </div>
-      ) : (
-        <div className="text-[10px] font-mono text-muted-foreground">{item.updated}</div>
-      )}
-    </div>
-  </div>
-);
-
-const FeaturedCard = ({ item, color = "emerald" }: { item: Listing, color?: "emerald" | "blue" | "indigo" }) => {
-  const colors = {
-    emerald: "from-emerald-50/50 to-white border-emerald-100/60 dark:from-emerald-950/20 dark:to-card dark:border-emerald-900/40",
-    blue: "from-blue-50/50 to-white border-blue-100/60 dark:from-blue-950/20 dark:to-card dark:border-blue-900/40",
-    indigo: "from-indigo-50/50 to-white border-indigo-100/60 dark:from-indigo-950/20 dark:to-card dark:border-indigo-900/40",
-  };
-
-  return (
-    <Card className={cn("p-4 bg-gradient-to-br border shadow-sm hover:shadow-md transition-all duration-300 relative overflow-hidden group cursor-pointer dark:bg-card", colors[color])}>
-       <div className="absolute -right-6 -top-6 w-24 h-24 bg-current opacity-[0.03] rounded-full blur-2xl group-hover:opacity-[0.06] transition-opacity" />
-       
-       <div className="flex justify-between items-start mb-3 relative z-10">
-          <div className="w-10 h-10 rounded-lg bg-white shadow-sm border border-border/50 flex items-center justify-center">
-             {item.category === 'service' ? <Cloud className="w-5 h-5 text-muted-foreground" /> : <Terminal className="w-5 h-5 text-muted-foreground" />}
-          </div>
-          <AuditBadge level={item.auditLevel} />
-       </div>
-       
-       <h3 className="font-display font-bold text-lg mb-1 group-hover:text-primary transition-colors">{item.name}</h3>
-       <p className="text-xs text-muted-foreground line-clamp-2 mb-3">{item.description}</p>
-       
-       <div className="flex items-center justify-between text-xs text-muted-foreground relative z-10">
-          <span className="flex items-center gap-1 font-medium text-foreground/80">
-            <Download className="w-3 h-3" /> {item.downloads}
-          </span>
-          <Button size="sm" variant="ghost" className="h-6 px-2 text-[10px] hover:bg-primary/5 -mr-2">
-            View <ChevronRight className="w-3 h-3 ml-1" />
-          </Button>
-       </div>
-    </Card>
-  )
-}
+import { FeaturedOfTheDayCard, FEATURED_OF_THE_DAY } from "@/features/featured";
+import { SERVICE_CATEGORIES, ServiceRegistrationDrawer } from "@/features/services";
+import { AuditBadge, FeaturedCard, CompressedListRow } from "@/features/skills";
+import { ThreatTicker } from "@/features/threats";
 
 
 export default function Home() {

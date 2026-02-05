@@ -1,0 +1,57 @@
+import Link from "next/link";
+import { Trophy, BadgeCheck } from "lucide-react";
+
+export type FeaturedType = "provider" | "app" | "skill" | "service";
+
+interface FeaturedOfTheDayCardProps {
+  type: FeaturedType;
+  title: string;
+  name: string;
+  description: string;
+  href: string;
+  imageUrl?: string;
+  isVerified: boolean;
+}
+
+export const FeaturedOfTheDayCard = ({ 
+  type, 
+  title, 
+  name, 
+  description, 
+  href, 
+  imageUrl,
+  isVerified 
+}: FeaturedOfTheDayCardProps) => (
+  <Link href={href} className="group block">
+    <div className="p-4 rounded-xl bg-gradient-to-b from-card to-card/50 border border-border hover:border-primary/40 hover:shadow-lg transition-all duration-200 h-full">
+      <div className="flex gap-3">
+        {imageUrl && (
+          <div className="flex-shrink-0">
+            <img 
+              src={imageUrl} 
+              alt={name}
+              className="w-12 h-12 rounded-lg object-cover border border-border/50"
+            />
+          </div>
+        )}
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-2 mb-1">
+            <div className="flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400">
+              <Trophy className="w-3 h-3" />
+              {title}
+            </div>
+            {isVerified && (
+              <div className="flex items-center gap-0.5 text-[10px] font-medium text-emerald-600 dark:text-emerald-400">
+                <BadgeCheck className="w-3 h-3" />
+              </div>
+            )}
+          </div>
+          <h4 className="font-semibold text-sm text-foreground group-hover:text-primary transition-colors mb-0.5 truncate">
+            {type === "provider" ? `@${name}` : name}
+          </h4>
+          <p className="text-xs text-muted-foreground line-clamp-2">{description}</p>
+        </div>
+      </div>
+    </div>
+  </Link>
+);
