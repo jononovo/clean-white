@@ -5,20 +5,24 @@ import { Shield, ExternalLink, AlertTriangle, Info } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import { THREAT_ALERTS } from "@/lib/mock-data";
+import { useMounted } from "@/app/providers";
 
 const CYCLE_INTERVAL = 600000; // 10 minutes
 
 export function ThreatTicker() {
+  const mounted = useMounted();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
   useEffect(() => {
+    if (!mounted) return;
+    
     const interval = setInterval(() => {
       cycleNext();
     }, CYCLE_INTERVAL);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [mounted]);
 
   const cycleNext = () => {
     setIsTransitioning(true);

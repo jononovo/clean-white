@@ -20,28 +20,31 @@ import {
 import { AuthDrawer } from "@/components/auth-drawer";
 import { Footer } from "@/components/footer";
 
+const DEFAULT_THEME = { style: "warm" as const, mode: "dark" as const };
+
 export function Layout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const [authOpen, setAuthOpen] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const [theme, setTheme] = useState<{ style: "slate" | "warm"; mode: "light" | "dark" }>(() => {
-    if (typeof window !== "undefined") {
-      try {
-        const saved = localStorage.getItem("theme-preference");
-        if (saved) {
-          return JSON.parse(saved);
-        }
-      } catch (e) {
-        console.error("Failed to parse theme preference", e);
-      }
-    }
-    return {
-      style: "warm",
-      mode: "dark", 
-    };
-  });
+  const [mounted, setMounted] = useState(false);
+  const [theme, setTheme] = useState<{ style: "slate" | "warm"; mode: "light" | "dark" }>(DEFAULT_THEME);
 
   useEffect(() => {
+    setMounted(true);
+    try {
+      const saved = localStorage.getItem("theme-preference");
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        setTheme(parsed);
+      }
+    } catch (e) {
+      console.error("Failed to parse theme preference", e);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+    
     localStorage.setItem("theme-preference", JSON.stringify(theme));
 
     if (theme.mode === "dark") {
@@ -51,7 +54,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
     }
     
     document.documentElement.setAttribute("data-theme", theme.style);
-  }, [theme]);
+  }, [theme, mounted]);
 
   const SidebarContent = () => (
     <div className="flex flex-col h-full bg-card border-r border-border">
