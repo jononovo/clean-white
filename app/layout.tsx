@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 export const metadata: Metadata = {
   title: "SecureClawHub - Trusted OpenClaw Directory",
@@ -65,6 +66,7 @@ export default function RootLayout({
         </Providers>
         <Toaster />
       </body>
+      <GoogleAnalytics gaId="G-ZP35N89HPY" />
     </html>
   );
 }
