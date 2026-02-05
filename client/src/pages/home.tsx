@@ -142,13 +142,13 @@ export default function Home() {
         <div className="flex items-center gap-1 text-[11px] text-muted-foreground font-medium mb-2 px-1 relative z-20">
           <a href="#" className="hover:text-primary transition-colors hover:underline">Developer Hub</a>
           <span className="text-border mx-2">|</span>
-          <a href="#" className="hover:text-primary transition-colors hover:underline">News</a>
+          <a href="/news" className="hover:text-primary transition-colors hover:underline">News</a>
           <span className="text-border mx-2">|</span>
           <a href="#" className="hover:text-primary transition-colors hover:underline">Enterprise</a>
           <span className="text-border mx-2">|</span>
           <a href="#" className="hover:text-primary transition-colors hover:underline">Jobs</a>
           <span className="text-border mx-2">|</span>
-          <a href="#" className="hover:text-primary transition-colors hover:underline">Community</a>
+          <a href="/community" className="hover:text-primary transition-colors hover:underline">Community</a>
           <span className="text-border mx-2">|</span>
           <a href="https://discord.gg/gduUaXMQ" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors hover:underline">Discord</a>
           <span className="text-border mx-2">|</span>
@@ -156,7 +156,7 @@ export default function Home() {
           <span className="text-border mx-2">|</span>
           <a href="#" className="hover:text-primary transition-colors hover:underline">Security Advisory</a>
           <span className="text-border mx-2">|</span>
-          <a href="#" className="hover:text-primary transition-colors hover:underline">Media Advisory</a>
+          <a href="/media" className="hover:text-primary transition-colors hover:underline">Media Advisory</a>
           <span className="text-border mx-2">|</span>
           <a href="#" className="hover:text-destructive transition-colors hover:underline flex items-center gap-1 group">
             <AlertTriangle className="w-3 h-3 text-muted-foreground group-hover:text-destructive transition-colors" />
@@ -249,7 +249,7 @@ export default function Home() {
                             <div className="flex justify-between items-center mb-2">
                                 <span className="text-xs font-bold text-foreground flex items-center gap-1.5">
                                     <Globe className="w-3 h-3 text-muted-foreground" />
-                                    Claw Threat Index
+                                    OpenClaw Threat Index
                                 </span>
                                 <span className="text-[10px] font-mono text-destructive font-bold">HIGH RISK</span>
                             </div>
