@@ -124,7 +124,7 @@ export function ThreatTicker() {
                 key={i}
                 onClick={() => handleDotClick(i)}
                 className={cn(
-                  "h-1 rounded-full transition-all duration-300",
+                  "h-1 rounded-full transition-all duration-300 cursor-pointer",
                   i === currentIndex ? "w-3 bg-foreground/40" : "w-1 bg-border hover:bg-muted-foreground/30"
                 )}
                 aria-label={`View threat ${i + 1}`}
