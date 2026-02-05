@@ -1,32 +1,77 @@
 import type { MetadataRoute } from "next";
+import { db } from "@/server/db";
+import { skills } from "@/shared/schema";
+import { count, asc } from "drizzle-orm";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://secureclawhub.com";
+const URLS_PER_SITEMAP = 10000;
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  return [
-    {
-      url: BASE_URL,
-      lastModified: new Date(),
-      changeFrequency: "daily",
-      priority: 1.0,
-    },
-    {
-      url: `${BASE_URL}/community`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
-    {
-      url: `${BASE_URL}/news`,
-      lastModified: new Date(),
-      changeFrequency: "daily",
-      priority: 0.7,
-    },
-    {
-      url: `${BASE_URL}/publish`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.6,
-    },
-  ];
+export async function generateSitemaps() {
+  const result = await db.select({ count: count() }).from(skills);
+  const totalSkills = result[0]?.count || 0;
+  const numSitemaps = Math.max(1, Math.ceil(totalSkills / URLS_PER_SITEMAP));
+
+  return Array.from({ length: numSitemaps }, (_, i) => ({ id: i }));
 }
+
+export default async function sitemap({ id }: { id: number }): Promise<MetadataRoute.Sitemap> {
+  const staticPages: MetadataRoute.Sitemap = [];
+  
+  if (id === 0) {
+    staticPages.push(
+      {
+        url: BASE_URL,
+        lastModified: new Date(),
+        changeFrequency: "daily",
+        priority: 1.0,
+      },
+      {
+        url: `${BASE_URL}/community`,
+        lastModified: new Date(),
+        changeFrequency: "weekly",
+        priority: 0.8,
+      },
+      {
+        url: `${BASE_URL}/news`,
+        lastModified: new Date(),
+        changeFrequency: "daily",
+        priority: 0.7,
+      },
+      {
+        url: `${BASE_URL}/publish`,
+        lastModified: new Date(),
+        changeFrequency: "monthly",
+        priority: 0.6,
+      },
+      {
+        url: `${BASE_URL}/skills`,
+        lastModified: new Date(),
+        changeFrequency: "daily",
+        priority: 0.9,
+      }
+    );
+  }
+
+  const offset = id * URLS_PER_SITEMAP;
+  const skillList = await db
+    .select({
+      slug: skills.slug,
+      authorUsername: skills.authorUsername,
+      updatedAt: skills.updatedAt,
+    })
+    .from(skills)
+    .orderBy(asc(skills.id))
+    .limit(URLS_PER_SITEMAP)
+    .offset(offset);
+
+  const skillPages: MetadataRoute.Sitemap = skillList.map((skill) => ({
+    url: `${BASE_URL}/${skill.authorUsername}/${skill.slug}`,
+    lastModified: skill.updatedAt,
+    changeFrequency: "weekly" as const,
+    priority: 0.8,
+  }));
+
+  return [...staticPages, ...skillPages];
+}
+
+export const revalidate = 3600;

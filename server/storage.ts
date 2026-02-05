@@ -1,10 +1,11 @@
 import { db } from "./db";
 import { skills, skillVersions, users, type InsertSkill, type Skill, type InsertSkillVersion, type SkillVersion, type InsertUser, type User } from "../shared/schema";
-import { eq, desc, asc, like, sql, count } from "drizzle-orm";
+import { eq, desc, asc, like, sql, count, and } from "drizzle-orm";
 
 export interface IStorage {
   getSkills(options?: { limit?: number; offset?: number; category?: string; search?: string }): Promise<Skill[]>;
   getSkillBySlug(slug: string): Promise<Skill | null>;
+  getSkillByUsernameAndSlug(username: string, slug: string): Promise<Skill | null>;
   getSkillById(id: string): Promise<Skill | null>;
   getSkillCount(): Promise<number>;
   createSkill(skill: InsertSkill): Promise<Skill>;
@@ -39,6 +40,15 @@ export class DatabaseStorage implements IStorage {
 
   async getSkillBySlug(slug: string): Promise<Skill | null> {
     const result = await db.select().from(skills).where(eq(skills.slug, slug)).limit(1);
+    return result[0] || null;
+  }
+
+  async getSkillByUsernameAndSlug(username: string, slug: string): Promise<Skill | null> {
+    const result = await db
+      .select()
+      .from(skills)
+      .where(and(eq(skills.authorUsername, username), eq(skills.slug, slug)))
+      .limit(1);
     return result[0] || null;
   }
 

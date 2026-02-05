@@ -2,12 +2,12 @@
 
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
+import Link from "next/link";
 import { Layout } from "@/components/layout";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
 import {
   Star,
   Download,
@@ -16,7 +16,6 @@ import {
   ShieldCheck,
   ShieldAlert,
   Flag,
-  ExternalLink,
   Github,
   Clock,
   CheckCircle2,
@@ -92,6 +91,7 @@ function SecurityScoreRing({ score }: { score: number }) {
 
 export default function SkillDetailPage() {
   const params = useParams();
+  const username = params.username as string;
   const slug = params.slug as string;
   const [skill, setSkill] = useState<Skill | null>(null);
   const [loading, setLoading] = useState(true);
@@ -100,7 +100,7 @@ export default function SkillDetailPage() {
   useEffect(() => {
     async function fetchSkill() {
       try {
-        const res = await fetch(`/api/skills/${slug}`);
+        const res = await fetch(`/api/skills/${username}/${slug}`);
         if (!res.ok) {
           if (res.status === 404) {
             setError("Skill not found");
@@ -118,11 +118,11 @@ export default function SkillDetailPage() {
       }
     }
     fetchSkill();
-  }, [slug]);
+  }, [username, slug]);
 
   const handleDownload = async () => {
     if (!skill) return;
-    await fetch(`/api/skills/${slug}/download`, { method: "POST" });
+    await fetch(`/api/skills/${username}/${slug}/download`, { method: "POST" });
     setSkill((prev) => (prev ? { ...prev, downloads: prev.downloads + 1 } : prev));
   };
 
@@ -188,9 +188,9 @@ export default function SkillDetailPage() {
 
                 <div className="flex items-center gap-2">
                   <span className="text-sm text-muted-foreground">by</span>
-                  <span className="text-sm font-medium text-primary" data-testid="skill-author">
+                  <Link href={`/${skill.authorUsername}`} className="text-sm font-medium text-primary hover:underline" data-testid="skill-author">
                     @{skill.authorUsername}
-                  </span>
+                  </Link>
                 </div>
 
                 <div className="flex items-center gap-2">
