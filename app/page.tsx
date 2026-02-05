@@ -348,10 +348,64 @@ export default function Home() {
            </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-           <FeaturedCard item={topScorers[0]} color="emerald" />
-           <FeaturedCard item={topScorers[1]} color="blue" />
-           <FeaturedCard item={topScorers[2]} color="indigo" />
+        <div>
+          <div className="flex items-center justify-between mb-4 px-1">
+            <h3 className="text-sm font-bold uppercase tracking-wider flex items-center gap-2 text-foreground/80">
+              <Handshake className="w-3.5 h-3.5 text-muted-foreground" />
+              Our Partners
+            </h3>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              {
+                name: "xCloud",
+                role: "Managed Hosting Partner",
+                description: "One-click managed OpenClaw hosting with 24/7 support. Founded by M Asif Rahman.",
+                url: "https://xcloud.host",
+                color: "emerald" as const,
+              },
+              {
+                name: "BoostedHost",
+                role: "VPS Infrastructure Partner",
+                description: "Turnkey pre-installed OpenClaw VPS. Zero-friction deployment with optimized configs.",
+                url: "https://boostedhost.com",
+                color: "blue" as const,
+              },
+              {
+                name: "DigitalOcean",
+                role: "Cloud Platform Partner",
+                description: "Official 1-Click Deploy for OpenClaw. Enterprise-grade droplets with strong documentation.",
+                url: "https://digitalocean.com",
+                color: "indigo" as const,
+              },
+            ].map((partner) => {
+              const colorClasses = {
+                emerald: "from-emerald-50/50 to-white border-emerald-100/60 dark:from-emerald-950/20 dark:to-card dark:border-emerald-900/40",
+                blue: "from-blue-50/50 to-white border-blue-100/60 dark:from-blue-950/20 dark:to-card dark:border-blue-900/40",
+                indigo: "from-indigo-50/50 to-white border-indigo-100/60 dark:from-indigo-950/20 dark:to-card dark:border-indigo-900/40",
+              };
+              return (
+                <a key={partner.name} href={partner.url} target="_blank" rel="noopener noreferrer">
+                  <Card className={cn("p-4 bg-gradient-to-br border shadow-sm hover:shadow-md transition-all duration-300 relative overflow-hidden group cursor-pointer dark:bg-card h-full", colorClasses[partner.color])}>
+                    <div className="absolute -right-6 -top-6 w-24 h-24 bg-current opacity-[0.03] rounded-full blur-2xl group-hover:opacity-[0.06] transition-opacity" />
+                    <div className="flex items-center gap-2 mb-3 relative z-10">
+                      <div className="w-10 h-10 rounded-lg bg-white shadow-sm border border-border/50 flex items-center justify-center dark:bg-card">
+                        <Globe className="w-5 h-5 text-muted-foreground" />
+                      </div>
+                      <span className="text-[9px] font-bold uppercase tracking-wider text-muted-foreground bg-muted/50 px-2 py-0.5 rounded">{partner.role}</span>
+                    </div>
+                    <h3 className="font-display font-bold text-lg mb-1 group-hover:text-primary transition-colors">{partner.name}</h3>
+                    <p className="text-xs text-muted-foreground line-clamp-2 mb-3">{partner.description}</p>
+                    <div className="flex items-center justify-end text-xs text-muted-foreground relative z-10">
+                      <Button size="sm" variant="ghost" className="h-6 px-2 text-[10px] hover:bg-primary/5 -mr-2">
+                        Visit <ExternalLink className="w-3 h-3 ml-1" />
+                      </Button>
+                    </div>
+                  </Card>
+                </a>
+              );
+            })}
+          </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
