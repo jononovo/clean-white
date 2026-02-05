@@ -1,16 +1,23 @@
 import { Link, useLocation } from "wouter";
 import { categories } from "@/lib/mock-data";
-import { Search, Shield, Bell, Menu, LayoutGrid, Sun, Moon } from "lucide-react";
+import { Search, Shield, Bell, Menu, LayoutGrid, Sun, Moon, Palette } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useState, useEffect } from "react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
   const [isDark, setIsDark] = useState(false);
+  const [themeStyle, setThemeStyle] = useState<"slate" | "warm">("slate");
 
   useEffect(() => {
     if (isDark) {
@@ -19,6 +26,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
       document.documentElement.classList.remove("dark");
     }
   }, [isDark]);
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", themeStyle);
+  }, [themeStyle]);
 
   const toggleTheme = () => setIsDark(!isDark);
 
@@ -130,6 +141,22 @@ export function Layout({ children }: { children: React.ReactNode }) {
                <Bell className="w-4 h-4" />
              </Button>
              
+             <DropdownMenu>
+               <DropdownMenuTrigger asChild>
+                 <Button variant="ghost" size="icon" className="text-muted-foreground cursor-pointer hover:bg-muted">
+                   <Palette className="w-4 h-4" />
+                 </Button>
+               </DropdownMenuTrigger>
+               <DropdownMenuContent align="end">
+                 <DropdownMenuItem onClick={() => setThemeStyle("slate")}>
+                   Modern Slate {themeStyle === "slate" && "✓"}
+                 </DropdownMenuItem>
+                 <DropdownMenuItem onClick={() => setThemeStyle("warm")}>
+                   Comfort Warm {themeStyle === "warm" && "✓"}
+                 </DropdownMenuItem>
+               </DropdownMenuContent>
+             </DropdownMenu>
+
              <Button 
                variant="ghost" 
                size="icon" 
