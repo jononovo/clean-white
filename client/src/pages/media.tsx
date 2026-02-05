@@ -19,7 +19,7 @@ import {
 import { Mic, MapPin, Building, Globe, CheckCircle, UserPlus, Linkedin, Twitter } from "lucide-react";
 
 const ExpertCard = ({ expert }: { expert: typeof mediaExperts[0] }) => (
-  <Card className={`p-5 flex flex-col h-full border-border/60 hover:border-primary/50 transition-colors group ${expert.type === 'recommended' ? 'bg-card' : 'bg-muted/10'}`}>
+  <Card className={`p-5 flex flex-col h-full border-border/60 hover:border-primary/50 transition-colors group cursor-pointer ${expert.type === 'recommended' ? 'bg-card' : 'bg-muted/10'}`}>
     <div className="flex items-start justify-between mb-4">
       <div className="flex items-center gap-3">
         <div className={`w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold border

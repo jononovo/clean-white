@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Calendar, MapPin, ExternalLink, Plus, MessageSquare, Tag, Clock, ArrowRight } from "lucide-react";
 
 const MeetupCard = ({ meetup }: { meetup: typeof meetups[0] }) => (
-  <Card className="p-5 border-border/60 hover:border-primary/50 transition-colors group">
+  <Card className="p-5 border-border/60 hover:border-primary/50 transition-colors group cursor-pointer">
     <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-3">
       <div>
         <div className="flex items-center gap-2 mb-1">
@@ -42,7 +42,7 @@ const MeetupCard = ({ meetup }: { meetup: typeof meetups[0] }) => (
 );
 
 const ListingCard = ({ listing }: { listing: typeof communityListings[0] }) => (
-  <div className="flex flex-col sm:flex-row gap-4 p-4 rounded-lg bg-card border border-border/60 hover:bg-muted/30 transition-colors group">
+  <div className="flex flex-col sm:flex-row gap-4 p-4 rounded-lg bg-card border border-border/60 hover:bg-muted/30 transition-colors group cursor-pointer">
     <div className="shrink-0">
       <div className={`w-10 h-10 rounded-lg flex items-center justify-center border text-lg font-bold
         ${listing.type === 'offer' 
