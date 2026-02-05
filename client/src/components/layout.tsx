@@ -16,22 +16,22 @@ import {
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
-  const [isDark, setIsDark] = useState(false);
-  const [themeStyle, setThemeStyle] = useState<"slate" | "warm">("slate");
+  const [theme, setTheme] = useState<{ style: "slate" | "warm"; mode: "light" | "dark" }>({
+    style: "slate",
+    mode: "dark", // Default to dark as requested previously
+  });
 
   useEffect(() => {
-    if (isDark) {
+    // Handle Mode (Light/Dark)
+    if (theme.mode === "dark") {
       document.documentElement.classList.add("dark");
     } else {
       document.documentElement.classList.remove("dark");
     }
-  }, [isDark]);
-
-  useEffect(() => {
-    document.documentElement.setAttribute("data-theme", themeStyle);
-  }, [themeStyle]);
-
-  const toggleTheme = () => setIsDark(!isDark);
+    
+    // Handle Style (Slate/Warm)
+    document.documentElement.setAttribute("data-theme", theme.style);
+  }, [theme]);
 
   const SidebarContent = () => (
     <div className="flex flex-col h-full bg-card border-r border-border">
@@ -147,24 +147,22 @@ export function Layout({ children }: { children: React.ReactNode }) {
                    <Palette className="w-4 h-4" />
                  </Button>
                </DropdownMenuTrigger>
-               <DropdownMenuContent align="end">
-                 <DropdownMenuItem onClick={() => setThemeStyle("slate")}>
-                   Modern Slate {themeStyle === "slate" && "✓"}
+               <DropdownMenuContent align="end" className="w-48">
+                 <DropdownMenuItem onClick={() => setTheme({ style: "slate", mode: "light" })}>
+                   <Sun className="w-4 h-4 mr-2" /> Slate Light {theme.style === "slate" && theme.mode === "light" && "✓"}
                  </DropdownMenuItem>
-                 <DropdownMenuItem onClick={() => setThemeStyle("warm")}>
-                   Comfort Warm {themeStyle === "warm" && "✓"}
+                 <DropdownMenuItem onClick={() => setTheme({ style: "slate", mode: "dark" })}>
+                   <Moon className="w-4 h-4 mr-2" /> Slate Dark {theme.style === "slate" && theme.mode === "dark" && "✓"}
+                 </DropdownMenuItem>
+                 <div className="h-px bg-border my-1" />
+                 <DropdownMenuItem onClick={() => setTheme({ style: "warm", mode: "light" })}>
+                   <Sun className="w-4 h-4 mr-2 text-amber-600" /> Warm Light {theme.style === "warm" && theme.mode === "light" && "✓"}
+                 </DropdownMenuItem>
+                 <DropdownMenuItem onClick={() => setTheme({ style: "warm", mode: "dark" })}>
+                   <Moon className="w-4 h-4 mr-2 text-amber-600" /> Warm Dark {theme.style === "warm" && theme.mode === "dark" && "✓"}
                  </DropdownMenuItem>
                </DropdownMenuContent>
              </DropdownMenu>
-
-             <Button 
-               variant="ghost" 
-               size="icon" 
-               className="text-muted-foreground cursor-pointer hover:bg-muted"
-               onClick={toggleTheme}
-             >
-               {isDark ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
-             </Button>
 
              <div className="h-6 w-px bg-border hidden sm:block"></div>
              

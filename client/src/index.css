@@ -72,7 +72,7 @@
 
   /* --- Warm / Comfort Theme --- */
   [data-theme="warm"] {
-    --font-sans-base: 'Crimson Pro', serif;
+    --font-sans-base: 'Nunito', sans-serif;
     --font-display-base: 'Plus Jakarta Sans', sans-serif;
 
     --background: 40 20% 97%; /* Warm Beige Paper */

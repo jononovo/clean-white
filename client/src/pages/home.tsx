@@ -117,40 +117,40 @@ export default function Home() {
         </div>
 
         {/* Hero Banner */}
-        <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-white via-slate-50 to-emerald-50/50 dark:from-slate-900 dark:via-slate-900 dark:to-emerald-950/20 text-slate-900 dark:text-slate-50 p-8 md:p-12 shadow-xl shadow-slate-200/60 dark:shadow-none border border-slate-200/60 dark:border-white/5 ring-1 ring-white/60 dark:ring-white/5 transition-colors duration-300">
+        <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-background via-muted to-accent/20 border border-border ring-1 ring-white/10 dark:ring-white/5 transition-colors duration-300 p-8 md:p-12 shadow-xl shadow-muted/60 dark:shadow-none">
           {/* Background Pattern */}
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.02)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_at_center,black_60%,transparent_100%)] pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-transparent dark:from-slate-950/80 pointer-events-none" />
+          <div className="absolute inset-0 bg-[linear-gradient(currentColor_1px,transparent_1px),linear-gradient(90deg,currentColor_1px,transparent_1px)] bg-[size:24px_24px] opacity-[0.03] text-foreground pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent pointer-events-none" />
           
           <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
             <div className="space-y-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 text-xs font-medium text-emerald-700 dark:text-emerald-400 shadow-sm">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-card border border-border text-xs font-medium text-accent-foreground shadow-sm">
                 <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                 Network Secure • 12,402 Audits Verified
               </div>
               
               <div className="space-y-4">
-                <h1 className="text-4xl md:text-5xl font-display font-bold tracking-tight text-slate-900 dark:text-white leading-[1.1]">
+                <h1 className="text-4xl md:text-5xl font-display font-bold tracking-tight text-foreground leading-[1.1]">
                   The Trust Hub for <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-500 dark:from-emerald-400 dark:to-teal-300">OpenClaw</span>
                 </h1>
-                <p className="text-lg text-slate-600 dark:text-slate-400 max-w-md leading-relaxed">
+                <p className="text-lg text-muted-foreground max-w-md leading-relaxed">
                   The official security registry for autonomous agents. We audit, rank, and monitor skills so you can run bots with confidence.
                 </p>
               </div>
 
               <div className="flex flex-wrap items-center gap-3 pt-2">
-                <Button size="lg" className="h-12 px-5 bg-slate-900 hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200 text-white border-none font-semibold shadow-lg shadow-slate-900/10 transition-all cursor-pointer">
+                <Button size="lg" className="h-12 px-5 bg-primary text-primary-foreground hover:bg-primary/90 border-none font-semibold shadow-lg shadow-primary/10 transition-all cursor-pointer">
                   <Shield className="w-4 h-4 mr-1.5" />
                   Publish a Skill
                 </Button>
-                <Button size="lg" variant="outline" className="h-12 px-5 bg-white border-slate-200 text-slate-700 hover:bg-slate-50 hover:text-slate-900 dark:bg-transparent dark:border-white/10 dark:text-slate-300 dark:hover:bg-white/5 dark:hover:text-white shadow-sm cursor-pointer">
+                <Button size="lg" variant="outline" className="h-12 px-5 bg-card border-border text-foreground hover:bg-muted shadow-sm cursor-pointer">
                   <Zap className="w-4 h-4 mr-1.5" />
                   1-Click-Setup
                 </Button>
               </div>
               
-              <div className="flex items-center gap-6 text-xs text-slate-500 dark:text-slate-500 pt-4">
+              <div className="flex items-center gap-6 text-xs text-muted-foreground pt-4">
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-emerald-600 dark:text-emerald-500" />
                   <span>OpenClaw Threat Monitor</span>
@@ -164,56 +164,56 @@ export default function Home() {
 
             {/* Right Visual - Stats Card */}
             <div className="hidden md:block relative">
-               <div className="absolute -inset-1 bg-gradient-to-r from-emerald-200/40 to-blue-200/40 dark:from-emerald-900/20 dark:to-blue-900/20 rounded-xl blur-xl opacity-60" />
-               <div className="relative bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border border-white/60 dark:border-white/10 rounded-xl p-6 shadow-xl shadow-slate-200/50 dark:shadow-none">
-                  <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-100 dark:border-white/5">
+               <div className="absolute -inset-1 bg-gradient-to-r from-emerald-500/10 to-blue-500/10 rounded-xl blur-xl opacity-60" />
+               <div className="relative bg-card/80 backdrop-blur-xl border border-border rounded-xl p-6 shadow-xl shadow-muted/50 dark:shadow-none">
+                  <div className="flex items-center justify-between mb-6 pb-4 border-b border-border">
                     <div className="flex items-center gap-3">
-                       <Activity className="w-5 h-5 text-slate-600 dark:text-slate-400" />
-                       <span className="font-mono font-bold text-sm text-slate-800 dark:text-slate-200">LIVE SECURITY FEED</span>
+                       <Activity className="w-5 h-5 text-muted-foreground" />
+                       <span className="font-mono font-bold text-sm text-foreground">LIVE SECURITY FEED</span>
                     </div>
                   </div>
                   
                   <div className="space-y-5">
                      <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
-                           <div className="p-2 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-white/5">
+                           <div className="p-2 rounded bg-muted text-muted-foreground border border-border">
                              <AlertTriangle className="w-4 h-4" />
                            </div>
                            <div>
-                             <div className="text-2xl font-bold font-mono text-slate-900 dark:text-white">342</div>
-                             <div className="text-xs text-slate-500 dark:text-slate-400 font-medium">Threats Blocked (24h)</div>
+                             <div className="text-2xl font-bold font-mono text-foreground">342</div>
+                             <div className="text-xs text-muted-foreground font-medium">Threats Blocked (24h)</div>
                            </div>
                         </div>
-                        <div className="h-8 w-px bg-slate-200 dark:bg-white/5" />
+                        <div className="h-8 w-px bg-border" />
                         <div className="flex items-center gap-3">
-                           <div className="p-2 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-white/5">
+                           <div className="p-2 rounded bg-muted text-muted-foreground border border-border">
                              <Terminal className="w-4 h-4" />
                            </div>
                            <div>
-                             <div className="text-2xl font-bold font-mono text-slate-900 dark:text-white">14.2M</div>
-                             <div className="text-xs text-slate-500 dark:text-slate-400 font-medium">Lines Audited</div>
+                             <div className="text-2xl font-bold font-mono text-foreground">14.2M</div>
+                             <div className="text-xs text-muted-foreground font-medium">Lines Audited</div>
                            </div>
                         </div>
                      </div>
                      
                      <div className="space-y-3 pt-3">
-                        <div className="p-3 rounded bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-white/5 shadow-inner">
+                        <div className="p-3 rounded bg-muted/50 border border-border shadow-inner">
                             <div className="flex justify-between items-center mb-2">
-                                <span className="text-xs font-bold text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
-                                    <Globe className="w-3 h-3 text-slate-400" />
+                                <span className="text-xs font-bold text-foreground flex items-center gap-1.5">
+                                    <Globe className="w-3 h-3 text-muted-foreground" />
                                     Claw Threat Index
                                 </span>
                                 <span className="text-[10px] font-mono text-destructive font-bold">HIGH RISK</span>
                             </div>
-                            <div className="h-1.5 w-full bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+                            <div className="h-1.5 w-full bg-muted rounded-full overflow-hidden">
                                <div className="h-full w-[75%] bg-destructive rounded-full" />
                             </div>
                         </div>
 
-                        <div className="flex items-start gap-2 text-[10px] text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-900 p-2 rounded border border-slate-100 dark:border-white/5">
-                           <Shield className="w-3 h-3 text-slate-500 dark:text-slate-400 mt-0.5 shrink-0" />
+                        <div className="flex items-start gap-2 text-[10px] text-muted-foreground bg-card p-2 rounded border border-border">
+                           <Shield className="w-3 h-3 text-muted-foreground mt-0.5 shrink-0" />
                            <span className="leading-tight">
-                              <span className="font-semibold text-slate-700 dark:text-slate-300">Latest Intercept:</span> Malicious dependency detected in <span className="font-mono text-slate-600 dark:text-slate-400">helper-utils-v2</span>.
+                              <span className="font-semibold text-foreground">Latest Intercept:</span> Malicious dependency detected in <span className="font-mono text-muted-foreground">helper-utils-v2</span>.
                            </span>
                         </div>
                      </div>
