@@ -3,7 +3,7 @@ import { topScorers, latestSubmissions, threats, infrastructureProviders, Listin
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Shield, CheckCircle, Download, ExternalLink, Calendar, Star, AlertTriangle, Terminal, Lock, ChevronRight, Zap, Globe, Server, Activity, ArrowUpRight, Mail, Box, Cloud, Search, Users } from "lucide-react";
+import { Shield, CheckCircle, Download, ExternalLink, Calendar, Star, AlertTriangle, Terminal, Lock, ChevronRight, Zap, Globe, Server, Activity, ArrowUpRight, Mail, Box, Cloud, Search } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
 
@@ -103,122 +103,98 @@ export default function Home() {
           <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
             <div className="space-y-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800/50 border border-slate-700/50 text-xs font-medium text-slate-300 backdrop-blur-md">
-                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
-                Hub Operational • Community Verified
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-medium text-emerald-400 backdrop-blur-md">
+                <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                System Operational • 12,402 Audits Verified
               </div>
               
               <div className="space-y-4">
                 <h1 className="text-4xl md:text-5xl font-display font-bold tracking-tight text-white leading-[1.1]">
-                  The <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-400">SecureClawHub</span>
+                  The Trust Layer for <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300">OpenClaw</span>
                 </h1>
-                <p className="text-lg text-slate-400 max-w-md leading-relaxed">
-                  The community-driven registry for autonomous agents. Discover audited skills, compare infrastructure providers, and verify security badges in real-time.
+                <p className="text-lg text-slate-300 max-w-md leading-relaxed">
+                  The official security registry for autonomous agents. We audit, rank, and monitor skills so you can run bots with confidence.
                 </p>
               </div>
 
               <div className="flex flex-wrap items-center gap-3 pt-2">
-                <Button size="lg" className="h-12 px-6 bg-white text-slate-900 hover:bg-slate-200 border-none font-bold shadow-[0_0_20px_-5px_rgba(255,255,255,0.2)] transition-all">
+                <Button size="lg" className="h-12 px-6 bg-emerald-500 hover:bg-emerald-600 text-white border-none font-semibold shadow-[0_0_20px_-5px_rgba(16,185,129,0.4)] transition-all">
                   <Search className="w-4 h-4 mr-2" />
-                  Single-Click-Setup
+                  Explore Directory
                 </Button>
-                <Button size="lg" variant="outline" className="h-12 px-6 bg-slate-800/30 border-slate-700/50 text-slate-300 hover:bg-slate-800/50 hover:text-white backdrop-blur-sm ring-1 ring-white/5">
+                <Button size="lg" variant="outline" className="h-12 px-6 bg-white/5 border-white/10 text-white hover:bg-white/10 hover:text-white backdrop-blur-sm ring-1 ring-white/5">
                   <Shield className="w-4 h-4 mr-2" />
-                  Get Audited
+                  Submit for Audit
                 </Button>
               </div>
               
-              <div className="flex items-center gap-6 text-xs text-slate-500 pt-4">
+              <div className="flex items-center gap-6 text-xs text-slate-400 pt-4">
                 <div className="flex items-center gap-2">
-                  <Box className="w-4 h-4 text-blue-400/80" />
-                  <span>Verified Skills</span>
+                  <CheckCircle className="w-4 h-4 text-emerald-500/80" />
+                  <span>SOC2 Type II Certified</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Server className="w-4 h-4 text-blue-400/80" />
-                  <span>Infrastructure Services</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Users className="w-4 h-4 text-blue-400/80" />
-                  <span>Community Partners</span>
+                  <CheckCircle className="w-4 h-4 text-emerald-500/80" />
+                  <span>Manual Code Review</span>
                 </div>
               </div>
             </div>
 
-            {/* Right Visual - Hub Nexus */}
-            <div className="hidden md:block relative h-full min-h-[320px]">
+            {/* Right Visual - Stats Card */}
+            <div className="hidden md:block relative">
                <div className="absolute -inset-1 bg-gradient-to-r from-emerald-500/20 to-blue-500/20 rounded-xl blur-xl opacity-50" />
-               <div className="relative h-full bg-slate-900/60 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden flex flex-col shadow-2xl">
-                  {/* Nexus Header */}
-                  <div className="flex items-center justify-between p-4 border-b border-white/5 bg-white/5">
-                    <div className="flex items-center gap-2">
-                       <Activity className="w-4 h-4 text-emerald-400" />
-                       <span className="font-mono font-bold text-xs text-slate-200 tracking-wider">HUB_NEXUS_V2</span>
+               <div className="relative bg-slate-900/60 backdrop-blur-xl border border-white/10 rounded-xl p-6 shadow-2xl">
+                  <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/5">
+                    <div className="flex items-center gap-3">
+                       <Activity className="w-5 h-5 text-emerald-400" />
+                       <span className="font-mono font-bold text-sm text-slate-200">LIVE METRICS</span>
                     </div>
-                    <div className="flex gap-2">
-                       <div className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                       <div className="h-1.5 w-1.5 rounded-full bg-blue-500" />
-                       <div className="h-1.5 w-1.5 rounded-full bg-amber-500" />
-                    </div>
+                    <Badge variant="outline" className="border-emerald-500/30 text-emerald-400 bg-emerald-500/10 text-[10px] h-5">REAL-TIME</Badge>
                   </div>
                   
-                  {/* Grid Stats */}
-                  <div className="grid grid-cols-2 divide-x divide-white/5 border-b border-white/5">
-                     <div className="p-4 bg-white/[0.02]">
-                        <div className="text-[10px] uppercase text-slate-500 font-mono mb-1">Total Skills</div>
-                        <div className="text-2xl font-bold text-white font-mono">12,402</div>
-                        <div className="text-[10px] text-emerald-400 flex items-center gap-1">
-                           <ArrowUpRight className="w-3 h-3" /> +14 today
+                  <div className="space-y-5">
+                     <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                           <div className="p-2 rounded bg-blue-500/10 text-blue-400 ring-1 ring-blue-500/20">
+                             <Box className="w-4 h-4" />
+                           </div>
+                           <div>
+                             <div className="text-2xl font-bold font-mono text-white">8,902</div>
+                             <div className="text-xs text-slate-400">Verified Skills</div>
+                           </div>
                         </div>
-                     </div>
-                     <div className="p-4 bg-white/[0.02]">
-                        <div className="text-[10px] uppercase text-slate-500 font-mono mb-1">Audits Passed</div>
-                        <div className="text-2xl font-bold text-white font-mono">8,991</div>
-                        <div className="text-[10px] text-blue-400">98.2% Pass Rate</div>
-                     </div>
-                  </div>
-
-                  {/* Activity Feed */}
-                  <div className="flex-1 p-4 space-y-3 overflow-hidden">
-                     <div className="text-[10px] uppercase text-slate-500 font-mono mb-2 flex justify-between">
-                        <span>Live Activity Log</span>
-                        <span className="animate-pulse text-emerald-500">Connected</span>
+                        <div className="h-8 w-px bg-white/10" />
+                        <div className="flex items-center gap-3">
+                           <div className="p-2 rounded bg-emerald-500/10 text-emerald-400 ring-1 ring-emerald-500/20">
+                             <Shield className="w-4 h-4" />
+                           </div>
+                           <div>
+                             <div className="text-2xl font-bold font-mono text-white">99.9%</div>
+                             <div className="text-xs text-slate-400">Safety Score</div>
+                           </div>
+                        </div>
                      </div>
                      
-                     {/* Feed Item 1 */}
-                     <div className="flex gap-3 items-start group">
-                        <div className="mt-1 w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
-                        <div className="font-mono text-xs text-slate-300">
-                           <span className="text-emerald-400 font-bold">New Audit:</span> <span className="text-white">stripe-payment-v2</span> passed Gold Security Standard.
-                           <div className="text-[10px] text-slate-600 mt-0.5">2 mins ago • Hash: 0x8a...2f</div>
+                     <div className="space-y-2 pt-2">
+                        <div className="flex justify-between text-xs text-slate-400">
+                           <span>Threats Blocked (24h)</span>
+                           <span className="text-destructive font-mono">342</span>
+                        </div>
+                        <div className="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden">
+                           <div className="h-full w-[15%] bg-destructive rounded-full" />
                         </div>
                      </div>
-
-                     {/* Feed Item 2 */}
-                     <div className="flex gap-3 items-start group">
-                        <div className="mt-1 w-1.5 h-1.5 rounded-full bg-blue-500" />
-                        <div className="font-mono text-xs text-slate-300">
-                           <span className="text-blue-400 font-bold">Provider:</span> <span className="text-white">ClawCloud EU</span> verified uptime 99.99%.
-                           <div className="text-[10px] text-slate-600 mt-0.5">14 mins ago • Frankfurt Region</div>
+                     
+                     <div className="p-3 rounded bg-black/40 border border-white/5 mt-2">
+                        <div className="flex items-start gap-2">
+                           <Terminal className="w-3.5 h-3.5 text-emerald-400 mt-0.5" />
+                           <div className="font-mono text-[10px] text-slate-300 leading-relaxed">
+                              <span className="text-emerald-400/80">root@secureclawhub:~$</span> scan --target latest-uploads<br/>
+                              <span className="text-blue-400/80">Scanning...</span> 142 files checked.<br/>
+                              <span className="text-emerald-400/80">Result:</span> 0 vulnerabilities found.
+                           </div>
                         </div>
                      </div>
-
-                     {/* Feed Item 3 */}
-                     <div className="flex gap-3 items-start group">
-                        <div className="mt-1 w-1.5 h-1.5 rounded-full bg-amber-500" />
-                        <div className="font-mono text-xs text-slate-300">
-                           <span className="text-amber-400 font-bold">Alert:</span> <span className="text-white">fake-calendar-pro</span> flagged as malware.
-                           <div className="text-[10px] text-slate-600 mt-0.5">32 mins ago • Auto-Removed</div>
-                        </div>
-                     </div>
-                  </div>
-
-                  {/* System Footer */}
-                  <div className="p-2 border-t border-white/5 bg-black/20 text-[10px] font-mono text-slate-500 flex justify-between items-center">
-                     <div className="flex items-center gap-2">
-                        <Server className="w-3 h-3" />
-                        <span>Index Latency: 24ms</span>
-                     </div>
-                     <div className="text-emerald-500/50">SECURE_MODE_ACTIVE</div>
                   </div>
                </div>
             </div>
