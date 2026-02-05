@@ -293,3 +293,90 @@ export const infrastructureProviders: Listing[] = [
     badges: [],
   }
 ];
+
+export type Meetup = {
+  id: string;
+  title: string;
+  subtitle: string;
+  date: string;
+  location: string;
+  status: "upcoming" | "past";
+  description?: string;
+  link?: string;
+};
+
+export const meetups: Meetup[] = [
+  {
+    id: "m-1",
+    title: "OpenClaw Security Summit",
+    subtitle: "Enterprise Security Patterns for Autonomous Agents",
+    date: "Oct 24, 2024",
+    location: "San Francisco, CA & Virtual",
+    status: "upcoming",
+    description: "Join us for a deep dive into securing OpenClaw deployments in enterprise environments. Featuring speakers from major security firms.",
+    link: "#"
+  },
+  {
+    id: "m-2",
+    title: "London Developer Meetup",
+    subtitle: "Building Resilient Skills",
+    date: "Nov 12, 2024",
+    location: "London, UK",
+    status: "upcoming",
+    description: "Monthly developer gathering focusing on skill resilience and error handling patterns.",
+    link: "#"
+  },
+  {
+    id: "m-3",
+    title: "Asian Pacific ClawConf",
+    subtitle: "The Future of AI Agents",
+    date: "Sep 15, 2024",
+    location: "Singapore",
+    status: "past",
+    description: "Keynotes from OpenClaw founders and community showcases.",
+    link: "#"
+  }
+];
+
+export type CommunityListing = {
+  id: string;
+  title: string;
+  type: "offer" | "request";
+  author: string;
+  date: string;
+  location?: string;
+  description: string;
+  tags: string[];
+};
+
+export const communityListings: CommunityListing[] = [
+  {
+    id: "cl-1",
+    title: "Looking for Senior OpenClaw Engineer",
+    type: "request",
+    author: "TechCorp Inc.",
+    date: "2d ago",
+    location: "Remote",
+    description: "We are building a large scale agent swarm and need an experienced engineer to lead the security implementation.",
+    tags: ["Job", "Remote", "Engineering"]
+  },
+  {
+    id: "cl-2",
+    title: "Offering Free Security Audit for Open Source Skills",
+    type: "offer",
+    author: "SecureClaw Team",
+    date: "1d ago",
+    location: "Global",
+    description: "To support the ecosystem, we are offering free Level 1 security audits for any open source skill published this month.",
+    tags: ["Audit", "Free", "Open Source"]
+  },
+  {
+    id: "cl-3",
+    title: "Need help with Multi-Agent Orchestration",
+    type: "request",
+    author: "IndieDev_99",
+    date: "4h ago",
+    description: "Struggling to get my agents to communicate securely. Willing to trade custom UI work for backend help.",
+    tags: ["Help Wanted", "Barter"]
+  }
+];
