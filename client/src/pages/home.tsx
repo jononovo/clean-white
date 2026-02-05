@@ -245,6 +245,13 @@ export default function Home() {
                      </div>
                      
                      <div className="space-y-3 pt-3">
+                        <div className="flex items-start gap-2 text-[10px] text-muted-foreground bg-card p-2 rounded border border-border">
+                           <Shield className="w-3 h-3 text-muted-foreground mt-0.5 shrink-0" />
+                           <span className="leading-tight">
+                              <span className="font-semibold text-foreground">Latest Intercept:</span> Malicious dependency detected in <span className="font-mono text-muted-foreground">helper-utils-v2</span>.
+                           </span>
+                        </div>
+
                         <div className="p-3 rounded bg-muted/50 border border-border shadow-inner">
                             <div className="flex justify-between items-center mb-2">
                                 <span className="text-xs font-bold text-foreground flex items-center gap-1.5">
@@ -256,13 +263,6 @@ export default function Home() {
                             <div className="h-1.5 w-full bg-muted rounded-full overflow-hidden">
                                <div className="h-full w-[75%] bg-destructive rounded-full" />
                             </div>
-                        </div>
-
-                        <div className="flex items-start gap-2 text-[10px] text-muted-foreground bg-card p-2 rounded border border-border">
-                           <Shield className="w-3 h-3 text-muted-foreground mt-0.5 shrink-0" />
-                           <span className="leading-tight">
-                              <span className="font-semibold text-foreground">Latest Intercept:</span> Malicious dependency detected in <span className="font-mono text-muted-foreground">helper-utils-v2</span>.
-                           </span>
                         </div>
 
                         {/* New Metric: Skills Audited/Scored */}
