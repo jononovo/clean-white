@@ -212,7 +212,7 @@ export default function Home() {
                         <div className="flex items-start gap-2 text-[10px] text-slate-500 bg-white p-2 rounded border border-slate-100">
                            <Shield className="w-3 h-3 text-emerald-500 mt-0.5 shrink-0" />
                            <span className="leading-tight">
-                              <span className="font-semibold text-slate-700">Latest Intercept:</span> Malicious dependency detected in <span className="font-mono text-slate-600">helper-utils-v2</span>. Automatically flagged & removed.
+                              <span className="font-semibold text-slate-700">Latest Intercept:</span> Malicious dependency detected in <span className="font-mono text-slate-600">helper-utils-v2</span>.
                            </span>
                         </div>
                      </div>
