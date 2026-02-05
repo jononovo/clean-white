@@ -173,7 +173,6 @@ export default function Home() {
                        <Activity className="w-5 h-5 text-emerald-600" />
                        <span className="font-mono font-bold text-sm text-slate-800">LIVE SECURITY FEED</span>
                     </div>
-                    <Badge variant="outline" className="border-emerald-200 text-emerald-700 bg-emerald-50 text-[10px] h-5">REAL-TIME</Badge>
                   </div>
                   
                   <div className="space-y-5">
