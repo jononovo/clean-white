@@ -1,5 +1,5 @@
 ---
-name: clawhub-branding-skill
+name: clawbranding
 description: SecureClawHub design system with theme variables, typography scale, and styling conventions. Use when building or modifying UI components for this project.
 ---
 
