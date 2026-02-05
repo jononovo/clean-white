@@ -101,6 +101,8 @@
 
 @layer theme {
   :root, :host {
+    --font-sans: var(--font-sans-base);
+    --font-mono: "JetBrains Mono", monospace;
     --color-red-50: #fef2f2;
     --color-red-100: #ffe2e2;
     --color-red-200: #ffcaca;
@@ -237,6 +239,7 @@
     --default-mono-font-family: "JetBrains Mono", monospace;
     --radius: var(--radius);
     --color-border: hsl(var(--border));
+    --font-display: var(--font-display-base);
   }
 
   @supports (color: lab(0% 0 0)) {
@@ -5966,6 +5969,12 @@
       .hover\:bg-white\/90:hover {
         background-color: color-mix(in oklab, var(--color-white) 90%, transparent);
       }
+    }
+  }
+
+  @media (hover: hover) {
+    .hover\:text-accent:hover {
+      color: hsl(var(--accent));
     }
   }
 
