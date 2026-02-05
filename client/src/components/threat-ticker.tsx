@@ -147,9 +147,6 @@ export function ThreatTicker() {
                <span className="font-bold mr-1.5">{threat.label}:</span>
                {threat.title}
              </h4>
-             <p className="text-[10px] text-muted-foreground leading-relaxed line-clamp-1">
-               {threat.detail}
-             </p>
            </div>
         </div>
 
