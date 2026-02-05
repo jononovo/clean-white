@@ -685,13 +685,10 @@
   }
 
   .quick-link {
-    position: relative;
-  }
-
-  .quick-link:before {
-    content: "";
-    position: absolute;
-    inset: -8px;
+    align-items: center;
+    margin: -8px -6px;
+    padding: 8px 6px;
+    display: inline-flex;
   }
 
   body {

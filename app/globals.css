@@ -198,15 +198,10 @@
   
   /* Quick links with expanded hit area */
   .quick-link {
-    position: relative;
-  }
-  .quick-link::before {
-    content: '';
-    position: absolute;
-    top: -8px;
-    left: -8px;
-    right: -8px;
-    bottom: -8px;
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 6px;
+    margin: -8px -6px;
   }
   
   body {
