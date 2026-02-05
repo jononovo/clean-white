@@ -100,11 +100,11 @@ function CategoryCard({ category }: { category: Category }) {
     )} data-testid={`category-card-${category.slug}`}>
       <div className="absolute -right-4 -top-4 w-20 h-20 bg-current opacity-[0.03] rounded-full blur-2xl group-hover:opacity-[0.06] transition-opacity" />
       
-      <div className="flex items-center justify-between mb-2 relative z-10">
+      <div className="flex items-center justify-between mb-3 relative z-10">
         <Link href={`/categories/${category.slug}`}>
-          <h3 className="font-display font-bold text-sm group-hover:text-primary transition-colors">
+          <h4 className="group-hover:text-primary transition-colors">
             {category.name}
-          </h3>
+          </h4>
         </Link>
         <div className="flex items-center gap-2">
           {category.isNew && (
@@ -112,22 +112,22 @@ function CategoryCard({ category }: { category: Category }) {
               NEW
             </Badge>
           )}
-          <span className="text-[10px] text-muted-foreground">
+          <h6 className="text-muted-foreground">
             {category.skillCount || 0}
-          </span>
+          </h6>
         </div>
       </div>
       
       {examples.length > 0 && (
         <div className={cn(
           "relative z-10",
-          useMultiColumn ? "grid grid-cols-2 gap-x-3 gap-y-0.5" : "flex flex-col gap-0.5"
+          useMultiColumn ? "grid grid-cols-2 gap-x-3 gap-y-1" : "flex flex-col gap-1"
         )}>
           {examples.map((example, i) => (
             <Link 
               key={i} 
               href={`/categories/${category.slug}?q=${encodeURIComponent(example)}`}
-              className="text-[11px] text-muted-foreground hover:text-primary hover:underline transition-colors truncate"
+              className="text-sm text-muted-foreground hover:text-primary hover:underline transition-colors truncate"
             >
               {example}
             </Link>
