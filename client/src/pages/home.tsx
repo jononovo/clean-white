@@ -465,7 +465,7 @@ export default function Home() {
                      className="bg-white text-primary hover:bg-white/90 font-bold dark:bg-slate-900 dark:text-white dark:hover:bg-slate-800 shrink-0 px-8"
                      onClick={() => window.open('https://clawhub.substack.com/', '_blank')}
                  >
-                    Read Now
+                    Explore
                  </Button>
               </div>
            </Card>
