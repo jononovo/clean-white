@@ -14,6 +14,20 @@ SecureClawHub is a trust and security registry for OpenClaw autonomous agent com
 
 Preferred communication style: Simple, everyday language.
 
+## Authentication (Added: February 2026)
+
+- **Firebase Authentication** with session cookies for SSR compatibility
+- Sign-in methods: Google, GitHub, Email magic link (passwordless)
+- Session management via httpOnly cookies (5-day expiry)
+- Key files:
+  - `lib/firebase/client.ts` - Client SDK init
+  - `lib/firebase/admin.ts` - Admin SDK init (server-side)
+  - `lib/auth/auth-context.tsx` - React context with useAuth hook
+  - `lib/auth/session.ts` - Server-side getCurrentUser()
+  - `app/api/auth/session/route.ts` - Session API endpoints
+  - `proxy.ts` - Route protection middleware
+  - `components/auth-drawer.tsx` - Login UI component
+
 ## Tech Stack & Versions (Updated: February 2026)
 
 ### Runtime
