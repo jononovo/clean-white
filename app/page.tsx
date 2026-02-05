@@ -10,7 +10,7 @@ import { ThreatTicker } from "@/components/threat-ticker";
 import { AuthDrawer } from "@/components/auth-drawer";
 import { ServiceRegistrationDrawer } from "@/components/service-registration-drawer";
 import { useState } from "react";
-import { Shield, CheckCircle, Download, ExternalLink, Calendar, Star, AlertTriangle, Terminal, Lock, ChevronRight, Zap, Globe, Server, Activity, ArrowUpRight, Mail, Box, Cloud, Search, Newspaper, Wrench, Database, Users, GraduationCap, Handshake, Receipt } from "lucide-react";
+import { Shield, CheckCircle, Download, ExternalLink, Calendar, Star, AlertTriangle, Terminal, Lock, ChevronRight, Zap, Globe, Server, Activity, ArrowUpRight, Mail, Box, Cloud, Search, Newspaper, Wrench, Database, Users, GraduationCap, Handshake, Receipt, Trophy, BadgeCheck, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
@@ -23,6 +23,67 @@ const SERVICE_CATEGORIES = [
   { id: "partnerships", label: "Partnerships", icon: Handshake },
   { id: "finance_tax", label: "Finance & Tax", icon: Receipt },
 ];
+
+const FEATURED_OF_THE_DAY = {
+  provider: {
+    handle: "matagul",
+    displayName: "Matagul",
+    description: "OpenClaw automation expert specializing in desktop control and enterprise integrations.",
+    avatarUrl: null,
+    isVerified: true,
+  },
+  app: {
+    slug: "clawbot-assistant",
+    name: "ClawBot Assistant",
+    description: "AI-powered assistant for managing OpenClaw skills and automating workflows.",
+    author: "openclaw-team",
+    isVerified: true,
+  },
+  skill: {
+    slug: "desktop-control",
+    name: "Desktop Control",
+    description: "Advanced desktop automation with mouse, keyboard, and screen control.",
+    author: "matagul",
+    isVerified: true,
+  },
+};
+
+const FeaturedCard = ({ 
+  type, 
+  title, 
+  name, 
+  description, 
+  href, 
+  isVerified 
+}: { 
+  type: "provider" | "app" | "skill";
+  title: string;
+  name: string;
+  description: string;
+  href: string;
+  isVerified: boolean;
+}) => (
+  <Link href={href} className="group block">
+    <div className="p-4 rounded-xl bg-gradient-to-b from-card to-card/50 border border-border hover:border-primary/40 hover:shadow-lg transition-all duration-200 h-full">
+      <div className="flex items-center gap-2 mb-2">
+        <div className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400">
+          <Trophy className="w-3 h-3" />
+          {title}
+        </div>
+        {isVerified && (
+          <div className="flex items-center gap-1 text-[10px] font-medium text-emerald-600 dark:text-emerald-400">
+            <BadgeCheck className="w-3.5 h-3.5" />
+            Verified
+          </div>
+        )}
+      </div>
+      <h4 className="font-semibold text-sm text-foreground group-hover:text-primary transition-colors mb-1">
+        {type === "provider" ? `@${name}` : name}
+      </h4>
+      <p className="text-xs text-muted-foreground line-clamp-2">{description}</p>
+    </div>
+  </Link>
+);
 
 const AuditBadge = ({ level }: { level: Listing["auditLevel"] }) => {
   if (level === "none") return <span className="text-[10px] text-muted-foreground font-medium uppercase tracking-wider">Unverified</span>;
@@ -297,6 +358,41 @@ export default function Home() {
                 </button>
               );
             })}
+          </div>
+        </div>
+
+        <div className="py-6 border-b border-border/40">
+          <div className="flex items-center justify-between mb-4 px-1">
+            <h3 className="text-sm font-bold uppercase tracking-wider flex items-center gap-2 text-foreground/80">
+              <Sparkles className="w-3.5 h-3.5 text-amber-500" />
+              Featured Today
+            </h3>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <FeaturedCard
+              type="provider"
+              title="Provider of the Day"
+              name={FEATURED_OF_THE_DAY.provider.handle}
+              description={FEATURED_OF_THE_DAY.provider.description}
+              href={`/@${FEATURED_OF_THE_DAY.provider.handle}`}
+              isVerified={FEATURED_OF_THE_DAY.provider.isVerified}
+            />
+            <FeaturedCard
+              type="app"
+              title="App of the Day"
+              name={FEATURED_OF_THE_DAY.app.name}
+              description={FEATURED_OF_THE_DAY.app.description}
+              href={`/apps/${FEATURED_OF_THE_DAY.app.slug}`}
+              isVerified={FEATURED_OF_THE_DAY.app.isVerified}
+            />
+            <FeaturedCard
+              type="skill"
+              title="Skill of the Day"
+              name={FEATURED_OF_THE_DAY.skill.name}
+              description={FEATURED_OF_THE_DAY.skill.description}
+              href={`/@${FEATURED_OF_THE_DAY.skill.author}/${FEATURED_OF_THE_DAY.skill.slug}`}
+              isVerified={FEATURED_OF_THE_DAY.skill.isVerified}
+            />
           </div>
         </div>
 
