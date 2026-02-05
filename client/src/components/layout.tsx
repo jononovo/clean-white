@@ -13,7 +13,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
   const SidebarContent = () => (
     <div className="flex flex-col h-full bg-card border-r border-border">
       <div className="p-2 flex items-center gap-2 border-b border-border/50">
-        <img src="/logo_v2.png" alt="SecureClawHub" className="w-14 h-14 object-contain" />
+        <img src="/logo_v2.png" alt="SecureClawHub" className="w-14 h-14 object-contain" width="56" height="56" />
         <div>
           <h1 className="font-display font-bold text-xl leading-none tracking-tight">SecureClawHub</h1>
           <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold mt-0.5">Verified Registry</p>
