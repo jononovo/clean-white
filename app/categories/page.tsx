@@ -81,11 +81,11 @@ const categoryIcons: Record<string, React.ComponentType<{ className?: string }>>
 };
 
 const categoryColors: Record<string, string> = {
-  "agent-services-networks": "from-purple-500/10 to-purple-600/5 border-purple-200 dark:border-purple-800/50",
-  "ai-llms": "from-violet-500/10 to-violet-600/5 border-violet-200 dark:border-violet-800/50",
-  "crypto-web3": "from-amber-500/10 to-amber-600/5 border-amber-200 dark:border-amber-800/50",
-  "security-passwords": "from-red-500/10 to-red-600/5 border-red-200 dark:border-red-800/50",
-  "devops-cloud": "from-blue-500/10 to-blue-600/5 border-blue-200 dark:border-blue-800/50",
+  "agent-services-networks": "bg-purple-500/10 border-purple-200 dark:border-purple-800/50",
+  "ai-llms": "bg-violet-500/10 border-violet-200 dark:border-violet-800/50",
+  "crypto-web3": "bg-amber-500/10 border-amber-200 dark:border-amber-800/50",
+  "security-passwords": "bg-red-500/10 border-red-200 dark:border-red-800/50",
+  "devops-cloud": "bg-blue-500/10 border-blue-200 dark:border-blue-800/50",
 };
 
 function CategoryCard({ category }: { category: Category }) {
