@@ -338,26 +338,26 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <AuthDrawer open={authOpen} onOpenChange={setAuthOpen} />
 
         <div className="flex-1 p-6 md:p-8 max-w-7xl mx-auto w-full">
-            <div className="hidden md:flex items-center gap-2 text-[11px] text-muted-foreground font-medium mb-6 relative z-20 overflow-x-auto">
-              <Link href="#" className="quick-link hover:text-primary transition-colors hover:underline whitespace-nowrap">Developer Hub</Link>
-              <span className="text-border">|</span>
-              <Link href="/news" className="quick-link hover:text-primary transition-colors hover:underline whitespace-nowrap">News</Link>
-              <span className="text-border">|</span>
-              <Link href="#" className="quick-link hover:text-primary transition-colors hover:underline whitespace-nowrap">Enterprise</Link>
-              <span className="text-border">|</span>
-              <Link href="#" className="quick-link hover:text-primary transition-colors hover:underline whitespace-nowrap">Jobs</Link>
-              <span className="text-border">|</span>
-              <Link href="/community" className="quick-link hover:text-primary transition-colors hover:underline whitespace-nowrap">Community</Link>
-              <span className="text-border">|</span>
-              <a href="https://discord.gg/gduUaXMQ" target="_blank" rel="noopener noreferrer" className="quick-link hover:text-primary transition-colors hover:underline whitespace-nowrap">Discord</a>
-              <span className="text-border">|</span>
-              <Link href="#" className="quick-link hover:text-primary transition-colors hover:underline whitespace-nowrap">Feedback</Link>
-              <span className="text-border">|</span>
-              <Link href="#" className="quick-link hover:text-primary transition-colors hover:underline whitespace-nowrap">Security Advisory</Link>
-              <span className="text-border">|</span>
-              <Link href="/media" className="quick-link hover:text-primary transition-colors hover:underline whitespace-nowrap">Media Advisory</Link>
-              <span className="text-border">|</span>
-              <Link href="/threats" className="quick-link hover:text-destructive transition-colors hover:underline flex items-center gap-1 group whitespace-nowrap">
+            <div className="hidden md:flex items-center gap-1 text-[11px] text-muted-foreground font-medium mb-6 px-1 relative z-20 overflow-x-auto">
+              <Link href="#" className="hover:text-primary transition-colors hover:underline whitespace-nowrap">Developer Hub</Link>
+              <span className="text-border mx-2">|</span>
+              <Link href="/news" className="hover:text-primary transition-colors hover:underline whitespace-nowrap">News</Link>
+              <span className="text-border mx-2">|</span>
+              <Link href="#" className="hover:text-primary transition-colors hover:underline whitespace-nowrap">Enterprise</Link>
+              <span className="text-border mx-2">|</span>
+              <Link href="#" className="hover:text-primary transition-colors hover:underline whitespace-nowrap">Jobs</Link>
+              <span className="text-border mx-2">|</span>
+              <Link href="/community" className="hover:text-primary transition-colors hover:underline whitespace-nowrap">Community</Link>
+              <span className="text-border mx-2">|</span>
+              <a href="https://discord.gg/gduUaXMQ" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors hover:underline whitespace-nowrap">Discord</a>
+              <span className="text-border mx-2">|</span>
+              <Link href="#" className="hover:text-primary transition-colors hover:underline whitespace-nowrap">Feedback</Link>
+              <span className="text-border mx-2">|</span>
+              <Link href="#" className="hover:text-primary transition-colors hover:underline whitespace-nowrap">Security Advisory</Link>
+              <span className="text-border mx-2">|</span>
+              <Link href="/media" className="hover:text-primary transition-colors hover:underline whitespace-nowrap">Media Advisory</Link>
+              <span className="text-border mx-2">|</span>
+              <Link href="/threats" className="hover:text-destructive transition-colors hover:underline flex items-center gap-1 group whitespace-nowrap">
                 <AlertTriangle className="w-3 h-3 text-muted-foreground group-hover:text-destructive transition-colors" />
                 Submit Threat
               </Link>

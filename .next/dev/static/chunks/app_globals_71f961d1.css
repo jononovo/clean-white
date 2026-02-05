@@ -684,13 +684,6 @@
     opacity: 1;
   }
 
-  .quick-link {
-    align-items: center;
-    margin: -8px -6px;
-    padding: 8px 6px;
-    display: inline-flex;
-  }
-
   body {
     background-color: hsl(var(--background));
     font-family: var(--font-sans-base);
