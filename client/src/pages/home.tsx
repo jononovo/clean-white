@@ -202,10 +202,10 @@ export default function Home() {
                                     <Globe className="w-3 h-3 text-slate-400" />
                                     Global Threat Index
                                 </span>
-                                <span className="text-[10px] font-mono text-emerald-600">LOW RISK</span>
+                                <span className="text-[10px] font-mono text-destructive font-bold">HIGH RISK</span>
                             </div>
                             <div className="h-1.5 w-full bg-slate-200 rounded-full overflow-hidden">
-                               <div className="h-full w-[15%] bg-emerald-500 rounded-full" />
+                               <div className="h-full w-[75%] bg-destructive rounded-full" />
                             </div>
                         </div>
 
