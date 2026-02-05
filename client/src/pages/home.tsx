@@ -457,7 +457,7 @@ export default function Home() {
                        Join our Clawful, Humorous Substack - The Daily Claw
                     </h4>
                     <p className="text-sm text-primary-foreground/80 max-w-xl">
-                       Get daily security briefings, vulnerability reports, and expert analysis on the OpenClaw ecosystem delivered straight to your inbox.
+                       Daily security briefings, the top 5 things <i>not</i> to do with your bot, and essential tips on how to look amazing with your claw (in public).
                     </p>
                  </div>
                  <Button 
