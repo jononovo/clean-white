@@ -26,24 +26,24 @@ const SERVICE_CATEGORIES = [
 
 const FEATURED_OF_THE_DAY = {
   provider: {
-    handle: "matagul",
-    displayName: "Matagul",
-    description: "OpenClaw automation expert specializing in desktop control and enterprise integrations.",
-    avatarUrl: null,
+    handle: "steipete",
+    displayName: "Peter Steinberger",
+    description: "Creator of OpenClaw. Austrian developer who sold PSPDFKit for ~$100M. Building the future of autonomous AI agents.",
+    avatarUrl: "https://avatars.githubusercontent.com/u/58493",
     isVerified: true,
   },
   app: {
-    slug: "clawbot-assistant",
-    name: "ClawBot Assistant",
-    description: "AI-powered assistant for managing OpenClaw skills and automating workflows.",
-    author: "openclaw-team",
+    slug: "openclaw-desktop",
+    name: "OpenClaw Desktop",
+    description: "The AI assistant that actually does things. Control your PC via WhatsApp, Telegram, or Discord with 145k+ GitHub stars.",
+    author: "openclaw",
     isVerified: true,
   },
   skill: {
-    slug: "desktop-control",
-    name: "Desktop Control",
-    description: "Advanced desktop automation with mouse, keyboard, and screen control.",
-    author: "matagul",
+    slug: "browser-automation",
+    name: "Browser Automation",
+    description: "Playwright-based browser control for web scraping, form filling, and automated navigation. One of the most popular skills.",
+    author: "steipete",
     isVerified: true,
   },
 };
