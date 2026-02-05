@@ -454,7 +454,7 @@ export default function Home() {
                  <div className="space-y-2">
                     <h4 className="font-bold text-lg flex items-center justify-center md:justify-start gap-2">
                        <Newspaper className="w-5 h-5" />
-                       Join our Clawful, Humorous Substack - The Daily Claw
+                       Join our Clawful & Humorous Substack - The Daily Claw
                     </h4>
                     <p className="text-sm text-primary-foreground/80 max-w-xl">
                        Hilarious briefings including, the top 5 things <i>not</i> to do with your bot, and essential tips on how to look amazing with your claw (in public).
