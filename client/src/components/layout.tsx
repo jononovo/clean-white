@@ -130,8 +130,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
             <Sheet>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground">
-                  <PanelLeftOpen className="w-5 h-5" />
+                <Button variant="ghost" size="icon" className="w-10 h-10 text-muted-foreground hover:text-foreground">
+                  <PanelLeftOpen className="w-7 h-7" />
                 </Button>
               </SheetTrigger>
               <SheetContent side="left" className="p-0 w-64">
