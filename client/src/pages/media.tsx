@@ -1,6 +1,6 @@
 import { Layout } from "@/components/layout";
 import { PageHeader } from "@/components/page-header";
-import { mediaExperts } from "@/lib/mock-data";
+import { mediaExperts, MediaExpert } from "@/lib/mock-data";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -16,9 +16,11 @@ import {
   DialogTrigger,
   DialogFooter
 } from "@/components/ui/dialog";
-import { Mic, MapPin, Building, Globe, CheckCircle, UserPlus, Linkedin, Twitter } from "lucide-react";
+import { Mic, MapPin, Globe, CheckCircle, UserPlus, Linkedin, Twitter } from "lucide-react";
+import { useState } from "react";
+import { useToast } from "@/hooks/use-toast";
 
-const ExpertCard = ({ expert }: { expert: typeof mediaExperts[0] }) => (
+const ExpertCard = ({ expert }: { expert: MediaExpert }) => (
   <Card className={`p-5 flex flex-col h-full border-border/60 hover:border-primary/50 transition-colors group cursor-pointer ${expert.type === 'recommended' ? 'bg-card' : 'bg-muted/10'}`}>
     <div className="flex items-start justify-between mb-4">
       <div className="flex items-center gap-3">
@@ -76,6 +78,33 @@ const ExpertCard = ({ expert }: { expert: typeof mediaExperts[0] }) => (
 );
 
 export default function Media() {
+  const [experts, setExperts] = useState<MediaExpert[]>(mediaExperts);
+  const [isOpen, setIsOpen] = useState(false);
+  const { toast } = useToast();
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    
+    const newExpert: MediaExpert = {
+      id: `mv-${Date.now()}`,
+      name: formData.get("name") as string,
+      role: formData.get("occupation") as string,
+      organization: "Community Member", // Simplified for form
+      bio: formData.get("fame") as string,
+      location: formData.get("location") as string,
+      expertise: (formData.get("expertise") as string).split(",").map(s => s.trim()),
+      type: "volunteer"
+    };
+
+    setExperts([...experts, newExpert]);
+    setIsOpen(false);
+    toast({
+      title: "Profile Submitted",
+      description: "You have been added to the Community Volunteers list.",
+    });
+  };
+
   return (
     <Layout>
       <PageHeader
@@ -83,14 +112,14 @@ export default function Media() {
         description="Connect with verified experts, thought leaders, and community voices for interviews and insights on OpenClaw and AI Security."
         height="compact"
         action={
-           <Dialog>
+           <Dialog open={isOpen} onOpenChange={setIsOpen}>
              <DialogTrigger asChild>
                <Button size="lg" className="bg-primary text-primary-foreground font-bold shadow-md cursor-pointer">
                  <UserPlus className="w-4 h-4 mr-2" />
                  Join Media List
                </Button>
              </DialogTrigger>
-             <DialogContent className="sm:max-w-[500px]">
+             <DialogContent className="sm:max-w-[600px] overflow-y-auto max-h-[90vh]">
                <DialogHeader>
                  <DialogTitle>Join the Media Expert List</DialogTitle>
                  <DialogDescription>
@@ -98,53 +127,58 @@ export default function Media() {
                  </DialogDescription>
                </DialogHeader>
                
-               <div className="grid gap-4 py-4">
+               <form onSubmit={handleSubmit} className="grid gap-4 py-4">
                  <div className="grid grid-cols-2 gap-4">
                    <div className="space-y-2">
                      <Label htmlFor="name">Full Name</Label>
-                     <Input id="name" placeholder="Jane Doe" />
+                     <Input id="name" name="name" placeholder="Jane Doe" required />
                    </div>
                    <div className="space-y-2">
                      <Label htmlFor="location">City, Country</Label>
-                     <Input id="location" placeholder="New York, USA" />
+                     <Input id="location" name="location" placeholder="New York, USA" required />
                    </div>
                  </div>
                  
                  <div className="grid grid-cols-2 gap-4">
                    <div className="space-y-2">
                      <Label htmlFor="age">Age</Label>
-                     <Input id="age" placeholder="30" type="number" />
+                     <Input id="age" name="age" placeholder="30" type="number" required />
                    </div>
                    <div className="space-y-2">
                      <Label htmlFor="language">Language(s)</Label>
-                     <Input id="language" placeholder="English, Spanish" />
+                     <Input id="language" name="language" placeholder="English, Spanish" required />
                    </div>
                  </div>
 
                  <div className="space-y-2">
                    <Label htmlFor="expertise">Primary Expertise</Label>
-                   <Input id="expertise" placeholder="e.g. AI Security, Governance, Technical Implementation" />
+                   <Input id="expertise" name="expertise" placeholder="e.g. AI Security, Governance, Technical Implementation" required />
                  </div>
 
                  <div className="space-y-2">
                    <Label htmlFor="occupation">Current Occupation</Label>
-                   <Input id="occupation" placeholder="Senior Engineer at TechCorp" />
+                   <Input id="occupation" name="occupation" placeholder="Senior Engineer at TechCorp" required />
                  </div>
 
                  <div className="space-y-2">
-                   <Label htmlFor="fame">Claim to Fame</Label>
-                   <Textarea id="fame" placeholder="Tell us something interesting (humorous, early adopter story, etc.)" />
+                   <Label htmlFor="education">Education (Optional)</Label>
+                   <Input id="education" name="education" placeholder="PhD in Computer Science" />
+                 </div>
+
+                 <div className="space-y-2">
+                   <Label htmlFor="fame">Claim to Fame / Bio</Label>
+                   <Textarea id="fame" name="fame" placeholder="Tell us something interesting (humorous, early adopter story, etc.)" required />
                  </div>
                  
                  <div className="space-y-2">
                    <Label htmlFor="links">LinkedIn / Social Profile</Label>
-                   <Input id="links" placeholder="https://linkedin.com/in/..." />
+                   <Input id="links" name="links" placeholder="https://linkedin.com/in/..." required />
                  </div>
-               </div>
 
-               <DialogFooter>
-                 <Button type="submit">Submit Profile</Button>
-               </DialogFooter>
+                 <DialogFooter className="pt-4">
+                   <Button type="submit">Submit Profile</Button>
+                 </DialogFooter>
+               </form>
              </DialogContent>
            </Dialog>
         }
@@ -165,7 +199,7 @@ export default function Media() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {mediaExperts.filter(e => e.type === 'recommended').map(expert => (
+            {experts.filter(e => e.type === 'recommended').map(expert => (
               <ExpertCard key={expert.id} expert={expert} />
             ))}
           </div>
@@ -184,7 +218,7 @@ export default function Media() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {mediaExperts.filter(e => e.type === 'volunteer').map(expert => (
+            {experts.filter(e => e.type === 'volunteer').map(expert => (
               <ExpertCard key={expert.id} expert={expert} />
             ))}
           </div>
