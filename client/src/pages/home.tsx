@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { FullPageModal, ConfirmationModal } from "@/components/modals";
+import { ThreatTicker } from "@/components/threat-ticker";
 import { useState } from "react";
 import { Shield, CheckCircle, Download, ExternalLink, Calendar, Star, AlertTriangle, Terminal, Lock, ChevronRight, Zap, Globe, Server, Activity, ArrowUpRight, Mail, Box, Cloud, Search, Newspaper } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -139,32 +140,6 @@ export default function Home() {
 
       <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
         
-        {/* Quick Links Row */}
-        <div className="hidden md:flex items-center gap-1 text-[11px] text-muted-foreground font-medium mb-2 px-1 relative z-20">
-          <Link href="#" className="hover:text-primary transition-colors hover:underline">Developer Hub</Link>
-          <span className="text-border mx-2">|</span>
-          <Link href="/news" className="hover:text-primary transition-colors hover:underline">News</Link>
-          <span className="text-border mx-2">|</span>
-          <Link href="#" className="hover:text-primary transition-colors hover:underline">Enterprise</Link>
-          <span className="text-border mx-2">|</span>
-          <Link href="#" className="hover:text-primary transition-colors hover:underline">Jobs</Link>
-          <span className="text-border mx-2">|</span>
-          <Link href="/community" className="hover:text-primary transition-colors hover:underline">Community</Link>
-          <span className="text-border mx-2">|</span>
-          <a href="https://discord.gg/gduUaXMQ" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors hover:underline">Discord</a>
-          <span className="text-border mx-2">|</span>
-          <Link href="#" className="hover:text-primary transition-colors hover:underline">Feedback</Link>
-          <span className="text-border mx-2">|</span>
-          <Link href="#" className="hover:text-primary transition-colors hover:underline">Security Advisory</Link>
-          <span className="text-border mx-2">|</span>
-          <Link href="/media" className="hover:text-primary transition-colors hover:underline">Media Advisory</Link>
-          <span className="text-border mx-2">|</span>
-          <Link href="#" className="hover:text-destructive transition-colors hover:underline flex items-center gap-1 group">
-            <AlertTriangle className="w-3 h-3 text-muted-foreground group-hover:text-destructive transition-colors" />
-            Submit Threat
-          </Link>
-        </div>
-
         {/* Hero Banner */}
         <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-background via-muted to-accent/20 border border-border ring-1 ring-white/10 dark:ring-white/5 transition-colors duration-300 p-8 md:p-12 shadow-xl shadow-muted/60 dark:shadow-none">
           {/* Background Pattern */}
@@ -189,14 +164,18 @@ export default function Home() {
               </div>
 
               <div className="flex flex-wrap items-center gap-3 pt-2">
-                <Button size="lg" className="h-12 px-5 bg-primary text-primary-foreground hover:bg-primary/90 border-none font-semibold shadow-lg shadow-primary/10 transition-all cursor-pointer">
-                  <Shield className="w-4 h-4 mr-1.5" />
-                  Publish a Skill
-                </Button>
-                <Button size="lg" variant="outline" className="h-12 px-5 bg-card border-border text-foreground hover:bg-muted shadow-sm cursor-pointer">
-                  <Zap className="w-4 h-4 mr-1.5" />
-                  1-Click-Setup
-                </Button>
+                <Link href="/publish">
+                  <Button size="lg" className="h-12 px-5 bg-primary text-primary-foreground hover:bg-primary/90 border-none font-semibold shadow-lg shadow-primary/10 transition-all cursor-pointer">
+                    <Shield className="w-4 h-4 mr-1.5" />
+                    Publish a Skill
+                  </Button>
+                </Link>
+                <Link href="/deploy">
+                  <Button size="lg" variant="outline" className="h-12 px-5 bg-card border-border text-foreground hover:bg-muted shadow-sm cursor-pointer">
+                    <Zap className="w-4 h-4 mr-1.5" />
+                    1-Click-Setup
+                  </Button>
+                </Link>
               </div>
               
               <div className="flex items-center gap-6 text-xs text-muted-foreground pt-4">
@@ -245,7 +224,7 @@ export default function Home() {
                         </div>
                      </div>
                      
-                     <div className="space-y-3 pt-3">
+                     <div className="pt-3 space-y-3">
                         <div className="p-3 rounded bg-muted/50 border border-border shadow-inner">
                             <div className="flex justify-between items-center mb-2">
                                 <span className="text-xs font-bold text-foreground flex items-center gap-1.5">
@@ -258,14 +237,7 @@ export default function Home() {
                                <div className="h-full w-[75%] bg-destructive rounded-full" />
                             </div>
                         </div>
-
-                        <div className="flex items-start gap-2 text-[10px] text-muted-foreground bg-card p-2 rounded border border-border">
-                           <Shield className="w-3 h-3 text-muted-foreground mt-0.5 shrink-0" />
-                           <span className="leading-tight">
-                              <span className="font-semibold text-foreground">Latest Intercept:</span> Malicious dependency detected in <span className="font-mono text-muted-foreground">helper-utils-v2</span>.
-                           </span>
-                        </div>
-
+                        <ThreatTicker />
                      </div>
                   </div>
                </div>
