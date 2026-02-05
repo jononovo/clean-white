@@ -117,7 +117,7 @@ export default function Home() {
         </div>
 
         {/* Hero Banner */}
-        <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-white via-slate-50 to-emerald-50/50 dark:from-slate-900 dark:via-slate-900 dark:to-emerald-950/20 text-slate-900 dark:text-slate-50 p-8 md:p-12 shadow-xl shadow-slate-200/60 dark:shadow-none border border-slate-200/60 dark:border-white/5 ring-1 ring-white/60 dark:ring-white/5">
+        <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-white via-slate-50 to-emerald-50/50 dark:from-slate-900 dark:via-slate-900 dark:to-emerald-950/20 text-slate-900 dark:text-slate-50 p-8 md:p-12 shadow-xl shadow-slate-200/60 dark:shadow-none border border-slate-200/60 dark:border-white/5 ring-1 ring-white/60 dark:ring-white/5 transition-colors duration-300">
           {/* Background Pattern */}
           <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.02)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_at_center,black_60%,transparent_100%)] pointer-events-none" />
           <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-transparent dark:from-slate-950/80 pointer-events-none" />
