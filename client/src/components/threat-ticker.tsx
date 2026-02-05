@@ -118,17 +118,19 @@ export function ThreatTicker() {
         </span>
         
         {/* Dots */}
-        <div className="flex items-center gap-1.5">
+        <div className="flex items-center gap-0.5">
            {THREAT_ALERTS.map((_, i) => (
              <button
                 key={i}
                 onClick={() => handleDotClick(i)}
-                className={cn(
-                  "h-1 rounded-full transition-all duration-300 cursor-pointer",
-                  i === currentIndex ? "w-3 bg-foreground/40" : "w-1 bg-border hover:bg-muted-foreground/30"
-                )}
+                className="p-1.5 cursor-pointer group"
                 aria-label={`View threat ${i + 1}`}
-             />
+             >
+                <div className={cn(
+                  "h-1.5 rounded-full transition-all duration-300",
+                  i === currentIndex ? "w-4 bg-foreground/60" : "w-1.5 bg-border group-hover:bg-muted-foreground/50"
+                )} />
+             </button>
            ))}
         </div>
       </div>
