@@ -219,7 +219,7 @@ export default function Home() {
           <div className="flex items-center justify-between mb-4 px-1">
             <h3 className="text-sm font-bold uppercase tracking-wider flex items-center gap-2 text-foreground/80">
               <Sparkles className="w-3.5 h-3.5 text-muted-foreground" />
-              Featured Today
+              Claw Eco-System - Featured Today
               <span className="text-[11px] font-medium normal-case tracking-normal text-muted-foreground/60">
                 | {new Date().toLocaleDateString("en-US", { day: "2-digit", month: "short", year: "numeric", timeZone: "America/New_York" })}
               </span>
