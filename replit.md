@@ -14,18 +14,33 @@ SecureClawHub is a trust and security registry for OpenClaw autonomous agent com
 
 Preferred communication style: Simple, everyday language.
 
-## Tech Stack
+## Tech Stack & Versions (Updated: February 2026)
+
+### Runtime
+- **Node.js**: 20.20.0
 
 ### Frontend
-- **Next.js 15** with App Router (RSC + client components)
+- **Next.js**: 16.1.6 (App Router with RSC + client components)
+- **React**: 19.2.0
+- **React DOM**: 19.2.0
 - **shadcn/ui** on Radix UI primitives
-- **Tailwind CSS v4** with dual theme support (Slate/Warm × Light/Dark)
-- **TanStack Query** for server state
+- **Tailwind CSS**: v4.1.18 with dual theme support (Slate/Warm × Light/Dark)
+- **TanStack React Query**: 5.60.5
 
 ### Backend
 - **Next.js custom server** via `server/index.ts`
-- **PostgreSQL + Drizzle ORM** for persistence
+- **Express**: 5.0.1
+- **PostgreSQL + Drizzle ORM**: 0.39.3
 - **Zod** for runtime validation
+
+### Analytics & SEO
+- **Google Analytics**: @next/third-parties 16.1.6 (GA4 ID: G-ZP35N89HPY)
+
+### Key Dependencies
+- **UI**: Radix UI components, Lucide React 0.545.0, class-variance-authority 0.7.1
+- **Forms**: React Hook Form with @hookform/resolvers 3.10.0
+- **Data**: Drizzle ORM 0.39.3, drizzle-zod 0.7.0, TanStack React Query 5.60.5
+- **Utilities**: date-fns 3.6.0, clsx 2.1.1, cmdk 1.1.1
 
 ### Key Directories
 ```
@@ -37,8 +52,9 @@ shared/        → Database schema (Drizzle)
 hooks/         → Custom React hooks
 ```
 
-## Dependencies
+## Sitemap Strategy (Planned)
 
-- **UI**: Radix UI, Lucide icons, class-variance-authority
-- **Data**: Drizzle ORM, TanStack React Query
-- **Build**: TypeScript, PostCSS, Tailwind v4
+For 10,000+ skill pages, will use Next.js `generateSitemaps()` with:
+- Chunked sitemaps (10,000 URLs per file)
+- ISR caching with hourly revalidation
+- Separate sitemaps for static pages vs dynamic skill pages
