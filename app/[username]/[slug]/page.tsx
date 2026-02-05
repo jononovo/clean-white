@@ -26,6 +26,8 @@ import {
 } from "lucide-react";
 import type { Skill } from "@/shared/schema";
 
+type SkillWithTags = Skill & { tags?: string[] };
+
 function SecurityBadge({ score, status }: { score: number; status: string }) {
   if (status === "verified" || score >= 80) {
     return (
@@ -93,7 +95,7 @@ export default function SkillDetailPage() {
   const params = useParams();
   const username = params.username as string;
   const slug = params.slug as string;
-  const [skill, setSkill] = useState<Skill | null>(null);
+  const [skill, setSkill] = useState<SkillWithTags | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
