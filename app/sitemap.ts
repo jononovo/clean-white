@@ -58,4 +58,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   return [...staticPages, ...skillPages];
 }
 
+export const dynamic = 'force-dynamic';
 export const revalidate = 3600;
