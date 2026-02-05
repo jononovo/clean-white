@@ -1,6 +1,6 @@
 import { Link, useLocation } from "wouter";
 import { categories } from "@/lib/mock-data";
-import { Search, Shield, Bell, Menu, LayoutGrid, Sun, Moon, Palette, PanelLeftOpen } from "lucide-react";
+import { Search, Shield, Bell, Menu, LayoutGrid, Sun, Moon, Palette, PanelLeftOpen, PanelLeftClose } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
@@ -20,6 +20,7 @@ import { Footer } from "@/components/footer";
 export function Layout({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
   const [authOpen, setAuthOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [theme, setTheme] = useState<{ style: "slate" | "warm"; mode: "light" | "dark" }>({
     style: "warm",
     mode: "dark", 
@@ -111,33 +112,66 @@ export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen bg-background flex">
       {/* Desktop Sidebar */}
-      <aside className="hidden lg:block w-64 fixed inset-y-0 left-0 z-50">
+      <aside 
+        className={cn(
+          "hidden lg:block fixed inset-y-0 left-0 z-50 transition-all duration-300",
+          isSidebarOpen ? "w-64" : "w-0 overflow-hidden"
+        )}
+      >
         <SidebarContent />
       </aside>
 
       {/* Main Content */}
-      <main className="lg:pl-64 flex-1 flex flex-col min-h-screen">
+      <main 
+        className={cn(
+          "flex-1 flex flex-col min-h-screen transition-all duration-300",
+          isSidebarOpen ? "lg:pl-64" : "lg:pl-0"
+        )}
+      >
         {/* Header */}
         <header className="h-16 border-b border-border bg-card/80 backdrop-blur-sm sticky top-0 z-40 px-6 flex items-center justify-between">
-          <div className="lg:hidden flex items-center gap-3">
-             {/* Mobile Logo - Always Top Left */}
-             <Link href="/">
-              <div className="flex items-center gap-2 cursor-pointer mr-2">
-                <img src="/logo_v2.png" alt="SecureClawHub" className="w-8 h-8 object-contain" width="32" height="32" />
-                <h1 className="font-display font-bold text-lg leading-none tracking-tight hidden xs:block">SecureClawHub</h1>
-              </div>
-            </Link>
+          <div className="flex items-center gap-3">
+             {/* Mobile & Desktop Toggle */}
+             <div className="lg:hidden flex items-center gap-3">
+                <Link href="/">
+                  <div className="flex items-center gap-2 cursor-pointer mr-2">
+                    <img src="/logo_v2.png" alt="SecureClawHub" className="w-8 h-8 object-contain" width="32" height="32" />
+                    <h1 className="font-display font-bold text-lg leading-none tracking-tight hidden xs:block">SecureClawHub</h1>
+                  </div>
+                </Link>
 
-            <Sheet>
-              <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="w-10 h-10 text-muted-foreground hover:text-foreground">
-                  <PanelLeftOpen className="w-7 h-7" />
-                </Button>
-              </SheetTrigger>
-              <SheetContent side="left" className="p-0 w-64">
-                <SidebarContent />
-              </SheetContent>
-            </Sheet>
+                <Sheet>
+                  <SheetTrigger asChild>
+                    <Button variant="ghost" size="icon" className="w-10 h-10 text-muted-foreground hover:text-foreground">
+                      <PanelLeftOpen className="w-7 h-7" />
+                    </Button>
+                  </SheetTrigger>
+                  <SheetContent side="left" className="p-0 w-64">
+                    <SidebarContent />
+                  </SheetContent>
+                </Sheet>
+             </div>
+
+             {/* Desktop Toggle */}
+             <div className="hidden lg:flex items-center gap-3">
+               <Button 
+                 variant="ghost" 
+                 size="icon" 
+                 onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+                 className="w-10 h-10 text-muted-foreground hover:text-foreground hidden lg:flex"
+               >
+                 {isSidebarOpen ? <PanelLeftClose className="w-7 h-7" /> : <PanelLeftOpen className="w-7 h-7" />}
+               </Button>
+               
+               {!isSidebarOpen && (
+                 <Link href="/">
+                    <div className="flex items-center gap-2 cursor-pointer ml-2">
+                      <img src="/logo_v2.png" alt="SecureClawHub" className="w-8 h-8 object-contain" width="32" height="32" />
+                      <h1 className="font-display font-bold text-lg leading-none tracking-tight">SecureClawHub</h1>
+                    </div>
+                  </Link>
+               )}
+             </div>
           </div>
 
           <div className="flex-1 max-w-xl relative mx-4 hidden sm:block">
