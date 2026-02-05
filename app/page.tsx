@@ -276,32 +276,72 @@ export default function Home() {
            <div>
               <div className="flex items-center justify-between mb-3 px-1">
                  <h3 className="text-sm font-bold uppercase tracking-wider flex items-center gap-2 text-foreground/80">
-                   <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                   Live Feed
+                   <Server className="w-3.5 h-3.5 text-muted-foreground" />
+                   Top Claw VPS Services
                  </h3>
-                 <span className="text-[10px] font-mono text-muted-foreground">Real-time</span>
               </div>
               <div className="bg-white/50 dark:bg-card/50 border border-border/60 rounded-lg p-3 shadow-sm backdrop-blur-sm">
-                 <div className="max-h-[180px] overflow-y-auto pr-2 space-y-0.5 custom-scrollbar">
-                    {latestSubmissions.map(item => (
-                       <CompressedListRow key={item.id} item={item} />
+                 <div className="space-y-0.5">
+                    {[
+                      { name: "BoostedHost", desc: "Turnkey pre-installed setup", rating: 4.9, price: "Custom", url: "https://boostedhost.com" },
+                      { name: "DigitalOcean", desc: "Official 1-Click Deploy", rating: 4.7, price: "From $6/mo", url: "https://digitalocean.com" },
+                      { name: "Hostinger", desc: "Best budget option", rating: 4.5, price: "From $5/mo", url: "https://hostinger.com" },
+                      { name: "Vultr", desc: "DIY flexibility, great pricing", rating: 4.4, price: "From $6/mo", url: "https://vultr.com" },
+                      { name: "Linode", desc: "Best raw performance", rating: 4.3, price: "From $5/mo", url: "https://linode.com" },
+                    ].map((vps, i) => (
+                      <a key={vps.name} href={vps.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 py-2 border-b border-border/40 last:border-0 hover:bg-muted/30 px-2 rounded-sm transition-colors group cursor-pointer">
+                        <span className="w-4 text-xs font-mono text-muted-foreground text-center">{i + 1}</span>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2">
+                            <span className="font-semibold text-sm truncate text-foreground group-hover:text-primary transition-colors">{vps.name}</span>
+                            <span className="text-[10px] text-muted-foreground/70">{vps.price}</span>
+                          </div>
+                          <div className="text-[10px] text-muted-foreground mt-0.5">{vps.desc}</div>
+                        </div>
+                        <div className="flex items-center gap-1 text-xs font-medium text-amber-600 dark:text-amber-400 shrink-0">
+                          <Star className="w-3 h-3 fill-amber-500 text-amber-500" />
+                          {vps.rating}
+                        </div>
+                      </a>
                     ))}
                  </div>
+                 <a href="https://boostedhost.com/blog/en/how-to-install-openclaw-get-started-guide/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 mt-3 pt-3 border-t border-border/40 text-[11px] font-medium text-primary hover:underline">
+                   <ExternalLink className="w-3 h-3" />
+                   Guide: Installing Claw on a VPS
+                 </a>
               </div>
            </div>
 
            <div>
               <div className="flex items-center justify-between mb-3 px-1">
                  <h3 className="text-sm font-bold uppercase tracking-wider flex items-center gap-2 text-foreground/80">
-                   <Star className="w-3.5 h-3.5 text-amber-500" />
-                   Highest Rated
+                   <Star className="w-3.5 h-3.5 text-muted-foreground" />
+                   Highest Productivity Skills
                  </h3>
-                 <a href="#" className="text-[10px] font-medium text-primary hover:underline">View All</a>
               </div>
               <div className="bg-white/50 dark:bg-card/50 border border-border/60 rounded-lg p-3 shadow-sm backdrop-blur-sm">
-                 <div className="max-h-[180px] overflow-y-auto pr-2 space-y-0.5 custom-scrollbar">
-                    {topScorers.map((item, i) => (
-                       <CompressedListRow key={item.id} item={item} rank={i + 1} />
+                 <div className="space-y-0.5">
+                    {[
+                      { name: "Notion Integration", author: "community", votes: 1842, rating: 4.9, desc: "Create pages, manage databases with natural language" },
+                      { name: "GitHub Integration", author: "openclaw", votes: 1567, rating: 4.8, desc: "Issues, PRs, webhooks, and automated code review" },
+                      { name: "Email Triage", author: "community", votes: 1203, rating: 4.7, desc: "Auto-reads inbox, sends summaries, creates todos" },
+                      { name: "Apple Calendar Sync", author: "community", votes: 986, rating: 4.6, desc: "Event scheduling, conflict management, daily briefings" },
+                      { name: "Meal Planner 365", author: "community", votes: 871, rating: 4.5, desc: "Shopping lists sorted by store aisle, weekly templates" },
+                    ].map((skill, i) => (
+                      <div key={skill.name} className="flex items-center gap-3 py-2 border-b border-border/40 last:border-0 hover:bg-muted/30 px-2 rounded-sm transition-colors group cursor-pointer">
+                        <span className="w-4 text-xs font-mono text-muted-foreground text-center">{i + 1}</span>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2">
+                            <span className="font-semibold text-sm truncate text-foreground group-hover:text-primary transition-colors">{skill.name}</span>
+                            <span className="text-[10px] text-muted-foreground/60">{skill.votes.toLocaleString()} votes</span>
+                          </div>
+                          <div className="text-[10px] text-muted-foreground mt-0.5">{skill.desc}</div>
+                        </div>
+                        <div className="flex items-center gap-1 text-xs font-medium text-amber-600 dark:text-amber-400 shrink-0">
+                          <Star className="w-3 h-3 fill-amber-500 text-amber-500" />
+                          {skill.rating}
+                        </div>
+                      </div>
                     ))}
                  </div>
               </div>

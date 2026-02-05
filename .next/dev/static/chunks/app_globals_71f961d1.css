@@ -1663,10 +1663,6 @@
     max-height: 90vh;
   }
 
-  .max-h-\[180px\] {
-    max-height: 180px;
-  }
-
   .max-h-\[200px\] {
     max-height: 200px;
   }
@@ -3860,6 +3856,10 @@
     fill: var(--color-amber-400);
   }
 
+  .fill-amber-500 {
+    fill: var(--color-amber-500);
+  }
+
   .fill-current {
     fill: currentColor;
   }
@@ -4501,6 +4501,16 @@
   @supports (color: color-mix(in lab, red, red)) {
     .text-muted-foreground\/60 {
       color: color-mix(in oklab, hsl(var(--muted-foreground)) 60%, transparent);
+    }
+  }
+
+  .text-muted-foreground\/70 {
+    color: hsl(var(--muted-foreground));
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .text-muted-foreground\/70 {
+      color: color-mix(in oklab, hsl(var(--muted-foreground)) 70%, transparent);
     }
   }
 
