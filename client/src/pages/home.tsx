@@ -57,13 +57,13 @@ const CompressedListRow = ({ item, rank }: { item: Listing, rank?: number }) => 
 // Featured Card for Row 1
 const FeaturedCard = ({ item, color = "emerald" }: { item: Listing, color?: "emerald" | "blue" | "indigo" }) => {
   const colors = {
-    emerald: "from-emerald-50/50 to-white border-emerald-100/60",
-    blue: "from-blue-50/50 to-white border-blue-100/60",
-    indigo: "from-indigo-50/50 to-white border-indigo-100/60",
+    emerald: "from-emerald-50/50 to-white border-emerald-100/60 dark:from-emerald-950/20 dark:to-card dark:border-emerald-900/40",
+    blue: "from-blue-50/50 to-white border-blue-100/60 dark:from-blue-950/20 dark:to-card dark:border-blue-900/40",
+    indigo: "from-indigo-50/50 to-white border-indigo-100/60 dark:from-indigo-950/20 dark:to-card dark:border-indigo-900/40",
   };
 
   return (
-    <Card className={cn("p-4 bg-gradient-to-br border shadow-sm hover:shadow-md transition-all duration-300 relative overflow-hidden group cursor-pointer", colors[color])}>
+    <Card className={cn("p-4 bg-gradient-to-br border shadow-sm hover:shadow-md transition-all duration-300 relative overflow-hidden group cursor-pointer dark:bg-card", colors[color])}>
        <div className="absolute -right-6 -top-6 w-24 h-24 bg-current opacity-[0.03] rounded-full blur-2xl group-hover:opacity-[0.06] transition-opacity" />
        
        <div className="flex justify-between items-start mb-3 relative z-10">
@@ -117,46 +117,46 @@ export default function Home() {
         </div>
 
         {/* Hero Banner */}
-        <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-white via-slate-50 to-emerald-50/50 text-slate-900 p-8 md:p-12 shadow-xl shadow-slate-200/60 border border-slate-200/60 ring-1 ring-white/60">
+        <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-white via-slate-50 to-emerald-50/50 dark:from-slate-900 dark:via-slate-900 dark:to-emerald-950/20 text-slate-900 dark:text-slate-50 p-8 md:p-12 shadow-xl shadow-slate-200/60 dark:shadow-none border border-slate-200/60 dark:border-white/5 ring-1 ring-white/60 dark:ring-white/5">
           {/* Background Pattern */}
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.02)_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_at_center,black_60%,transparent_100%)] pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.02)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_at_center,black_60%,transparent_100%)] pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-transparent dark:from-slate-950/80 pointer-events-none" />
           
           <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
             <div className="space-y-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-slate-200 text-xs font-medium text-emerald-700 shadow-sm">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 text-xs font-medium text-emerald-700 dark:text-emerald-400 shadow-sm">
                 <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                 Network Secure • 12,402 Audits Verified
               </div>
               
               <div className="space-y-4">
-                <h1 className="text-4xl md:text-5xl font-display font-bold tracking-tight text-slate-900 leading-[1.1]">
-                  The Trust Hub for <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-500">OpenClaw</span>
+                <h1 className="text-4xl md:text-5xl font-display font-bold tracking-tight text-slate-900 dark:text-white leading-[1.1]">
+                  The Trust Hub for <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-500 dark:from-emerald-400 dark:to-teal-300">OpenClaw</span>
                 </h1>
-                <p className="text-lg text-slate-600 max-w-md leading-relaxed">
+                <p className="text-lg text-slate-600 dark:text-slate-400 max-w-md leading-relaxed">
                   The official security registry for autonomous agents. We audit, rank, and monitor skills so you can run bots with confidence.
                 </p>
               </div>
 
               <div className="flex flex-wrap items-center gap-3 pt-2">
-                <Button size="lg" className="h-12 px-5 bg-slate-900 hover:bg-slate-800 text-white border-none font-semibold shadow-lg shadow-slate-900/10 transition-all cursor-pointer">
+                <Button size="lg" className="h-12 px-5 bg-slate-900 hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200 text-white border-none font-semibold shadow-lg shadow-slate-900/10 transition-all cursor-pointer">
                   <Shield className="w-4 h-4 mr-1.5" />
                   Publish a Skill
                 </Button>
-                <Button size="lg" variant="outline" className="h-12 px-5 bg-white border-slate-200 text-slate-700 hover:bg-slate-50 hover:text-slate-900 shadow-sm cursor-pointer">
+                <Button size="lg" variant="outline" className="h-12 px-5 bg-white border-slate-200 text-slate-700 hover:bg-slate-50 hover:text-slate-900 dark:bg-transparent dark:border-white/10 dark:text-slate-300 dark:hover:bg-white/5 dark:hover:text-white shadow-sm cursor-pointer">
                   <Zap className="w-4 h-4 mr-1.5" />
                   1-Click-Setup
                 </Button>
               </div>
               
-              <div className="flex items-center gap-6 text-xs text-slate-500 pt-4">
+              <div className="flex items-center gap-6 text-xs text-slate-500 dark:text-slate-500 pt-4">
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-emerald-600" />
+                  <CheckCircle className="w-4 h-4 text-emerald-600 dark:text-emerald-500" />
                   <span>OpenClaw Threat Monitor</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-emerald-600" />
+                  <CheckCircle className="w-4 h-4 text-emerald-600 dark:text-emerald-500" />
                   <span>Manual Code Review</span>
                 </div>
               </div>
@@ -164,56 +164,56 @@ export default function Home() {
 
             {/* Right Visual - Stats Card */}
             <div className="hidden md:block relative">
-               <div className="absolute -inset-1 bg-gradient-to-r from-emerald-200/40 to-blue-200/40 rounded-xl blur-xl opacity-60" />
-               <div className="relative bg-white/80 backdrop-blur-xl border border-white/60 rounded-xl p-6 shadow-xl shadow-slate-200/50">
-                  <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-100">
+               <div className="absolute -inset-1 bg-gradient-to-r from-emerald-200/40 to-blue-200/40 dark:from-emerald-900/20 dark:to-blue-900/20 rounded-xl blur-xl opacity-60" />
+               <div className="relative bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border border-white/60 dark:border-white/10 rounded-xl p-6 shadow-xl shadow-slate-200/50 dark:shadow-none">
+                  <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-100 dark:border-white/5">
                     <div className="flex items-center gap-3">
-                       <Activity className="w-5 h-5 text-slate-600" />
-                       <span className="font-mono font-bold text-sm text-slate-800">LIVE SECURITY FEED</span>
+                       <Activity className="w-5 h-5 text-slate-600 dark:text-slate-400" />
+                       <span className="font-mono font-bold text-sm text-slate-800 dark:text-slate-200">LIVE SECURITY FEED</span>
                     </div>
                   </div>
                   
                   <div className="space-y-5">
                      <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
-                           <div className="p-2 rounded bg-slate-100 text-slate-600 border border-slate-200">
+                           <div className="p-2 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-white/5">
                              <AlertTriangle className="w-4 h-4" />
                            </div>
                            <div>
-                             <div className="text-2xl font-bold font-mono text-slate-900">342</div>
-                             <div className="text-xs text-slate-500 font-medium">Threats Blocked (24h)</div>
+                             <div className="text-2xl font-bold font-mono text-slate-900 dark:text-white">342</div>
+                             <div className="text-xs text-slate-500 dark:text-slate-400 font-medium">Threats Blocked (24h)</div>
                            </div>
                         </div>
-                        <div className="h-8 w-px bg-slate-200" />
+                        <div className="h-8 w-px bg-slate-200 dark:bg-white/5" />
                         <div className="flex items-center gap-3">
-                           <div className="p-2 rounded bg-slate-100 text-slate-600 border border-slate-200">
+                           <div className="p-2 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-white/5">
                              <Terminal className="w-4 h-4" />
                            </div>
                            <div>
-                             <div className="text-2xl font-bold font-mono text-slate-900">14.2M</div>
-                             <div className="text-xs text-slate-500 font-medium">Lines Audited</div>
+                             <div className="text-2xl font-bold font-mono text-slate-900 dark:text-white">14.2M</div>
+                             <div className="text-xs text-slate-500 dark:text-slate-400 font-medium">Lines Audited</div>
                            </div>
                         </div>
                      </div>
                      
                      <div className="space-y-3 pt-3">
-                        <div className="p-3 rounded bg-slate-50 border border-slate-100 shadow-inner">
+                        <div className="p-3 rounded bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-white/5 shadow-inner">
                             <div className="flex justify-between items-center mb-2">
-                                <span className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
+                                <span className="text-xs font-bold text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
                                     <Globe className="w-3 h-3 text-slate-400" />
                                     Claw Threat Index
                                 </span>
                                 <span className="text-[10px] font-mono text-destructive font-bold">HIGH RISK</span>
                             </div>
-                            <div className="h-1.5 w-full bg-slate-200 rounded-full overflow-hidden">
+                            <div className="h-1.5 w-full bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
                                <div className="h-full w-[75%] bg-destructive rounded-full" />
                             </div>
                         </div>
 
-                        <div className="flex items-start gap-2 text-[10px] text-slate-500 bg-white p-2 rounded border border-slate-100">
-                           <Shield className="w-3 h-3 text-slate-500 mt-0.5 shrink-0" />
+                        <div className="flex items-start gap-2 text-[10px] text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-900 p-2 rounded border border-slate-100 dark:border-white/5">
+                           <Shield className="w-3 h-3 text-slate-500 dark:text-slate-400 mt-0.5 shrink-0" />
                            <span className="leading-tight">
-                              <span className="font-semibold text-slate-700">Latest Intercept:</span> Malicious dependency detected in <span className="font-mono text-slate-600">helper-utils-v2</span>.
+                              <span className="font-semibold text-slate-700 dark:text-slate-300">Latest Intercept:</span> Malicious dependency detected in <span className="font-mono text-slate-600 dark:text-slate-400">helper-utils-v2</span>.
                            </span>
                         </div>
                      </div>
@@ -234,7 +234,7 @@ export default function Home() {
                  </h3>
                  <span className="text-[10px] font-mono text-muted-foreground">Real-time</span>
               </div>
-              <div className="bg-white/50 border border-border/60 rounded-lg p-3 shadow-sm backdrop-blur-sm">
+              <div className="bg-white/50 dark:bg-card/50 border border-border/60 rounded-lg p-3 shadow-sm backdrop-blur-sm">
                  <div className="max-h-[180px] overflow-y-auto pr-2 space-y-0.5 custom-scrollbar">
                     {latestSubmissions.map(item => (
                        <CompressedListRow key={item.id} item={item} />
@@ -252,7 +252,7 @@ export default function Home() {
                  </h3>
                  <a href="#" className="text-[10px] font-medium text-primary hover:underline">View All</a>
               </div>
-              <div className="bg-white/50 border border-border/60 rounded-lg p-3 shadow-sm backdrop-blur-sm">
+              <div className="bg-white/50 dark:bg-card/50 border border-border/60 rounded-lg p-3 shadow-sm backdrop-blur-sm">
                  <div className="max-h-[180px] overflow-y-auto pr-2 space-y-0.5 custom-scrollbar">
                     {topScorers.map((item, i) => (
                        <CompressedListRow key={item.id} item={item} rank={i + 1} />
@@ -290,14 +290,14 @@ export default function Home() {
                  {latestSubmissions.slice(0, 4).map((item, i) => (
                     <div key={item.id} className="flex items-start md:items-center gap-4 p-4 border-b border-border/40 last:border-0 hover:bg-muted/20 transition-colors group cursor-pointer">
                        <div className="w-12 h-12 rounded-lg bg-secondary/80 flex items-center justify-center shrink-0 border border-border/50">
-                          {item.category === 'skill' ? <Box className="w-6 h-6 text-slate-600" /> : <Globe className="w-6 h-6 text-slate-600" />}
+                          {item.category === 'skill' ? <Box className="w-6 h-6 text-slate-600 dark:text-slate-400" /> : <Globe className="w-6 h-6 text-slate-600 dark:text-slate-400" />}
                        </div>
                        <div className="flex-1 min-w-0">
                           <div className="flex flex-wrap items-center gap-2 mb-1">
                              <h4 className="font-bold text-sm text-foreground group-hover:text-primary">{item.name}</h4>
                              <Badge variant="secondary" className="text-[10px] h-5 px-1.5 bg-secondary border-border/50 font-mono text-muted-foreground">{item.subcategory}</Badge>
                              {item.badges.map((b, i) => (
-                                <Badge key={i} variant="outline" className="text-[9px] h-5 px-1.5 gap-1 bg-white">
+                                <Badge key={i} variant="outline" className="text-[9px] h-5 px-1.5 gap-1 bg-white dark:bg-slate-900 dark:border-white/10">
                                   {b.icon && <b.icon className="w-2.5 h-2.5" />} {b.label}
                                 </Badge>
                              ))}
@@ -319,14 +319,14 @@ export default function Home() {
            {/* 1/3 Badges & Newsletter */}
            <div className="space-y-6">
               {/* Badge Legend */}
-              <Card className="p-5 border-primary/10 shadow-sm bg-gradient-to-b from-white to-slate-50/50">
+              <Card className="p-5 border-primary/10 shadow-sm bg-gradient-to-b from-white to-slate-50/50 dark:from-card dark:to-card/50 dark:border-border">
                  <h4 className="font-bold text-sm mb-4 flex items-center gap-2">
-                    <Lock className="w-4 h-4 text-emerald-600" />
+                    <Lock className="w-4 h-4 text-emerald-600 dark:text-emerald-500" />
                     Security Badges
                  </h4>
                  <div className="space-y-3">
                     <div className="flex items-start gap-3">
-                       <div className="p-1.5 rounded-md bg-emerald-100/50 text-emerald-700 mt-0.5">
+                       <div className="p-1.5 rounded-md bg-emerald-100/50 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400 mt-0.5">
                           <Shield className="w-3.5 h-3.5" />
                        </div>
                        <div>
@@ -335,7 +335,7 @@ export default function Home() {
                        </div>
                     </div>
                     <div className="flex items-start gap-3">
-                       <div className="p-1.5 rounded-md bg-amber-100/50 text-amber-700 mt-0.5">
+                       <div className="p-1.5 rounded-md bg-amber-100/50 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400 mt-0.5">
                           <Lock className="w-3.5 h-3.5" />
                        </div>
                        <div>
@@ -344,7 +344,7 @@ export default function Home() {
                        </div>
                     </div>
                     <div className="flex items-start gap-3">
-                       <div className="p-1.5 rounded-md bg-slate-100/50 text-slate-700 mt-0.5">
+                       <div className="p-1.5 rounded-md bg-slate-100/50 text-slate-700 dark:bg-slate-800 dark:text-slate-400 mt-0.5">
                           <CheckCircle className="w-3.5 h-3.5" />
                        </div>
                        <div>
@@ -367,7 +367,7 @@ export default function Home() {
                  </p>
                  <div className="space-y-2 relative z-10">
                     <Input placeholder="email@domain.com" className="h-8 text-xs bg-white/10 border-white/20 text-white placeholder:text-white/50 focus-visible:ring-white/30" />
-                    <Button size="sm" className="w-full h-8 bg-white text-primary hover:bg-white/90 text-xs font-bold">
+                    <Button size="sm" className="w-full h-8 bg-white text-primary hover:bg-white/90 text-xs font-bold dark:bg-slate-900 dark:text-white dark:hover:bg-slate-800">
                        Subscribe
                     </Button>
                  </div>
@@ -420,14 +420,14 @@ export default function Home() {
               </div>
               <div className="bg-card border border-border/60 rounded-xl shadow-sm p-4 space-y-4">
                  {infrastructureProviders.map((prov, i) => (
-                    <div key={prov.id} className="flex items-center justify-between group cursor-pointer hover:bg-slate-50 rounded-lg p-2 -mx-2 transition-colors">
+                    <div key={prov.id} className="flex items-center justify-between group cursor-pointer hover:bg-slate-50 dark:hover:bg-muted/50 rounded-lg p-2 -mx-2 transition-colors">
                        <div className="flex items-center gap-3">
                           <span className="text-xs font-mono text-muted-foreground w-3">{i + 1}</span>
                           <div>
                              <div className="flex items-center gap-1.5">
                                 <span className="text-xs font-bold text-foreground group-hover:text-primary transition-colors">{prov.name}</span>
                                 {prov.badges[0] && (
-                                   <span className="text-[8px] px-1 py-px rounded bg-emerald-100 text-emerald-800 font-bold">{prov.badges[0].label}</span>
+                                   <span className="text-[8px] px-1 py-px rounded bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-400 font-bold">{prov.badges[0].label}</span>
                                 )}
                              </div>
                              <div className="text-[10px] text-muted-foreground">{prov.description} • {prov.downloads} Uptime</div>
