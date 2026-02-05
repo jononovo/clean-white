@@ -684,6 +684,16 @@
     opacity: 1;
   }
 
+  .quick-link {
+    position: relative;
+  }
+
+  .quick-link:before {
+    content: "";
+    position: absolute;
+    inset: -8px;
+  }
+
   body {
     background-color: hsl(var(--background));
     font-family: var(--font-sans-base);
