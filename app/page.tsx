@@ -322,26 +322,26 @@ export default function Home() {
               <div className="bg-white/50 dark:bg-card/50 border border-border/60 rounded-lg p-3 shadow-sm backdrop-blur-sm">
                  <div className="space-y-0.5">
                     {[
-                      { name: "Notion Integration", author: "community", votes: 1842, rating: 4.9, desc: "Create pages, manage databases with natural language" },
-                      { name: "GitHub Integration", author: "openclaw", votes: 1567, rating: 4.8, desc: "Issues, PRs, webhooks, and automated code review" },
-                      { name: "Email Triage", author: "community", votes: 1203, rating: 4.7, desc: "Auto-reads inbox, sends summaries, creates todos" },
-                      { name: "Apple Calendar Sync", author: "community", votes: 986, rating: 4.6, desc: "Event scheduling, conflict management, daily briefings" },
-                      { name: "Meal Planner 365", author: "community", votes: 871, rating: 4.5, desc: "Shopping lists sorted by store aisle, weekly templates" },
+                      { name: "GitHub", author: "@steipete", downloads: 7504, stars: 14, desc: "Issues, PRs, CI runs, and advanced queries via gh CLI", slug: "github", hubUrl: "https://clawhub.ai/steipete/github" },
+                      { name: "Home Assistant", author: "@dbhurley", downloads: 4602, stars: 26, desc: "Smart plugs, lights, scenes, automations — full smart home control", slug: "home-assistant", hubUrl: "https://clawhub.ai/dbhurley/homeassistant" },
+                      { name: "CalDAV Calendar", author: "@Asleep123", downloads: 3658, stars: 4, desc: "Sync iCloud, Google, Fastmail, Nextcloud calendars on Linux", slug: "caldav-calendar", hubUrl: "https://clawhub.ai/Asleep123/caldav-calendar" },
+                      { name: "Notion", author: "@steipete", downloads: 3430, stars: 11, desc: "Create and manage pages, databases, and blocks via Notion API", slug: "notion", hubUrl: "https://clawhub.ai/steipete/notion" },
+                      { name: "Email", author: "@0xterrybit", downloads: 3120, stars: 8, desc: "Send, read, search, and organize emails across multiple providers", slug: "email", hubUrl: "https://clawhub.ai/0xterrybit/email" },
                     ].map((skill, i) => (
-                      <div key={skill.name} className="flex items-center gap-3 py-2 border-b border-border/40 last:border-0 hover:bg-muted/30 px-2 rounded-sm transition-colors group cursor-pointer">
+                      <Link key={skill.name} href={`/categories/productivity`} className="flex items-center gap-3 py-2 border-b border-border/40 last:border-0 hover:bg-muted/30 px-2 rounded-sm transition-colors group cursor-pointer">
                         <span className="w-4 text-xs font-mono text-muted-foreground text-center">{i + 1}</span>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2">
                             <span className="font-semibold text-sm truncate text-foreground group-hover:text-primary transition-colors">{skill.name}</span>
-                            <span className="text-[10px] text-muted-foreground/60">{skill.votes.toLocaleString()} votes</span>
+                            <span className="text-[10px] text-muted-foreground/60">{skill.downloads.toLocaleString()} downloads</span>
                           </div>
                           <div className="text-[10px] text-muted-foreground mt-0.5">{skill.desc}</div>
                         </div>
                         <div className="flex items-center gap-1 text-xs font-medium text-amber-600 dark:text-amber-400 shrink-0">
                           <Star className="w-3 h-3 fill-amber-500 text-amber-500" />
-                          {skill.rating}
+                          {skill.stars}
                         </div>
-                      </div>
+                      </Link>
                     ))}
                  </div>
               </div>
