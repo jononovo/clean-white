@@ -102,9 +102,7 @@ export default function Home() {
           <span className="text-border mx-2">|</span>
           <a href="#" className="hover:text-primary transition-colors hover:underline">Enterprise</a>
           <span className="text-border mx-2">|</span>
-          <a href="#" className="hover:text-primary transition-colors hover:underline">Community</a>
-          <span className="text-border mx-2">|</span>
-          <a href="#" className="hover:text-primary transition-colors hover:underline">Discord</a>
+          <a href="https://discord.gg/gduUaXMQ" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors hover:underline">Community</a>
           <span className="text-border mx-2">|</span>
           <a href="#" className="hover:text-primary transition-colors hover:underline">Feedback</a>
           <span className="text-border mx-2">|</span>
