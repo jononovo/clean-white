@@ -95,23 +95,24 @@ export default function Home() {
       <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
         
         {/* Hero Banner */}
-        <div className="relative rounded-2xl overflow-hidden bg-primary text-primary-foreground p-8 md:p-12 shadow-xl shadow-primary/20">
+        <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white p-8 md:p-12 shadow-2xl shadow-slate-900/20 ring-1 ring-white/10">
           {/* Background Pattern */}
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_100%)] pointer-events-none" />
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_at_center,black_50%,transparent_100%)] pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent pointer-events-none" />
           
           <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
             <div className="space-y-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/10 text-xs font-medium text-emerald-400 backdrop-blur-md">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-medium text-emerald-400 backdrop-blur-md">
                 <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                 System Operational • 12,402 Audits Verified
               </div>
               
               <div className="space-y-4">
                 <h1 className="text-4xl md:text-5xl font-display font-bold tracking-tight text-white leading-[1.1]">
-                  The Trust Layer for <span className="text-emerald-400">OpenClaw</span>
+                  The Trust Layer for <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300">OpenClaw</span>
                 </h1>
-                <p className="text-lg text-primary-foreground/80 max-w-md leading-relaxed">
+                <p className="text-lg text-slate-300 max-w-md leading-relaxed">
                   The official security registry for autonomous agents. We audit, rank, and monitor skills so you can run bots with confidence.
                 </p>
               </div>
@@ -121,13 +122,13 @@ export default function Home() {
                   <Search className="w-4 h-4 mr-2" />
                   Explore Directory
                 </Button>
-                <Button size="lg" variant="outline" className="h-12 px-6 bg-white/5 border-white/10 text-white hover:bg-white/10 hover:text-white backdrop-blur-sm">
+                <Button size="lg" variant="outline" className="h-12 px-6 bg-white/5 border-white/10 text-white hover:bg-white/10 hover:text-white backdrop-blur-sm ring-1 ring-white/5">
                   <Shield className="w-4 h-4 mr-2" />
                   Submit for Audit
                 </Button>
               </div>
               
-              <div className="flex items-center gap-6 text-xs text-primary-foreground/50 pt-4">
+              <div className="flex items-center gap-6 text-xs text-slate-400 pt-4">
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-emerald-500/80" />
                   <span>SOC2 Type II Certified</span>
@@ -141,12 +142,12 @@ export default function Home() {
 
             {/* Right Visual - Stats Card */}
             <div className="hidden md:block relative">
-               <div className="absolute -inset-1 bg-gradient-to-r from-emerald-500/30 to-blue-500/30 rounded-xl blur-lg opacity-50" />
-               <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl p-6 shadow-2xl">
-                  <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/10">
+               <div className="absolute -inset-1 bg-gradient-to-r from-emerald-500/20 to-blue-500/20 rounded-xl blur-xl opacity-50" />
+               <div className="relative bg-slate-900/60 backdrop-blur-xl border border-white/10 rounded-xl p-6 shadow-2xl">
+                  <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/5">
                     <div className="flex items-center gap-3">
                        <Activity className="w-5 h-5 text-emerald-400" />
-                       <span className="font-mono font-bold text-sm text-white">LIVE METRICS</span>
+                       <span className="font-mono font-bold text-sm text-slate-200">LIVE METRICS</span>
                     </div>
                     <Badge variant="outline" className="border-emerald-500/30 text-emerald-400 bg-emerald-500/10 text-[10px] h-5">REAL-TIME</Badge>
                   </div>
@@ -154,41 +155,41 @@ export default function Home() {
                   <div className="space-y-5">
                      <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
-                           <div className="p-2 rounded bg-blue-500/20 text-blue-400">
+                           <div className="p-2 rounded bg-blue-500/10 text-blue-400 ring-1 ring-blue-500/20">
                              <Box className="w-4 h-4" />
                            </div>
                            <div>
                              <div className="text-2xl font-bold font-mono text-white">8,902</div>
-                             <div className="text-xs text-primary-foreground/60">Verified Skills</div>
+                             <div className="text-xs text-slate-400">Verified Skills</div>
                            </div>
                         </div>
                         <div className="h-8 w-px bg-white/10" />
                         <div className="flex items-center gap-3">
-                           <div className="p-2 rounded bg-emerald-500/20 text-emerald-400">
+                           <div className="p-2 rounded bg-emerald-500/10 text-emerald-400 ring-1 ring-emerald-500/20">
                              <Shield className="w-4 h-4" />
                            </div>
                            <div>
                              <div className="text-2xl font-bold font-mono text-white">99.9%</div>
-                             <div className="text-xs text-primary-foreground/60">Safety Score</div>
+                             <div className="text-xs text-slate-400">Safety Score</div>
                            </div>
                         </div>
                      </div>
                      
                      <div className="space-y-2 pt-2">
-                        <div className="flex justify-between text-xs text-primary-foreground/70">
+                        <div className="flex justify-between text-xs text-slate-400">
                            <span>Threats Blocked (24h)</span>
                            <span className="text-destructive font-mono">342</span>
                         </div>
-                        <div className="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
+                        <div className="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden">
                            <div className="h-full w-[15%] bg-destructive rounded-full" />
                         </div>
                      </div>
                      
-                     <div className="p-3 rounded bg-white/5 border border-white/5 mt-2">
+                     <div className="p-3 rounded bg-black/40 border border-white/5 mt-2">
                         <div className="flex items-start gap-2">
                            <Terminal className="w-3.5 h-3.5 text-emerald-400 mt-0.5" />
-                           <div className="font-mono text-[10px] text-primary-foreground/70 leading-relaxed">
-                              <span className="text-emerald-400/80">root@secureclaw:~$</span> scan --target latest-uploads<br/>
+                           <div className="font-mono text-[10px] text-slate-300 leading-relaxed">
+                              <span className="text-emerald-400/80">root@secureclawhub:~$</span> scan --target latest-uploads<br/>
                               <span className="text-blue-400/80">Scanning...</span> 142 files checked.<br/>
                               <span className="text-emerald-400/80">Result:</span> 0 vulnerabilities found.
                            </div>
