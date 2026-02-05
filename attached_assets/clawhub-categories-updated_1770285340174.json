@@ -1,0 +1,275 @@
+{
+  "source": "ClawHub.ai / awesome-openclaw-skills + SecureClawHub additions",
+  "last_updated": "2026-02-04",
+  "total_categories": 37,
+  "categories": [
+    {
+      "name": "Agent Services & Networks",
+      "slug": "agent-services-networks",
+      "count": null,
+      "is_new": true,
+      "description": "Bot social platforms, agent-to-agent communication, claw bot services",
+      "examples": ["MoltBook", "SendClaw", "agent messaging", "bot identity", "agent directories"]
+    },
+    {
+      "name": "Web & Frontend Development",
+      "slug": "web-frontend-development",
+      "count": 14,
+      "is_new": false,
+      "examples": ["React", "UI/UX audit", "Slack/Discord integration", "Vercel", "Remotion"]
+    },
+    {
+      "name": "Coding Agents & IDEs",
+      "slug": "coding-agents-ides",
+      "count": 15,
+      "is_new": false,
+      "examples": ["Claude Code", "Codex", "Cursor", "OpenCode", "orchestration"]
+    },
+    {
+      "name": "Git & GitHub",
+      "slug": "git-github",
+      "count": 9,
+      "is_new": false,
+      "examples": ["PRs", "commits", "repo management", "conventional commits"]
+    },
+    {
+      "name": "DevOps & Cloud",
+      "slug": "devops-cloud",
+      "count": 41,
+      "is_new": false,
+      "examples": ["Kubernetes", "Docker", "Cloudflare", "Vercel", "Tailscale", "Proxmox", "Hetzner", "Fly.io"]
+    },
+    {
+      "name": "Browser & Automation",
+      "slug": "browser-automation",
+      "count": 11,
+      "is_new": false,
+      "examples": ["Playwright", "headless browsers", "scraping", "Chrome DevTools Protocol"]
+    },
+    {
+      "name": "Image & Video Generation",
+      "slug": "image-video-generation",
+      "count": 19,
+      "is_new": false,
+      "examples": ["AI image gen", "video rendering", "Figma", "ComfyUI", "Excalidraw"]
+    },
+    {
+      "name": "Apple Apps & Services",
+      "slug": "apple-apps-services",
+      "count": 14,
+      "is_new": false,
+      "examples": ["Mail", "Photos", "Music", "Contacts", "Shortcuts", "Homebrew"]
+    },
+    {
+      "name": "Search & Research",
+      "slug": "search-research",
+      "count": 23,
+      "is_new": false,
+      "examples": ["Web search", "Brave", "Kagi", "Tavily", "academic", "news", "SEO"]
+    },
+    {
+      "name": "Clawdbot Tools",
+      "slug": "clawdbot-tools",
+      "count": 17,
+      "is_new": false,
+      "examples": ["Core utilities", "memory", "skill management", "ClawHub CLI"]
+    },
+    {
+      "name": "CLI Utilities",
+      "slug": "cli-utilities",
+      "count": 41,
+      "is_new": false,
+      "examples": ["Shell tools", "file ops", "jq", "tldr", "tmux", "package tracking"]
+    },
+    {
+      "name": "Marketing & Sales",
+      "slug": "marketing-sales",
+      "count": 42,
+      "is_new": false,
+      "examples": ["Email sequences", "social media", "analytics", "SEO audit", "copywriting"]
+    },
+    {
+      "name": "CRM & Customer Support",
+      "slug": "crm-customer-support",
+      "count": null,
+      "is_new": true,
+      "description": "Customer relationship management and support tools",
+      "examples": ["HubSpot", "Zendesk", "Intercom", "Freshdesk", "help desk", "ticketing"]
+    },
+    {
+      "name": "Productivity & Tasks",
+      "slug": "productivity-tasks",
+      "count": 41,
+      "is_new": false,
+      "examples": ["Todoist", "Linear", "Jira", "Things", "TickTick", "Asana", "Trello"]
+    },
+    {
+      "name": "AI & LLMs",
+      "slug": "ai-llms",
+      "count": 38,
+      "is_new": false,
+      "examples": ["Model routing", "multi-agent", "Gemini", "Perplexity", "OpenAI", "xAI/Grok"]
+    },
+    {
+      "name": "Finance",
+      "slug": "finance",
+      "count": 29,
+      "is_new": false,
+      "examples": ["Banking", "trading", "YNAB", "budgeting", "stock analysis"]
+    },
+    {
+      "name": "Crypto & Web3",
+      "slug": "crypto-web3",
+      "count": null,
+      "is_new": true,
+      "description": "Blockchain, cryptocurrency, DeFi, and Web3 integrations",
+      "examples": ["Wallet management", "DeFi", "NFTs", "token tracking", "DEX", "Solana", "Ethereum"]
+    },
+    {
+      "name": "Media & Streaming",
+      "slug": "media-streaming",
+      "count": 29,
+      "is_new": false,
+      "examples": ["Spotify", "Plex", "Sonos", "YouTube", "podcasts", "Chromecast"]
+    },
+    {
+      "name": "Notes & PKM",
+      "slug": "notes-pkm",
+      "count": 44,
+      "is_new": false,
+      "examples": ["Obsidian", "Notion", "Apple Notes", "Bear", "Craft", "Reflect"]
+    },
+    {
+      "name": "iOS & macOS Development",
+      "slug": "ios-macos-development",
+      "count": 13,
+      "is_new": false,
+      "examples": ["SwiftUI", "Xcode", "Apple docs", "Swift Concurrency", "SF Symbols"]
+    },
+    {
+      "name": "Transportation",
+      "slug": "transportation",
+      "count": 34,
+      "is_new": false,
+      "examples": ["Flights", "EV charging", "delivery tracking", "package tracking"]
+    },
+    {
+      "name": "Personal Development",
+      "slug": "personal-development",
+      "count": 27,
+      "is_new": false,
+      "examples": ["Journaling", "habits", "goals", "gratitude", "deep work"]
+    },
+    {
+      "name": "Health & Fitness",
+      "slug": "health-fitness",
+      "count": 26,
+      "is_new": false,
+      "examples": ["Wearables", "Dexcom CGM", "sleep tracking", "workouts", "nutrition"]
+    },
+    {
+      "name": "Communication",
+      "slug": "communication",
+      "count": 26,
+      "is_new": false,
+      "examples": ["Email", "Gmail", "IMAP", "messaging", "SMS"]
+    },
+    {
+      "name": "Speech & Transcription",
+      "slug": "speech-transcription",
+      "count": 21,
+      "is_new": false,
+      "examples": ["TTS", "STT", "ElevenLabs", "meeting transcription", "voice notes"]
+    },
+    {
+      "name": "Voice & Telephony",
+      "slug": "voice-telephony",
+      "count": null,
+      "is_new": true,
+      "description": "Phone calls, IVR, voicemail, and real-time voice communication",
+      "examples": ["Twilio", "phone calls", "IVR", "voicemail", "SIP", "VoIP", "call recording"]
+    },
+    {
+      "name": "Smart Home & IoT",
+      "slug": "smart-home-iot",
+      "count": 31,
+      "is_new": false,
+      "examples": ["Home Assistant", "Philips Hue", "sensors", "Samsung SmartThings"]
+    },
+    {
+      "name": "Shopping & E-commerce",
+      "slug": "shopping-ecommerce",
+      "count": 22,
+      "is_new": false,
+      "examples": ["Price tracking", "orders", "carts", "Amazon", "WooCommerce"]
+    },
+    {
+      "name": "Calendar & Scheduling",
+      "slug": "calendar-scheduling",
+      "count": 16,
+      "is_new": false,
+      "examples": ["Apple Calendar", "Google Calendar", "CalDAV", "booking", "reminders"]
+    },
+    {
+      "name": "PDF & Documents",
+      "slug": "pdf-documents",
+      "count": 12,
+      "is_new": false,
+      "examples": ["PDF generation", "OCR", "document processing", "summarization"]
+    },
+    {
+      "name": "Self-Hosted & Automation",
+      "slug": "self-hosted-automation",
+      "count": 11,
+      "is_new": false,
+      "examples": ["n8n", "cron jobs", "webhooks", "Coolify", "Dokploy"]
+    },
+    {
+      "name": "Security & Passwords",
+      "slug": "security-passwords",
+      "count": 6,
+      "is_new": false,
+      "examples": ["Credentials", "encryption", "OpenSSL", "audit", "API key hygiene", "1Password"]
+    },
+    {
+      "name": "Gaming & Entertainment",
+      "slug": "gaming-entertainment",
+      "count": null,
+      "is_new": true,
+      "description": "Video games, game platforms, and entertainment integrations",
+      "examples": ["Steam", "Discord gaming", "game libraries", "achievements", "streaming", "Twitch"]
+    },
+    {
+      "name": "Education & Learning",
+      "slug": "education-learning",
+      "count": null,
+      "is_new": true,
+      "description": "Learning management, courses, and educational tools",
+      "examples": ["Canvas LMS", "flashcards", "language learning", "courses", "quizzes", "Anki"]
+    },
+    {
+      "name": "Legal & Compliance",
+      "slug": "legal-compliance",
+      "count": null,
+      "is_new": true,
+      "description": "Contracts, regulatory compliance, and legal document management",
+      "examples": ["Contracts", "GDPR", "audit trails", "terms of service", "e-signatures", "compliance checks"]
+    },
+    {
+      "name": "Localization & Translation",
+      "slug": "localization-translation",
+      "count": null,
+      "is_new": true,
+      "description": "Multi-language support and translation services",
+      "examples": ["Translation APIs", "i18n", "multi-language content", "regional adaptation", "DeepL", "Google Translate"]
+    },
+    {
+      "name": "Databases & Storage",
+      "slug": "databases-storage",
+      "count": null,
+      "is_new": true,
+      "description": "Database management, queries, and cloud storage",
+      "examples": ["DuckDB", "Supabase", "PostgreSQL", "SQLite", "S3", "R2", "vector databases"]
+    }
+  ]
+}
