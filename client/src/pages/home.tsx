@@ -372,27 +372,6 @@ export default function Home() {
                     </Button>
                  </div>
               </Card>
-
-              {/* Substack */}
-              <Card className="p-5 border-border shadow-sm bg-primary text-primary-foreground relative overflow-hidden group cursor-pointer hover:shadow-md transition-all">
-                 <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-10 -mt-10 blur-2xl pointer-events-none" />
-                 <h4 className="font-bold text-sm mb-2 flex items-center gap-2 relative z-10">
-                    <Newspaper className="w-4 h-4" />
-                    Join our Substack
-                 </h4>
-                 <p className="text-xs text-primary-foreground/80 mb-4 relative z-10">
-                    The Daily Claw
-                 </p>
-                 <div className="space-y-2 relative z-10">
-                    <Button 
-                        size="sm" 
-                        className="w-full h-8 bg-white text-primary hover:bg-white/90 text-xs font-bold dark:bg-slate-900 dark:text-white dark:hover:bg-slate-800"
-                        onClick={() => window.open('https://clawhub.substack.com/', '_blank')}
-                    >
-                       Read Now
-                    </Button>
-                 </div>
-              </Card>
            </div>
         </div>
 
@@ -465,6 +444,31 @@ export default function Home() {
               </div>
            </div>
 
+        </div>
+        
+        {/* Row 4: Substack Banner */}
+        <div className="grid grid-cols-1 gap-6 pb-8">
+           <Card className="p-6 border-border shadow-sm bg-primary text-primary-foreground relative overflow-hidden group cursor-pointer hover:shadow-md transition-all">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-20 -mt-20 blur-3xl pointer-events-none" />
+              <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+                 <div className="space-y-2">
+                    <h4 className="font-bold text-lg flex items-center justify-center md:justify-start gap-2">
+                       <Newspaper className="w-5 h-5" />
+                       Join our Substack - The Daily Claw
+                    </h4>
+                    <p className="text-sm text-primary-foreground/80 max-w-xl">
+                       Get daily security briefings, vulnerability reports, and expert analysis on the OpenClaw ecosystem delivered straight to your inbox.
+                    </p>
+                 </div>
+                 <Button 
+                     size="lg" 
+                     className="bg-white text-primary hover:bg-white/90 font-bold dark:bg-slate-900 dark:text-white dark:hover:bg-slate-800 shrink-0 px-8"
+                     onClick={() => window.open('https://clawhub.substack.com/', '_blank')}
+                 >
+                    Read Now
+                 </Button>
+              </div>
+           </Card>
         </div>
 
       </div>
