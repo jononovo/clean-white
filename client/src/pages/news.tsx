@@ -182,56 +182,63 @@ export default function News() {
               className={`scroll-mt-24 transition-opacity duration-500 cursor-pointer ${activeArticle && activeArticle !== article.id ? 'opacity-40 hover:opacity-100' : 'opacity-100'}`}
               onClick={() => setActiveArticle(article.id)}
             >
-              <div className="mb-4 flex items-center gap-3">
-                <Badge variant={article.category === 'Security' ? 'destructive' : 'secondary'} className="text-[10px] h-5 px-1.5 uppercase tracking-wider">
-                  {article.category}
-                </Badge>
-                <span className="text-xs text-muted-foreground flex items-center gap-1">
-                  <Calendar className="w-3 h-3" /> {article.date}
-                </span>
-                <span className="text-xs text-muted-foreground flex items-center gap-1">
-                  <Clock className="w-3 h-3" /> {article.readTime}
-                </span>
-              </div>
-              
-              <h2 className="text-3xl font-display font-bold text-foreground mb-4 leading-tight">
-                {article.title}
-              </h2>
+              <div className="flex flex-col md:flex-row gap-6 md:gap-8 items-start">
+                
+                {/* Compact Image - Left Side */}
+                {article.image && (
+                  <div className="w-full md:w-48 lg:w-56 shrink-0 aspect-[4/3] rounded-lg overflow-hidden border border-border/40 relative group">
+                    <img 
+                      src={article.image} 
+                      alt={article.title}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                )}
 
-              {article.image && (
-                <div className="mb-6 rounded-xl overflow-hidden border border-border/40 aspect-video relative">
-                  <img 
-                    src={article.image} 
-                    alt={article.title}
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
-              )}
+                {/* Content - Right Side */}
+                <div className="flex-1 min-w-0">
+                  <div className="mb-3 flex items-center gap-3">
+                    <Badge variant={article.category === 'Security' ? 'destructive' : 'secondary'} className="text-[10px] h-5 px-1.5 uppercase tracking-wider">
+                      {article.category}
+                    </Badge>
+                    <span className="text-xs text-muted-foreground flex items-center gap-1">
+                      <Calendar className="w-3 h-3" /> {article.date}
+                    </span>
+                    <span className="text-xs text-muted-foreground flex items-center gap-1">
+                      <Clock className="w-3 h-3" /> {article.readTime}
+                    </span>
+                  </div>
+                  
+                  <h2 className="text-2xl font-display font-bold text-foreground mb-3 leading-tight">
+                    {article.title}
+                  </h2>
 
-              <div className="prose prose-slate dark:prose-invert max-w-none text-muted-foreground leading-relaxed">
-                 <div dangerouslySetInnerHTML={{ __html: article.content }} />
-              </div>
+                  <div className="prose prose-sm prose-slate dark:prose-invert max-w-none text-muted-foreground leading-relaxed line-clamp-6">
+                     <div dangerouslySetInnerHTML={{ __html: article.content }} />
+                  </div>
 
-              <div className="flex items-center justify-between pt-6 mt-6 border-t border-border/40">
-                <div className="flex items-center gap-2 text-sm font-medium text-foreground">
-                  By {article.author}
-                </div>
-                <div className="flex gap-2">
-                   <Button size="sm" variant="ghost" className="h-8 gap-2 cursor-pointer">
-                     <Share2 className="w-4 h-4" /> Share
-                   </Button>
-                   <Button size="sm" variant="ghost" className="h-8 gap-2 cursor-pointer">
-                     <Bookmark className="w-4 h-4" /> Save
-                   </Button>
+                  <div className="flex items-center justify-between pt-4 mt-4 border-t border-border/40">
+                    <div className="flex items-center gap-2 text-xs font-medium text-foreground">
+                      By {article.author}
+                    </div>
+                    <div className="flex gap-2">
+                       <Button size="sm" variant="ghost" className="h-7 text-xs gap-1.5 cursor-pointer">
+                         <Share2 className="w-3.5 h-3.5" /> Share
+                       </Button>
+                       <Button size="sm" variant="ghost" className="h-7 text-xs gap-1.5 cursor-pointer">
+                         <Bookmark className="w-3.5 h-3.5" /> Save
+                       </Button>
+                    </div>
+                  </div>
                 </div>
               </div>
               
               {/* Visual Divider between articles */}
               {index !== newsArticles.length - 1 && (
-                 <div className="flex items-center justify-center py-12">
-                    <div className="h-px bg-border/40 w-full max-w-[200px]" />
-                    <div className="mx-4 text-xs text-muted-foreground uppercase tracking-widest font-mono">Next Story</div>
-                    <div className="h-px bg-border/40 w-full max-w-[200px]" />
+                 <div className="flex items-center justify-center py-10">
+                    <div className="h-px bg-border/40 w-full max-w-[150px]" />
+                    <div className="mx-4 text-[10px] text-muted-foreground uppercase tracking-widest font-mono">Next</div>
+                    <div className="h-px bg-border/40 w-full max-w-[150px]" />
                  </div>
               )}
             </article>
