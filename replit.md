@@ -2,63 +2,43 @@
 
 ## Overview
 
-SecureClawHub is a security-focused registry and community hub for OpenClaw skills, services, and SDKs. The platform provides audited, ranked, and verified components for autonomous agents, featuring threat monitoring, community events, news, and deployment tools. It serves as a trusted directory where developers can discover, publish, and deploy secure agent capabilities.
+SecureClawHub is a trust and security registry for OpenClaw autonomous agent components. It provides verified, audited skill packages, SDKs, and services with threat intelligence monitoring, security scoring, and one-click deployment workflows.
+
+**Core Features:**
+- Skill/SDK registry with security audits and trust scores
+- Real-time threat intelligence feeds and vulnerability tracking
+- Community hub with events, news, and developer resources
+- Deployment pipelines for agent capabilities
 
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
 
-## System Architecture
+## Tech Stack
 
-### Frontend Architecture
-- **Framework**: Next.js with App Router (primary) alongside a Vite-powered React SPA (legacy/alternative client)
-- **UI Components**: shadcn/ui component library built on Radix UI primitives
-- **Styling**: Tailwind CSS v4 with CSS variables for theming, supporting dual themes (Slate/Warm) and light/dark modes
-- **State Management**: TanStack React Query for server state, React useState for local UI state
-- **Routing**: Next.js App Router for the main app, Wouter for the Vite client
-- **Typography**: Plus Jakarta Sans (headings), Inter (UI), JetBrains Mono (code)
+### Frontend
+- **Next.js 15** with App Router (RSC + client components)
+- **shadcn/ui** on Radix UI primitives
+- **Tailwind CSS v4** with dual theme support (Slate/Warm × Light/Dark)
+- **TanStack Query** for server state
 
-### Backend Architecture
-- **Server**: Next.js custom server with Node.js HTTP server wrapper
-- **API Pattern**: Express-style routes prepared for future API endpoints (currently minimal)
-- **Build System**: Custom build script using esbuild for server bundling, Vite for client assets
+### Backend
+- **Next.js custom server** via `server/index.ts`
+- **PostgreSQL + Drizzle ORM** for persistence
+- **Zod** for runtime validation
 
-### Data Storage
-- **Database**: PostgreSQL with Drizzle ORM
-- **Schema Location**: `shared/schema.ts` defines database tables using Drizzle's pgTable
-- **Migrations**: Drizzle Kit for schema migrations (`drizzle-kit push`)
-- **Session Storage**: In-memory storage (`MemStorage` class) with interface for future database backing
+### Key Directories
+```
+app/           → Next.js App Router pages
+components/    → React components (ui/ for primitives)
+lib/           → Utilities, mock data, theme config
+server/        → Custom server entry point
+shared/        → Database schema (Drizzle)
+hooks/         → Custom React hooks
+```
 
-### Design Patterns
-- **Shared Schema**: Database schema and types are shared between client and server via `@shared` alias
-- **Component Organization**: UI primitives in `components/ui/`, feature components in `components/`
-- **Theme System**: CSS custom properties with data attributes for theme switching, persisted to localStorage
-- **Mock Data**: Extensive mock data in `lib/mock-data.ts` for development and demonstration
+## Dependencies
 
-## External Dependencies
-
-### Database
-- **PostgreSQL**: Primary database, configured via `DATABASE_URL` environment variable
-- **Drizzle ORM**: Type-safe database queries with Zod schema validation
-
-### UI Framework
-- **Radix UI**: Comprehensive set of accessible, unstyled primitives (Dialog, Dropdown, Tabs, Toast, etc.)
-- **shadcn/ui**: Pre-configured component library using Radix + Tailwind
-
-### Data Fetching
-- **TanStack React Query**: Server state management with caching and background updates
-
-### Styling
-- **Tailwind CSS v4**: Utility-first CSS framework
-- **tw-animate-css**: Animation utilities for Tailwind
-- **class-variance-authority**: Component variant management
-
-### Development Tools
-- **Vite**: Development server and build tool for client assets
-- **esbuild**: Fast JavaScript bundler for server code
-- **TypeScript**: Full type safety across the codebase
-
-### Replit Integration
-- **@replit/vite-plugin-runtime-error-modal**: Runtime error overlay
-- **@replit/vite-plugin-cartographer**: Development tooling
-- **@replit/vite-plugin-dev-banner**: Development environment indicator
+- **UI**: Radix UI, Lucide icons, class-variance-authority
+- **Data**: Drizzle ORM, TanStack React Query
+- **Build**: TypeScript, PostCSS, Tailwind v4
