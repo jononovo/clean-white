@@ -9,6 +9,7 @@ export const users = pgTable("users", {
   email: text("email").unique(),
   username: text("username").notNull(),
   password: text("password"),
+  avatarUrl: text("avatar_url"),
   createdAt: timestamp("created_at").notNull().defaultNow(),
 });
 
@@ -67,6 +68,7 @@ export const skills = pgTable("skills", {
   longDescription: text("long_description"),
   authorUsername: text("author_username").notNull(),
   authorId: varchar("author_id").references(() => users.id),
+  providerId: varchar("provider_id").references(() => providers.id),
   version: text("version").notNull().default("1.0.0"),
   category: text("category").notNull().default("utility"),
   categoryId: varchar("category_id").references(() => categories.id),
@@ -139,11 +141,13 @@ export const PRICING_TYPES = ["one_time", "monthly", "contact"] as const;
 export const providers = pgTable("providers", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   userId: varchar("user_id").notNull().references(() => users.id),
-  businessName: text("business_name").notNull(),
+  handle: text("handle").notNull().unique(),
+  displayName: text("display_name").notNull(),
   description: text("description"),
+  avatarUrl: text("avatar_url"),
   location: text("location"),
   website: text("website"),
-  contactEmail: text("contact_email").notNull(),
+  contactEmail: text("contact_email"),
   isVerified: boolean("is_verified").notNull().default(false),
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
