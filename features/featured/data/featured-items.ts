@@ -1,9 +1,9 @@
 export const FEATURED_OF_THE_DAY = {
-  provider: {
-    handle: "steipete",
-    displayName: "Peter Steinberger",
-    description: "Creator of OpenClaw. Austrian developer who sold PSPDFKit for ~$100M. Building the future of autonomous AI agents.",
-    imageUrl: "/images/featured/provider-steipete.png",
+  hero: {
+    handle: "joshp123",
+    displayName: "joshp123",
+    description: "Shipped SSRF DNS pinning and system prompt safety guardrails — hardening OpenClaw against injection attacks and request forgery.",
+    imageUrl: "/images/featured/hero-joshp123.png",
     isVerified: true,
   },
   app: {

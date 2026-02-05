@@ -224,13 +224,13 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <FeaturedOfTheDayCard
-              type="provider"
-              title="Provider of the Day"
-              name={FEATURED_OF_THE_DAY.provider.handle}
-              description={FEATURED_OF_THE_DAY.provider.description}
-              href={`/@${FEATURED_OF_THE_DAY.provider.handle}`}
-              imageUrl={FEATURED_OF_THE_DAY.provider.imageUrl}
-              isVerified={FEATURED_OF_THE_DAY.provider.isVerified}
+              type="hero"
+              title="Hero of the Day"
+              name={FEATURED_OF_THE_DAY.hero.handle}
+              description={FEATURED_OF_THE_DAY.hero.description}
+              href={`https://github.com/${FEATURED_OF_THE_DAY.hero.handle}`}
+              imageUrl={FEATURED_OF_THE_DAY.hero.imageUrl}
+              isVerified={FEATURED_OF_THE_DAY.hero.isVerified}
             />
             <FeaturedOfTheDayCard
               type="app"

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Trophy, BadgeCheck } from "lucide-react";
 
-export type FeaturedType = "provider" | "app" | "skill" | "service";
+export type FeaturedType = "hero" | "app" | "skill" | "service";
 
 interface FeaturedOfTheDayCardProps {
   type: FeaturedType;
@@ -47,7 +47,7 @@ export const FeaturedOfTheDayCard = ({
             )}
           </div>
           <h4 className="font-semibold text-sm text-foreground group-hover:text-primary transition-colors mb-0.5 truncate">
-            {type === "provider" ? `@${name}` : name}
+            {type === "hero" ? `@${name}` : name}
           </h4>
           <p className="text-xs text-muted-foreground line-clamp-2">{description}</p>
         </div>
