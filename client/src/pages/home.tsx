@@ -168,10 +168,12 @@ export default function Home() {
                   <Shield className="w-4 h-4 mr-1.5" />
                   Publish a Skill
                 </Button>
-                <Button size="lg" variant="outline" className="h-12 px-5 bg-card border-border text-foreground hover:bg-muted shadow-sm cursor-pointer">
-                  <Zap className="w-4 h-4 mr-1.5" />
-                  1-Click-Setup
-                </Button>
+                <Link href="/deploy">
+                  <Button size="lg" variant="outline" className="h-12 px-5 bg-card border-border text-foreground hover:bg-muted shadow-sm cursor-pointer">
+                    <Zap className="w-4 h-4 mr-1.5" />
+                    1-Click-Setup
+                  </Button>
+                </Link>
               </div>
               
               <div className="flex items-center gap-6 text-xs text-muted-foreground pt-4">
