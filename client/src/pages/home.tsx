@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { FullPageModal, ConfirmationModal } from "@/components/modals";
+import { ThreatTicker } from "@/components/threat-ticker";
 import { useState } from "react";
 import { Shield, CheckCircle, Download, ExternalLink, Calendar, Star, AlertTriangle, Terminal, Lock, ChevronRight, Zap, Globe, Server, Activity, ArrowUpRight, Mail, Box, Cloud, Search, Newspaper } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -233,12 +234,7 @@ export default function Home() {
                             </div>
                         </div>
 
-                        <div className="flex items-start gap-2 text-[10px] text-muted-foreground bg-card p-2 rounded border border-border">
-                           <Shield className="w-3 h-3 text-muted-foreground mt-0.5 shrink-0" />
-                           <span className="leading-tight">
-                              <span className="font-semibold text-foreground">Latest Intercept:</span> Malicious dependency detected in <span className="font-mono text-muted-foreground">helper-utils-v2</span>.
-                           </span>
-                        </div>
+                        <ThreatTicker />
 
                      </div>
                   </div>
