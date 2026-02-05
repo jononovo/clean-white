@@ -142,10 +142,6 @@ export default function Home() {
         <div className="flex items-center gap-1 text-[11px] text-muted-foreground font-medium mb-2 px-1 relative z-20">
           <a href="#" className="hover:text-primary transition-colors hover:underline">Developer Hub</a>
           <span className="text-border mx-2">|</span>
-          <button onClick={() => setShowFullModal(true)} className="hover:text-primary transition-colors hover:underline cursor-pointer">Demo Full Modal</button>
-          <span className="text-border mx-2">|</span>
-          <button onClick={() => setShowConfirmModal(true)} className="hover:text-primary transition-colors hover:underline cursor-pointer">Demo Confirm</button>
-          <span className="text-border mx-2">|</span>
           <a href="#" className="hover:text-primary transition-colors hover:underline">News</a>
           <span className="text-border mx-2">|</span>
           <a href="#" className="hover:text-primary transition-colors hover:underline">Enterprise</a>
