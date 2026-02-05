@@ -59,7 +59,7 @@ export default function RootLayout({
         />
         <ThemeScript />
       </head>
-      <body>
+      <body suppressHydrationWarning>
         <Providers>
           {children}
         </Providers>
