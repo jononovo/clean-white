@@ -187,7 +187,7 @@ export default function Home() {
           <div className="flex items-center justify-between mb-4 px-1">
             <h3 className="text-sm font-bold uppercase tracking-wider flex items-center gap-2 text-foreground/80">
               <Handshake className="w-3.5 h-3.5 text-muted-foreground" />
-              Services Marketplace
+              Claw/Agent Services Marketplace
             </h3>
             <span className="text-[10px] font-medium text-primary hover:underline cursor-pointer">
               Browse All Services
