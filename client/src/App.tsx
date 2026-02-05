@@ -8,6 +8,7 @@ import Community from "@/pages/community";
 import Media from "@/pages/media";
 import News from "@/pages/news";
 import ReadNews from "@/pages/read-news";
+import Threats from "@/pages/threats";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -18,6 +19,7 @@ function Router() {
       <Route path="/media" component={Media} />
       <Route path="/news" component={News} />
       <Route path="/read-news" component={ReadNews} />
+      <Route path="/threats" component={Threats} />
       <Route component={NotFound} />
     </Switch>
   );

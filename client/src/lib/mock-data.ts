@@ -47,6 +47,94 @@ export const categories = [
   },
 ];
 
+export type ThreatAlert = {
+  id: string;
+  severity: "CRITICAL" | "HIGH" | "MEDIUM" | "LOW";
+  label: string;
+  title: string;
+  detail: string;
+  source: string;
+  date: string;
+  cvss: string | null;
+  link: string;
+  color: string;
+  bgColor: string;
+  borderColor: string;
+};
+
+export const THREAT_ALERTS: ThreatAlert[] = [
+  {
+    id: "cve-2026-25253",
+    severity: "CRITICAL",
+    label: "CVE-2026-25253",
+    title: "1-Click RCE via WebSocket token hijack in OpenClaw Gateway",
+    detail: "Cross-site WebSocket hijacking allows full gateway compromise. Visiting a malicious page exfiltrates auth tokens.",
+    source: "DepthFirst / The Hacker News",
+    date: "Feb 3, 2026",
+    cvss: "8.8",
+    link: "https://thehackernews.com",
+    color: "text-destructive",
+    bgColor: "bg-destructive/10",
+    borderColor: "border-destructive/20"
+  },
+  {
+    id: "clawhavoc-341",
+    severity: "HIGH",
+    label: "ClawHavoc",
+    title: "341 malicious skills discovered on ClawHub stealing credentials",
+    detail: "Koi Security audit found 335 skills deploying Atomic Stealer (AMOS) malware via fake prerequisites.",
+    source: "Koi Security",
+    date: "Feb 4, 2026",
+    cvss: null,
+    link: "https://thehackernews.com",
+    color: "text-orange-500",
+    bgColor: "bg-orange-500/10",
+    borderColor: "border-orange-500/20"
+  },
+  {
+    id: "supply-chain-400",
+    severity: "HIGH",
+    label: "Supply Chain",
+    title: "400+ malware packages targeting OpenClaw crypto traders",
+    detail: "Coordinated campaign published 386 malicious skills disguised as crypto trading tools sharing C2 infrastructure.",
+    source: "OpenSourceMalware",
+    date: "Feb 2, 2026",
+    cvss: null,
+    link: "#",
+    color: "text-orange-500",
+    bgColor: "bg-orange-500/10",
+    borderColor: "border-orange-500/20"
+  },
+  {
+    id: "cisco-elon-skill",
+    severity: "CRITICAL",
+    label: "Skill Exploit",
+    title: '"What Would Elon Do?" skill contained 9 vulnerabilities',
+    detail: "Cisco AI Defense found the #1-ranked skill was malware: silent data exfiltration + prompt injection.",
+    source: "Cisco AI Threat Research",
+    date: "Jan 30, 2026",
+    cvss: null,
+    link: "#",
+    color: "text-destructive",
+    bgColor: "bg-destructive/10",
+    borderColor: "border-destructive/20"
+  },
+  {
+    id: "cve-2026-21636",
+    severity: "HIGH",
+    label: "CVE-2026-21636",
+    title: "Permission model bypass vulnerability in Node.js runtime",
+    detail: "Security patch required: Node.js 22.12.0+ needed to prevent permission model bypass.",
+    source: "OpenClaw Security Advisory",
+    date: "Jan 2026",
+    cvss: null,
+    link: "#",
+    color: "text-orange-500",
+    bgColor: "bg-orange-500/10",
+    borderColor: "border-orange-500/20"
+  }
+];
+
 export const topScorers: Listing[] = [
   {
     id: "ts-1",
