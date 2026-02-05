@@ -89,57 +89,59 @@ const categoryColors: Record<string, string> = {
 };
 
 function CategoryCard({ category }: { category: Category }) {
-  const IconComponent = categoryIcons[category.slug] || Box;
   const colorClass = categoryColors[category.slug] || "from-slate-500/10 to-slate-600/5 border-slate-200 dark:border-slate-800/50";
+  const examples = category.examples || [];
+  const useMultiColumn = examples.length > 4;
   
   return (
-    <Link href={`/categories/${category.slug}`} data-testid={`category-card-${category.slug}`}>
-      <Card className={cn(
-        "group relative p-5 h-full bg-gradient-to-br border transition-all duration-300 hover:shadow-lg hover:scale-[1.02] cursor-pointer overflow-hidden",
-        colorClass
-      )}>
-        <div className="absolute -right-4 -top-4 w-20 h-20 bg-current opacity-[0.03] rounded-full blur-2xl group-hover:opacity-[0.06] transition-opacity" />
-        
-        <div className="flex items-start justify-between mb-3 relative z-10">
-          <div className="w-10 h-10 rounded-lg bg-background/80 shadow-sm border border-border/50 flex items-center justify-center">
-            <IconComponent className="w-5 h-5 text-muted-foreground" />
-          </div>
+    <Card className={cn(
+      "group relative p-4 h-full bg-gradient-to-br border transition-all duration-300 hover:shadow-lg cursor-pointer overflow-hidden",
+      colorClass
+    )} data-testid={`category-card-${category.slug}`}>
+      <div className="absolute -right-4 -top-4 w-20 h-20 bg-current opacity-[0.03] rounded-full blur-2xl group-hover:opacity-[0.06] transition-opacity" />
+      
+      <div className="flex items-center justify-between mb-2 relative z-10">
+        <Link href={`/categories/${category.slug}`}>
+          <h3 className="font-display font-bold text-sm group-hover:text-primary transition-colors">
+            {category.name}
+          </h3>
+        </Link>
+        <div className="flex items-center gap-2">
           {category.isNew && (
-            <Badge variant="secondary" className="text-[10px] bg-primary/10 text-primary border-0">
+            <Badge variant="secondary" className="text-[9px] bg-primary/10 text-primary border-0 px-1.5 py-0">
               NEW
             </Badge>
           )}
-        </div>
-        
-        <h3 className="font-display font-bold text-base mb-1.5 group-hover:text-primary transition-colors line-clamp-1">
-          {category.name}
-        </h3>
-        
-        <p className="text-xs text-muted-foreground line-clamp-2 mb-3 min-h-[2.5rem]">
-          {category.description || "Explore skills in this category"}
-        </p>
-        
-        <div className="flex items-center justify-between">
-          <span className="text-xs text-muted-foreground font-medium">
-            {category.skillCount || 0} skills
+          <span className="text-[10px] text-muted-foreground">
+            {category.skillCount || 0}
           </span>
-          <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" />
         </div>
-        
-        {category.examples && category.examples.length > 0 && (
-          <div className="flex flex-wrap gap-1 mt-3 pt-3 border-t border-border/50">
-            {category.examples.slice(0, 3).map((example, i) => (
-              <span key={i} className="text-[10px] px-1.5 py-0.5 rounded bg-muted/50 text-muted-foreground">
-                {example}
-              </span>
-            ))}
-            {category.examples.length > 3 && (
-              <span className="text-[10px] text-muted-foreground">+{category.examples.length - 3}</span>
-            )}
-          </div>
-        )}
-      </Card>
-    </Link>
+      </div>
+      
+      {examples.length > 0 && (
+        <div className={cn(
+          "relative z-10",
+          useMultiColumn ? "grid grid-cols-2 gap-x-3 gap-y-0.5" : "flex flex-col gap-0.5"
+        )}>
+          {examples.map((example, i) => (
+            <Link 
+              key={i} 
+              href={`/categories/${category.slug}?q=${encodeURIComponent(example)}`}
+              className="text-[11px] text-muted-foreground hover:text-primary hover:underline transition-colors truncate"
+            >
+              {example}
+            </Link>
+          ))}
+        </div>
+      )}
+      
+      <Link 
+        href={`/categories/${category.slug}`}
+        className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity"
+      >
+        <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-primary" />
+      </Link>
+    </Card>
   );
 }
 

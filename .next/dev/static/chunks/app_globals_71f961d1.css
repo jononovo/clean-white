@@ -941,6 +941,10 @@
     bottom: calc(var(--spacing) * 0);
   }
 
+  .bottom-3 {
+    bottom: calc(var(--spacing) * 3);
+  }
+
   .-left-4 {
     left: calc(var(--spacing) * -4);
   }
@@ -1243,10 +1247,6 @@
 
   .mb-1 {
     margin-bottom: calc(var(--spacing) * 1);
-  }
-
-  .mb-1\.5 {
-    margin-bottom: calc(var(--spacing) * 1.5);
   }
 
   .mb-2 {
@@ -1617,10 +1617,6 @@
 
   .min-h-10 {
     min-height: calc(var(--spacing) * 10);
-  }
-
-  .min-h-\[2\.5rem\] {
-    min-height: 2.5rem;
   }
 
   .min-h-\[60px\] {
@@ -2321,6 +2317,11 @@
     --tw-space-y-reverse: 1;
   }
 
+  .gap-x-3 {
+    -moz-column-gap: calc(var(--spacing) * 3);
+    column-gap: calc(var(--spacing) * 3);
+  }
+
   :where(.space-x-1 > :not(:last-child)) {
     --tw-space-x-reverse: 0;
     margin-inline-start: calc(calc(var(--spacing) * 1) * var(--tw-space-x-reverse));
@@ -2335,6 +2336,10 @@
 
   :where(.space-x-reverse > :not(:last-child)) {
     --tw-space-x-reverse: 1;
+  }
+
+  .gap-y-0\.5 {
+    row-gap: calc(var(--spacing) * .5);
   }
 
   :where(.divide-x > :not(:last-child)) {
@@ -2996,16 +3001,6 @@
   @supports (color: color-mix(in lab, red, red)) {
     .bg-background\/50 {
       background-color: color-mix(in oklab, hsl(var(--background)) 50%, transparent);
-    }
-  }
-
-  .bg-background\/80 {
-    background-color: hsl(var(--background));
-  }
-
-  @supports (color: color-mix(in lab, red, red)) {
-    .bg-background\/80 {
-      background-color: color-mix(in oklab, hsl(var(--background)) 80%, transparent);
     }
   }
 
@@ -3959,6 +3954,10 @@
 
   .px-\[--cell-size\] {
     padding-inline: --cell-size;
+  }
+
+  .py-0 {
+    padding-block: calc(var(--spacing) * 0);
   }
 
   .py-0\.5 {
@@ -5430,13 +5429,6 @@
   }
 
   @media (hover: hover) {
-    .group-hover\:translate-x-1:is(:where(.group):hover *) {
-      --tw-translate-x: calc(var(--spacing) * 1);
-      translate: var(--tw-translate-x) var(--tw-translate-y);
-    }
-  }
-
-  @media (hover: hover) {
     .group-hover\:translate-x-full:is(:where(.group):hover *) {
       --tw-translate-x: 100%;
       translate: var(--tw-translate-x) var(--tw-translate-y);
@@ -5852,12 +5844,6 @@
   .last\:border-0:last-child {
     border-style: var(--tw-border-style);
     border-width: 0;
-  }
-
-  @media (hover: hover) {
-    .hover\:scale-\[1\.02\]:hover {
-      scale: 1.02;
-    }
   }
 
   @media (hover: hover) {
