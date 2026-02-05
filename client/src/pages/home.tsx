@@ -153,7 +153,7 @@ export default function Home() {
               <div className="flex items-center gap-6 text-xs text-slate-500 pt-4">
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-emerald-600" />
-                  <span>SOC2 Type II Certified</span>
+                  <span>OpenClaw Threat Monitor</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-emerald-600" />
