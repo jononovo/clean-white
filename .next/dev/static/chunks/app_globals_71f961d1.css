@@ -3068,16 +3068,6 @@
     }
   }
 
-  .bg-amber-500\/10 {
-    background-color: #f99c001a;
-  }
-
-  @supports (color: color-mix(in lab, red, red)) {
-    .bg-amber-500\/10 {
-      background-color: color-mix(in oklab, var(--color-amber-500) 10%, transparent);
-    }
-  }
-
   .bg-background {
     background-color: hsl(var(--background));
   }
@@ -3124,16 +3114,6 @@
 
   .bg-blue-500 {
     background-color: var(--color-blue-500);
-  }
-
-  .bg-blue-500\/10 {
-    background-color: #3080ff1a;
-  }
-
-  @supports (color: color-mix(in lab, red, red)) {
-    .bg-blue-500\/10 {
-      background-color: color-mix(in oklab, var(--color-blue-500) 10%, transparent);
-    }
   }
 
   .bg-blue-500\/20 {
@@ -3416,28 +3396,8 @@
     }
   }
 
-  .bg-purple-500\/10 {
-    background-color: #ac4bff1a;
-  }
-
-  @supports (color: color-mix(in lab, red, red)) {
-    .bg-purple-500\/10 {
-      background-color: color-mix(in oklab, var(--color-purple-500) 10%, transparent);
-    }
-  }
-
   .bg-red-100 {
     background-color: var(--color-red-100);
-  }
-
-  .bg-red-500\/10 {
-    background-color: #fb2c361a;
-  }
-
-  @supports (color: color-mix(in lab, red, red)) {
-    .bg-red-500\/10 {
-      background-color: color-mix(in oklab, var(--color-red-500) 10%, transparent);
-    }
   }
 
   .bg-red-500\/20 {
@@ -3490,16 +3450,6 @@
 
   .bg-transparent {
     background-color: #0000;
-  }
-
-  .bg-violet-500\/10 {
-    background-color: #8d54ff1a;
-  }
-
-  @supports (color: color-mix(in lab, red, red)) {
-    .bg-violet-500\/10 {
-      background-color: color-mix(in oklab, var(--color-violet-500) 10%, transparent);
-    }
   }
 
   .bg-white {
@@ -3580,17 +3530,17 @@
     background-image: linear-gradient(currentColor 1px, #0000 1px), linear-gradient(90deg, currentColor 1px, #0000 1px);
   }
 
-  .from-amber-500\/10 {
-    --tw-gradient-from: #f99c001a;
+  .from-amber-500\/15 {
+    --tw-gradient-from: #f99c0026;
   }
 
   @supports (color: color-mix(in lab, red, red)) {
-    .from-amber-500\/10 {
-      --tw-gradient-from: color-mix(in oklab, var(--color-amber-500) 10%, transparent);
+    .from-amber-500\/15 {
+      --tw-gradient-from: color-mix(in oklab, var(--color-amber-500) 15%, transparent);
     }
   }
 
-  .from-amber-500\/10 {
+  .from-amber-500\/15 {
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
   }
 
@@ -3613,17 +3563,17 @@
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
   }
 
-  .from-blue-500\/10 {
-    --tw-gradient-from: #3080ff1a;
+  .from-blue-500\/15 {
+    --tw-gradient-from: #3080ff26;
   }
 
   @supports (color: color-mix(in lab, red, red)) {
-    .from-blue-500\/10 {
-      --tw-gradient-from: color-mix(in oklab, var(--color-blue-500) 10%, transparent);
+    .from-blue-500\/15 {
+      --tw-gradient-from: color-mix(in oklab, var(--color-blue-500) 15%, transparent);
     }
   }
 
-  .from-blue-500\/10 {
+  .from-blue-500\/15 {
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
   }
 
@@ -3679,31 +3629,31 @@
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
   }
 
-  .from-purple-500\/10 {
-    --tw-gradient-from: #ac4bff1a;
+  .from-purple-500\/15 {
+    --tw-gradient-from: #ac4bff26;
   }
 
   @supports (color: color-mix(in lab, red, red)) {
-    .from-purple-500\/10 {
-      --tw-gradient-from: color-mix(in oklab, var(--color-purple-500) 10%, transparent);
+    .from-purple-500\/15 {
+      --tw-gradient-from: color-mix(in oklab, var(--color-purple-500) 15%, transparent);
     }
   }
 
-  .from-purple-500\/10 {
+  .from-purple-500\/15 {
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
   }
 
-  .from-red-500\/10 {
-    --tw-gradient-from: #fb2c361a;
+  .from-red-500\/15 {
+    --tw-gradient-from: #fb2c3626;
   }
 
   @supports (color: color-mix(in lab, red, red)) {
-    .from-red-500\/10 {
-      --tw-gradient-from: color-mix(in oklab, var(--color-red-500) 10%, transparent);
+    .from-red-500\/15 {
+      --tw-gradient-from: color-mix(in oklab, var(--color-red-500) 15%, transparent);
     }
   }
 
-  .from-red-500\/10 {
+  .from-red-500\/15 {
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
   }
 
@@ -3726,17 +3676,17 @@
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
   }
 
-  .from-violet-500\/10 {
-    --tw-gradient-from: #8d54ff1a;
+  .from-violet-500\/15 {
+    --tw-gradient-from: #8d54ff26;
   }
 
   @supports (color: color-mix(in lab, red, red)) {
-    .from-violet-500\/10 {
-      --tw-gradient-from: color-mix(in oklab, var(--color-violet-500) 10%, transparent);
+    .from-violet-500\/15 {
+      --tw-gradient-from: color-mix(in oklab, var(--color-violet-500) 15%, transparent);
     }
   }
 
-  .from-violet-500\/10 {
+  .from-violet-500\/15 {
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
   }
 
