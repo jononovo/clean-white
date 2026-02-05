@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth/session";
-import { db } from "@/server/db";
-import { providers, insertProviderSchema } from "@/shared/schema";
+import { db as serverDb } from "@/server/db";
+import { providers } from "@/shared/schema";
 import { eq } from "drizzle-orm";
+import { db } from "@/lib/db";
 
 export async function GET(request: NextRequest) {
   try {
@@ -11,7 +12,7 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const provider = await db
+    const provider = await serverDb
       .select()
       .from(providers)
       .where(eq(providers.userId, user.id))
@@ -31,7 +32,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const existing = await db
+    const existing = await serverDb
       .select()
       .from(providers)
       .where(eq(providers.userId, user.id))
@@ -42,12 +43,30 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json();
-    const parsed = insertProviderSchema.parse({
-      ...body,
-      userId: user.id,
-    });
+    const { handle, displayName, description, location, website, contactEmail, avatarUrl } = body;
 
-    const result = await db.insert(providers).values(parsed).returning();
+    if (!handle || !displayName) {
+      return NextResponse.json({ error: "Handle and display name are required" }, { status: 400 });
+    }
+
+    const handleLower = handle.toLowerCase().replace(/[^a-z0-9-_]/g, "");
+    
+    const handleAvailable = await db.isHandleAvailable(handleLower);
+    if (!handleAvailable) {
+      return NextResponse.json({ error: "Handle is already taken" }, { status: 400 });
+    }
+
+    const result = await serverDb.insert(providers).values({
+      userId: user.id,
+      handle: handleLower,
+      displayName,
+      description,
+      location,
+      website,
+      contactEmail,
+      avatarUrl,
+    }).returning();
+
     return NextResponse.json(result[0]);
   } catch (error) {
     console.error("Error creating provider:", error);
@@ -63,11 +82,17 @@ export async function PUT(request: NextRequest) {
     }
 
     const body = await request.json();
+    const { displayName, description, location, website, contactEmail, avatarUrl } = body;
 
-    const result = await db
+    const result = await serverDb
       .update(providers)
       .set({
-        ...body,
+        displayName,
+        description,
+        location,
+        website,
+        contactEmail,
+        avatarUrl,
         updatedAt: new Date(),
       })
       .where(eq(providers.userId, user.id))

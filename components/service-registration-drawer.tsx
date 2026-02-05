@@ -18,9 +18,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { ArrowRight, Loader2, Building2, Package, CheckCircle } from "lucide-react";
-import { useState, useEffect } from "react";
+import { ArrowRight, Loader2, Building2, Package, CheckCircle, AtSign, AlertCircle } from "lucide-react";
+import { useState, useEffect, useCallback } from "react";
 import { useAuth } from "@/lib/auth/auth-context";
+import { cn } from "@/lib/utils";
 
 const SERVICE_CATEGORY_LABELS: Record<string, string> = {
   setup_installation: "Setup & Installation",
@@ -36,6 +37,17 @@ const PRICING_TYPE_LABELS: Record<string, string> = {
   monthly: "Monthly",
   contact: "Contact for Quote",
 };
+
+interface Provider {
+  id: string;
+  handle: string;
+  displayName: string;
+  description?: string;
+  location?: string;
+  website?: string;
+  contactEmail?: string;
+  avatarUrl?: string;
+}
 
 interface ServiceRegistrationDrawerProps {
   open: boolean;
@@ -53,11 +65,13 @@ export function ServiceRegistrationDrawer({
   const { user, loading: authLoading } = useAuth();
   const [step, setStep] = useState<"provider" | "service" | "success">("provider");
   const [isLoading, setIsLoading] = useState(false);
-  const [hasProvider, setHasProvider] = useState(false);
+  const [provider, setProvider] = useState<Provider | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [handleStatus, setHandleStatus] = useState<"idle" | "checking" | "available" | "taken">("idle");
 
   const [providerForm, setProviderForm] = useState({
-    businessName: "",
+    handle: "",
+    displayName: "",
     description: "",
     location: "",
     website: "",
@@ -89,23 +103,55 @@ export function ServiceRegistrationDrawer({
     try {
       const res = await fetch("/api/providers");
       if (res.ok) {
-        const provider = await res.json();
-        if (provider) {
-          setHasProvider(true);
+        const existingProvider = await res.json();
+        if (existingProvider) {
+          setProvider(existingProvider);
           setStep("service");
           setProviderForm({
-            businessName: provider.businessName || "",
-            description: provider.description || "",
-            location: provider.location || "",
-            website: provider.website || "",
-            contactEmail: provider.contactEmail || "",
+            handle: existingProvider.handle || "",
+            displayName: existingProvider.displayName || "",
+            description: existingProvider.description || "",
+            location: existingProvider.location || "",
+            website: existingProvider.website || "",
+            contactEmail: existingProvider.contactEmail || "",
           });
+        } else {
+          setProviderForm(prev => ({
+            ...prev,
+            displayName: user?.username || "",
+            contactEmail: user?.email || "",
+          }));
         }
       }
     } catch (err) {
       console.error("Error checking provider:", err);
     }
   };
+
+  const checkHandleAvailability = useCallback(async (handle: string) => {
+    if (!handle || handle.length < 2) {
+      setHandleStatus("idle");
+      return;
+    }
+    
+    setHandleStatus("checking");
+    try {
+      const res = await fetch(`/api/providers/check-handle?handle=${encodeURIComponent(handle)}`);
+      const data = await res.json();
+      setHandleStatus(data.available ? "available" : "taken");
+    } catch {
+      setHandleStatus("idle");
+    }
+  }, []);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (providerForm.handle && !provider) {
+        checkHandleAvailability(providerForm.handle);
+      }
+    }, 500);
+    return () => clearTimeout(timeout);
+  }, [providerForm.handle, provider, checkHandleAvailability]);
 
   const handleProviderSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -114,7 +160,7 @@ export function ServiceRegistrationDrawer({
 
     try {
       const res = await fetch("/api/providers", {
-        method: hasProvider ? "PUT" : "POST",
+        method: provider ? "PUT" : "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(providerForm),
       });
@@ -124,7 +170,8 @@ export function ServiceRegistrationDrawer({
         throw new Error(data.error || "Failed to save provider");
       }
 
-      setHasProvider(true);
+      const savedProvider = await res.json();
+      setProvider(savedProvider);
       setStep("service");
     } catch (err: any) {
       setError(err.message);
@@ -165,7 +212,7 @@ export function ServiceRegistrationDrawer({
   const handleClose = () => {
     onOpenChange(false);
     setTimeout(() => {
-      setStep(hasProvider ? "service" : "provider");
+      setStep(provider ? "service" : "provider");
       setError(null);
       setServiceForm({
         name: "",
@@ -239,7 +286,7 @@ export function ServiceRegistrationDrawer({
                 {step === "provider" ? (
                   <>
                     <Building2 className="w-5 h-5" />
-                    Business Profile
+                    {provider ? "Edit Profile" : "Create Your Profile"}
                   </>
                 ) : (
                   <>
@@ -250,8 +297,10 @@ export function ServiceRegistrationDrawer({
               </SheetTitle>
               <SheetDescription>
                 {step === "provider"
-                  ? "First, set up your business profile. This is shown on all your service listings."
-                  : "Describe your service offering for the OpenClaw ecosystem."}
+                  ? provider 
+                    ? "Update your business profile information."
+                    : "Choose a unique handle for your profile. This will be your URL."
+                  : `Adding service to @${provider?.handle}`}
               </SheetDescription>
             </SheetHeader>
 
@@ -263,18 +312,55 @@ export function ServiceRegistrationDrawer({
 
             {step === "provider" && (
               <form onSubmit={handleProviderSubmit} className="mt-6 space-y-4">
+                {!provider && (
+                  <div className="space-y-2">
+                    <Label htmlFor="handle">Handle *</Label>
+                    <div className="relative">
+                      <div className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">
+                        <AtSign className="w-4 h-4" />
+                      </div>
+                      <Input
+                        id="handle"
+                        placeholder="yourname"
+                        value={providerForm.handle}
+                        onChange={(e) => setProviderForm({ ...providerForm, handle: e.target.value.toLowerCase().replace(/[^a-z0-9-_]/g, "") })}
+                        className={cn(
+                          "pl-9",
+                          handleStatus === "available" && "border-emerald-500 focus-visible:ring-emerald-500",
+                          handleStatus === "taken" && "border-destructive focus-visible:ring-destructive"
+                        )}
+                        required
+                      />
+                      {handleStatus === "checking" && (
+                        <Loader2 className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 animate-spin text-muted-foreground" />
+                      )}
+                      {handleStatus === "available" && (
+                        <CheckCircle className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-emerald-500" />
+                      )}
+                      {handleStatus === "taken" && (
+                        <AlertCircle className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-destructive" />
+                      )}
+                    </div>
+                    {handleStatus === "taken" && (
+                      <p className="text-xs text-destructive">This handle is already taken</p>
+                    )}
+                    <p className="text-xs text-muted-foreground">
+                      Your profile URL: secureclawhub.com/@{providerForm.handle || "yourname"}
+                    </p>
+                  </div>
+                )}
                 <div className="space-y-2">
-                  <Label htmlFor="businessName">Business Name *</Label>
+                  <Label htmlFor="displayName">Display Name *</Label>
                   <Input
-                    id="businessName"
-                    placeholder="Your company or freelance name"
-                    value={providerForm.businessName}
-                    onChange={(e) => setProviderForm({ ...providerForm, businessName: e.target.value })}
+                    id="displayName"
+                    placeholder="Your name or company name"
+                    value={providerForm.displayName}
+                    onChange={(e) => setProviderForm({ ...providerForm, displayName: e.target.value })}
                     required
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="description">About Your Business</Label>
+                  <Label htmlFor="description">About</Label>
                   <Textarea
                     id="description"
                     placeholder="Brief description of your expertise and services"
@@ -304,21 +390,24 @@ export function ServiceRegistrationDrawer({
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="contactEmail">Contact Email *</Label>
+                  <Label htmlFor="contactEmail">Contact Email</Label>
                   <Input
                     id="contactEmail"
                     type="email"
                     placeholder="business@example.com"
                     value={providerForm.contactEmail}
                     onChange={(e) => setProviderForm({ ...providerForm, contactEmail: e.target.value })}
-                    required
                   />
                 </div>
-                <Button type="submit" className="w-full" disabled={isLoading}>
+                <Button 
+                  type="submit" 
+                  className="w-full" 
+                  disabled={isLoading || (!provider && handleStatus !== "available")}
+                >
                   {isLoading ? (
                     <Loader2 className="w-4 h-4 animate-spin mr-2" />
                   ) : null}
-                  Continue to Add Service
+                  {provider ? "Save Changes" : "Continue to Add Service"}
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
               </form>
@@ -410,15 +499,13 @@ export function ServiceRegistrationDrawer({
                   </div>
                 )}
                 <div className="flex gap-3 pt-2">
-                  {hasProvider && (
-                    <Button
-                      type="button"
-                      variant="outline"
-                      onClick={() => setStep("provider")}
-                    >
-                      Edit Profile
-                    </Button>
-                  )}
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={() => setStep("provider")}
+                  >
+                    Edit Profile
+                  </Button>
                   <Button type="submit" className="flex-1" disabled={isLoading}>
                     {isLoading ? (
                       <Loader2 className="w-4 h-4 animate-spin mr-2" />

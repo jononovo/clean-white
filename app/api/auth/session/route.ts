@@ -4,6 +4,11 @@ import { createSessionCookie, SESSION_COOKIE_NAME, SESSION_EXPIRY } from "@/lib/
 import { adminAuth } from "@/lib/firebase/admin";
 import { db } from "@/lib/db";
 
+function extractGitHubUsername(firebaseUser: { providerData?: Array<{ providerId: string; uid?: string }> }): string | null {
+  const githubProvider = firebaseUser.providerData?.find(p => p.providerId === "github.com");
+  return githubProvider?.uid || null;
+}
+
 export async function POST(request: NextRequest) {
   try {
     const { idToken } = await request.json();
@@ -13,14 +18,39 @@ export async function POST(request: NextRequest) {
     }
 
     const decoded = await adminAuth.verifyIdToken(idToken);
+    const firebaseUser = await adminAuth.getUser(decoded.uid);
 
+    const isGitHubLogin = firebaseUser.providerData?.some(p => p.providerId === "github.com");
+    const githubUsername = extractGitHubUsername(firebaseUser);
+    const photoUrl = firebaseUser.photoURL;
+
+    let isNewUser = false;
     let user = await db.getUserByFirebaseUid(decoded.uid);
     if (!user) {
+      isNewUser = true;
+      const username = githubUsername || decoded.name || decoded.email?.split("@")[0] || "User";
       user = await db.createUserFromFirebase({
         firebaseUid: decoded.uid,
         email: decoded.email || "",
-        username: decoded.name || decoded.email?.split("@")[0] || "User",
+        username,
+        avatarUrl: photoUrl,
       });
+    }
+
+    if (isGitHubLogin && githubUsername) {
+      const existingProvider = await db.getProviderByUserId(user.id);
+      if (!existingProvider) {
+        const handleAvailable = await db.isHandleAvailable(githubUsername);
+        if (handleAvailable) {
+          await db.createProvider({
+            userId: user.id,
+            handle: githubUsername.toLowerCase(),
+            displayName: decoded.name || githubUsername,
+            avatarUrl: photoUrl,
+            contactEmail: decoded.email,
+          });
+        }
+      }
     }
 
     const sessionCookie = await createSessionCookie(idToken);
