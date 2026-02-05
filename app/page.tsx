@@ -156,7 +156,7 @@ export default function Home() {
                   The Business Hub for <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-500 dark:from-emerald-400 dark:to-teal-300">OpenClaw</span>
                 </h1>
                 <p className="text-lg text-muted-foreground max-w-md leading-relaxed">
-                  The official security registry for autonomous agents. We audit, rank, and monitor skills so you can run bots with confidence.
+                  The OpenClaw Hub for Business: Community, jobs, news and secure, enterprise-ready OpenClaw Bots.
                 </p>
               </div>
 
