@@ -75,5 +75,11 @@ We use a tri-font stack to differentiate between marketing, UI, and data.
 - **Wordmark:** "SecureClawHub" in *Plus Jakarta Sans Bold*.
 - **Sizing:** The logo should be prominent in the header (`w-14 h-14` recommended for main layout).
 
+## 6. Interaction & Cursors
+
+- **Rule:** If an element is interactive (clickable), it **must** display the pointer cursor (`cursor-pointer`).
+- **Scope:** This applies to buttons, links, clickable cards, list rows, table rows, and any element that triggers an action.
+- **Why:** To provide clear affordance and a responsive, app-like feel.
+
 ---
 *This document serves as the single source of truth for design decisions. Any new features should adhere to these guidelines to maintain visual consistency.*

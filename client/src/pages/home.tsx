@@ -63,7 +63,7 @@ const FeaturedCard = ({ item, color = "emerald" }: { item: Listing, color?: "eme
   };
 
   return (
-    <Card className={cn("p-4 bg-gradient-to-br border shadow-sm hover:shadow-md transition-all duration-300 relative overflow-hidden group", colors[color])}>
+    <Card className={cn("p-4 bg-gradient-to-br border shadow-sm hover:shadow-md transition-all duration-300 relative overflow-hidden group cursor-pointer", colors[color])}>
        <div className="absolute -right-6 -top-6 w-24 h-24 bg-current opacity-[0.03] rounded-full blur-2xl group-hover:opacity-[0.06] transition-opacity" />
        
        <div className="flex justify-between items-start mb-3 relative z-10">
@@ -291,7 +291,7 @@ export default function Home() {
               
               <div className="bg-card border border-border/60 rounded-xl shadow-sm overflow-hidden">
                  {latestSubmissions.slice(0, 4).map((item, i) => (
-                    <div key={item.id} className="flex items-start md:items-center gap-4 p-4 border-b border-border/40 last:border-0 hover:bg-muted/20 transition-colors group">
+                    <div key={item.id} className="flex items-start md:items-center gap-4 p-4 border-b border-border/40 last:border-0 hover:bg-muted/20 transition-colors group cursor-pointer">
                        <div className="w-12 h-12 rounded-lg bg-secondary/80 flex items-center justify-center shrink-0 border border-border/50">
                           {item.category === 'skill' ? <Box className="w-6 h-6 text-slate-600" /> : <Globe className="w-6 h-6 text-slate-600" />}
                        </div>
@@ -423,7 +423,7 @@ export default function Home() {
               </div>
               <div className="bg-card border border-border/60 rounded-xl shadow-sm p-4 space-y-4">
                  {infrastructureProviders.map((prov, i) => (
-                    <div key={prov.id} className="flex items-center justify-between group">
+                    <div key={prov.id} className="flex items-center justify-between group cursor-pointer hover:bg-slate-50 rounded-lg p-2 -mx-2 transition-colors">
                        <div className="flex items-center gap-3">
                           <span className="text-xs font-mono text-muted-foreground w-3">{i + 1}</span>
                           <div>
