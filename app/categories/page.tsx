@@ -80,23 +80,23 @@ const categoryIcons: Record<string, React.ComponentType<{ className?: string }>>
   "databases-storage": Database,
 };
 
-const categoryColors: Record<string, string> = {
-  "agent-services-networks": "from-purple-500/15 to-purple-600/5 border-purple-200 dark:border-purple-800/50",
-  "ai-llms": "from-violet-500/15 to-violet-600/5 border-violet-200 dark:border-violet-800/50",
-  "crypto-web3": "from-amber-500/15 to-amber-600/5 border-amber-200 dark:border-amber-800/50",
-  "security-passwords": "from-red-500/15 to-red-600/5 border-red-200 dark:border-red-800/50",
-  "devops-cloud": "from-blue-500/15 to-blue-600/5 border-blue-200 dark:border-blue-800/50",
+const categoryAccents: Record<string, string> = {
+  "agent-services-networks": "border-purple-500/30",
+  "ai-llms": "border-violet-500/30",
+  "crypto-web3": "border-amber-500/30",
+  "security-passwords": "border-red-500/30",
+  "devops-cloud": "border-blue-500/30",
 };
 
 function CategoryCard({ category }: { category: Category }) {
-  const colorClass = categoryColors[category.slug] || "from-slate-500/10 to-slate-600/5 border-slate-200 dark:border-slate-800/50";
+  const accentClass = categoryAccents[category.slug] || "";
   const examples = category.examples || [];
   const useMultiColumn = examples.length > 4;
   
   return (
     <Card className={cn(
-      "group relative p-4 h-full bg-card bg-gradient-to-br border transition-all duration-300 hover:shadow-lg cursor-pointer overflow-hidden",
-      colorClass
+      "group relative p-4 h-full bg-gradient-to-b from-card to-card/50 border border-border transition-all duration-300 hover:shadow-lg cursor-pointer overflow-hidden",
+      accentClass
     )} data-testid={`category-card-${category.slug}`}>
       <div className="absolute -right-4 -top-4 w-20 h-20 bg-current opacity-[0.03] rounded-full blur-2xl group-hover:opacity-[0.06] transition-opacity" />
       
