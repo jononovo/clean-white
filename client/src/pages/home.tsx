@@ -220,22 +220,8 @@ export default function Home() {
                         </div>
                      </div>
                      
-                     <div className="space-y-3 pt-3">
-                        <div className="p-3 rounded bg-muted/50 border border-border shadow-inner">
-                            <div className="flex justify-between items-center mb-2">
-                                <span className="text-xs font-bold text-foreground flex items-center gap-1.5">
-                                    <Globe className="w-3 h-3 text-muted-foreground" />
-                                    OpenClaw Threat Index
-                                </span>
-                                <span className="text-[10px] font-mono text-destructive font-bold">HIGH RISK</span>
-                            </div>
-                            <div className="h-1.5 w-full bg-muted rounded-full overflow-hidden">
-                               <div className="h-full w-[75%] bg-destructive rounded-full" />
-                            </div>
-                        </div>
-
+                     <div className="pt-3">
                         <ThreatTicker />
-
                      </div>
                   </div>
                </div>

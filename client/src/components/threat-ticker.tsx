@@ -110,22 +110,16 @@ export function ThreatTicker() {
   const threat = THREAT_ALERTS[currentIndex];
 
   return (
-    <div className={cn(
-      "relative rounded-lg border p-4 transition-colors duration-500 overflow-hidden bg-card/50",
-      threat.borderColor
-    )}>
-      {/* Subtle background pulse */}
-      <div className={cn("absolute inset-0 opacity-[0.03] animate-pulse pointer-events-none", threat.color.replace('text-', 'bg-'))} />
-      
+    <div className="relative rounded-lg border border-border bg-card/30 p-3 transition-colors duration-500 overflow-hidden">
       {/* Header */}
-      <div className="flex items-center justify-between mb-3">
+      <div className="flex items-center justify-between mb-2">
         <div className="flex items-center gap-2">
-           <div className={cn("flex items-center gap-1.5 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border", threat.bgColor, threat.color, threat.borderColor)}>
-              <div className="w-1.5 h-1.5 rounded-full bg-current animate-pulse" />
+           <div className={cn("flex items-center gap-1.5 px-1.5 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider border", threat.bgColor, threat.color, threat.borderColor)}>
+              <div className="w-1 h-1 rounded-full bg-current" />
               {threat.severity}
            </div>
            {threat.cvss && (
-             <span className="text-[10px] text-muted-foreground font-mono">CVSS {threat.cvss}</span>
+             <span className="text-[9px] text-muted-foreground font-mono">CVSS {threat.cvss}</span>
            )}
         </div>
         
@@ -136,8 +130,8 @@ export function ThreatTicker() {
                 key={i}
                 onClick={() => handleDotClick(i)}
                 className={cn(
-                  "h-1.5 rounded-full transition-all duration-300",
-                  i === currentIndex ? cn("w-4", threat.color.replace('text-', 'bg-')) : "w-1.5 bg-muted-foreground/30 hover:bg-muted-foreground/50"
+                  "h-1 rounded-full transition-all duration-300",
+                  i === currentIndex ? "w-3 bg-foreground/40" : "w-1 bg-border hover:bg-muted-foreground/30"
                 )}
                 aria-label={`View threat ${i + 1}`}
              />
@@ -152,29 +146,29 @@ export function ThreatTicker() {
            isTransitioning ? "opacity-0 translate-y-2" : "opacity-100 translate-y-0"
          )}
       >
-        <div className="flex items-start gap-2 mb-2">
-           <AlertTriangle className={cn("w-4 h-4 shrink-0 mt-0.5", threat.color)} />
+        <div className="flex items-start gap-2 mb-1.5">
+           <AlertTriangle className="w-3.5 h-3.5 shrink-0 mt-0.5 text-muted-foreground" />
            <div>
-             <h4 className="text-xs font-bold text-foreground leading-tight mb-1">
-               <span className={cn("mr-1.5", threat.color)}>{threat.label}:</span>
+             <h4 className="text-xs font-medium text-foreground leading-tight mb-1">
+               <span className="font-bold mr-1.5">{threat.label}:</span>
                {threat.title}
              </h4>
-             <p className="text-[11px] text-muted-foreground leading-relaxed line-clamp-2">
+             <p className="text-[10px] text-muted-foreground leading-relaxed line-clamp-1">
                {threat.detail}
              </p>
            </div>
         </div>
 
-        <div className="flex items-center justify-between pt-2 mt-2 border-t border-border/40">
-           <span className="text-[10px] text-muted-foreground flex items-center gap-1.5">
-             <Shield className="w-3 h-3" />
+        <div className="flex items-center justify-between pt-1.5 mt-1 border-t border-border/30">
+           <span className="text-[9px] text-muted-foreground/70 flex items-center gap-1.5">
+             <Shield className="w-2.5 h-2.5" />
              {threat.source} • {threat.date}
            </span>
            <a 
              href={threat.link}
              target="_blank" 
              rel="noopener noreferrer"
-             className={cn("text-[10px] font-medium flex items-center gap-1 hover:underline", threat.color)}
+             className="text-[9px] font-medium flex items-center gap-1 text-muted-foreground hover:text-foreground transition-colors"
            >
              View Advisory <ExternalLink className="w-2.5 h-2.5" />
            </a>
