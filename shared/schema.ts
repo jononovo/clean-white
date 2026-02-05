@@ -124,3 +124,59 @@ export const insertSkillVersionSchema = createInsertSchema(skillVersions).omit({
 
 export type InsertSkillVersion = z.infer<typeof insertSkillVersionSchema>;
 export type SkillVersion = typeof skillVersions.$inferSelect;
+
+export const SERVICE_CATEGORIES = [
+  "setup_installation",
+  "managed_hosting", 
+  "consulting",
+  "training",
+  "partnerships",
+  "finance_tax",
+] as const;
+
+export const PRICING_TYPES = ["one_time", "monthly", "contact"] as const;
+
+export const providers = pgTable("providers", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  userId: varchar("user_id").notNull().references(() => users.id),
+  businessName: text("business_name").notNull(),
+  description: text("description"),
+  location: text("location"),
+  website: text("website"),
+  contactEmail: text("contact_email").notNull(),
+  isVerified: boolean("is_verified").notNull().default(false),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
+});
+
+export const insertProviderSchema = createInsertSchema(providers).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export type InsertProvider = z.infer<typeof insertProviderSchema>;
+export type Provider = typeof providers.$inferSelect;
+
+export const services = pgTable("services", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  providerId: varchar("provider_id").notNull().references(() => providers.id, { onDelete: "cascade" }),
+  name: text("name").notNull(),
+  description: text("description").notNull(),
+  category: text("category").notNull(),
+  pricingType: text("pricing_type").notNull().default("contact"),
+  priceMin: integer("price_min"),
+  priceMax: integer("price_max"),
+  isActive: boolean("is_active").notNull().default(true),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
+});
+
+export const insertServiceSchema = createInsertSchema(services).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export type InsertService = z.infer<typeof insertServiceSchema>;
+export type Service = typeof services.$inferSelect;
