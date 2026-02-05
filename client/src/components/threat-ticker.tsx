@@ -159,11 +159,7 @@ export function ThreatTicker() {
            </div>
         </div>
 
-        <div className="flex items-center justify-between pt-1.5 mt-1 border-t border-border/30">
-           <span className="text-[9px] text-muted-foreground/70 flex items-center gap-1.5">
-             <Shield className="w-2.5 h-2.5" />
-             {threat.source} • {threat.date}
-           </span>
+        <div className="flex items-center justify-end pt-1.5 mt-1 border-t border-border/30">
            <a 
              href={threat.link}
              target="_blank" 
