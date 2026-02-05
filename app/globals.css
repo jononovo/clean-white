@@ -114,10 +114,10 @@
 
   [data-theme="warm"].dark, [data-theme="warm"] .dark {
     --background: 30 12% 14%;
-    --foreground: 38 30% 96%;
+    --foreground: 40 25% 92%;
     
-    --card: 30 15% 8%;
-    --card-foreground: 38 30% 96%;
+    --card: 30 18% 5%;
+    --card-foreground: 40 25% 92%;
     
     --popover: 30 15% 8%;
     --popover-foreground: 38 30% 96%;
