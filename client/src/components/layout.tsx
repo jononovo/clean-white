@@ -53,6 +53,40 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </div>
 
       <div className="flex-1 overflow-y-auto py-6 px-4 space-y-8">
+        
+        {/* Mobile-Only Navigation Links */}
+        <div className="lg:hidden mb-6 pb-6 border-b border-border/50">
+           <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3 px-2">
+              Menu
+            </h3>
+            <div className="space-y-0.5">
+              {[
+                { label: "Developer Hub", href: "#" },
+                { label: "News", href: "/news" },
+                { label: "Enterprise", href: "#" },
+                { label: "Jobs", href: "#" },
+                { label: "Community", href: "/community" },
+                { label: "Discord", href: "https://discord.gg/gduUaXMQ", external: true },
+                { label: "Feedback", href: "#" },
+                { label: "Security Advisory", href: "#" },
+                { label: "Media Advisory", href: "/media" },
+                { label: "Submit Threat", href: "#", className: "text-destructive hover:text-destructive hover:bg-destructive/10" }
+              ].map((link) => (
+                <Link key={link.label} href={link.href}>
+                  <Button
+                    variant="ghost"
+                    className={cn(
+                      "w-full justify-start text-sm font-medium h-9 px-2 text-foreground/80 hover:text-foreground hover:bg-muted cursor-pointer",
+                      link.className
+                    )}
+                  >
+                    {link.label}
+                  </Button>
+                </Link>
+              ))}
+            </div>
+        </div>
+
         {categories.map((section) => (
           <div key={section.title}>
             <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3 px-2 flex items-center gap-2">
