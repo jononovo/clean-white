@@ -156,7 +156,7 @@ export default function Home() {
           <span className="text-border mx-2">|</span>
           <a href="#" className="hover:text-primary transition-colors hover:underline">Security Advisory</a>
           <span className="text-border mx-2">|</span>
-          <a href="#" className="hover:text-primary transition-colors hover:underline">Media Advisory</a>
+          <a href="/media" className="hover:text-primary transition-colors hover:underline">Media Advisory</a>
           <span className="text-border mx-2">|</span>
           <a href="#" className="hover:text-destructive transition-colors hover:underline flex items-center gap-1 group">
             <AlertTriangle className="w-3 h-3 text-muted-foreground group-hover:text-destructive transition-colors" />

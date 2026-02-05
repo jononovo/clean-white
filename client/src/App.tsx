@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Home from "@/pages/home";
 import Community from "@/pages/community";
+import Media from "@/pages/media";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -12,6 +13,7 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/community" component={Community} />
+      <Route path="/media" component={Media} />
       <Route component={NotFound} />
     </Switch>
   );
