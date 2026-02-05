@@ -11,7 +11,7 @@ export default function robots(): MetadataRoute.Robots {
     },
     sitemap: [
       `${BASE_URL}/sitemap.xml`,
-      `${BASE_URL}/skills/sitemap.xml`,
+      `${BASE_URL}/skills/sitemap/0.xml`,
     ],
   };
 }
