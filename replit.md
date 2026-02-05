@@ -83,6 +83,12 @@ Preferred communication style: Simple, everyday language.
 ```
 app/           → Next.js App Router pages
 components/    → React components (ui/ for primitives)
+features/      → Feature-based modules (modular architecture)
+  ├── featured/  → Featured Today cards + data
+  ├── services/  → Services Marketplace components + types
+  ├── skills/    → Skill cards, audit badges, list rows
+  ├── providers/ → Provider-related components
+  └── threats/   → Threat intelligence components
 lib/           → Utilities, mock data, theme config
 server/        → Custom server entry point
 shared/        → Database schema (Drizzle)
