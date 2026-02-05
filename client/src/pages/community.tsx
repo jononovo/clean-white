@@ -5,6 +5,25 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, MapPin, ExternalLink, Plus, MessageSquare, Tag, Clock, ArrowRight } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  DialogFooter,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const MeetupCard = ({ meetup }: { meetup: typeof meetups[0] }) => (
   <Card className="p-5 border-border/60 hover:border-primary/50 transition-colors group cursor-pointer">
@@ -123,9 +142,49 @@ export default function Community() {
                  <h2 className="text-2xl font-display font-bold text-foreground">Meetups & Events</h2>
                  <p className="text-sm text-muted-foreground">Connect with developers IRL and virtually.</p>
                </div>
-               <Button variant="outline" className="gap-2 cursor-pointer">
-                 <Plus className="w-4 h-4" /> Add Meetup
-               </Button>
+               
+               <Dialog>
+                 <DialogTrigger asChild>
+                   <Button variant="outline" className="gap-2 cursor-pointer">
+                     <Plus className="w-4 h-4" /> Add Meetup
+                   </Button>
+                 </DialogTrigger>
+                 <DialogContent className="sm:max-w-[500px]">
+                   <DialogHeader>
+                     <DialogTitle>Submit a Meetup</DialogTitle>
+                     <DialogDescription>
+                       Host a meetup for the OpenClaw community. All submissions are reviewed within 24 hours.
+                     </DialogDescription>
+                   </DialogHeader>
+                   <div className="grid gap-4 py-4">
+                     <div className="space-y-2">
+                       <Label htmlFor="title">Event Title</Label>
+                       <Input id="title" placeholder="e.g. SF OpenClaw Hack Night" />
+                     </div>
+                     <div className="grid grid-cols-2 gap-4">
+                        <div className="space-y-2">
+                         <Label htmlFor="date">Date & Time</Label>
+                         <Input id="date" type="datetime-local" />
+                       </div>
+                       <div className="space-y-2">
+                         <Label htmlFor="location">Location</Label>
+                         <Input id="location" placeholder="City, Country or URL" />
+                       </div>
+                     </div>
+                     <div className="space-y-2">
+                       <Label htmlFor="link">Registration Link</Label>
+                       <Input id="link" placeholder="https://lu.ma/..." />
+                     </div>
+                     <div className="space-y-2">
+                       <Label htmlFor="desc">Description</Label>
+                       <Textarea id="desc" placeholder="What will be discussed? Who should attend?" />
+                     </div>
+                   </div>
+                   <DialogFooter>
+                     <Button type="submit">Submit Event</Button>
+                   </DialogFooter>
+                 </DialogContent>
+               </Dialog>
              </div>
              
              <div className="space-y-4">
@@ -142,9 +201,60 @@ export default function Community() {
                  <h2 className="text-2xl font-display font-bold text-foreground">Offers & Requests</h2>
                  <p className="text-sm text-muted-foreground">The community marketplace for skills, help, and gigs.</p>
                </div>
-               <Button variant="outline" className="gap-2 cursor-pointer">
-                 <Plus className="w-4 h-4" /> Post Listing
-               </Button>
+
+               <Dialog>
+                 <DialogTrigger asChild>
+                   <Button variant="outline" className="gap-2 cursor-pointer">
+                     <Plus className="w-4 h-4" /> Post Listing
+                   </Button>
+                 </DialogTrigger>
+                 <DialogContent className="sm:max-w-[500px]">
+                   <DialogHeader>
+                     <DialogTitle>Create a Listing</DialogTitle>
+                     <DialogDescription>
+                       Post an offer or request to the community board.
+                     </DialogDescription>
+                   </DialogHeader>
+                   <div className="grid gap-4 py-4">
+                     <div className="grid grid-cols-4 gap-4">
+                        <div className="col-span-3 space-y-2">
+                           <Label htmlFor="listing-title">Title</Label>
+                           <Input id="listing-title" placeholder="I need help with..." />
+                        </div>
+                        <div className="col-span-1 space-y-2">
+                           <Label htmlFor="type">Type</Label>
+                           <Select>
+                             <SelectTrigger>
+                               <SelectValue placeholder="Select" />
+                             </SelectTrigger>
+                             <SelectContent>
+                               <SelectItem value="request">Request</SelectItem>
+                               <SelectItem value="offer">Offer</SelectItem>
+                             </SelectContent>
+                           </Select>
+                        </div>
+                     </div>
+                     
+                     <div className="space-y-2">
+                       <Label htmlFor="listing-desc">Description</Label>
+                       <Textarea id="listing-desc" className="h-24" placeholder="Describe what you are offering or looking for..." />
+                     </div>
+                     
+                     <div className="space-y-2">
+                       <Label htmlFor="tags">Tags (comma separated)</Label>
+                       <Input id="tags" placeholder="React, Rust, Security, Job" />
+                     </div>
+
+                     <div className="space-y-2">
+                       <Label htmlFor="contact">Contact Info</Label>
+                       <Input id="contact" placeholder="Email or Discord Handle" />
+                     </div>
+                   </div>
+                   <DialogFooter>
+                     <Button type="submit">Post Listing</Button>
+                   </DialogFooter>
+                 </DialogContent>
+               </Dialog>
              </div>
              
              <div className="space-y-3">
