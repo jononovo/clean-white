@@ -1,6 +1,6 @@
 import { Link, useLocation } from "wouter";
 import { categories } from "@/lib/mock-data";
-import { Search, Shield, Bell, Menu, LayoutGrid, Sun, Moon, Palette } from "lucide-react";
+import { Search, Shield, Bell, Menu, LayoutGrid, Sun, Moon, Palette, PanelLeftOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
@@ -119,11 +119,19 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <main className="lg:pl-64 flex-1 flex flex-col min-h-screen">
         {/* Header */}
         <header className="h-16 border-b border-border bg-card/80 backdrop-blur-sm sticky top-0 z-40 px-6 flex items-center justify-between">
-          <div className="lg:hidden">
+          <div className="lg:hidden flex items-center gap-3">
+             {/* Mobile Logo - Always Top Left */}
+             <Link href="/">
+              <div className="flex items-center gap-2 cursor-pointer mr-2">
+                <img src="/logo_v2.png" alt="SecureClawHub" className="w-8 h-8 object-contain" width="32" height="32" />
+                <h1 className="font-display font-bold text-lg leading-none tracking-tight hidden xs:block">SecureClawHub</h1>
+              </div>
+            </Link>
+
             <Sheet>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon">
-                  <Menu className="w-5 h-5" />
+                <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground">
+                  <PanelLeftOpen className="w-5 h-5" />
                 </Button>
               </SheetTrigger>
               <SheetContent side="left" className="p-0 w-64">
