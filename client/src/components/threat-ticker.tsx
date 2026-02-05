@@ -113,15 +113,9 @@ export function ThreatTicker() {
     <div className="relative rounded-lg border border-border bg-card/30 p-3 transition-colors duration-500 overflow-hidden">
       {/* Header */}
       <div className="flex items-center justify-between mb-2">
-        <div className="flex items-center gap-2">
-           <div className={cn("flex items-center gap-1.5 px-1.5 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider border", threat.bgColor, threat.color, threat.borderColor)}>
-              <div className="w-1 h-1 rounded-full bg-current" />
-              {threat.severity}
-           </div>
-           {threat.cvss && (
-             <span className="text-[9px] text-muted-foreground font-mono">CVSS {threat.cvss}</span>
-           )}
-        </div>
+        <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider">
+           Latest Intercept
+        </span>
         
         {/* Dots */}
         <div className="flex items-center gap-1.5">
@@ -146,7 +140,7 @@ export function ThreatTicker() {
            isTransitioning ? "opacity-0 translate-y-2" : "opacity-100 translate-y-0"
          )}
       >
-        <div className="flex items-start gap-2 mb-1.5">
+        <div className="flex items-start gap-2 mb-2">
            <AlertTriangle className="w-3.5 h-3.5 shrink-0 mt-0.5 text-muted-foreground" />
            <div>
              <h4 className="text-xs font-medium text-foreground leading-tight mb-1">
@@ -159,7 +153,17 @@ export function ThreatTicker() {
            </div>
         </div>
 
-        <div className="flex items-center justify-end pt-1.5 mt-1 border-t border-border/30">
+        <div className="flex items-center justify-between pt-2 mt-1 border-t border-border/30">
+           <div className="flex items-center gap-2">
+              <div className={cn("flex items-center gap-1.5 px-1.5 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider border", threat.bgColor, threat.color, threat.borderColor)}>
+                 <div className="w-1 h-1 rounded-full bg-current" />
+                 {threat.severity}
+              </div>
+              {threat.cvss && (
+                <span className="text-[9px] text-muted-foreground font-mono">CVSS {threat.cvss}</span>
+              )}
+           </div>
+
            <a 
              href={threat.link}
              target="_blank" 
