@@ -142,11 +142,11 @@ export default function Home() {
               </div>
 
               <div className="flex flex-wrap items-center gap-3 pt-2">
-                <Button size="lg" className="h-12 px-5 bg-slate-900 hover:bg-slate-800 text-white border-none font-semibold shadow-lg shadow-slate-900/10 transition-all">
+                <Button size="lg" className="h-12 px-5 bg-slate-900 hover:bg-slate-800 text-white border-none font-semibold shadow-lg shadow-slate-900/10 transition-all cursor-pointer">
                   <Shield className="w-4 h-4 mr-1.5" />
                   Publish a Skill
                 </Button>
-                <Button size="lg" variant="outline" className="h-12 px-5 bg-white border-slate-200 text-slate-700 hover:bg-slate-50 hover:text-slate-900 shadow-sm">
+                <Button size="lg" variant="outline" className="h-12 px-5 bg-white border-slate-200 text-slate-700 hover:bg-slate-50 hover:text-slate-900 shadow-sm cursor-pointer">
                   <Zap className="w-4 h-4 mr-1.5" />
                   1-Click-Setup
                 </Button>
