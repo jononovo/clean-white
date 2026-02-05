@@ -110,7 +110,7 @@ export default function Home() {
               
               <div className="space-y-4">
                 <h1 className="text-4xl md:text-5xl font-display font-bold tracking-tight text-white leading-[1.1]">
-                  The Secure Hub for <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300">OpenClaw</span>
+                  The <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300">SecureClawHub</span>
                 </h1>
                 <p className="text-lg text-slate-300 max-w-md leading-relaxed">
                   The community-driven registry for autonomous agents. Discover audited skills, compare infrastructure providers, and verify security badges in real-time.
@@ -120,7 +120,7 @@ export default function Home() {
               <div className="flex flex-wrap items-center gap-3 pt-2">
                 <Button size="lg" className="h-12 px-6 bg-emerald-500 hover:bg-emerald-600 text-white border-none font-semibold shadow-[0_0_20px_-5px_rgba(16,185,129,0.4)] transition-all">
                   <Search className="w-4 h-4 mr-2" />
-                  Explore Hub
+                  Single-Click-Setup
                 </Button>
                 <Button size="lg" variant="outline" className="h-12 px-6 bg-white/5 border-white/10 text-white hover:bg-white/10 hover:text-white backdrop-blur-sm ring-1 ring-white/5">
                   <Shield className="w-4 h-4 mr-2" />
