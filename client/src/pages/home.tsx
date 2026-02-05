@@ -3,7 +3,7 @@ import { topScorers, latestSubmissions, threats, infrastructureProviders, Listin
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Shield, CheckCircle, Download, ExternalLink, Calendar, Star, AlertTriangle, Terminal, Lock, ChevronRight, Zap, Globe, Server, Activity, ArrowUpRight, Mail, Box, Cloud, Search } from "lucide-react";
+import { Shield, CheckCircle, Download, ExternalLink, Calendar, Star, AlertTriangle, Terminal, Lock, ChevronRight, Zap, Globe, Server, Activity, ArrowUpRight, Mail, Box, Cloud, Search, Newspaper } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
 
@@ -369,6 +369,27 @@ export default function Home() {
                     <Input placeholder="email@domain.com" className="h-8 text-xs bg-white/10 border-white/20 text-white placeholder:text-white/50 focus-visible:ring-white/30" />
                     <Button size="sm" className="w-full h-8 bg-white text-primary hover:bg-white/90 text-xs font-bold dark:bg-slate-900 dark:text-white dark:hover:bg-slate-800">
                        Subscribe
+                    </Button>
+                 </div>
+              </Card>
+
+              {/* Substack */}
+              <Card className="p-5 border-border shadow-sm bg-primary text-primary-foreground relative overflow-hidden group cursor-pointer hover:shadow-md transition-all">
+                 <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-10 -mt-10 blur-2xl pointer-events-none" />
+                 <h4 className="font-bold text-sm mb-2 flex items-center gap-2 relative z-10">
+                    <Newspaper className="w-4 h-4" />
+                    Join our Substack
+                 </h4>
+                 <p className="text-xs text-primary-foreground/80 mb-4 relative z-10">
+                    The Daily Claw
+                 </p>
+                 <div className="space-y-2 relative z-10">
+                    <Button 
+                        size="sm" 
+                        className="w-full h-8 bg-white text-primary hover:bg-white/90 text-xs font-bold dark:bg-slate-900 dark:text-white dark:hover:bg-slate-800"
+                        onClick={() => window.open('https://clawhub.substack.com/', '_blank')}
+                    >
+                       Read Now
                     </Button>
                  </div>
               </Card>
