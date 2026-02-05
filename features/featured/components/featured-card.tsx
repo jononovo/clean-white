@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Trophy, BadgeCheck } from "lucide-react";
+import { Trophy } from "lucide-react";
 
 export type FeaturedType = "hero" | "app" | "skill" | "service";
 
@@ -40,11 +40,6 @@ export const FeaturedOfTheDayCard = ({
               <Trophy className="w-3 h-3" />
               {title}
             </div>
-            {isVerified && (
-              <div className="flex items-center gap-0.5 text-[10px] font-medium text-emerald-600 dark:text-emerald-400">
-                <BadgeCheck className="w-3 h-3" />
-              </div>
-            )}
           </div>
           <h4 className="font-semibold text-sm text-foreground group-hover:text-primary transition-colors mb-0.5 truncate">
             {type === "hero" ? `@${name}` : name}

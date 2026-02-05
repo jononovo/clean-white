@@ -234,7 +234,7 @@ export default function Home() {
             />
             <FeaturedOfTheDayCard
               type="app"
-              title="App of the Day"
+              title="Claw App of the Day"
               name={FEATURED_OF_THE_DAY.app.name}
               description={FEATURED_OF_THE_DAY.app.description}
               href={`/apps/${FEATURED_OF_THE_DAY.app.slug}`}
