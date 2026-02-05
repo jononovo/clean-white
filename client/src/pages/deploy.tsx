@@ -2,13 +2,45 @@ import { Layout } from "@/components/layout";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Check, Sparkles, MessageCircle, Send, Globe, Zap, Server, LifeBuoy, Shield, Lock, Scale, Clock, Terminal, ChevronRight } from "lucide-react";
+import { Check, Sparkles, MessageCircle, Send, Globe, Zap, Server, LifeBuoy, Shield, Lock, Scale, Clock, Terminal, ChevronRight, Loader2, Mail } from "lucide-react";
 import { Link } from "wouter";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/hooks/use-toast";
+import { AuthDrawer } from "@/components/auth-drawer";
 
 export default function Deploy() {
   const [selectedModel, setSelectedModel] = useState("claude");
   const [selectedChannel, setSelectedChannel] = useState("telegram");
   const [timeLeft, setTimeLeft] = useState(11); // "11 servers left"
+  const [isConnecting, setIsConnecting] = useState(false);
+  const [showAuth, setShowAuth] = useState(false);
+  const { toast } = useToast();
+
+  const handleDeploy = () => {
+    setIsConnecting(true);
+    
+    // Simulate connection delay then open auth
+    setTimeout(() => {
+      setIsConnecting(false);
+      setShowAuth(true);
+      toast({
+        title: "Configuration Saved",
+        description: "Please sign in to complete your deployment.",
+      });
+    }, 1500);
+  };
+
+  const handleSupportSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    toast({
+      title: "Message Sent",
+      description: "Our support team will contact you shortly.",
+    });
+    // In a real app, this would close the modal
+  };
 
   // Fake scarcity counter
   useEffect(() => {
@@ -73,15 +105,42 @@ export default function Deploy() {
 
   return (
     <Layout>
+      <AuthDrawer open={showAuth} onOpenChange={setShowAuth} defaultTab="register" />
+      
       <div className="relative min-h-[calc(100vh-8rem)] flex flex-col items-center py-12 px-4">
          {/* Support Link - Custom positioning for this page */}
-         <div className="absolute top-4 right-4 md:top-8 md:right-8 z-50">
-            <Link href="#">
-               <Button variant="ghost" className="text-muted-foreground hover:text-foreground gap-2">
-                 <LifeBuoy className="w-4 h-4" />
-                 Contact support
-               </Button>
-            </Link>
+         <div className="absolute top-4 right-4 md:top-8 md:right-8 z-40">
+            <Dialog>
+              <DialogTrigger asChild>
+                 <Button variant="ghost" className="text-muted-foreground hover:text-foreground gap-2">
+                   <LifeBuoy className="w-4 h-4" />
+                   Contact support
+                 </Button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-[425px]">
+                <DialogHeader>
+                  <DialogTitle>Contact Support</DialogTitle>
+                  <DialogDescription>
+                    Need help with your deployment? Our team is standing by 24/7.
+                  </DialogDescription>
+                </DialogHeader>
+                <form onSubmit={handleSupportSubmit} className="grid gap-4 py-4">
+                  <div className="grid gap-2">
+                    <Label htmlFor="name">Name</Label>
+                    <Input id="name" placeholder="John Doe" required />
+                  </div>
+                  <div className="grid gap-2">
+                    <Label htmlFor="email">Email</Label>
+                    <Input id="email" type="email" placeholder="john@example.com" required />
+                  </div>
+                  <div className="grid gap-2">
+                    <Label htmlFor="message">Message</Label>
+                    <Textarea id="message" placeholder="I need help with..." className="min-h-[100px]" required />
+                  </div>
+                  <Button type="submit" className="w-full">Send Message</Button>
+                </form>
+              </DialogContent>
+            </Dialog>
          </div>
 
          <div className="flex-1 flex flex-col justify-center items-center w-full max-w-5xl">
@@ -167,10 +226,24 @@ export default function Deploy() {
 
                    {/* Auth / Action */}
                    <div className="pt-4 space-y-4">
-                      <Button size="lg" className="w-full h-14 text-base font-bold bg-white text-black hover:bg-white/90 gap-3 shadow-lg hover:shadow-xl transition-all relative overflow-hidden group">
-                         <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 fill-current"><title>Google</title><path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"/></svg>
-                         Sign in with Google
-                         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-black/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+                      <Button 
+                        size="lg" 
+                        onClick={handleDeploy}
+                        disabled={isConnecting}
+                        className="w-full h-14 text-base font-bold bg-white text-black hover:bg-white/90 gap-3 shadow-lg hover:shadow-xl transition-all relative overflow-hidden group"
+                      >
+                         {isConnecting ? (
+                           <>
+                             <Loader2 className="w-5 h-5 animate-spin" />
+                             Configuring Environment...
+                           </>
+                         ) : (
+                           <>
+                             <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 fill-current"><title>Google</title><path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"/></svg>
+                             Sign in with Google
+                             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-black/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+                           </>
+                         )}
                       </Button>
                       
                       <div className="flex flex-col md:flex-row items-center justify-between gap-2 text-xs text-muted-foreground px-1">
