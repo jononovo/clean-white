@@ -8,6 +8,7 @@ import { useState } from "react";
 import { Shield, CheckCircle, Download, ExternalLink, Calendar, Star, AlertTriangle, Terminal, Lock, ChevronRight, Zap, Globe, Server, Activity, ArrowUpRight, Mail, Box, Cloud, Search, Newspaper } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
+import { Link } from "wouter";
 
 const AuditBadge = ({ level }: { level: Listing["auditLevel"] }) => {
   if (level === "none") return <span className="text-[10px] text-muted-foreground font-medium uppercase tracking-wider">Unverified</span>;
@@ -139,29 +140,29 @@ export default function Home() {
       <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
         
         {/* Quick Links Row */}
-        <div className="flex items-center gap-1 text-[11px] text-muted-foreground font-medium mb-2 px-1 relative z-20">
-          <a href="#" className="hover:text-primary transition-colors hover:underline">Developer Hub</a>
+        <div className="hidden md:flex items-center gap-1 text-[11px] text-muted-foreground font-medium mb-2 px-1 relative z-20">
+          <Link href="#" className="hover:text-primary transition-colors hover:underline">Developer Hub</Link>
           <span className="text-border mx-2">|</span>
-          <a href="/news" className="hover:text-primary transition-colors hover:underline">News</a>
+          <Link href="/news" className="hover:text-primary transition-colors hover:underline">News</Link>
           <span className="text-border mx-2">|</span>
-          <a href="#" className="hover:text-primary transition-colors hover:underline">Enterprise</a>
+          <Link href="#" className="hover:text-primary transition-colors hover:underline">Enterprise</Link>
           <span className="text-border mx-2">|</span>
-          <a href="#" className="hover:text-primary transition-colors hover:underline">Jobs</a>
+          <Link href="#" className="hover:text-primary transition-colors hover:underline">Jobs</Link>
           <span className="text-border mx-2">|</span>
-          <a href="/community" className="hover:text-primary transition-colors hover:underline">Community</a>
+          <Link href="/community" className="hover:text-primary transition-colors hover:underline">Community</Link>
           <span className="text-border mx-2">|</span>
           <a href="https://discord.gg/gduUaXMQ" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors hover:underline">Discord</a>
           <span className="text-border mx-2">|</span>
-          <a href="#" className="hover:text-primary transition-colors hover:underline">Feedback</a>
+          <Link href="#" className="hover:text-primary transition-colors hover:underline">Feedback</Link>
           <span className="text-border mx-2">|</span>
-          <a href="#" className="hover:text-primary transition-colors hover:underline">Security Advisory</a>
+          <Link href="#" className="hover:text-primary transition-colors hover:underline">Security Advisory</Link>
           <span className="text-border mx-2">|</span>
-          <a href="/media" className="hover:text-primary transition-colors hover:underline">Media Advisory</a>
+          <Link href="/media" className="hover:text-primary transition-colors hover:underline">Media Advisory</Link>
           <span className="text-border mx-2">|</span>
-          <a href="#" className="hover:text-destructive transition-colors hover:underline flex items-center gap-1 group">
+          <Link href="#" className="hover:text-destructive transition-colors hover:underline flex items-center gap-1 group">
             <AlertTriangle className="w-3 h-3 text-muted-foreground group-hover:text-destructive transition-colors" />
             Submit Threat
-          </a>
+          </Link>
         </div>
 
         {/* Hero Banner */}
@@ -170,7 +171,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-[linear-gradient(currentColor_1px,transparent_1px),linear-gradient(90deg,currentColor_1px,transparent_1px)] bg-[size:24px_24px] opacity-[0.03] text-foreground pointer-events-none" />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent pointer-events-none" />
           
-          <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
             <div className="space-y-6">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-card border border-border text-xs font-medium text-accent-foreground shadow-sm">
@@ -211,7 +212,7 @@ export default function Home() {
             </div>
 
             {/* Right Visual - Stats Card */}
-            <div className="hidden md:block relative">
+            <div className="hidden lg:block relative">
                <div className="absolute -inset-1 bg-gradient-to-r from-emerald-500/10 to-blue-500/10 rounded-xl blur-xl opacity-60" />
                <div className="relative bg-card/80 backdrop-blur-xl border border-border rounded-xl p-6 shadow-xl shadow-muted/50 dark:shadow-none">
                   <div className="flex items-center justify-between mb-6 pb-4 border-b border-border">
@@ -264,6 +265,7 @@ export default function Home() {
                               <span className="font-semibold text-foreground">Latest Intercept:</span> Malicious dependency detected in <span className="font-mono text-muted-foreground">helper-utils-v2</span>.
                            </span>
                         </div>
+
                      </div>
                   </div>
                </div>
