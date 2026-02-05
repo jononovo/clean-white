@@ -48,7 +48,7 @@ const FEATURED_OF_THE_DAY = {
   },
 };
 
-const FeaturedCard = ({ 
+const FeaturedOfTheDayCard = ({ 
   type, 
   title, 
   name, 
@@ -369,7 +369,7 @@ export default function Home() {
             </h3>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <FeaturedCard
+            <FeaturedOfTheDayCard
               type="provider"
               title="Provider of the Day"
               name={FEATURED_OF_THE_DAY.provider.handle}
@@ -377,7 +377,7 @@ export default function Home() {
               href={`/@${FEATURED_OF_THE_DAY.provider.handle}`}
               isVerified={FEATURED_OF_THE_DAY.provider.isVerified}
             />
-            <FeaturedCard
+            <FeaturedOfTheDayCard
               type="app"
               title="App of the Day"
               name={FEATURED_OF_THE_DAY.app.name}
@@ -385,7 +385,7 @@ export default function Home() {
               href={`/apps/${FEATURED_OF_THE_DAY.app.slug}`}
               isVerified={FEATURED_OF_THE_DAY.app.isVerified}
             />
-            <FeaturedCard
+            <FeaturedOfTheDayCard
               type="skill"
               title="Skill of the Day"
               name={FEATURED_OF_THE_DAY.skill.name}
