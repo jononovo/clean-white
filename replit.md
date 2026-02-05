@@ -28,6 +28,29 @@ Preferred communication style: Simple, everyday language.
   - `proxy.ts` - Route protection middleware
   - `components/auth-drawer.tsx` - Login UI component
 
+## Providers & Services Marketplace (Added: February 2026)
+
+**Unified Provider Model:**
+- Providers are separate from users (supports future team/multi-user management)
+- **GitHub login**: Auto-creates provider with GitHub username as handle
+- **Google/Email login**: User chooses handle when first publishing skill or listing service
+- URL pattern: `/@handle` for provider profile, `/@handle/skill-slug` for skills
+
+**Database Tables:**
+- `providers`: id, userId, handle (unique), displayName, description, avatarUrl, location, website, contactEmail, isVerified
+- `services`: id, providerId, name, description, category, pricingType (one_time/monthly/contact), priceMin, priceMax, isActive
+- `skills.providerId`: Links skills to providers
+
+**Service Categories:**
+- setup_installation, managed_hosting, consulting, training, partnerships, finance_tax
+
+**Key Files:**
+- `app/api/providers/route.ts` - Provider CRUD
+- `app/api/providers/check-handle/route.ts` - Handle availability check
+- `app/api/services/route.ts` - Service CRUD
+- `components/service-registration-drawer.tsx` - Service listing UI
+- `lib/db.ts` - Database helpers for auth/provider management
+
 ## Tech Stack & Versions (Updated: February 2026)
 
 ### Runtime
