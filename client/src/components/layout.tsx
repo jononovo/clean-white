@@ -1,6 +1,6 @@
 import { Link, useLocation } from "wouter";
 import { categories } from "@/lib/mock-data";
-import { Search, Shield, Bell, Menu, LayoutGrid, Sun, Moon, Palette, PanelLeftOpen, PanelLeftClose, LogIn } from "lucide-react";
+import { Search, Shield, Bell, Menu, LayoutGrid, Sun, Moon, Palette, PanelLeftOpen, PanelLeftClose, LogIn, AlertTriangle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
@@ -292,6 +292,31 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
         {/* Page Content */}
         <div className="flex-1 p-6 md:p-8 max-w-7xl mx-auto w-full">
+           {/* Quick Links Row */}
+            <div className="hidden md:flex items-center gap-1 text-[11px] text-muted-foreground font-medium mb-6 px-1 relative z-20 overflow-x-auto">
+              <Link href="#" className="hover:text-primary transition-colors hover:underline whitespace-nowrap">Developer Hub</Link>
+              <span className="text-border mx-2">|</span>
+              <Link href="/news" className="hover:text-primary transition-colors hover:underline whitespace-nowrap">News</Link>
+              <span className="text-border mx-2">|</span>
+              <Link href="#" className="hover:text-primary transition-colors hover:underline whitespace-nowrap">Enterprise</Link>
+              <span className="text-border mx-2">|</span>
+              <Link href="#" className="hover:text-primary transition-colors hover:underline whitespace-nowrap">Jobs</Link>
+              <span className="text-border mx-2">|</span>
+              <Link href="/community" className="hover:text-primary transition-colors hover:underline whitespace-nowrap">Community</Link>
+              <span className="text-border mx-2">|</span>
+              <a href="https://discord.gg/gduUaXMQ" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors hover:underline whitespace-nowrap">Discord</a>
+              <span className="text-border mx-2">|</span>
+              <Link href="#" className="hover:text-primary transition-colors hover:underline whitespace-nowrap">Feedback</Link>
+              <span className="text-border mx-2">|</span>
+              <Link href="#" className="hover:text-primary transition-colors hover:underline whitespace-nowrap">Security Advisory</Link>
+              <span className="text-border mx-2">|</span>
+              <Link href="/media" className="hover:text-primary transition-colors hover:underline whitespace-nowrap">Media Advisory</Link>
+              <span className="text-border mx-2">|</span>
+              <Link href="#" className="hover:text-destructive transition-colors hover:underline flex items-center gap-1 group whitespace-nowrap">
+                <AlertTriangle className="w-3 h-3 text-muted-foreground group-hover:text-destructive transition-colors" />
+                Submit Threat
+              </Link>
+            </div>
           {children}
         </div>
         

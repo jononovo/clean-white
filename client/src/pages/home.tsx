@@ -139,32 +139,6 @@ export default function Home() {
 
       <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
         
-        {/* Quick Links Row */}
-        <div className="hidden md:flex items-center gap-1 text-[11px] text-muted-foreground font-medium mb-2 px-1 relative z-20">
-          <Link href="#" className="hover:text-primary transition-colors hover:underline">Developer Hub</Link>
-          <span className="text-border mx-2">|</span>
-          <Link href="/news" className="hover:text-primary transition-colors hover:underline">News</Link>
-          <span className="text-border mx-2">|</span>
-          <Link href="#" className="hover:text-primary transition-colors hover:underline">Enterprise</Link>
-          <span className="text-border mx-2">|</span>
-          <Link href="#" className="hover:text-primary transition-colors hover:underline">Jobs</Link>
-          <span className="text-border mx-2">|</span>
-          <Link href="/community" className="hover:text-primary transition-colors hover:underline">Community</Link>
-          <span className="text-border mx-2">|</span>
-          <a href="https://discord.gg/gduUaXMQ" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors hover:underline">Discord</a>
-          <span className="text-border mx-2">|</span>
-          <Link href="#" className="hover:text-primary transition-colors hover:underline">Feedback</Link>
-          <span className="text-border mx-2">|</span>
-          <Link href="#" className="hover:text-primary transition-colors hover:underline">Security Advisory</Link>
-          <span className="text-border mx-2">|</span>
-          <Link href="/media" className="hover:text-primary transition-colors hover:underline">Media Advisory</Link>
-          <span className="text-border mx-2">|</span>
-          <Link href="#" className="hover:text-destructive transition-colors hover:underline flex items-center gap-1 group">
-            <AlertTriangle className="w-3 h-3 text-muted-foreground group-hover:text-destructive transition-colors" />
-            Submit Threat
-          </Link>
-        </div>
-
         {/* Hero Banner */}
         <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-background via-muted to-accent/20 border border-border ring-1 ring-white/10 dark:ring-white/5 transition-colors duration-300 p-8 md:p-12 shadow-xl shadow-muted/60 dark:shadow-none">
           {/* Background Pattern */}
