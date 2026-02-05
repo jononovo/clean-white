@@ -29,13 +29,14 @@ const FEATURED_OF_THE_DAY = {
     handle: "steipete",
     displayName: "Peter Steinberger",
     description: "Creator of OpenClaw. Austrian developer who sold PSPDFKit for ~$100M. Building the future of autonomous AI agents.",
-    avatarUrl: "https://avatars.githubusercontent.com/u/58493",
+    imageUrl: "/images/featured/provider-steipete.png",
     isVerified: true,
   },
   app: {
     slug: "openclaw-desktop",
     name: "OpenClaw Desktop",
     description: "The AI assistant that actually does things. Control your PC via WhatsApp, Telegram, or Discord with 145k+ GitHub stars.",
+    imageUrl: "/images/featured/app-openclaw.png",
     author: "openclaw",
     isVerified: true,
   },
@@ -43,7 +44,17 @@ const FEATURED_OF_THE_DAY = {
     slug: "browser-automation",
     name: "Browser Automation",
     description: "Playwright-based browser control for web scraping, form filling, and automated navigation. One of the most popular skills.",
+    imageUrl: "/images/featured/skill-browser-automation.png",
     author: "steipete",
+    isVerified: true,
+  },
+  service: {
+    name: "xCloud Managed Hosting",
+    provider: "xCloud",
+    providerHandle: "xcloud",
+    description: "One-click managed OpenClaw hosting. Live in under 5 minutes with 24/7 support.",
+    imageUrl: "/images/featured/service-xcloud.png",
+    website: "https://xcloud.host/openclaw-hosting",
     isVerified: true,
   },
 };
@@ -54,33 +65,47 @@ const FeaturedOfTheDayCard = ({
   name, 
   description, 
   href, 
+  imageUrl,
   isVerified 
 }: { 
-  type: "provider" | "app" | "skill";
+  type: "provider" | "app" | "skill" | "service";
   title: string;
   name: string;
   description: string;
   href: string;
+  imageUrl?: string;
   isVerified: boolean;
 }) => (
   <Link href={href} className="group block">
     <div className="p-4 rounded-xl bg-gradient-to-b from-card to-card/50 border border-border hover:border-primary/40 hover:shadow-lg transition-all duration-200 h-full">
-      <div className="flex items-center gap-2 mb-2">
-        <div className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400">
-          <Trophy className="w-3 h-3" />
-          {title}
-        </div>
-        {isVerified && (
-          <div className="flex items-center gap-1 text-[10px] font-medium text-emerald-600 dark:text-emerald-400">
-            <BadgeCheck className="w-3.5 h-3.5" />
-            Verified
+      <div className="flex gap-3">
+        {imageUrl && (
+          <div className="flex-shrink-0">
+            <img 
+              src={imageUrl} 
+              alt={name}
+              className="w-12 h-12 rounded-lg object-cover border border-border/50"
+            />
           </div>
         )}
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-2 mb-1">
+            <div className="flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400">
+              <Trophy className="w-3 h-3" />
+              {title}
+            </div>
+            {isVerified && (
+              <div className="flex items-center gap-0.5 text-[10px] font-medium text-emerald-600 dark:text-emerald-400">
+                <BadgeCheck className="w-3 h-3" />
+              </div>
+            )}
+          </div>
+          <h4 className="font-semibold text-sm text-foreground group-hover:text-primary transition-colors mb-0.5 truncate">
+            {type === "provider" ? `@${name}` : name}
+          </h4>
+          <p className="text-xs text-muted-foreground line-clamp-2">{description}</p>
+        </div>
       </div>
-      <h4 className="font-semibold text-sm text-foreground group-hover:text-primary transition-colors mb-1">
-        {type === "provider" ? `@${name}` : name}
-      </h4>
-      <p className="text-xs text-muted-foreground line-clamp-2">{description}</p>
     </div>
   </Link>
 );
@@ -368,13 +393,14 @@ export default function Home() {
               Featured Today
             </h3>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <FeaturedOfTheDayCard
               type="provider"
               title="Provider of the Day"
               name={FEATURED_OF_THE_DAY.provider.handle}
               description={FEATURED_OF_THE_DAY.provider.description}
               href={`/@${FEATURED_OF_THE_DAY.provider.handle}`}
+              imageUrl={FEATURED_OF_THE_DAY.provider.imageUrl}
               isVerified={FEATURED_OF_THE_DAY.provider.isVerified}
             />
             <FeaturedOfTheDayCard
@@ -383,6 +409,7 @@ export default function Home() {
               name={FEATURED_OF_THE_DAY.app.name}
               description={FEATURED_OF_THE_DAY.app.description}
               href={`/apps/${FEATURED_OF_THE_DAY.app.slug}`}
+              imageUrl={FEATURED_OF_THE_DAY.app.imageUrl}
               isVerified={FEATURED_OF_THE_DAY.app.isVerified}
             />
             <FeaturedOfTheDayCard
@@ -391,7 +418,17 @@ export default function Home() {
               name={FEATURED_OF_THE_DAY.skill.name}
               description={FEATURED_OF_THE_DAY.skill.description}
               href={`/@${FEATURED_OF_THE_DAY.skill.author}/${FEATURED_OF_THE_DAY.skill.slug}`}
+              imageUrl={FEATURED_OF_THE_DAY.skill.imageUrl}
               isVerified={FEATURED_OF_THE_DAY.skill.isVerified}
+            />
+            <FeaturedOfTheDayCard
+              type="service"
+              title="Service of the Day"
+              name={FEATURED_OF_THE_DAY.service.name}
+              description={FEATURED_OF_THE_DAY.service.description}
+              href={FEATURED_OF_THE_DAY.service.website}
+              imageUrl={FEATURED_OF_THE_DAY.service.imageUrl}
+              isVerified={FEATURED_OF_THE_DAY.service.isVerified}
             />
           </div>
         </div>
