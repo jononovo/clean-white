@@ -144,7 +144,7 @@ export default function Home() {
                 </Button>
                 <Button size="lg" variant="outline" className="h-12 px-5 bg-white border-slate-200 text-slate-700 hover:bg-slate-50 hover:text-slate-900 shadow-sm">
                   <Shield className="w-4 h-4 mr-1.5" />
-                  Submit Skill
+                  Publish a Skill
                 </Button>
               </div>
               
