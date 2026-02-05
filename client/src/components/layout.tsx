@@ -217,10 +217,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
           </div>
 
           <div className="flex items-center gap-4">
-             <Button variant="ghost" size="icon" className="text-muted-foreground cursor-pointer">
-               <Bell className="w-4 h-4" />
-             </Button>
-             
              <DropdownMenu>
                <DropdownMenuTrigger asChild>
                  <Button variant="ghost" size="icon" className="text-muted-foreground cursor-pointer hover:bg-muted">
