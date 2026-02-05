@@ -380,3 +380,98 @@ export const communityListings: CommunityListing[] = [
     tags: ["Help Wanted", "Barter"]
   }
 ];
+
+export type MediaExpert = {
+  id: string;
+  name: string;
+  role: string;
+  organization: string;
+  bio: string;
+  expertise: string[];
+  location: string;
+  image?: string;
+  type: "recommended" | "volunteer";
+};
+
+export const mediaExperts: MediaExpert[] = [
+  {
+    id: "me-1",
+    name: "Dr. Sarah Chen",
+    role: "Founder & CEO",
+    organization: "SecureClawHub",
+    bio: "Former CISO at TechGiant. Pioneer in autonomous agent security frameworks. Ph.D. in AI Safety.",
+    expertise: ["AI Security", "Enterprise Risk", "Agent Governance"],
+    location: "San Francisco, CA",
+    type: "recommended"
+  },
+  {
+    id: "me-2",
+    name: "Alex Rivera",
+    role: "Creator",
+    organization: "OpenClaw",
+    bio: "The original architect of the OpenClaw protocol. Advocates for open, secure, and decentralized agent networks.",
+    expertise: ["OpenClaw Protocol", "Decentralized Systems", "Open Source"],
+    location: "Berlin, Germany",
+    type: "recommended"
+  },
+  {
+    id: "me-3",
+    name: "James T. Kirk",
+    role: "Head of Threat Research",
+    organization: "SecureClawHub",
+    bio: "Leads the team responsible for the OpenClaw Threat Index. Specialized in adversarial agent attacks.",
+    expertise: ["Threat Intelligence", "Malware Analysis", "Red Teaming"],
+    location: "London, UK",
+    type: "recommended"
+  },
+  {
+    id: "me-4",
+    name: "Priya Patel",
+    role: "VP of Engineering",
+    organization: "AgentScale",
+    bio: "Built the largest hosted OpenClaw infrastructure. Expert in scaling agent swarms securely.",
+    expertise: ["Infrastructure", "Scalability", "Cloud Security"],
+    location: "New York, NY",
+    type: "recommended"
+  },
+  {
+    id: "me-5",
+    name: "Marcus Johnson",
+    role: "Director of Policy",
+    organization: "AI Safety Institute",
+    bio: "Bridging the gap between technical reality and regulatory policy for autonomous systems.",
+    expertise: ["AI Regulation", "Policy", "Ethics"],
+    location: "Washington, DC",
+    type: "recommended"
+  },
+  {
+    id: "mv-1",
+    name: "Davide Russo",
+    role: "Senior Developer",
+    organization: "Freelance",
+    bio: "I build trading bots and love talking about DeFi agents.",
+    expertise: ["DeFi", "Rust", "Trading"],
+    location: "Milan, Italy",
+    type: "volunteer"
+  },
+  {
+    id: "mv-2",
+    name: "Jenny Wu",
+    role: "Student Researcher",
+    organization: "MIT",
+    bio: "Researching multi-agent collaboration patterns.",
+    expertise: ["Academic Research", "Multi-Agent Systems"],
+    location: "Boston, MA",
+    type: "volunteer"
+  },
+  {
+    id: "mv-3",
+    name: "Lars Jensen",
+    role: "CTO",
+    organization: "NordicAI",
+    bio: "Early adopter of OpenClaw for enterprise automation.",
+    expertise: ["Enterprise Automation", "GDPR"],
+    location: "Copenhagen, Denmark",
+    type: "volunteer"
+  }
+];
