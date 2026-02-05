@@ -194,27 +194,50 @@
   [data-theme="warm"].dark body, [data-theme="warm"] .dark body {
     background-image: radial-gradient(circle at 50% 0%, hsl(30 15% 11%) 0%, hsl(30 15% 9%) 40%, hsl(30 15% 9%) 100%);
   }
+  /* ===========================================
+     TYPOGRAPHY SCALE
+     Use semantic HTML tags for consistent sizing.
+     =========================================== */
+  
+  /* h1 - 30px bold: Page titles, hero headings, main section headers */
   h1 {
     @apply font-display tracking-tight text-3xl font-bold;
   }
+  
+  /* h2 - 24px bold: Section headers, modal titles, major subsections */
   h2 {
     @apply font-display tracking-tight text-2xl font-bold;
   }
+  
+  /* h3 - 20px semibold: Card titles (large), panel headers, sidebar sections */
   h3 {
     @apply font-display tracking-tight text-xl font-semibold;
   }
+  
+  /* h4 - 18px semibold: Card titles (standard), list item headers, table headers */
   h4 {
     @apply font-display tracking-tight text-lg font-semibold;
   }
+  
+  /* h5 - 16px medium: Card subtitles, form labels, navigation items */
   h5 {
     @apply font-display tracking-tight text-base font-medium;
   }
+  
+  /* h6 - 14px medium: Meta text headers, badges, small labels, timestamps */
   h6 {
     @apply font-display tracking-tight text-sm font-medium;
   }
+  
+  /* p - 16px regular: Body text, descriptions, form help text */
   p {
     @apply text-base;
   }
+  
+  /* Additional text utilities:
+     - text-sm (14px): Secondary body text, card descriptions, subcategory links
+     - text-xs (12px): Captions, footnotes, very small labels
+  */
 
   ::-webkit-scrollbar {
     width: 6px;
