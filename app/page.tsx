@@ -16,12 +16,12 @@ import { Input } from "@/components/ui/input";
 import Link from "next/link";
 
 const SERVICE_CATEGORIES = [
-  { id: "setup_installation", label: "Setup & Install", icon: Wrench, color: "text-blue-500" },
-  { id: "managed_hosting", label: "Managed Hosting", icon: Database, color: "text-purple-500" },
-  { id: "consulting", label: "Consulting", icon: Users, color: "text-emerald-500" },
-  { id: "training", label: "Training", icon: GraduationCap, color: "text-amber-500" },
-  { id: "partnerships", label: "Partnerships", icon: Handshake, color: "text-pink-500" },
-  { id: "finance_tax", label: "Finance & Tax", icon: Receipt, color: "text-slate-500" },
+  { id: "setup_installation", label: "Setup & Install", icon: Wrench },
+  { id: "managed_hosting", label: "Managed Hosting", icon: Database },
+  { id: "consulting", label: "Consulting", icon: Users },
+  { id: "training", label: "Training", icon: GraduationCap },
+  { id: "partnerships", label: "Partnerships", icon: Handshake },
+  { id: "finance_tax", label: "Finance & Tax", icon: Receipt },
 ];
 
 const AuditBadge = ({ level }: { level: Listing["auditLevel"] }) => {
@@ -288,10 +288,10 @@ export default function Home() {
                   className="group flex flex-col items-center gap-2 p-4 rounded-xl bg-gradient-to-b from-card to-card/50 border border-border hover:border-primary/40 hover:shadow-md transition-all duration-200 cursor-pointer"
                   data-testid={`service-category-${cat.id}`}
                 >
-                  <div className={cn("p-2.5 rounded-lg bg-muted/50 group-hover:bg-primary/10 transition-colors", cat.color)}>
-                    <Icon className="w-5 h-5" />
+                  <div className="p-2.5 rounded-lg bg-muted/50 group-hover:bg-primary/10 transition-colors">
+                    <Icon className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
                   </div>
-                  <span className="text-xs font-medium text-center text-foreground/80 group-hover:text-foreground">
+                  <span className="text-xs font-medium text-center text-foreground/80 group-hover:text-foreground transition-colors">
                     {cat.label}
                   </span>
                 </button>
