@@ -170,7 +170,7 @@ export default function Home() {
                <div className="relative bg-white/80 backdrop-blur-xl border border-white/60 rounded-xl p-6 shadow-xl shadow-slate-200/50">
                   <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-100">
                     <div className="flex items-center gap-3">
-                       <Activity className="w-5 h-5 text-emerald-600" />
+                       <Activity className="w-5 h-5 text-slate-600" />
                        <span className="font-mono font-bold text-sm text-slate-800">LIVE SECURITY FEED</span>
                     </div>
                   </div>
@@ -178,7 +178,7 @@ export default function Home() {
                   <div className="space-y-5">
                      <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
-                           <div className="p-2 rounded bg-amber-50 text-amber-600 border border-amber-100">
+                           <div className="p-2 rounded bg-slate-100 text-slate-600 border border-slate-200">
                              <AlertTriangle className="w-4 h-4" />
                            </div>
                            <div>
@@ -188,7 +188,7 @@ export default function Home() {
                         </div>
                         <div className="h-8 w-px bg-slate-200" />
                         <div className="flex items-center gap-3">
-                           <div className="p-2 rounded bg-blue-50 text-blue-600 border border-blue-100">
+                           <div className="p-2 rounded bg-slate-100 text-slate-600 border border-slate-200">
                              <Terminal className="w-4 h-4" />
                            </div>
                            <div>
@@ -213,7 +213,7 @@ export default function Home() {
                         </div>
 
                         <div className="flex items-start gap-2 text-[10px] text-slate-500 bg-white p-2 rounded border border-slate-100">
-                           <Shield className="w-3 h-3 text-emerald-500 mt-0.5 shrink-0" />
+                           <Shield className="w-3 h-3 text-slate-500 mt-0.5 shrink-0" />
                            <span className="leading-tight">
                               <span className="font-semibold text-slate-700">Latest Intercept:</span> Malicious dependency detected in <span className="font-mono text-slate-600">helper-utils-v2</span>.
                            </span>
