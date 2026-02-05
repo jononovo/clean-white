@@ -21,12 +21,29 @@ export function Layout({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
   const [authOpen, setAuthOpen] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const [theme, setTheme] = useState<{ style: "slate" | "warm"; mode: "light" | "dark" }>({
-    style: "warm",
-    mode: "dark", 
+  const [theme, setTheme] = useState<{ style: "slate" | "warm"; mode: "light" | "dark" }>(() => {
+    // Try to restore from localStorage
+    if (typeof window !== "undefined") {
+      try {
+        const saved = localStorage.getItem("theme-preference");
+        if (saved) {
+          return JSON.parse(saved);
+        }
+      } catch (e) {
+        console.error("Failed to parse theme preference", e);
+      }
+    }
+    // Default
+    return {
+      style: "warm",
+      mode: "dark", 
+    };
   });
 
   useEffect(() => {
+    // Save to localStorage
+    localStorage.setItem("theme-preference", JSON.stringify(theme));
+
     // Handle Mode (Light/Dark)
     if (theme.mode === "dark") {
       document.documentElement.classList.add("dark");

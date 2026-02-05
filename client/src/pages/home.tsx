@@ -8,6 +8,7 @@ import { useState } from "react";
 import { Shield, CheckCircle, Download, ExternalLink, Calendar, Star, AlertTriangle, Terminal, Lock, ChevronRight, Zap, Globe, Server, Activity, ArrowUpRight, Mail, Box, Cloud, Search, Newspaper } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
+import { Link } from "wouter";
 
 const AuditBadge = ({ level }: { level: Listing["auditLevel"] }) => {
   if (level === "none") return <span className="text-[10px] text-muted-foreground font-medium uppercase tracking-wider">Unverified</span>;
@@ -140,28 +141,28 @@ export default function Home() {
         
         {/* Quick Links Row */}
         <div className="hidden md:flex items-center gap-1 text-[11px] text-muted-foreground font-medium mb-2 px-1 relative z-20">
-          <a href="#" className="hover:text-primary transition-colors hover:underline">Developer Hub</a>
+          <Link href="#" className="hover:text-primary transition-colors hover:underline">Developer Hub</Link>
           <span className="text-border mx-2">|</span>
-          <a href="/news" className="hover:text-primary transition-colors hover:underline">News</a>
+          <Link href="/news" className="hover:text-primary transition-colors hover:underline">News</Link>
           <span className="text-border mx-2">|</span>
-          <a href="#" className="hover:text-primary transition-colors hover:underline">Enterprise</a>
+          <Link href="#" className="hover:text-primary transition-colors hover:underline">Enterprise</Link>
           <span className="text-border mx-2">|</span>
-          <a href="#" className="hover:text-primary transition-colors hover:underline">Jobs</a>
+          <Link href="#" className="hover:text-primary transition-colors hover:underline">Jobs</Link>
           <span className="text-border mx-2">|</span>
-          <a href="/community" className="hover:text-primary transition-colors hover:underline">Community</a>
+          <Link href="/community" className="hover:text-primary transition-colors hover:underline">Community</Link>
           <span className="text-border mx-2">|</span>
           <a href="https://discord.gg/gduUaXMQ" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors hover:underline">Discord</a>
           <span className="text-border mx-2">|</span>
-          <a href="#" className="hover:text-primary transition-colors hover:underline">Feedback</a>
+          <Link href="#" className="hover:text-primary transition-colors hover:underline">Feedback</Link>
           <span className="text-border mx-2">|</span>
-          <a href="#" className="hover:text-primary transition-colors hover:underline">Security Advisory</a>
+          <Link href="#" className="hover:text-primary transition-colors hover:underline">Security Advisory</Link>
           <span className="text-border mx-2">|</span>
-          <a href="/media" className="hover:text-primary transition-colors hover:underline">Media Advisory</a>
+          <Link href="/media" className="hover:text-primary transition-colors hover:underline">Media Advisory</Link>
           <span className="text-border mx-2">|</span>
-          <a href="#" className="hover:text-destructive transition-colors hover:underline flex items-center gap-1 group">
+          <Link href="#" className="hover:text-destructive transition-colors hover:underline flex items-center gap-1 group">
             <AlertTriangle className="w-3 h-3 text-muted-foreground group-hover:text-destructive transition-colors" />
             Submit Threat
-          </a>
+          </Link>
         </div>
 
         {/* Hero Banner */}
