@@ -265,16 +265,6 @@ export default function Home() {
                            </span>
                         </div>
 
-                        {/* New Metric: Skills Audited/Scored */}
-                        <div className="flex items-center justify-between bg-card p-3 rounded border border-border">
-                            <div className="flex items-center gap-2">
-                                <div>
-                                    <div className="text-xs font-bold text-foreground">Skills Audited</div>
-                                    <div className="text-[10px] text-muted-foreground">Verified & scored</div>
-                                </div>
-                            </div>
-                            <div className="text-xl font-mono font-bold text-foreground">12,402</div>
-                        </div>
                      </div>
                   </div>
                </div>
