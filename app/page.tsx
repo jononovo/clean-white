@@ -7,11 +7,22 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { FullPageModal, ConfirmationModal } from "@/components/modals";
 import { ThreatTicker } from "@/components/threat-ticker";
+import { AuthDrawer } from "@/components/auth-drawer";
+import { ServiceRegistrationDrawer } from "@/components/service-registration-drawer";
 import { useState } from "react";
-import { Shield, CheckCircle, Download, ExternalLink, Calendar, Star, AlertTriangle, Terminal, Lock, ChevronRight, Zap, Globe, Server, Activity, ArrowUpRight, Mail, Box, Cloud, Search, Newspaper } from "lucide-react";
+import { Shield, CheckCircle, Download, ExternalLink, Calendar, Star, AlertTriangle, Terminal, Lock, ChevronRight, Zap, Globe, Server, Activity, ArrowUpRight, Mail, Box, Cloud, Search, Newspaper, Wrench, Database, Users, GraduationCap, Handshake, Receipt } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
+
+const SERVICE_CATEGORIES = [
+  { id: "setup_installation", label: "Setup & Install", icon: Wrench, color: "text-blue-500" },
+  { id: "managed_hosting", label: "Managed Hosting", icon: Database, color: "text-purple-500" },
+  { id: "consulting", label: "Consulting", icon: Users, color: "text-emerald-500" },
+  { id: "training", label: "Training", icon: GraduationCap, color: "text-amber-500" },
+  { id: "partnerships", label: "Partnerships", icon: Handshake, color: "text-pink-500" },
+  { id: "finance_tax", label: "Finance & Tax", icon: Receipt, color: "text-slate-500" },
+];
 
 const AuditBadge = ({ level }: { level: Listing["auditLevel"] }) => {
   if (level === "none") return <span className="text-[10px] text-muted-foreground font-medium uppercase tracking-wider">Unverified</span>;
@@ -96,6 +107,14 @@ const FeaturedCard = ({ item, color = "emerald" }: { item: Listing, color?: "eme
 export default function Home() {
   const [showFullModal, setShowFullModal] = useState(false);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const [showAuthDrawer, setShowAuthDrawer] = useState(false);
+  const [showServiceDrawer, setShowServiceDrawer] = useState(false);
+  const [selectedServiceCategory, setSelectedServiceCategory] = useState<string | undefined>();
+
+  const handleServiceCategoryClick = (categoryId: string) => {
+    setSelectedServiceCategory(categoryId);
+    setShowServiceDrawer(true);
+  };
 
   return (
     <Layout>
@@ -136,6 +155,14 @@ export default function Home() {
         confirmLabel="Yes, Report Threat"
         variant="destructive"
         onConfirm={() => console.log("Reported!")}
+      />
+
+      <AuthDrawer open={showAuthDrawer} onOpenChange={setShowAuthDrawer} />
+      <ServiceRegistrationDrawer
+        open={showServiceDrawer}
+        onOpenChange={setShowServiceDrawer}
+        defaultCategory={selectedServiceCategory}
+        onLoginRequired={() => setShowAuthDrawer(true)}
       />
 
       <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
@@ -238,6 +265,38 @@ export default function Home() {
                   </div>
                </div>
             </div>
+          </div>
+        </div>
+
+        <div className="py-6 border-b border-border/40">
+          <div className="flex items-center justify-between mb-4 px-1">
+            <h3 className="text-sm font-bold uppercase tracking-wider flex items-center gap-2 text-foreground/80">
+              <Handshake className="w-3.5 h-3.5 text-muted-foreground" />
+              Services Marketplace
+            </h3>
+            <span className="text-[10px] font-medium text-primary hover:underline cursor-pointer">
+              Browse All Services
+            </span>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
+            {SERVICE_CATEGORIES.map((cat) => {
+              const Icon = cat.icon;
+              return (
+                <button
+                  key={cat.id}
+                  onClick={() => handleServiceCategoryClick(cat.id)}
+                  className="group flex flex-col items-center gap-2 p-4 rounded-xl bg-gradient-to-b from-card to-card/50 border border-border hover:border-primary/40 hover:shadow-md transition-all duration-200 cursor-pointer"
+                  data-testid={`service-category-${cat.id}`}
+                >
+                  <div className={cn("p-2.5 rounded-lg bg-muted/50 group-hover:bg-primary/10 transition-colors", cat.color)}>
+                    <Icon className="w-5 h-5" />
+                  </div>
+                  <span className="text-xs font-medium text-center text-foreground/80 group-hover:text-foreground">
+                    {cat.label}
+                  </span>
+                </button>
+              );
+            })}
           </div>
         </div>
 
