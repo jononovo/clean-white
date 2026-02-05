@@ -220,6 +220,9 @@ export default function Home() {
             <h3 className="text-sm font-bold uppercase tracking-wider flex items-center gap-2 text-foreground/80">
               <Sparkles className="w-3.5 h-3.5 text-amber-500" />
               Featured Today
+              <span className="text-[11px] font-medium normal-case tracking-normal text-muted-foreground/60">
+                | {new Date().toLocaleDateString("en-US", { day: "2-digit", month: "short", year: "numeric", timeZone: "America/New_York" })}
+              </span>
             </h3>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">

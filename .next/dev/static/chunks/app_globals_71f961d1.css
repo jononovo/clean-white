@@ -207,6 +207,7 @@
     --font-weight-semibold: 600;
     --font-weight-bold: 700;
     --tracking-tight: -.025em;
+    --tracking-normal: 0em;
     --tracking-wide: .025em;
     --tracking-wider: .05em;
     --tracking-widest: .1em;
@@ -4276,6 +4277,11 @@
     font-weight: var(--font-weight-semibold);
   }
 
+  .tracking-normal {
+    --tw-tracking: var(--tracking-normal);
+    letter-spacing: var(--tracking-normal);
+  }
+
   .tracking-tight {
     --tw-tracking: var(--tracking-tight);
     letter-spacing: var(--tracking-tight);
@@ -4475,6 +4481,16 @@
   @supports (color: color-mix(in lab, red, red)) {
     .text-muted-foreground\/50 {
       color: color-mix(in oklab, hsl(var(--muted-foreground)) 50%, transparent);
+    }
+  }
+
+  .text-muted-foreground\/60 {
+    color: hsl(var(--muted-foreground));
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .text-muted-foreground\/60 {
+      color: color-mix(in oklab, hsl(var(--muted-foreground)) 60%, transparent);
     }
   }
 
