@@ -94,6 +94,22 @@ export default function Home() {
     <Layout>
       <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
         
+        {/* Quick Links Row */}
+        <div className="flex items-center gap-1 text-[11px] text-muted-foreground font-medium -mb-4 px-1">
+          <a href="#" className="hover:text-primary transition-colors hover:underline">Developer Hub</a>
+          <span className="text-border mx-2">|</span>
+          <a href="#" className="hover:text-primary transition-colors hover:underline">Community</a>
+          <span className="text-border mx-2">|</span>
+          <a href="#" className="hover:text-primary transition-colors hover:underline">Discord</a>
+          <span className="text-border mx-2">|</span>
+          <a href="#" className="hover:text-primary transition-colors hover:underline">Feedback</a>
+          <span className="text-border mx-2">|</span>
+          <a href="#" className="text-destructive/80 hover:text-destructive transition-colors hover:underline flex items-center gap-1">
+            <AlertTriangle className="w-3 h-3" />
+            Submit Threat Alert
+          </a>
+        </div>
+
         {/* Hero Banner */}
         <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-white via-slate-50 to-emerald-50/50 text-slate-900 p-8 md:p-12 shadow-xl shadow-slate-200/60 border border-slate-200/60 ring-1 ring-white/60">
           {/* Background Pattern */}
