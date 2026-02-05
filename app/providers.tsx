@@ -2,9 +2,16 @@
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { useState } from "react";
+import { useState, useEffect, createContext, useContext } from "react";
+
+const MountedContext = createContext(false);
+
+export function useMounted() {
+  return useContext(MountedContext);
+}
 
 export function Providers({ children }: { children: React.ReactNode }) {
+  const [mounted, setMounted] = useState(false);
   const [queryClient] = useState(() => new QueryClient({
     defaultOptions: {
       queries: {
@@ -14,11 +21,17 @@ export function Providers({ children }: { children: React.ReactNode }) {
     },
   }));
 
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        {children}
-      </TooltipProvider>
-    </QueryClientProvider>
+    <MountedContext.Provider value={mounted}>
+      <QueryClientProvider client={queryClient}>
+        <TooltipProvider>
+          {children}
+        </TooltipProvider>
+      </QueryClientProvider>
+    </MountedContext.Provider>
   );
 }

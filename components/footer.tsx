@@ -1,9 +1,9 @@
 
 import { Github, Twitter, MessageSquare, Shield } from "lucide-react";
 
-export function Footer() {
-  const currentYear = new Date().getFullYear();
+const CURRENT_YEAR = 2026;
 
+export function Footer() {
   return (
     <footer className="bg-card border-t border-border mt-auto">
       <div className="max-w-7xl mx-auto px-6 py-12 md:py-16">
@@ -76,7 +76,7 @@ export function Footer() {
       <div className="border-t border-border/50 bg-muted/20">
         <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-xs text-muted-foreground">
-            © {currentYear} OpenClaw Security. All rights reserved.
+            © {CURRENT_YEAR} OpenClaw Security. All rights reserved.
           </p>
           <div className="flex items-center gap-2 text-xs text-muted-foreground/80 bg-background/50 px-3 py-1.5 rounded-full border border-border/50">
             <Shield className="w-3 h-3 text-emerald-600" />
