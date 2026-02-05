@@ -264,6 +264,20 @@ export default function Home() {
                               <span className="font-semibold text-foreground">Latest Intercept:</span> Malicious dependency detected in <span className="font-mono text-muted-foreground">helper-utils-v2</span>.
                            </span>
                         </div>
+
+                        {/* New Metric: Skills Audited/Scored */}
+                        <div className="flex items-center justify-between bg-card p-3 rounded border border-border">
+                            <div className="flex items-center gap-2">
+                                <div className="p-1.5 bg-emerald-500/10 rounded text-emerald-500">
+                                    <CheckCircle className="w-3.5 h-3.5" />
+                                </div>
+                                <div>
+                                    <div className="text-xs font-bold text-foreground">Skills Audited</div>
+                                    <div className="text-[10px] text-muted-foreground">Total verified & scored</div>
+                                </div>
+                            </div>
+                            <div className="text-xl font-mono font-bold text-foreground">12,402</div>
+                        </div>
                      </div>
                   </div>
                </div>
