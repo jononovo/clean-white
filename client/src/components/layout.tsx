@@ -32,7 +32,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 <Button
                   key={item}
                   variant="ghost"
-                  className="w-full justify-start text-sm font-medium h-8 px-2 text-foreground/80 hover:text-foreground hover:bg-muted"
+                  className="w-full justify-start text-sm font-medium h-8 px-2 text-foreground/80 hover:text-foreground hover:bg-muted cursor-pointer"
                 >
                   {item}
                 </Button>

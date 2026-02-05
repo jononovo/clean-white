@@ -359,7 +359,7 @@ export default function Home() {
               </Card>
 
               {/* Newsletter */}
-              <Card className="p-5 border-border shadow-sm bg-primary text-primary-foreground relative overflow-hidden">
+              <Card className="p-5 border-border shadow-sm bg-primary text-primary-foreground relative overflow-hidden group cursor-pointer hover:shadow-md transition-all">
                  <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-10 -mt-10 blur-2xl pointer-events-none" />
                  <h4 className="font-bold text-sm mb-2 flex items-center gap-2 relative z-10">
                     <Mail className="w-4 h-4" />
@@ -392,7 +392,7 @@ export default function Home() {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                  {threats.map(item => (
-                    <div key={item.id} className="bg-destructive/5 border border-destructive/20 rounded-lg p-3 flex items-start gap-3 hover:bg-destructive/10 transition-colors cursor-default">
+                    <div key={item.id} className="bg-destructive/5 border border-destructive/20 rounded-lg p-3 flex items-start gap-3 hover:bg-destructive/10 transition-colors group cursor-pointer">
                        <div className="shrink-0 pt-0.5">
                           <AlertTriangle className="w-4 h-4 text-destructive" />
                        </div>
