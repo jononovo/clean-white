@@ -457,7 +457,7 @@ export default function Home() {
                        Join our Clawful, Humorous Substack - The Daily Claw
                     </h4>
                     <p className="text-sm text-primary-foreground/80 max-w-xl">
-                       Daily security briefings, the top 5 things <i>not</i> to do with your bot, and essential tips on how to look amazing with your claw (in public).
+                       Hilarious briefings including, the top 5 things <i>not</i> to do with your bot, and essential tips on how to look amazing with your claw (in public).
                     </p>
                  </div>
                  <Button 
@@ -465,7 +465,7 @@ export default function Home() {
                      className="bg-white text-primary hover:bg-white/90 font-bold dark:bg-slate-900 dark:text-white dark:hover:bg-slate-800 shrink-0 px-8"
                      onClick={() => window.open('https://clawhub.substack.com/', '_blank')}
                  >
-                    Explore
+                    Read Now
                  </Button>
               </div>
            </Card>
