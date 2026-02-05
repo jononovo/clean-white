@@ -164,10 +164,12 @@ export default function Home() {
               </div>
 
               <div className="flex flex-wrap items-center gap-3 pt-2">
-                <Button size="lg" className="h-12 px-5 bg-primary text-primary-foreground hover:bg-primary/90 border-none font-semibold shadow-lg shadow-primary/10 transition-all cursor-pointer">
-                  <Shield className="w-4 h-4 mr-1.5" />
-                  Publish a Skill
-                </Button>
+                <Link href="/publish">
+                  <Button size="lg" className="h-12 px-5 bg-primary text-primary-foreground hover:bg-primary/90 border-none font-semibold shadow-lg shadow-primary/10 transition-all cursor-pointer">
+                    <Shield className="w-4 h-4 mr-1.5" />
+                    Publish a Skill
+                  </Button>
+                </Link>
                 <Link href="/deploy">
                   <Button size="lg" variant="outline" className="h-12 px-5 bg-card border-border text-foreground hover:bg-muted shadow-sm cursor-pointer">
                     <Zap className="w-4 h-4 mr-1.5" />

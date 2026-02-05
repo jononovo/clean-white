@@ -10,6 +10,7 @@ import News from "@/pages/news";
 import ReadNews from "@/pages/read-news";
 import Threats from "@/pages/threats";
 import Deploy from "@/pages/deploy";
+import Publish from "@/pages/publish";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -22,6 +23,7 @@ function Router() {
       <Route path="/read-news" component={ReadNews} />
       <Route path="/threats" component={Threats} />
       <Route path="/deploy" component={Deploy} />
+      <Route path="/publish" component={Publish} />
       <Route component={NotFound} />
     </Switch>
   );
