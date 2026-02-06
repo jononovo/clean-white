@@ -44,20 +44,26 @@ function ManagedClawBanner() {
 
   return (
     <div className="relative" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-      <Link href="/deploy" className="block py-3.5 px-5 rounded-xl bg-gradient-to-r from-yellow-500/10 via-amber-500/15 to-yellow-500/10 dark:from-yellow-500/5 dark:via-amber-500/10 dark:to-yellow-500/5 border border-yellow-500/30 hover:border-yellow-500/50 hover:shadow-lg hover:shadow-yellow-500/5 transition-all duration-300 group cursor-pointer relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/0 via-yellow-400/5 to-yellow-400/0 group-hover:via-yellow-400/10 transition-all duration-500" />
-        <div className="flex items-center justify-between relative z-10">
-          <div className="flex items-center gap-3">
-            <div className="flex items-center gap-2 flex-wrap">
-              <div className="p-1.5 rounded-lg bg-yellow-500/15 dark:bg-yellow-500/10">
-                <Zap className="w-4 h-4 text-yellow-600 dark:text-yellow-500" />
+      <Link href="/deploy" className="block rounded-xl bg-gradient-to-r from-yellow-400 via-amber-400 to-yellow-500 dark:from-yellow-500 dark:via-amber-500 dark:to-yellow-600 hover:shadow-xl hover:shadow-yellow-500/25 dark:hover:shadow-yellow-600/20 transition-all duration-300 group cursor-pointer relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_50%,rgba(255,255,255,0.25),transparent_70%)] pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_20%,rgba(255,255,255,0.15),transparent_50%)] pointer-events-none" />
+        <div className="py-5 px-6 md:py-6 md:px-8 relative z-10">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <div className="flex items-center gap-4 flex-1">
+              <div className="p-2.5 rounded-xl bg-black/10 backdrop-blur-sm shrink-0">
+                <Zap className="w-6 h-6 text-black" />
               </div>
-              <span className="font-display font-bold text-sm text-foreground group-hover:text-yellow-600 dark:group-hover:text-yellow-500 transition-colors">High-powered Managed Claw</span>
-              <ArrowUpRight className="w-4 h-4 text-yellow-600/60 dark:text-yellow-500/60 group-hover:text-yellow-600 dark:group-hover:text-yellow-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
-              <span className="text-xs text-muted-foreground/70">Starting at <span className="font-semibold text-foreground/80">$79/month</span> <span className="italic">(Incl. $15 tokens)</span></span>
+              <div>
+                <h3 className="font-display font-extrabold text-lg md:text-xl text-black leading-tight">Managed Claw saved businesses 120+ hours/month</h3>
+                <p className="text-sm text-black/70 mt-1 font-medium">We set it up. We help you run it. You focus on growing. <span className="font-bold text-black/90">From $79/mo.</span></p>
+              </div>
+            </div>
+            <div className="shrink-0">
+              <span className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-black text-white font-bold text-sm shadow-xl shadow-black/20 group-hover:bg-gray-900 group-hover:scale-105 transition-all duration-200">
+                Get Started Now <ArrowUpRight className="w-4 h-4" />
+              </span>
             </div>
           </div>
-          <span className="text-xs text-muted-foreground/70 hidden sm:block shrink-0 text-right leading-relaxed">We set it up and help you run it.<br /><span className="italic font-medium text-foreground/60">Make business simple with Clawd.bot</span></span>
         </div>
       </Link>
 
