@@ -38,7 +38,7 @@ function ManagedClawBanner() {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-1.5 flex-wrap">
-              <span className="font-display font-bold text-sm text-foreground">High-powered Managed Claw</span>
+              <span className="font-display font-bold text-sm text-foreground group-hover:text-amber-500 transition-colors">High-powered Managed Claw</span>
               <ArrowUpRight className="w-4 h-4 text-primary group-hover:text-amber-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
               <span className="text-xs text-muted-foreground/70">Starting at <span className="font-semibold text-foreground/80">$79/month</span> <span className="italic">(Incl. $15 tokens)</span></span>
             </div>
@@ -51,7 +51,7 @@ function ManagedClawBanner() {
         "absolute left-0 right-0 top-full mt-2 z-50 transition-all duration-300 origin-top",
         showTooltip ? "opacity-100 scale-y-100 translate-y-0" : "opacity-0 scale-y-95 -translate-y-1 pointer-events-none"
       )}>
-        <Card className="p-5 shadow-xl border-primary/20 bg-card/98 backdrop-blur-md">
+        <Card className="p-5 shadow-xl border-primary/20 bg-card/98 backdrop-blur-md cursor-pointer">
           <div className="flex items-center gap-2 mb-3">
             <div className="p-1.5 rounded-md bg-amber-500/10">
               <Bot className="w-4 h-4 text-amber-500" />
