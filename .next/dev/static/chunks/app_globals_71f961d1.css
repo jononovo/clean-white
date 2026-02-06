@@ -5576,6 +5576,12 @@
   }
 
   @media (hover: hover) {
+    .group-hover\:text-amber-500:is(:where(.group):hover *) {
+      color: var(--color-amber-500);
+    }
+  }
+
+  @media (hover: hover) {
     .group-hover\:text-destructive:is(:where(.group):hover *) {
       color: hsl(var(--destructive));
     }
