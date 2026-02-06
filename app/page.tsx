@@ -56,7 +56,7 @@ function ManagedClawBanner() {
             <div className="p-1.5 rounded-md bg-amber-500/10">
               <Bot className="w-4 h-4 text-amber-500" />
             </div>
-            <span className="text-xs font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400">Business Automation Offer</span>
+            <span className="text-xs font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400">Business Automation on Steroids</span>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 mb-4">
             {[
