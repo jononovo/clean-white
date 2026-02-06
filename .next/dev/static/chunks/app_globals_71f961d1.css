@@ -2423,6 +2423,11 @@
     column-gap: calc(var(--spacing) * 3);
   }
 
+  .gap-x-4 {
+    -moz-column-gap: calc(var(--spacing) * 4);
+    column-gap: calc(var(--spacing) * 4);
+  }
+
   .gap-x-6 {
     -moz-column-gap: calc(var(--spacing) * 6);
     column-gap: calc(var(--spacing) * 6);

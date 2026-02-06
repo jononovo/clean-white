@@ -51,14 +51,14 @@ function ManagedClawBanner() {
         "absolute left-0 right-0 top-full mt-2 z-50 transition-all duration-300 origin-top",
         showTooltip ? "opacity-100 scale-y-100 translate-y-0" : "opacity-0 scale-y-95 -translate-y-1 pointer-events-none"
       )}>
-        <Card className="p-5 shadow-xl border-primary/20 bg-card/98 backdrop-blur-md cursor-pointer">
-          <div className="flex items-center gap-2 mb-3">
-            <div className="p-1.5 rounded-md bg-amber-500/10">
-              <Bot className="w-4 h-4 text-amber-500" />
+        <Card className="p-3 shadow-xl border-primary/20 bg-card/98 backdrop-blur-md cursor-pointer">
+          <div className="flex items-center gap-2 mb-2">
+            <div className="p-1 rounded-md bg-amber-500/10">
+              <Bot className="w-3.5 h-3.5 text-amber-500" />
             </div>
-            <span className="text-xs font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400">Business Automation on Steroids</span>
+            <span className="text-[11px] font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400">Business Automation on Steroids</span>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 mb-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1 mb-3">
             {[
               { icon: Phone, text: "Handle research calls, texting, and recommended outreach" },
               { icon: Mail, text: "Email outreach and rep replies on your behalf" },
@@ -67,17 +67,19 @@ function ManagedClawBanner() {
               { icon: CalendarClock, text: "Manage your schedule and create a schedule for your bot" },
               { icon: Video, text: "Generate content, reports, and presentations automatically" },
             ].map((item, i) => (
-              <div key={i} className="flex items-start gap-2 py-1.5">
-                <item.icon className="w-3.5 h-3.5 text-muted-foreground mt-0.5 shrink-0" />
-                <span className="text-xs text-muted-foreground leading-relaxed">{item.text}</span>
+              <div key={i} className="flex items-start gap-1.5 py-1">
+                <item.icon className="w-3 h-3 text-muted-foreground mt-0.5 shrink-0" />
+                <span className="text-[11px] text-muted-foreground leading-snug">{item.text}</span>
               </div>
             ))}
           </div>
-          <div className="pt-3 border-t border-border/40 flex items-center justify-between">
+          <div className="pt-2 border-t border-border/40 flex items-center justify-between">
             <span className="text-[11px] text-muted-foreground italic">All with the managed, gold service package.</span>
-            <span className="text-[10px] font-semibold text-primary flex items-center gap-1">
-              Learn more <ArrowUpRight className="w-3 h-3" />
-            </span>
+            <Link href="/deploy">
+              <Button size="sm" className="h-7 px-3 text-[11px] font-semibold">
+                Learn more <ArrowUpRight className="w-3 h-3 ml-1" />
+              </Button>
+            </Link>
           </div>
         </Card>
       </div>
