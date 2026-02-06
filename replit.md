@@ -1,55 +1,57 @@
-# SecureClawHub
+# CreditClaw
 
 ## Overview
 
-SecureClawHub is a trust and security registry for OpenClaw autonomous agent components. It provides verified, audited skill packages, SDKs, and services with threat intelligence monitoring, security scoring, and one-click deployment workflows.
+CreditClaw is a fun, consumer-facing financial platform that lets users give their OpenClaw AI agents a credit card with a weekly allowance. Features waitlist sign-up, live metrics, transaction tracking, and a playful lobster-themed brand identity.
 
-**Core Features:**
-- Skill/SDK registry with security audits and trust scores
-- Real-time threat intelligence feeds and vulnerability tracking
-- Community hub with events, news, and developer resources
-- Deployment pipelines for agent capabilities
+**Current State:** Landing page with waitlist sign-up (frontend-only). Backend infrastructure (auth, database, API routes) in place for future functionality.
+
+**Core Features (Planned):**
+- Virtual credit cards for AI agents with weekly allowance limits
+- Real-time transaction tracking and categorization
+- Waitlist and invitation system
+- Agent spending controls and merchant restrictions
 
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
 
-## Authentication (Added: February 2026)
+## Brand Identity
+
+- **Theme:** "Fun Consumer" - playful, friendly, approachable fintech
+- **Mascot:** Lobster (the "Claw" in CreditClaw)
+- **Color Scheme:**
+  - Primary (Lobster Orange): hsl(10 85% 55%)
+  - Secondary (Ocean Blue): hsl(200 95% 60%)
+  - Accent (Fun Purple): hsl(260 90% 65%)
+  - Background: Very light blue-white hsl(210 40% 98%)
+- **Typography:** Plus Jakarta Sans (display), JetBrains Mono (mono)
+- **Design:** Very rounded corners (1rem radius), playful animations, gradient blobs
+
+## Landing Page Components
+
+- `components/landing/nav.tsx` - Fixed navigation with logo, links, sign-up button
+- `components/landing/hero.tsx` - Main hero with email waitlist, lobster card image, floating badges
+- `components/landing/live-metrics.tsx` - Animated counters (waitlist count, approved agents, credit issued)
+- `components/landing/features.tsx` - 4 feature cards (Allowance, Safety, Instant Setup, Smart Shopping)
+- `components/landing/transaction-ledger.tsx` - Floating mini transaction list
+- `components/landing/waitlist-form.tsx` - Bottom CTA section with waitlist form and footer
+
+## Authentication (Available, from prior build)
 
 - **Firebase Authentication** with session cookies for SSR compatibility
 - Sign-in methods: Google, GitHub, Email magic link (passwordless)
-- Session management via httpOnly cookies (5-day expiry)
 - Key files:
   - `lib/firebase/client.ts` - Client SDK init
   - `lib/firebase/admin.ts` - Admin SDK init (server-side)
   - `lib/auth/auth-context.tsx` - React context with useAuth hook
   - `lib/auth/session.ts` - Server-side getCurrentUser()
   - `app/api/auth/session/route.ts` - Session API endpoints
-  - `proxy.ts` - Route protection middleware
-  - `components/auth-drawer.tsx` - Login UI component
 
-## Providers & Services Marketplace (Added: February 2026)
+## Archive
 
-**Unified Provider Model:**
-- Providers are separate from users (supports future team/multi-user management)
-- **GitHub login**: Auto-creates provider with GitHub username as handle
-- **Google/Email login**: User chooses handle when first publishing skill or listing service
-- URL pattern: `/@handle` for provider profile, `/@handle/skill-slug` for skills
-
-**Database Tables:**
-- `providers`: id, userId, handle (unique), displayName, description, avatarUrl, location, website, contactEmail, isVerified
-- `services`: id, providerId, name, description, category, pricingType (one_time/monthly/contact), priceMin, priceMax, isActive
-- `skills.providerId`: Links skills to providers
-
-**Service Categories:**
-- setup_installation, managed_hosting, consulting, training, partnerships, finance_tax
-
-**Key Files:**
-- `app/api/providers/route.ts` - Provider CRUD
-- `app/api/providers/check-handle/route.ts` - Handle availability check
-- `app/api/services/route.ts` - Service CRUD
-- `components/service-registration-drawer.tsx` - Service listing UI
-- `lib/db.ts` - Database helpers for auth/provider management
+Original SecureClawHub application is archived in `_archive/original-app/` (safe to delete).
+Import source files are in `landing-import/` (safe to delete after integration confirmed).
 
 ## Tech Stack & Versions (Updated: February 2026)
 
@@ -61,7 +63,7 @@ Preferred communication style: Simple, everyday language.
 - **React**: 19.2.0
 - **React DOM**: 19.2.0
 - **shadcn/ui** on Radix UI primitives
-- **Tailwind CSS**: v4.1.18 with dual theme support (Slate/Warm × Light/Dark)
+- **Tailwind CSS**: v4.1.18 with "Fun Consumer" single theme (light only)
 - **TanStack React Query**: 5.60.5
 
 ### Backend
@@ -81,23 +83,15 @@ Preferred communication style: Simple, everyday language.
 
 ### Key Directories
 ```
-app/           → Next.js App Router pages
-components/    → React components (ui/ for primitives)
-features/      → Feature-based modules (modular architecture)
-  ├── featured/  → Featured Today cards + data
-  ├── services/  → Services Marketplace components + types
-  ├── skills/    → Skill cards, audit badges, list rows
-  ├── providers/ → Provider-related components
-  └── threats/   → Threat intelligence components
-lib/           → Utilities, mock data, theme config
-server/        → Custom server entry point
-shared/        → Database schema (Drizzle)
-hooks/         → Custom React hooks
+app/                → Next.js App Router pages
+components/         → React components
+  ├── landing/      → Landing page sections (nav, hero, features, etc.)
+  └── ui/           → shadcn/ui primitives
+lib/                → Utilities, Firebase config, auth helpers
+server/             → Custom server entry point
+shared/             → Database schema (Drizzle)
+hooks/              → Custom React hooks
+public/images/creditclaw/ → Landing page images (cards, avatars, logo)
+_archive/           → Archived original SecureClawHub app
+landing-import/     → Import source (can be deleted)
 ```
-
-## Sitemap Strategy (Planned)
-
-For 10,000+ skill pages, will use Next.js `generateSitemaps()` with:
-- Chunked sitemaps (10,000 URLs per file)
-- ISR caching with hourly revalidation
-- Separate sitemaps for static pages vs dynamic skill pages
