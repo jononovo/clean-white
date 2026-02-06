@@ -34,7 +34,7 @@ function ManagedClawBanner() {
 
   return (
     <div className="relative" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-      <a href="https://xcloud.host/managed-vs-self-hosting-openclaw" target="_blank" rel="noopener noreferrer" className="block py-3 px-4 rounded-lg bg-gradient-to-r from-primary/5 via-primary/10 to-primary/5 border border-primary/20 hover:border-primary/40 transition-all duration-200 group cursor-pointer">
+      <Link href="/deploy" className="block py-3 px-4 rounded-lg bg-gradient-to-r from-primary/5 via-primary/10 to-primary/5 border border-primary/20 hover:border-primary/40 transition-all duration-200 group cursor-pointer">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-1.5 flex-wrap">
@@ -45,7 +45,7 @@ function ManagedClawBanner() {
           </div>
           <span className="text-xs text-muted-foreground/70 hidden sm:block shrink-0">We set it up and help you run it. <span className="italic font-medium text-foreground/60">Make business simple with Clawd.bot</span></span>
         </div>
-      </a>
+      </Link>
 
       <div className={cn(
         "absolute left-0 right-0 top-full mt-2 z-50 transition-all duration-300 origin-top",
