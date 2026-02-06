@@ -40,6 +40,8 @@
     "node_modules",
     "client",
     "server",
-    ".next"
+    ".next",
+    "_archive",
+    "landing-import"
   ]
 }
