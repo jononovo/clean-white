@@ -188,6 +188,10 @@
   * {
     @apply border-border;
   }
+
+  a, button, [role="button"] {
+    cursor: pointer;
+  }
   
   /* Input placeholder styling */
   input::placeholder,

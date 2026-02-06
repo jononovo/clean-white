@@ -675,6 +675,10 @@
     border-color: hsl(var(--border));
   }
 
+  a, button, [role="button"] {
+    cursor: pointer;
+  }
+
   input::-moz-placeholder {
     color: hsl(var(--placeholder));
     opacity: 1;

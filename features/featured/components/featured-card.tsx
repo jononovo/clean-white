@@ -38,8 +38,8 @@ export const FeaturedOfTheDayCard = ({
   const linkProps = isExternal ? { target: "_blank" as const, rel: "noopener noreferrer" } : {};
 
   return (
-    <Link href={href} className="group block" {...linkProps}>
-      <div className="p-4 rounded-xl bg-gradient-to-b from-card to-card/50 border border-border hover:border-primary/40 hover:shadow-lg transition-all duration-200 h-full relative">
+    <Link href={href} className="group block cursor-pointer" {...linkProps}>
+      <div className="p-4 rounded-xl bg-gradient-to-b from-card to-card/50 border border-border hover:border-primary/40 hover:shadow-lg transition-all duration-200 h-full relative cursor-pointer">
         <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
           <ExternalLink className="w-3.5 h-3.5 text-muted-foreground" />
         </div>
