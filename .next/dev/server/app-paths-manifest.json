@@ -1,4 +1,5 @@
 {
+  "/[username]/[slug]/page": "app/[username]/[slug]/page.js",
   "/api/categories/route": "app/api/categories/route.js",
   "/page": "app/page.js"
 }
