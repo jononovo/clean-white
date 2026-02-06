@@ -237,42 +237,42 @@ export default function Home() {
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-card border border-border text-xs font-medium text-foreground shadow-sm">
-                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                Network Secure • 12,402 Audits Verified
+                <div className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
+                2,400+ Businesses • $8.2M Tracked This Month
               </div>
               
               <div className="space-y-4">
                 <h1 className="text-4xl md:text-5xl font-display font-bold tracking-tight text-foreground leading-[1.1]">
-                  The Business Hub for <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-500 dark:from-emerald-400 dark:to-teal-300">OpenClaw</span>
+                  Smart Finances for <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-yellow-500 dark:from-amber-400 dark:to-yellow-300">CreditClaw</span>
                 </h1>
                 <p className="text-lg text-muted-foreground max-w-md leading-relaxed">
-                  The OpenClaw Hub for Business: Community, jobs, news and secure, enterprise-ready OpenClaw Bots.
+                  Track income, expenses, invoices and receipts in one place. Built for freelancers and businesses that move fast.
                 </p>
               </div>
 
               <div className="flex flex-wrap items-center gap-3 pt-2">
-                <Link href="/publish">
-                  <Button size="lg" className="h-12 px-5 bg-primary text-primary-foreground hover:bg-primary/90 border-none font-semibold shadow-lg shadow-primary/10 transition-all cursor-pointer">
-                    <Shield className="w-4 h-4 mr-1.5" />
-                    Publish a Skill
+                <Link href="/deploy">
+                  <Button size="lg" className="h-12 px-5 bg-gradient-to-r from-amber-500 to-yellow-500 text-black hover:from-amber-400 hover:to-yellow-400 border-none font-bold shadow-lg shadow-amber-500/20 transition-all cursor-pointer">
+                    <CreditCard className="w-4 h-4 mr-1.5" />
+                    Start Free Trial
                   </Button>
                 </Link>
-                <Link href="/deploy">
+                <Link href="/publish">
                   <Button size="lg" variant="outline" className="h-12 px-5 bg-card border-border text-foreground hover:bg-muted shadow-sm cursor-pointer">
-                    <Zap className="w-4 h-4 mr-1.5" />
-                    1-Click-Setup
+                    <DollarSign className="w-4 h-4 mr-1.5" />
+                    See Pricing
                   </Button>
                 </Link>
               </div>
               
               <div className="flex items-center gap-6 text-xs text-muted-foreground pt-4">
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-emerald-600 dark:text-emerald-500" />
-                  <span>OpenClaw Threat Monitor</span>
+                  <CheckCircle className="w-4 h-4 text-amber-600 dark:text-amber-500" />
+                  <span>Real-Time Cash Flow</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-emerald-600 dark:text-emerald-500" />
-                  <span>Manual Code Review</span>
+                  <CheckCircle className="w-4 h-4 text-amber-600 dark:text-amber-500" />
+                  <span>Bank-Grade Security</span>
                 </div>
               </div>
             </div>
