@@ -268,14 +268,13 @@ export default function Home() {
 
         <ManagedClawBanner />
 
-        <div className="py-6 border-b border-border/40">
-          <div className="flex items-center justify-between mb-4 px-1">
-            <h3 className="text-sm font-bold uppercase tracking-wider flex items-center gap-2 text-foreground/80">
-              <Handshake className="w-3.5 h-3.5 text-muted-foreground" />
-              Claw/Agent Services Marketplace
+        <div className="py-8">
+          <div className="flex items-center justify-between mb-5 px-1">
+            <h3 className="text-sm font-semibold uppercase tracking-wider flex items-center gap-2 text-muted-foreground">
+              Services Marketplace
             </h3>
-            <span className="text-[10px] font-medium text-primary hover:underline cursor-pointer">
-              Browse All Services
+            <span className="text-xs text-muted-foreground/60 hover:text-foreground cursor-pointer transition-colors">
+              Browse All
             </span>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
@@ -300,11 +299,10 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="py-6 border-b border-border/40">
-          <div className="flex items-center justify-between mb-4 px-1">
-            <h3 className="text-sm font-bold uppercase tracking-wider flex items-center gap-2 text-foreground/80">
-              <Sparkles className="w-3.5 h-3.5 text-muted-foreground" />
-              Claw Eco-System - Featured Today
+        <div className="py-8 border-t border-border/30">
+          <div className="flex items-center justify-between mb-5 px-1">
+            <h3 className="text-sm font-semibold uppercase tracking-wider flex items-center gap-2 text-muted-foreground">
+              Featured Today
               <span className="text-[11px] font-medium normal-case tracking-normal text-muted-foreground/60">
                 | {new Date().toLocaleDateString("en-US", { day: "2-digit", month: "short", year: "numeric", timeZone: "America/New_York" })}
               </span>
@@ -357,12 +355,11 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pb-8 border-b border-border/40">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 py-8 border-t border-border/30">
            <div>
-              <div className="flex items-center justify-between mb-3 px-1">
-                 <h3 className="text-sm font-bold uppercase tracking-wider flex items-center gap-2 text-foreground/80">
-                   <Server className="w-3.5 h-3.5 text-muted-foreground" />
-                   Top Claw VPS Services
+              <div className="flex items-center justify-between mb-4 px-1">
+                 <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+                   VPS Services
                  </h3>
               </div>
               <div className="bg-white/50 dark:bg-card/50 border border-border/60 rounded-lg p-3 shadow-sm backdrop-blur-sm">
@@ -398,10 +395,9 @@ export default function Home() {
            </div>
 
            <div>
-              <div className="flex items-center justify-between mb-3 px-1">
-                 <h3 className="text-sm font-bold uppercase tracking-wider flex items-center gap-2 text-foreground/80">
-                   <Star className="w-3.5 h-3.5 text-muted-foreground" />
-                   Highest Productivity Skills
+              <div className="flex items-center justify-between mb-4 px-1">
+                 <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+                   Top Skills
                  </h3>
               </div>
               <div className="bg-white/50 dark:bg-card/50 border border-border/60 rounded-lg p-3 shadow-sm backdrop-blur-sm">
@@ -435,9 +431,8 @@ export default function Home() {
 
         <div>
           <div className="flex items-center justify-between mb-4 px-1">
-            <h3 className="text-sm font-bold uppercase tracking-wider flex items-center gap-2 text-foreground/80">
-              <Handshake className="w-3.5 h-3.5 text-muted-foreground" />
-              Our Partners
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+              Partners
             </h3>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -496,8 +491,7 @@ export default function Home() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
            <div className="lg:col-span-2 space-y-4">
               <div className="flex items-center justify-between">
-                 <h3 className="font-display font-bold text-lg flex items-center gap-2">
-                    <Shield className="w-5 h-5 text-primary" />
+                 <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
                     Verified Directory
                  </h3>
                  <div className="flex gap-2">
@@ -596,8 +590,8 @@ export default function Home() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 pb-8">
            <div className="lg:col-span-2">
               <div className="flex items-center justify-between mb-3 px-1">
-                 <h3 className="text-sm font-bold uppercase tracking-wider flex items-center gap-2 text-destructive">
-                   <AlertTriangle className="w-4 h-4" />
+                 <h3 className="text-sm font-semibold uppercase tracking-wider flex items-center gap-2 text-destructive">
+                   <AlertTriangle className="w-3.5 h-3.5" />
                    Active Threats
                  </h3>
                  <span className="text-[10px] font-mono text-muted-foreground">Updated hourly</span>
@@ -627,8 +621,7 @@ export default function Home() {
 
            <div>
               <div className="flex items-center justify-between mb-3 px-1">
-                 <h3 className="text-sm font-bold uppercase tracking-wider flex items-center gap-2 text-foreground/80">
-                   <Server className="w-4 h-4 text-slate-500" />
+                 <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
                    Top Providers
                  </h3>
               </div>
