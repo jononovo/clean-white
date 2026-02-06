@@ -660,7 +660,7 @@
     --secondary: 30 12% 11%;
     --secondary-foreground: 42 30% 95%;
     --muted: 30 10% 18%;
-    --muted-foreground: 30 12% 68%;
+    --muted-foreground: 30 14% 78%;
     --accent: 160 70% 42%;
     --accent-foreground: 30 20% 4%;
     --destructive: 0 65% 45%;
@@ -668,7 +668,7 @@
     --border: 30 10% 22%;
     --input: 30 12% 20%;
     --ring: 42 30% 95%;
-    --placeholder: 30 12% 50%;
+    --placeholder: 30 12% 58%;
   }
 
   * {
@@ -2428,11 +2428,6 @@
     column-gap: calc(var(--spacing) * 4);
   }
 
-  .gap-x-6 {
-    -moz-column-gap: calc(var(--spacing) * 6);
-    column-gap: calc(var(--spacing) * 6);
-  }
-
   :where(.space-x-1 > :not(:last-child)) {
     --tw-space-x-reverse: 0;
     margin-inline-start: calc(calc(var(--spacing) * 1) * var(--tw-space-x-reverse));
@@ -2451,10 +2446,6 @@
 
   .gap-y-1 {
     row-gap: calc(var(--spacing) * 1);
-  }
-
-  .gap-y-2 {
-    row-gap: calc(var(--spacing) * 2);
   }
 
   :where(.divide-x > :not(:last-child)) {
@@ -5637,12 +5628,6 @@
       .group-hover\:bg-primary\/10:is(:where(.group):hover *) {
         background-color: color-mix(in oklab, hsl(var(--primary)) 10%, transparent);
       }
-    }
-  }
-
-  @media (hover: hover) {
-    .group-hover\:text-amber-500:is(:where(.group):hover *) {
-      color: var(--color-amber-500);
     }
   }
 

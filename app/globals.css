@@ -129,7 +129,7 @@
     --secondary-foreground: 42 30% 95%;
     
     --muted: 30 10% 18%;
-    --muted-foreground: 30 12% 68%;
+    --muted-foreground: 30 14% 78%;
     
     --accent: 160 70% 42%;
     --accent-foreground: 30 20% 4%;
@@ -141,7 +141,7 @@
     --input: 30 12% 20%;
     --ring: 42 30% 95%;
     
-    --placeholder: 30 12% 50%;
+    --placeholder: 30 12% 58%;
   }
 }
 
