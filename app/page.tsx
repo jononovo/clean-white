@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { FullPageModal, ConfirmationModal } from "@/components/modals";
 import { AuthDrawer } from "@/components/auth-drawer";
 import { useState, useRef, useCallback } from "react";
-import { Shield, CheckCircle, ExternalLink, Calendar, AlertTriangle, ChevronRight, Zap, Globe, Server, Activity, ArrowUpRight, Mail, Box, Cloud, Search, Newspaper, Sparkles, Star, Terminal, Lock, Handshake, Bot, Phone, FileSearch, CalendarClock, Video, Code } from "lucide-react";
+import { Shield, CheckCircle, ExternalLink, Calendar, AlertTriangle, ChevronRight, Zap, Globe, Server, Activity, ArrowUpRight, Mail, Box, Cloud, Search, Newspaper, Sparkles, Star, Terminal, Lock, Handshake, Bot, Phone, FileSearch, CalendarClock, Video, Code, CreditCard, TrendingUp, TrendingDown, DollarSign, Wifi } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
@@ -19,7 +19,7 @@ import { AuditBadge, FeaturedCard, CompressedListRow } from "@/features/skills";
 import { ThreatTicker } from "@/features/threats";
 
 
-function ManagedClawBanner() {
+function CreditClawBanner() {
   const [showTooltip, setShowTooltip] = useState(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -44,24 +44,79 @@ function ManagedClawBanner() {
 
   return (
     <div className="relative" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-      <Link href="/deploy" className="block rounded-xl bg-gradient-to-r from-yellow-400 via-amber-400 to-yellow-500 dark:from-yellow-500 dark:via-amber-500 dark:to-yellow-600 hover:shadow-xl hover:shadow-yellow-500/25 dark:hover:shadow-yellow-600/20 transition-all duration-300 group cursor-pointer relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_50%,rgba(255,255,255,0.25),transparent_70%)] pointer-events-none" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_20%,rgba(255,255,255,0.15),transparent_50%)] pointer-events-none" />
-        <div className="py-5 px-6 md:py-6 md:px-8 relative z-10">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-4 flex-1">
-              <div className="p-2.5 rounded-xl bg-black/10 backdrop-blur-sm shrink-0">
-                <Zap className="w-6 h-6 text-black" />
+      <Link href="/deploy" className="block rounded-xl bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 dark:from-black dark:via-slate-900 dark:to-black hover:shadow-2xl hover:shadow-amber-500/15 transition-all duration-300 group cursor-pointer relative overflow-hidden border border-slate-700/50 dark:border-slate-700/30">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_0%,rgba(251,191,36,0.12),transparent_60%)] pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_0%_100%,rgba(251,191,36,0.06),transparent_50%)] pointer-events-none" />
+
+        <div className="py-5 px-5 md:py-6 md:px-8 relative z-10">
+          <div className="flex flex-col md:flex-row items-center gap-6">
+
+            <div className="relative shrink-0">
+              <div className="w-[220px] h-[138px] rounded-xl bg-gradient-to-br from-amber-400 via-yellow-500 to-amber-600 shadow-xl shadow-amber-500/20 p-4 relative overflow-hidden transform -rotate-3 group-hover:rotate-0 transition-transform duration-500">
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_20%,rgba(255,255,255,0.3),transparent_60%)] pointer-events-none" />
+                <div className="relative z-10 h-full flex flex-col justify-between">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] font-bold text-black/60 uppercase tracking-widest">CreditClaw</span>
+                    <Wifi className="w-4 h-4 text-black/40 rotate-90" />
+                  </div>
+                  <div className="space-y-1">
+                    <div className="flex gap-2">
+                      <div className="w-7 h-5 rounded bg-amber-300/60" />
+                      <div className="w-7 h-5 rounded bg-amber-300/40" />
+                    </div>
+                    <p className="text-[11px] font-mono text-black/50 tracking-[0.25em]">•••• •••• •••• 4821</p>
+                  </div>
+                  <div className="flex items-end justify-between">
+                    <span className="text-[9px] text-black/40 font-medium">CLAW BUSINESS</span>
+                    <div className="flex -space-x-1.5">
+                      <div className="w-4 h-4 rounded-full bg-red-500/70" />
+                      <div className="w-4 h-4 rounded-full bg-orange-400/70" />
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div>
-                <h3 className="font-display font-extrabold text-lg md:text-xl text-black leading-tight">Managed Claw saved businesses 120+ hours/month</h3>
-                <p className="text-sm text-black/70 mt-1 font-medium">We set it up. We help you run it. You focus on growing. <span className="font-bold text-black/90">From $79/mo.</span></p>
+
+              <div className="absolute -top-2 -right-3 w-[140px] bg-white dark:bg-slate-800 rounded-lg shadow-xl shadow-black/15 border border-slate-200/80 dark:border-slate-700/80 p-2.5 transform rotate-2 group-hover:rotate-0 transition-transform duration-500">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-[8px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">This Month</span>
+                  <Activity className="w-2.5 h-2.5 text-emerald-500" />
+                </div>
+                <div className="space-y-1.5">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-1">
+                      <TrendingUp className="w-2.5 h-2.5 text-emerald-500" />
+                      <span className="text-[9px] text-slate-600 dark:text-slate-300">Income</span>
+                    </div>
+                    <span className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 font-mono">$12,480</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-1">
+                      <TrendingDown className="w-2.5 h-2.5 text-red-400" />
+                      <span className="text-[9px] text-slate-600 dark:text-slate-300">Expenses</span>
+                    </div>
+                    <span className="text-[10px] font-bold text-red-500 dark:text-red-400 font-mono">$3,215</span>
+                  </div>
+                  <div className="h-px bg-slate-200 dark:bg-slate-600" />
+                  <div className="flex items-center justify-between">
+                    <span className="text-[9px] font-bold text-slate-700 dark:text-slate-200">Net</span>
+                    <span className="text-[10px] font-extrabold text-emerald-600 dark:text-emerald-400 font-mono">+$9,265</span>
+                  </div>
+                </div>
               </div>
             </div>
-            <div className="shrink-0">
-              <span className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-black text-white font-bold text-sm shadow-xl shadow-black/20 group-hover:bg-gray-900 group-hover:scale-105 transition-all duration-200">
-                Get Started Now <ArrowUpRight className="w-4 h-4" />
-              </span>
+
+            <div className="flex-1 text-center md:text-left">
+              <div className="flex items-center gap-2 justify-center md:justify-start mb-2">
+                <span className="text-[10px] font-bold uppercase tracking-widest text-amber-400/80">CreditClaw.com</span>
+              </div>
+              <h3 className="font-display font-extrabold text-xl md:text-2xl text-white leading-tight">Your finances on autopilot.<br /><span className="text-amber-400">One dashboard. Zero stress.</span></h3>
+              <p className="text-sm text-slate-400 mt-2 font-medium max-w-md">Track income, expenses, and cash flow in real time. Built for businesses that move fast.</p>
+              <div className="mt-4 flex items-center gap-3 justify-center md:justify-start">
+                <span className="inline-flex items-center gap-2 px-7 py-3 rounded-lg bg-gradient-to-r from-amber-400 to-yellow-500 text-black font-extrabold text-sm shadow-xl shadow-amber-500/25 group-hover:shadow-amber-500/40 group-hover:scale-105 transition-all duration-200">
+                  Start Free <ArrowUpRight className="w-4 h-4" />
+                </span>
+                <span className="text-xs text-slate-500 font-medium">From $79/mo after trial</span>
+              </div>
             </div>
           </div>
         </div>
@@ -75,33 +130,33 @@ function ManagedClawBanner() {
         onMouseEnter={handleTooltipEnter}
         onMouseLeave={handleTooltipLeave}
       >
-        <Card className="p-4 shadow-2xl border-yellow-500/30 bg-gradient-to-br from-card via-card to-yellow-500/5 dark:to-yellow-500/3 backdrop-blur-md cursor-pointer relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-40 h-40 bg-yellow-500/5 rounded-full -mr-16 -mt-16 blur-3xl pointer-events-none" />
+        <Card className="p-4 shadow-2xl border-amber-500/20 bg-gradient-to-br from-card via-card to-amber-500/5 dark:to-amber-500/3 backdrop-blur-md cursor-pointer relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-40 h-40 bg-amber-500/5 rounded-full -mr-16 -mt-16 blur-3xl pointer-events-none" />
           <div className="flex items-center gap-2 mb-3 relative z-10">
-            <div className="p-1.5 rounded-lg bg-gradient-to-br from-yellow-500/20 to-amber-500/20">
-              <Bot className="w-4 h-4 text-yellow-600 dark:text-yellow-500" />
+            <div className="p-1.5 rounded-lg bg-gradient-to-br from-amber-500/20 to-yellow-500/20">
+              <CreditCard className="w-4 h-4 text-amber-600 dark:text-amber-500" />
             </div>
-            <span className="text-xs font-bold uppercase tracking-wider text-yellow-700 dark:text-yellow-400">Business Automation on Steroids</span>
+            <span className="text-xs font-bold uppercase tracking-wider text-amber-700 dark:text-amber-400">Smart Financial Automation</span>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1.5 mb-3 relative z-10">
             {[
-              { icon: Phone, text: "Handle research calls, texting, and recommended outreach" },
-              { icon: Mail, text: "Email outreach and rep replies on your behalf" },
-              { icon: FileSearch, text: "Find information, scrape from sites, suggest meeting times" },
-              { icon: Sparkles, text: "Learn new skills, create videos, program on the go" },
-              { icon: CalendarClock, text: "Manage your schedule and create a schedule for your bot" },
-              { icon: Video, text: "Generate content, reports, and presentations automatically" },
+              { icon: DollarSign, text: "Automated invoicing and payment tracking across all channels" },
+              { icon: TrendingUp, text: "Real-time cash flow monitoring with predictive insights" },
+              { icon: FileSearch, text: "Smart expense categorization and receipt scanning" },
+              { icon: CalendarClock, text: "Scheduled reports, tax prep, and deadline reminders" },
+              { icon: Bot, text: "AI-powered financial assistant for instant answers" },
+              { icon: Shield, text: "Bank-grade encryption and SOC2 compliant infrastructure" },
             ].map((item, i) => (
               <div key={i} className="flex items-start gap-2 py-1">
-                <item.icon className="w-3.5 h-3.5 text-yellow-600/60 dark:text-yellow-500/50 mt-0.5 shrink-0" />
+                <item.icon className="w-3.5 h-3.5 text-amber-600/60 dark:text-amber-500/50 mt-0.5 shrink-0" />
                 <span className="text-[11px] text-muted-foreground leading-snug">{item.text}</span>
               </div>
             ))}
           </div>
-          <div className="pt-3 border-t border-yellow-500/20 flex items-center justify-between relative z-10">
-            <span className="text-[11px] text-muted-foreground italic">All with the managed, gold service package.</span>
+          <div className="pt-3 border-t border-amber-500/20 flex items-center justify-between relative z-10">
+            <span className="text-[11px] text-muted-foreground italic">Trusted by 2,400+ businesses worldwide.</span>
             <Link href="/deploy">
-              <Button size="sm" className="h-8 px-4 text-[11px] font-bold bg-gradient-to-r from-yellow-500 to-amber-500 hover:from-yellow-400 hover:to-amber-400 text-black shadow-lg shadow-yellow-500/20 hover:shadow-yellow-500/30 transition-all">
+              <Button size="sm" className="h-8 px-4 text-[11px] font-bold bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 text-black shadow-lg shadow-amber-500/20 hover:shadow-amber-500/30 transition-all">
                 Get Started <ArrowUpRight className="w-3.5 h-3.5 ml-1" />
               </Button>
             </Link>
@@ -276,7 +331,7 @@ export default function Home() {
           </div>
         </div>
 
-        <ManagedClawBanner />
+        <CreditClawBanner />
 
         <div className="py-6 border-b border-border/40">
           <div className="flex items-center justify-between mb-4 px-1">
