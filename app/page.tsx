@@ -278,53 +278,97 @@ export default function Home() {
             </div>
 
             <div className="hidden lg:block relative">
-               <div className="absolute -inset-1 bg-gradient-to-r from-emerald-500/10 to-blue-500/10 rounded-xl blur-xl opacity-60" />
-               <div className="relative bg-card/80 backdrop-blur-xl border border-border rounded-xl p-6 shadow-xl shadow-muted/50 dark:shadow-none">
-                  <div className="flex items-center justify-between mb-6 pb-4 border-b border-border">
-                    <div className="flex items-center gap-3">
-                       <Activity className="w-5 h-5 text-muted-foreground" />
-                       <span className="font-mono font-bold text-sm text-foreground">LIVE SECURITY FEED</span>
+               <div className="absolute -inset-1 bg-gradient-to-r from-amber-500/10 to-yellow-500/10 rounded-xl blur-xl opacity-60" />
+               <div className="relative">
+                  <div className="w-[300px] h-[188px] mx-auto rounded-2xl bg-gradient-to-br from-amber-400 via-yellow-500 to-amber-600 shadow-2xl shadow-amber-500/20 p-6 relative overflow-hidden">
+                    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_20%,rgba(255,255,255,0.3),transparent_60%)] pointer-events-none" />
+                    <div className="absolute bottom-0 left-0 w-48 h-48 bg-amber-300/20 rounded-full -ml-20 -mb-20 blur-2xl pointer-events-none" />
+                    <div className="relative z-10 h-full flex flex-col justify-between">
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs font-bold text-black/70 uppercase tracking-[0.2em]">CreditClaw</span>
+                        <Wifi className="w-5 h-5 text-black/30 rotate-90" />
+                      </div>
+                      <div className="space-y-1.5">
+                        <div className="flex gap-2.5">
+                          <div className="w-9 h-6 rounded-md bg-amber-300/60 border border-amber-600/20" />
+                          <div className="w-9 h-6 rounded-md bg-amber-300/40 border border-amber-600/10" />
+                        </div>
+                        <p className="text-sm font-mono text-black/50 tracking-[0.3em]">•••• •••• •••• 4821</p>
+                      </div>
+                      <div className="flex items-end justify-between">
+                        <div>
+                          <p className="text-[8px] text-black/30 uppercase tracking-wider">Cardholder</p>
+                          <span className="text-[11px] text-black/50 font-bold tracking-wide">CLAW BUSINESS</span>
+                        </div>
+                        <div className="flex -space-x-2">
+                          <div className="w-6 h-6 rounded-full bg-red-500/80" />
+                          <div className="w-6 h-6 rounded-full bg-orange-400/80" />
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  
-                  <div className="space-y-5">
-                     <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                           <div className="p-2 rounded bg-muted text-muted-foreground border border-border">
-                             <AlertTriangle className="w-4 h-4" />
-                           </div>
-                           <div>
-                             <div className="text-2xl font-bold font-mono text-foreground">342</div>
-                             <div className="text-xs text-muted-foreground font-medium">Threats Blocked (24h)</div>
-                           </div>
+
+                  <div className="absolute -top-4 -right-2 w-[200px] bg-card/95 backdrop-blur-xl border border-border rounded-xl shadow-2xl shadow-black/10 dark:shadow-black/30 p-4">
+                    <div className="flex items-center justify-between mb-3 pb-2 border-b border-border">
+                      <span className="text-[10px] font-bold text-foreground uppercase tracking-wider">Recent Activity</span>
+                      <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                    </div>
+                    <div className="space-y-2.5">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <div className="p-1 rounded bg-emerald-500/10"><TrendingUp className="w-3 h-3 text-emerald-500" /></div>
+                          <div>
+                            <p className="text-[10px] font-medium text-foreground leading-tight">Invoice #1042</p>
+                            <p className="text-[9px] text-muted-foreground">Web dev project</p>
+                          </div>
                         </div>
-                        <div className="h-8 w-px bg-border" />
-                        <div className="flex items-center gap-3">
-                           <div className="p-2 rounded bg-muted text-muted-foreground border border-border">
-                             <Terminal className="w-4 h-4" />
-                           </div>
-                           <div>
-                             <div className="text-2xl font-bold font-mono text-foreground">14.2M</div>
-                             <div className="text-xs text-muted-foreground font-medium">Lines Audited</div>
-                           </div>
+                        <span className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 font-mono">+$2,400</span>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <div className="p-1 rounded bg-red-500/10"><TrendingDown className="w-3 h-3 text-red-400" /></div>
+                          <div>
+                            <p className="text-[10px] font-medium text-foreground leading-tight">AWS Hosting</p>
+                            <p className="text-[9px] text-muted-foreground">Monthly server</p>
+                          </div>
                         </div>
-                     </div>
-                     
-                     <div className="pt-3 space-y-3">
-                        <div className="p-3 rounded bg-muted/50 border border-border shadow-inner">
-                            <div className="flex justify-between items-center mb-2">
-                                <span className="text-xs font-bold text-foreground flex items-center gap-1.5">
-                                    <Globe className="w-3 h-3 text-muted-foreground" />
-                                    OpenClaw Threat Index
-                                </span>
-                                <span className="text-[10px] font-mono text-destructive font-bold">HIGH RISK</span>
-                            </div>
-                            <div className="h-1.5 w-full bg-muted rounded-full overflow-hidden">
-                               <div className="h-full w-[75%] bg-destructive rounded-full" />
-                            </div>
+                        <span className="text-[10px] font-bold text-red-500 dark:text-red-400 font-mono">-$189</span>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <div className="p-1 rounded bg-emerald-500/10"><TrendingUp className="w-3 h-3 text-emerald-500" /></div>
+                          <div>
+                            <p className="text-[10px] font-medium text-foreground leading-tight">Consulting fee</p>
+                            <p className="text-[9px] text-muted-foreground">Strategy session</p>
+                          </div>
                         </div>
-                        <ThreatTicker />
-                     </div>
+                        <span className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 font-mono">+$850</span>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <div className="p-1 rounded bg-red-500/10"><TrendingDown className="w-3 h-3 text-red-400" /></div>
+                          <div>
+                            <p className="text-[10px] font-medium text-foreground leading-tight">Figma Pro</p>
+                            <p className="text-[9px] text-muted-foreground">Design tools</p>
+                          </div>
+                        </div>
+                        <span className="text-[10px] font-bold text-red-500 dark:text-red-400 font-mono">-$15</span>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <div className="p-1 rounded bg-emerald-500/10"><TrendingUp className="w-3 h-3 text-emerald-500" /></div>
+                          <div>
+                            <p className="text-[10px] font-medium text-foreground leading-tight">Receipt #887</p>
+                            <p className="text-[9px] text-muted-foreground">Bot automation</p>
+                          </div>
+                        </div>
+                        <span className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 font-mono">+$1,200</span>
+                      </div>
+                    </div>
+                    <div className="mt-3 pt-2 border-t border-border flex items-center justify-between">
+                      <span className="text-[9px] text-muted-foreground">This month</span>
+                      <span className="text-[11px] font-extrabold text-emerald-600 dark:text-emerald-400 font-mono">+$4,246</span>
+                    </div>
                   </div>
                </div>
             </div>
