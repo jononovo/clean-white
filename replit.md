@@ -1,18 +1,20 @@
-# SecureClawHub
+# CreditClaw.com
 
 ## Overview
 
-SecureClawHub is a trust and security registry for OpenClaw autonomous agent components. It provides verified, audited skill packages, SDKs, and services with threat intelligence monitoring, security scoring, and one-click deployment workflows.
+CreditClaw.com is a security-focused OpenClaw registry featuring verified skills, managed bot services, and enterprise-grade security. The site emphasizes a minimal, elegant, and secure aesthetic with clean design, ample whitespace, and refined typography.
 
 **Core Features:**
-- Skill/SDK registry with security audits and trust scores
+- Verified skill/SDK registry with security audits and trust scores
+- Managed Claw bot services marketplace
 - Real-time threat intelligence feeds and vulnerability tracking
-- Community hub with events, news, and developer resources
-- Deployment pipelines for agent capabilities
+- Partner ecosystem and provider directory
+- Enterprise deployment pipelines
 
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
+Design preference: Simple, minimal, elegant, secure. Ultra-clean aesthetic with reduced visual noise, subtle borders, muted section headers, and ample whitespace.
 
 ## Authentication (Added: February 2026)
 

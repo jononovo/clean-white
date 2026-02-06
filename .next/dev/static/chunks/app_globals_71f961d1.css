@@ -162,7 +162,6 @@
     --color-slate-100: #f1f5f9;
     --color-slate-200: #e2e8f0;
     --color-slate-400: #90a1b9;
-    --color-slate-500: #62748e;
     --color-slate-600: #45556c;
     --color-slate-700: #314158;
     --color-slate-800: #1d293d;
@@ -302,7 +301,6 @@
       --color-slate-100: lab(96.286% -.852436 -2.46847);
       --color-slate-200: lab(91.7353% -.998765 -4.76968);
       --color-slate-400: lab(65.5349% -2.25151 -14.5072);
-      --color-slate-500: lab(48.0876% -2.03595 -16.5814);
       --color-slate-600: lab(35.5623% -1.74978 -15.4316);
       --color-slate-700: lab(26.9569% -1.47016 -15.6993);
       --color-slate-800: lab(16.132% -.318035 -14.6672);
@@ -4663,10 +4661,6 @@
 
   .text-secondary-foreground {
     color: hsl(var(--secondary-foreground));
-  }
-
-  .text-slate-500 {
-    color: var(--color-slate-500);
   }
 
   .text-slate-600 {
