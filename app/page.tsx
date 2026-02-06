@@ -38,8 +38,8 @@ function ManagedClawBanner() {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-1.5 flex-wrap">
-              <span className="font-display font-bold text-sm text-foreground group-hover:text-amber-500 transition-colors">High-powered Managed Claw</span>
-              <ArrowUpRight className="w-4 h-4 text-primary group-hover:text-amber-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+              <span className="font-display font-bold text-sm text-foreground group-hover:text-yellow-600 dark:group-hover:text-yellow-500 transition-colors">High-powered Managed Claw</span>
+              <ArrowUpRight className="w-4 h-4 text-primary group-hover:text-yellow-600 dark:group-hover:text-yellow-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
               <span className="text-xs text-muted-foreground/70">Starting at <span className="font-semibold text-foreground/80">$79/month</span> <span className="italic">(Incl. $15 tokens)</span></span>
             </div>
           </div>

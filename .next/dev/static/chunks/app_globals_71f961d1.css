@@ -131,6 +131,7 @@
     --color-amber-900: #7b3306;
     --color-yellow-400: #fac800;
     --color-yellow-500: #edb200;
+    --color-yellow-600: #cd8900;
     --color-green-400: #05df72;
     --color-green-500: #00c758;
     --color-emerald-50: #ecfdf5;
@@ -273,6 +274,7 @@
       --color-amber-900: lab(31.2288% 30.2627 40.0378);
       --color-yellow-400: lab(83.2664% 8.65132 106.895);
       --color-yellow-500: lab(76.3898% 14.5258 98.4589);
+      --color-yellow-600: lab(62.7799% 22.4197 86.1544);
       --color-green-400: lab(78.503% -64.9265 39.7492);
       --color-green-500: lab(70.5521% -66.5147 45.8073);
       --color-emerald-50: lab(97.8462% -6.94966 1.85487);
@@ -5658,6 +5660,12 @@
   }
 
   @media (hover: hover) {
+    .group-hover\:text-yellow-600:is(:where(.group):hover *) {
+      color: var(--color-yellow-600);
+    }
+  }
+
+  @media (hover: hover) {
     .group-hover\:opacity-100:is(:where(.group):hover *) {
       opacity: 1;
     }
@@ -7987,6 +7995,12 @@
   @supports (color: color-mix(in lab, red, red)) {
     .dark\:ring-white\/5:where(.dark, .dark *) {
       --tw-ring-color: color-mix(in oklab, var(--color-white) 5%, transparent);
+    }
+  }
+
+  @media (hover: hover) {
+    .dark\:group-hover\:text-yellow-500:where(.dark, .dark *):is(:where(.group):hover *) {
+      color: var(--color-yellow-500);
     }
   }
 
