@@ -4528,6 +4528,16 @@
     }
   }
 
+  .text-foreground\/60 {
+    color: hsl(var(--foreground));
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .text-foreground\/60 {
+      color: color-mix(in oklab, hsl(var(--foreground)) 60%, transparent);
+    }
+  }
+
   .text-foreground\/80 {
     color: hsl(var(--foreground));
   }

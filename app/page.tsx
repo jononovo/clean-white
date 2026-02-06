@@ -43,7 +43,7 @@ function ManagedClawBanner() {
               <span className="text-xs text-muted-foreground/70">Starting at <span className="font-semibold text-foreground/80">$79/month</span> <span className="italic">(Incl. $15 tokens)</span></span>
             </div>
           </div>
-          <span className="text-xs text-muted-foreground/70 italic hidden sm:block shrink-0">Let us handle the headaches.</span>
+          <span className="text-xs text-muted-foreground/70 hidden sm:block shrink-0">We set it up and help you run it. <span className="italic font-medium text-foreground/60">Make business simple with Clawd.bot</span></span>
         </div>
       </a>
 
