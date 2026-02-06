@@ -6,8 +6,8 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { FullPageModal, ConfirmationModal } from "@/components/modals";
 import { AuthDrawer } from "@/components/auth-drawer";
-import { useState } from "react";
-import { Shield, CheckCircle, ExternalLink, Calendar, AlertTriangle, ChevronRight, Zap, Globe, Server, Activity, ArrowUpRight, Mail, Box, Cloud, Search, Newspaper, Sparkles, Star, Terminal, Lock, Handshake } from "lucide-react";
+import { useState, useRef, useCallback } from "react";
+import { Shield, CheckCircle, ExternalLink, Calendar, AlertTriangle, ChevronRight, Zap, Globe, Server, Activity, ArrowUpRight, Mail, Box, Cloud, Search, Newspaper, Sparkles, Star, Terminal, Lock, Handshake, Bot, Phone, FileSearch, CalendarClock, Video, Code } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
@@ -18,6 +18,72 @@ import { SERVICE_CATEGORIES, ServiceRegistrationDrawer } from "@/features/servic
 import { AuditBadge, FeaturedCard, CompressedListRow } from "@/features/skills";
 import { ThreatTicker } from "@/features/threats";
 
+
+function ManagedClawBanner() {
+  const [showTooltip, setShowTooltip] = useState(false);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const handleMouseEnter = useCallback(() => {
+    timeoutRef.current = setTimeout(() => setShowTooltip(true), 1500);
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    setShowTooltip(false);
+  }, []);
+
+  return (
+    <div className="relative" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+      <a href="https://xcloud.host/managed-vs-self-hosting-openclaw" target="_blank" rel="noopener noreferrer" className="block py-3 px-4 rounded-lg bg-gradient-to-r from-primary/5 via-primary/10 to-primary/5 border border-primary/20 hover:border-primary/40 transition-all duration-200 group cursor-pointer">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-1.5 flex-wrap">
+              <span className="font-display font-bold text-sm text-foreground">High-powered Managed Claw</span>
+              <ArrowUpRight className="w-4 h-4 text-primary group-hover:text-amber-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+              <span className="text-xs text-muted-foreground/70">Starting at <span className="font-semibold text-foreground/80">$79/month</span> <span className="italic">(Incl. $15 tokens)</span></span>
+            </div>
+          </div>
+          <span className="text-xs text-muted-foreground/70 italic hidden sm:block shrink-0">Let us handle the headaches.</span>
+        </div>
+      </a>
+
+      <div className={cn(
+        "absolute left-0 right-0 top-full mt-2 z-50 transition-all duration-300 origin-top",
+        showTooltip ? "opacity-100 scale-y-100 translate-y-0" : "opacity-0 scale-y-95 -translate-y-1 pointer-events-none"
+      )}>
+        <Card className="p-5 shadow-xl border-primary/20 bg-card/98 backdrop-blur-md">
+          <div className="flex items-center gap-2 mb-3">
+            <div className="p-1.5 rounded-md bg-amber-500/10">
+              <Bot className="w-4 h-4 text-amber-500" />
+            </div>
+            <span className="text-xs font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400">Business Automation Offer</span>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 mb-4">
+            {[
+              { icon: Phone, text: "Handle research calls, texting, and recommended outreach" },
+              { icon: Mail, text: "Email outreach and rep replies on your behalf" },
+              { icon: FileSearch, text: "Find information, scrape from sites, suggest meeting times" },
+              { icon: Sparkles, text: "Learn new skills, create videos, program on the go" },
+              { icon: CalendarClock, text: "Manage your schedule and create a schedule for your bot" },
+              { icon: Video, text: "Generate content, reports, and presentations automatically" },
+            ].map((item, i) => (
+              <div key={i} className="flex items-start gap-2 py-1.5">
+                <item.icon className="w-3.5 h-3.5 text-muted-foreground mt-0.5 shrink-0" />
+                <span className="text-xs text-muted-foreground leading-relaxed">{item.text}</span>
+              </div>
+            ))}
+          </div>
+          <div className="pt-3 border-t border-border/40 flex items-center justify-between">
+            <span className="text-[11px] text-muted-foreground italic">All with the managed, gold service package.</span>
+            <span className="text-[10px] font-semibold text-primary flex items-center gap-1">
+              Learn more <ArrowUpRight className="w-3 h-3" />
+            </span>
+          </div>
+        </Card>
+      </div>
+    </div>
+  );
+}
 
 export default function Home() {
   const [showFullModal, setShowFullModal] = useState(false);
@@ -183,18 +249,7 @@ export default function Home() {
           </div>
         </div>
 
-        <a href="https://xcloud.host/managed-vs-self-hosting-openclaw" target="_blank" rel="noopener noreferrer" className="block py-3 px-4 rounded-lg bg-gradient-to-r from-primary/5 via-primary/10 to-primary/5 border border-primary/20 hover:border-primary/40 transition-all duration-200 group cursor-pointer">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="flex items-center gap-1.5">
-                <span className="font-display font-bold text-sm text-foreground">High-powered Managed Claw</span>
-                <ArrowUpRight className="w-4 h-4 text-primary group-hover:text-amber-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
-                <span className="text-xs text-muted-foreground/70">Starting at <span className="font-semibold text-foreground/80">$79/month</span> <span className="italic">(Incl. $15 tokens)</span></span>
-              </div>
-            </div>
-            <span className="text-xs text-muted-foreground/70 italic hidden sm:block">Let us handle the headaches.</span>
-          </div>
-        </a>
+        <ManagedClawBanner />
 
         <div className="py-6 border-b border-border/40">
           <div className="flex items-center justify-between mb-4 px-1">

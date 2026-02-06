@@ -2047,6 +2047,10 @@
     transform-origin: --radix-tooltip-content-transform-origin;
   }
 
+  .origin-top {
+    transform-origin: top;
+  }
+
   .-translate-x-1\/2 {
     --tw-translate-x: calc(calc(1 / 2 * 100%) * -1);
     translate: var(--tw-translate-x) var(--tw-translate-y);
@@ -2077,6 +2081,11 @@
     translate: var(--tw-translate-x) var(--tw-translate-y);
   }
 
+  .-translate-y-1 {
+    --tw-translate-y: calc(var(--spacing) * -1);
+    translate: var(--tw-translate-x) var(--tw-translate-y);
+  }
+
   .-translate-y-1\/2 {
     --tw-translate-y: calc(calc(1 / 2 * 100%) * -1);
     translate: var(--tw-translate-x) var(--tw-translate-y);
@@ -2099,6 +2108,16 @@
 
   .translate-none {
     translate: none;
+  }
+
+  .scale-y-95 {
+    --tw-scale-y: 95%;
+    scale: var(--tw-scale-x) var(--tw-scale-y);
+  }
+
+  .scale-y-100 {
+    --tw-scale-y: 100%;
+    scale: var(--tw-scale-x) var(--tw-scale-y);
   }
 
   .scale-3d {
@@ -2402,6 +2421,11 @@
     column-gap: calc(var(--spacing) * 3);
   }
 
+  .gap-x-6 {
+    -moz-column-gap: calc(var(--spacing) * 6);
+    column-gap: calc(var(--spacing) * 6);
+  }
+
   :where(.space-x-1 > :not(:last-child)) {
     --tw-space-x-reverse: 0;
     margin-inline-start: calc(calc(var(--spacing) * 1) * var(--tw-space-x-reverse));
@@ -2420,6 +2444,10 @@
 
   .gap-y-1 {
     row-gap: calc(var(--spacing) * 1);
+  }
+
+  .gap-y-2 {
+    row-gap: calc(var(--spacing) * 2);
   }
 
   :where(.divide-x > :not(:last-child)) {
@@ -3111,6 +3139,16 @@
     }
   }
 
+  .bg-amber-500\/10 {
+    background-color: #f99c001a;
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .bg-amber-500\/10 {
+      background-color: color-mix(in oklab, var(--color-amber-500) 10%, transparent);
+    }
+  }
+
   .bg-background {
     background-color: hsl(var(--background));
   }
@@ -3208,6 +3246,16 @@
   @supports (color: color-mix(in lab, red, red)) {
     .bg-card\/80 {
       background-color: color-mix(in oklab, hsl(var(--card)) 80%, transparent);
+    }
+  }
+
+  .bg-card\/98 {
+    background-color: hsl(var(--card));
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .bg-card\/98 {
+      background-color: color-mix(in oklab, hsl(var(--card)) 98%, transparent);
     }
   }
 
