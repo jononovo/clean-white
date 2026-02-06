@@ -24,22 +24,36 @@ function ManagedClawBanner() {
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const handleMouseEnter = useCallback(() => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
     timeoutRef.current = setTimeout(() => setShowTooltip(true), 1500);
   }, []);
 
   const handleMouseLeave = useCallback(() => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
-    setShowTooltip(false);
+    timeoutRef.current = setTimeout(() => setShowTooltip(false), 300);
+  }, []);
+
+  const handleTooltipEnter = useCallback(() => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+  }, []);
+
+  const handleTooltipLeave = useCallback(() => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    timeoutRef.current = setTimeout(() => setShowTooltip(false), 300);
   }, []);
 
   return (
     <div className="relative" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-      <Link href="/deploy" className="block py-3 px-4 rounded-lg bg-gradient-to-r from-primary/5 via-primary/10 to-primary/5 border border-primary/20 hover:border-primary/40 transition-all duration-200 group cursor-pointer">
-        <div className="flex items-center justify-between">
+      <Link href="/deploy" className="block py-3.5 px-5 rounded-xl bg-gradient-to-r from-yellow-500/10 via-amber-500/15 to-yellow-500/10 dark:from-yellow-500/5 dark:via-amber-500/10 dark:to-yellow-500/5 border border-yellow-500/30 hover:border-yellow-500/50 hover:shadow-lg hover:shadow-yellow-500/5 transition-all duration-300 group cursor-pointer relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/0 via-yellow-400/5 to-yellow-400/0 group-hover:via-yellow-400/10 transition-all duration-500" />
+        <div className="flex items-center justify-between relative z-10">
           <div className="flex items-center gap-3">
-            <div className="flex items-center gap-1.5 flex-wrap">
+            <div className="flex items-center gap-2 flex-wrap">
+              <div className="p-1.5 rounded-lg bg-yellow-500/15 dark:bg-yellow-500/10">
+                <Zap className="w-4 h-4 text-yellow-600 dark:text-yellow-500" />
+              </div>
               <span className="font-display font-bold text-sm text-foreground group-hover:text-yellow-600 dark:group-hover:text-yellow-500 transition-colors">High-powered Managed Claw</span>
-              <ArrowUpRight className="w-4 h-4 text-primary group-hover:text-yellow-600 dark:group-hover:text-yellow-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+              <ArrowUpRight className="w-4 h-4 text-yellow-600/60 dark:text-yellow-500/60 group-hover:text-yellow-600 dark:group-hover:text-yellow-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
               <span className="text-xs text-muted-foreground/70">Starting at <span className="font-semibold text-foreground/80">$79/month</span> <span className="italic">(Incl. $15 tokens)</span></span>
             </div>
           </div>
@@ -47,18 +61,23 @@ function ManagedClawBanner() {
         </div>
       </Link>
 
-      <div className={cn(
-        "absolute left-0 right-0 top-full mt-2 z-50 transition-all duration-300 origin-top",
-        showTooltip ? "opacity-100 scale-y-100 translate-y-0" : "opacity-0 scale-y-95 -translate-y-1 pointer-events-none"
-      )}>
-        <Card className="p-3 shadow-xl border-primary/20 bg-card/98 backdrop-blur-md cursor-pointer">
-          <div className="flex items-center gap-2 mb-2">
-            <div className="p-1 rounded-md bg-amber-500/10">
-              <Bot className="w-3.5 h-3.5 text-amber-500" />
+      <div
+        className={cn(
+          "absolute left-0 right-0 top-full mt-2 z-50 transition-all duration-300 origin-top",
+          showTooltip ? "opacity-100 scale-y-100 translate-y-0" : "opacity-0 scale-y-95 -translate-y-1 pointer-events-none"
+        )}
+        onMouseEnter={handleTooltipEnter}
+        onMouseLeave={handleTooltipLeave}
+      >
+        <Card className="p-4 shadow-2xl border-yellow-500/30 bg-gradient-to-br from-card via-card to-yellow-500/5 dark:to-yellow-500/3 backdrop-blur-md cursor-pointer relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-40 h-40 bg-yellow-500/5 rounded-full -mr-16 -mt-16 blur-3xl pointer-events-none" />
+          <div className="flex items-center gap-2 mb-3 relative z-10">
+            <div className="p-1.5 rounded-lg bg-gradient-to-br from-yellow-500/20 to-amber-500/20">
+              <Bot className="w-4 h-4 text-yellow-600 dark:text-yellow-500" />
             </div>
-            <span className="text-[11px] font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400">Business Automation on Steroids</span>
+            <span className="text-xs font-bold uppercase tracking-wider text-yellow-700 dark:text-yellow-400">Business Automation on Steroids</span>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1 mb-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1.5 mb-3 relative z-10">
             {[
               { icon: Phone, text: "Handle research calls, texting, and recommended outreach" },
               { icon: Mail, text: "Email outreach and rep replies on your behalf" },
@@ -67,17 +86,17 @@ function ManagedClawBanner() {
               { icon: CalendarClock, text: "Manage your schedule and create a schedule for your bot" },
               { icon: Video, text: "Generate content, reports, and presentations automatically" },
             ].map((item, i) => (
-              <div key={i} className="flex items-start gap-1.5 py-1">
-                <item.icon className="w-3 h-3 text-muted-foreground mt-0.5 shrink-0" />
+              <div key={i} className="flex items-start gap-2 py-1">
+                <item.icon className="w-3.5 h-3.5 text-yellow-600/60 dark:text-yellow-500/50 mt-0.5 shrink-0" />
                 <span className="text-[11px] text-muted-foreground leading-snug">{item.text}</span>
               </div>
             ))}
           </div>
-          <div className="pt-2 border-t border-border/40 flex items-center justify-between">
+          <div className="pt-3 border-t border-yellow-500/20 flex items-center justify-between relative z-10">
             <span className="text-[11px] text-muted-foreground italic">All with the managed, gold service package.</span>
             <Link href="/deploy">
-              <Button size="sm" className="h-7 px-3 text-[11px] font-semibold">
-                Learn more <ArrowUpRight className="w-3 h-3 ml-1" />
+              <Button size="sm" className="h-8 px-4 text-[11px] font-bold bg-gradient-to-r from-yellow-500 to-amber-500 hover:from-yellow-400 hover:to-amber-400 text-black shadow-lg shadow-yellow-500/20 hover:shadow-yellow-500/30 transition-all">
+                Get Started <ArrowUpRight className="w-3.5 h-3.5 ml-1" />
               </Button>
             </Link>
           </div>
