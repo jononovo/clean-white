@@ -72,9 +72,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <div className="p-2 flex items-center gap-2 border-b border-border/50">
         <Link href="/">
           <div className="flex items-center gap-2 cursor-pointer">
-            <img src="/logo_v2.png" alt="SecureClawHub" className="w-14 h-14 object-contain" width="56" height="56" />
+            <img src="/logo_v2.png" alt="CreditClaw" className="w-14 h-14 object-contain" width="56" height="56" />
             <div>
-              <h1 className="font-display font-bold text-xl leading-none tracking-tight">SecureClawHub</h1>
+              <h1 className="font-display font-bold text-xl leading-none tracking-tight">CreditClaw</h1>
               <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold mt-0.5">Verified Registry</p>
             </div>
           </div>
@@ -234,8 +234,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
              <div className="lg:hidden flex items-center gap-3">
                 <Link href="/">
                   <div className="flex items-center gap-2 cursor-pointer mr-2">
-                    <img src="/logo_v2.png" alt="SecureClawHub" className="w-8 h-8 object-contain" width="32" height="32" />
-                    <h1 className="font-display font-bold text-lg leading-none tracking-tight hidden xs:block">SecureClawHub</h1>
+                    <img src="/logo_v2.png" alt="CreditClaw" className="w-8 h-8 object-contain" width="32" height="32" />
+                    <h1 className="font-display font-bold text-lg leading-none tracking-tight hidden xs:block">CreditClaw</h1>
                   </div>
                 </Link>
 
@@ -264,8 +264,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
                {!isSidebarOpen && (
                  <Link href="/">
                     <div className="flex items-center gap-2 cursor-pointer ml-2">
-                      <img src="/logo_v2.png" alt="SecureClawHub" className="w-8 h-8 object-contain" width="32" height="32" />
-                      <h1 className="font-display font-bold text-lg leading-none tracking-tight">SecureClawHub</h1>
+                      <img src="/logo_v2.png" alt="CreditClaw" className="w-8 h-8 object-contain" width="32" height="32" />
+                      <h1 className="font-display font-bold text-lg leading-none tracking-tight">CreditClaw</h1>
                     </div>
                   </Link>
                )}
