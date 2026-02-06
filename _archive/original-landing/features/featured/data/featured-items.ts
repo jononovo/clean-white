@@ -1,0 +1,37 @@
+export const FEATURED_OF_THE_DAY = {
+  hero: {
+    handle: "joshp123",
+    displayName: "joshp123",
+    description: "Shipped SSRF DNS pinning and system prompt safety guardrails — hardening OpenClaw against injection attacks and request forgery.",
+    imageUrl: "/images/featured/hero-joshp123.png",
+    sourceUrl: "https://github.com/joshp123",
+    isVerified: true,
+  },
+  app: {
+    slug: "excalidraw-agent",
+    name: "Excalidraw Agent",
+    description: "Say 'draw this flow' and get instant diagrams. Natural language to visual flowcharts, architecture maps, and wireframes.",
+    imageUrl: "/images/featured/app-excalidraw-agent.png",
+    sourceUrl: "https://github.com/swiftlysingh",
+    author: "swiftlysingh",
+    isVerified: true,
+  },
+  skill: {
+    slug: "browser-automation",
+    name: "Browser Automation",
+    description: "Playwright-based browser control for web scraping, form filling, and automated navigation. One of the most popular skills.",
+    imageUrl: "/images/featured/skill-browser-automation.png",
+    author: "steipete",
+    isVerified: true,
+  },
+  service: {
+    name: "xCloud Managed Hosting",
+    provider: "xCloud",
+    providerHandle: "xcloud",
+    description: "One-click managed OpenClaw hosting. Live in under 5 minutes with 24/7 support.",
+    imageUrl: "/images/featured/service-xcloud.png",
+    sourceUrl: "https://xcloud.host",
+    website: "https://xcloud.host/openclaw-hosting",
+    isVerified: true,
+  },
+};
