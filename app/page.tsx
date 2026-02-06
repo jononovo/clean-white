@@ -183,6 +183,20 @@ export default function Home() {
           </div>
         </div>
 
+        <a href="https://xcloud.host/managed-vs-self-hosting-openclaw" target="_blank" rel="noopener noreferrer" className="block py-3 px-4 rounded-lg bg-gradient-to-r from-primary/5 via-primary/10 to-primary/5 border border-primary/20 hover:border-primary/40 transition-all duration-200 group cursor-pointer">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="flex items-center gap-1.5">
+                <span className="font-display font-bold text-sm text-foreground">Managed Claw</span>
+                <span className="text-sm text-muted-foreground">|</span>
+                <span className="text-sm text-muted-foreground">For non-technical users</span>
+                <ChevronRight className="w-4 h-4 text-primary group-hover:translate-x-0.5 transition-transform" />
+              </div>
+            </div>
+            <span className="text-xs text-muted-foreground/70 italic hidden sm:block">Let us handle the headaches.</span>
+          </div>
+        </a>
+
         <div className="py-6 border-b border-border/40">
           <div className="flex items-center justify-between mb-4 px-1">
             <h3 className="text-sm font-bold uppercase tracking-wider flex items-center gap-2 text-foreground/80">
