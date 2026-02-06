@@ -189,9 +189,10 @@ export default function Home() {
               <div className="flex items-center gap-1.5">
                 <span className="font-display font-bold text-sm text-foreground">High-powered Managed Claw</span>
                 <ArrowUpRight className="w-4 h-4 text-primary group-hover:text-amber-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                <span className="text-xs text-muted-foreground/70">Starting at <span className="font-semibold text-foreground/80">$79/month</span> <span className="italic">(Incl. $15 tokens)</span></span>
               </div>
             </div>
-            <span className="text-xs text-muted-foreground/70 hidden sm:block">Let us handle the headaches. Starting at <span className="font-semibold text-foreground/80">$79/month</span> <span className="italic">(Incl. $15 tokens)</span></span>
+            <span className="text-xs text-muted-foreground/70 italic hidden sm:block">Let us handle the headaches.</span>
           </div>
         </a>
 
