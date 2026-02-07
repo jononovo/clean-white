@@ -1,6 +1,10 @@
 ---
 name: clawbranding
-description: CreditClaw brand identity and design system with "Fun Consumer" theme, color palette, typography, and UI conventions. Use when building or modifying UI components for this project.
+description: >-
+  CreditClaw brand identity and design system with "Fun Consumer" theme, color
+  palette, typography, and UI conventions. Use when building or modifying UI
+  components for this project.
+enabled: true
 ---
 
 # CreditClaw Brand Identity & Design System
