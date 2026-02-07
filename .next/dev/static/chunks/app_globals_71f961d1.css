@@ -4255,6 +4255,10 @@
     color: #ff6b6b;
   }
 
+  .text-accent {
+    color: hsl(var(--accent));
+  }
+
   .text-accent-foreground {
     color: hsl(var(--accent-foreground));
   }
@@ -4491,6 +4495,10 @@
 
   .text-red-700 {
     color: var(--color-red-700);
+  }
+
+  .text-secondary {
+    color: hsl(var(--secondary));
   }
 
   .text-secondary-foreground {
