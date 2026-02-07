@@ -7,7 +7,7 @@ import { useAuth } from "@/lib/auth/auth-context";
 import { useState } from "react";
 import { LogOut, User } from "lucide-react";
 
-export function Nav() {
+export function Nav({ topOffset = false }: { topOffset?: boolean }) {
   const [authOpen, setAuthOpen] = useState(false);
   const [defaultTab, setDefaultTab] = useState<"login" | "register">("login");
   const { user, logout, loading } = useAuth();
@@ -24,7 +24,7 @@ export function Nav() {
 
   return (
     <>
-      <nav className="fixed top-8 w-full z-50 bg-white/80 backdrop-blur-md border-b border-neutral-100">
+      <nav className={`fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-neutral-100 transition-all duration-300 ${topOffset ? 'top-8' : 'top-0'}`}>
         <div className="container mx-auto px-6 h-20 flex items-center justify-between">
           <Link href="/" className="group cursor-pointer flex items-center gap-2">
             <img src="/images/creditclaw/logo-claw-chip.png" alt="CreditClaw Logo" className="w-10 h-10 object-contain" />
