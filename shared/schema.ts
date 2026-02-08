@@ -140,7 +140,7 @@ export const PRICING_TYPES = ["one_time", "monthly", "contact"] as const;
 
 export const providers = pgTable("providers", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  userId: varchar("user_id").notNull().references(() => users.id),
+  userId: varchar("user_id").references(() => users.id),
   handle: text("handle").notNull().unique(),
   displayName: text("display_name").notNull(),
   description: text("description"),
@@ -149,6 +149,10 @@ export const providers = pgTable("providers", {
   website: text("website"),
   contactEmail: text("contact_email"),
   isVerified: boolean("is_verified").notNull().default(false),
+  isPartner: boolean("is_partner").notNull().default(false),
+  partnerRole: text("partner_role"),
+  tagline: text("tagline"),
+  rating: integer("rating"),
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });
@@ -168,13 +172,42 @@ export const services = pgTable("services", {
   name: text("name").notNull(),
   description: text("description").notNull(),
   category: text("category").notNull(),
+  slug: text("slug"),
+  url: text("url"),
   pricingType: text("pricing_type").notNull().default("contact"),
+  pricingLabel: text("pricing_label"),
   priceMin: integer("price_min"),
   priceMax: integer("price_max"),
+  rating: integer("rating"),
+  popularity: integer("popularity"),
   isActive: boolean("is_active").notNull().default(true),
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });
+
+export const featuredItems = pgTable("featured_items", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  type: text("type").notNull(),
+  name: text("name").notNull(),
+  description: text("description").notNull(),
+  imageUrl: text("image_url"),
+  href: text("href"),
+  sourceUrl: text("source_url"),
+  subtitle: text("subtitle"),
+  author: text("author"),
+  isVerified: boolean("is_verified").notNull().default(false),
+  isActive: boolean("is_active").notNull().default(true),
+  sortOrder: integer("sort_order").notNull().default(0),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+});
+
+export const insertFeaturedItemSchema = createInsertSchema(featuredItems).omit({
+  id: true,
+  createdAt: true,
+});
+
+export type InsertFeaturedItem = z.infer<typeof insertFeaturedItemSchema>;
+export type FeaturedItem = typeof featuredItems.$inferSelect;
 
 export const insertServiceSchema = createInsertSchema(services).omit({
   id: true,
