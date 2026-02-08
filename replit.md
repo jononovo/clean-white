@@ -37,17 +37,29 @@ Preferred communication style: Simple, everyday language.
 - URL pattern: `/@handle` for provider profile, `/@handle/skill-slug` for skills
 
 **Database Tables:**
-- `providers`: id, userId, handle (unique), displayName, description, avatarUrl, location, website, contactEmail, isVerified
-- `services`: id, providerId, name, description, category, pricingType (one_time/monthly/contact), priceMin, priceMax, isActive
+- `providers`: id, userId (nullable), handle (unique), displayName, description, avatarUrl, location, website, contactEmail, isVerified, isPartner, partnerRole, tagline, rating
+- `services`: id, providerId, name, description, category, slug, url, pricingType (one_time/monthly/contact), pricingLabel, priceMin, priceMax, rating, popularity, isActive
+- `featured_items`: id, type (hero/app/skill/service), name, description, imageUrl, href, sourceUrl, subtitle, author, isVerified, isActive, sortOrder
 - `skills.providerId`: Links skills to providers
 
 **Service Categories:**
 - setup_installation, managed_hosting, consulting, training, partnerships, finance_tax
 
+**Homepage Database Integration (Added: February 2026):**
+- Sections 3-7 now fetch from database with hardcoded fallbacks
+- Service Categories Marketplace: 6 categories with 21 services from 18 providers
+- Featured of the Day: 4 rotating items (hero, app, skill, service) from featured_items table
+- Top VPS Services: Filtered from services where category=managed_hosting
+- Our Partners: Filtered from providers where isPartner=true
+- Seed script: `scripts/seed-homepage.ts`
+
 **Key Files:**
-- `app/api/providers/route.ts` - Provider CRUD
+- `app/api/providers/route.ts` - Provider CRUD (auth required)
+- `app/api/providers/browse/route.ts` - Public provider browsing (supports ?partner=true)
 - `app/api/providers/check-handle/route.ts` - Handle availability check
-- `app/api/services/route.ts` - Service CRUD
+- `app/api/services/route.ts` - Service CRUD (GET is public, POST requires auth)
+- `app/api/featured/route.ts` - Featured items (public)
+- `hooks/use-homepage-data.ts` - React Query hooks for homepage data fetching
 - `components/service-registration-drawer.tsx` - Service listing UI
 - `lib/db.ts` - Database helpers for auth/provider management
 
