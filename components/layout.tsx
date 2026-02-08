@@ -94,19 +94,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 { label: "Enterprise", href: "#" },
                 { label: "Jobs", href: "#" },
                 { label: "Community", href: "/community" },
-                { label: "Discord", href: "https://discord.gg/gduUaXMQ", external: true },
                 { label: "Feedback", href: "#" },
-                { label: "Security Advisory", href: "#" },
-                { label: "Media Advisory", href: "/media" },
-                { label: "Submit Threat", href: "/threats", className: "text-destructive hover:text-destructive hover:bg-destructive/10" }
+                { label: "Media Advisory", href: "/media" }
               ].map((link) => (
                 <Link key={link.label} href={link.href}>
                   <Button
                     variant="ghost"
-                    className={cn(
-                      "w-full justify-start text-sm font-medium h-9 px-2 text-foreground/80 hover:text-foreground hover:bg-muted cursor-pointer",
-                      link.className
-                    )}
+                    className="w-full justify-start text-sm font-medium h-9 px-2 text-foreground/80 hover:text-foreground hover:bg-muted cursor-pointer"
                   >
                     {link.label}
                   </Button>
@@ -349,18 +343,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
               <span className="text-border">|</span>
               <Link href="/community" className="inline-block py-2 px-2 -my-2 hover:text-primary transition-colors hover:underline whitespace-nowrap">Community</Link>
               <span className="text-border">|</span>
-              <a href="https://discord.gg/gduUaXMQ" target="_blank" rel="noopener noreferrer" className="inline-block py-2 px-2 -my-2 hover:text-primary transition-colors hover:underline whitespace-nowrap">Discord</a>
-              <span className="text-border">|</span>
               <Link href="#" className="inline-block py-2 px-2 -my-2 hover:text-primary transition-colors hover:underline whitespace-nowrap">Feedback</Link>
               <span className="text-border">|</span>
-              <Link href="#" className="inline-block py-2 px-2 -my-2 hover:text-primary transition-colors hover:underline whitespace-nowrap">Security Advisory</Link>
-              <span className="text-border">|</span>
               <Link href="/media" className="inline-block py-2 px-2 -my-2 hover:text-primary transition-colors hover:underline whitespace-nowrap">Media Advisory</Link>
-              <span className="text-border">|</span>
-              <Link href="/threats" className="inline-flex items-center gap-1 py-2 px-2 -my-2 hover:text-destructive transition-colors hover:underline group whitespace-nowrap">
-                <AlertTriangle className="w-3 h-3 text-muted-foreground group-hover:text-destructive transition-colors" />
-                Submit Threat
-              </Link>
             </div>
           {children}
         </div>
