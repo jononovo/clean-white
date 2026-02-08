@@ -204,16 +204,6 @@ export default function Home() {
                 </Link>
               </div>
               
-              <div className="flex items-center gap-6 text-xs text-muted-foreground pt-4">
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-emerald-600 dark:text-emerald-500" />
-                  <span>OpenClaw Threat Monitor</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-emerald-600 dark:text-emerald-500" />
-                  <span>Manual Code Review</span>
-                </div>
-              </div>
             </div>
 
             <div className="hidden lg:block relative">
