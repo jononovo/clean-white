@@ -208,12 +208,6 @@ export function AuthDrawer({ open, onOpenChange, defaultTab = "login" }: AuthDra
                   </div>
                 )}
 
-                <div className="text-center py-4">
-                  <p className="text-muted-foreground text-sm mb-6">
-                    Create your account instantly using one of the options below. No password required!
-                  </p>
-                </div>
-
                 <div className="space-y-3">
                   <Button 
                     variant="outline" 
