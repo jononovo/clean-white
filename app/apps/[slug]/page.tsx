@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { Layout } from "@/components/layout";
@@ -21,64 +22,56 @@ import {
   Monitor,
   CheckCircle2,
   Zap,
+  AlertTriangle,
 } from "lucide-react";
-
-const FEATURED_APPS: Record<string, {
-  slug: string;
-  name: string;
-  tagline: string;
-  description: string;
-  logoUrl: string;
-  author: string;
-  authorHandle: string;
-  website: string;
-  github: string;
-  isVerified: boolean;
-  stats: { stars: number; downloads: number; users: number };
-  platforms: string[];
-  features: string[];
-  integrations: string[];
-  screenshots: string[];
-}> = {
-  "openclaw-desktop": {
-    slug: "openclaw-desktop",
-    name: "OpenClaw Desktop",
-    tagline: "The AI assistant that actually does things",
-    description: "OpenClaw is a self-hosted, open-source AI agent that runs locally on your computer. Control it via WhatsApp, Telegram, Discord, Signal, or Slack. It can manage your files, automate workflows, control your browser, send emails, and much more. With 145k+ GitHub stars, it's the fastest-growing open-source AI agent platform.",
-    logoUrl: "https://openclaw.ai/logo.png",
-    author: "OpenClaw Team",
-    authorHandle: "openclaw",
-    website: "https://openclaw.ai",
-    github: "https://github.com/openclaw/openclaw",
-    isVerified: true,
-    stats: { stars: 145000, downloads: 2500000, users: 890000 },
-    platforms: ["macOS", "Windows (WSL2)", "Linux", "Raspberry Pi"],
-    features: [
-      "Control your PC via WhatsApp, Telegram, Discord, Signal, or Slack",
-      "3,000+ community skills available on ClawHub",
-      "Browser automation with Playwright",
-      "File management and shell command execution",
-      "Email and calendar integration",
-      "Smart home and IoT control",
-      "Persistent memory across sessions",
-      "Works with Claude, GPT, DeepSeek, or local Ollama models",
-    ],
-    integrations: ["WhatsApp", "Telegram", "Discord", "Signal", "Slack", "Gmail", "Notion", "Obsidian", "GitHub"],
-    screenshots: [],
-  },
-};
+import type { App } from "@/shared/schema";
 
 export default function AppDetailPage() {
   const params = useParams();
   const slug = params.slug as string;
-  const app = FEATURED_APPS[slug];
+  const [app, setApp] = useState<App | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  if (!app) {
+  useEffect(() => {
+    async function fetchApp() {
+      try {
+        const res = await fetch(`/api/apps/${slug}`);
+        if (!res.ok) {
+          if (res.status === 404) {
+            setError("App not found");
+          } else {
+            setError("Failed to load app");
+          }
+          return;
+        }
+        const data = await res.json();
+        setApp(data);
+      } catch {
+        setError("Failed to load app");
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchApp();
+  }, [slug]);
+
+  if (loading) {
+    return (
+      <Layout>
+        <div className="flex items-center justify-center min-h-[60vh]">
+          <div className="animate-pulse text-muted-foreground">Loading app...</div>
+        </div>
+      </Layout>
+    );
+  }
+
+  if (error || !app) {
     return (
       <Layout>
         <div className="flex flex-col items-center justify-center min-h-[60vh] gap-4">
-          <Monitor className="w-12 h-12 text-muted-foreground" />
-          <h1 className="text-2xl font-bold">App not found</h1>
+          <AlertTriangle className="w-12 h-12 text-yellow-500" />
+          <h1 className="text-2xl font-bold">{error || "App not found"}</h1>
           <p className="text-muted-foreground">The app you're looking for doesn't exist yet.</p>
           <Button onClick={() => window.history.back()}>Go Back</Button>
         </div>
@@ -108,23 +101,29 @@ export default function AppDetailPage() {
                         <BadgeCheck className="w-7 h-7 text-primary" />
                       )}
                     </div>
-                    <p className="text-lg text-muted-foreground mt-1" data-testid="app-tagline">
-                      {app.tagline}
-                    </p>
+                    {app.tagline && (
+                      <p className="text-lg text-muted-foreground mt-1" data-testid="app-tagline">
+                        {app.tagline}
+                      </p>
+                    )}
                   </div>
                   <div className="flex gap-2">
-                    <Button className="gap-2" asChild>
-                      <a href={app.website} target="_blank" rel="noopener noreferrer">
-                        <Download className="w-4 h-4" />
-                        Install
-                      </a>
-                    </Button>
-                    <Button variant="outline" className="gap-2" asChild>
-                      <a href={app.github} target="_blank" rel="noopener noreferrer">
-                        <Github className="w-4 h-4" />
-                        Source
-                      </a>
-                    </Button>
+                    {app.website && (
+                      <Button className="gap-2" asChild>
+                        <a href={app.website} target="_blank" rel="noopener noreferrer">
+                          <Download className="w-4 h-4" />
+                          Install
+                        </a>
+                      </Button>
+                    )}
+                    {app.github && (
+                      <Button variant="outline" className="gap-2" asChild>
+                        <a href={app.github} target="_blank" rel="noopener noreferrer">
+                          <Github className="w-4 h-4" />
+                          Source
+                        </a>
+                      </Button>
+                    )}
                   </div>
                 </div>
 
@@ -138,16 +137,16 @@ export default function AppDetailPage() {
                 <div className="flex flex-wrap items-center gap-4 text-sm">
                   <div className="flex items-center gap-1 text-yellow-500">
                     <Star className="w-4 h-4" />
-                    <span className="font-medium">{app.stats.stars.toLocaleString()}</span>
+                    <span className="font-medium">{app.stars.toLocaleString()}</span>
                     <span className="text-muted-foreground">stars</span>
                   </div>
                   <div className="flex items-center gap-1 text-muted-foreground">
                     <Download className="w-4 h-4" />
-                    <span>{app.stats.downloads.toLocaleString()} downloads</span>
+                    <span>{app.downloads.toLocaleString()} downloads</span>
                   </div>
                   <div className="flex items-center gap-1 text-muted-foreground">
                     <Users className="w-4 h-4" />
-                    <span>{app.stats.users.toLocaleString()} active users</span>
+                    <span>{app.users.toLocaleString()} active users</span>
                   </div>
                 </div>
 
@@ -158,15 +157,15 @@ export default function AppDetailPage() {
                       Verified
                     </Badge>
                   )}
-                  <Badge variant="secondary" className="gap-1">
-                    <Zap className="w-3 h-3" />
-                    Open Source
-                  </Badge>
-                  {app.platforms.map((platform) => (
+                  {app.isOpenSource && (
+                    <Badge variant="secondary" className="gap-1">
+                      <Zap className="w-3 h-3" />
+                      Open Source
+                    </Badge>
+                  )}
+                  {app.platforms?.map((platform) => (
                     <Badge key={platform} variant="outline" className="gap-1">
-                      {platform === "macOS" ? <Monitor className="w-3 h-3" /> : 
-                       platform.includes("Windows") ? <Monitor className="w-3 h-3" /> :
-                       <Smartphone className="w-3 h-3" />}
+                      {platform === "macOS" || platform.includes("Windows") ? <Monitor className="w-3 h-3" /> : <Smartphone className="w-3 h-3" />}
                       {platform}
                     </Badge>
                   ))}
@@ -180,21 +179,21 @@ export default function AppDetailPage() {
           <Card className="border-border/50 bg-card/50">
             <CardContent className="p-6 text-center">
               <Star className="w-8 h-8 text-yellow-500 mx-auto mb-2" />
-              <div className="text-2xl font-bold">{app.stats.stars.toLocaleString()}</div>
+              <div className="text-2xl font-bold">{app.stars.toLocaleString()}</div>
               <div className="text-sm text-muted-foreground">GitHub Stars</div>
             </CardContent>
           </Card>
           <Card className="border-border/50 bg-card/50">
             <CardContent className="p-6 text-center">
               <Download className="w-8 h-8 text-primary mx-auto mb-2" />
-              <div className="text-2xl font-bold">{app.stats.downloads.toLocaleString()}</div>
+              <div className="text-2xl font-bold">{app.downloads.toLocaleString()}</div>
               <div className="text-sm text-muted-foreground">Downloads</div>
             </CardContent>
           </Card>
           <Card className="border-border/50 bg-card/50">
             <CardContent className="p-6 text-center">
               <Users className="w-8 h-8 text-blue-500 mx-auto mb-2" />
-              <div className="text-2xl font-bold">{app.stats.users.toLocaleString()}</div>
+              <div className="text-2xl font-bold">{app.users.toLocaleString()}</div>
               <div className="text-sm text-muted-foreground">Active Users</div>
             </CardContent>
           </Card>
@@ -211,55 +210,63 @@ export default function AppDetailPage() {
           </CardContent>
         </Card>
 
-        <Card className="border-border/50 bg-card/50">
-          <CardHeader className="border-b border-border/50">
-            <h2 className="text-lg font-semibold">Features</h2>
-          </CardHeader>
-          <CardContent className="p-6">
-            <ul className="grid md:grid-cols-2 gap-3">
-              {app.features.map((feature, i) => (
-                <li key={i} className="flex items-start gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                  <span className="text-foreground/80">{feature}</span>
-                </li>
-              ))}
-            </ul>
-          </CardContent>
-        </Card>
+        {app.features && app.features.length > 0 && (
+          <Card className="border-border/50 bg-card/50">
+            <CardHeader className="border-b border-border/50">
+              <h2 className="text-lg font-semibold">Features</h2>
+            </CardHeader>
+            <CardContent className="p-6">
+              <ul className="grid md:grid-cols-2 gap-3">
+                {app.features.map((feature, i) => (
+                  <li key={i} className="flex items-start gap-2">
+                    <CheckCircle2 className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
+                    <span className="text-foreground/80">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+            </CardContent>
+          </Card>
+        )}
 
-        <Card className="border-border/50 bg-card/50">
-          <CardHeader className="border-b border-border/50">
-            <h2 className="text-lg font-semibold">Integrations</h2>
-          </CardHeader>
-          <CardContent className="p-6">
-            <div className="flex flex-wrap gap-2">
-              {app.integrations.map((integration) => (
-                <Badge key={integration} variant="secondary" className="gap-1 py-1.5 px-3">
-                  <MessageCircle className="w-3 h-3" />
-                  {integration}
-                </Badge>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
+        {app.integrations && app.integrations.length > 0 && (
+          <Card className="border-border/50 bg-card/50">
+            <CardHeader className="border-b border-border/50">
+              <h2 className="text-lg font-semibold">Integrations</h2>
+            </CardHeader>
+            <CardContent className="p-6">
+              <div className="flex flex-wrap gap-2">
+                {app.integrations.map((integration) => (
+                  <Badge key={integration} variant="secondary" className="gap-1 py-1.5 px-3">
+                    <MessageCircle className="w-3 h-3" />
+                    {integration}
+                  </Badge>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        )}
 
         <Card className="border-border/50 bg-card/50">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-4">
-                <Globe className="w-5 h-5 text-muted-foreground" />
-                <a href={app.website} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline flex items-center gap-1">
-                  {app.website}
-                  <ExternalLink className="w-3 h-3" />
-                </a>
-              </div>
-              <div className="flex items-center gap-4">
-                <Github className="w-5 h-5 text-muted-foreground" />
-                <a href={app.github} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline flex items-center gap-1">
-                  View on GitHub
-                  <ExternalLink className="w-3 h-3" />
-                </a>
-              </div>
+              {app.website && (
+                <div className="flex items-center gap-4">
+                  <Globe className="w-5 h-5 text-muted-foreground" />
+                  <a href={app.website} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline flex items-center gap-1">
+                    {app.website}
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                </div>
+              )}
+              {app.github && (
+                <div className="flex items-center gap-4">
+                  <Github className="w-5 h-5 text-muted-foreground" />
+                  <a href={app.github} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline flex items-center gap-1">
+                    View on GitHub
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                </div>
+              )}
             </div>
           </CardContent>
         </Card>

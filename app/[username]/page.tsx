@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { Layout } from "@/components/layout";
@@ -11,67 +12,123 @@ import {
   Github,
   Globe,
   MapPin,
-  Mail,
+  Download,
   ExternalLink,
   Star,
-  Download,
   Package,
   Users,
-  Calendar,
   ShieldCheck,
+  AlertTriangle,
 } from "lucide-react";
 
-const FEATURED_PROVIDERS: Record<string, {
+interface ProviderData {
+  id: string;
   handle: string;
   displayName: string;
-  description: string;
-  avatarUrl: string;
-  location: string;
-  website: string;
-  github: string;
+  description: string | null;
+  avatarUrl: string | null;
+  location: string | null;
+  website: string | null;
+  contactEmail: string | null;
   isVerified: boolean;
-  joinedDate: string;
-  stats: { skills: number; downloads: number; stars: number };
-  skills: Array<{ slug: string; name: string; description: string; downloads: number; stars: number }>;
-  bio: string;
-}> = {
-  steipete: {
-    handle: "steipete",
-    displayName: "Peter Steinberger",
-    description: "Creator of OpenClaw. Austrian developer who sold PSPDFKit for ~$100M. Building the future of autonomous AI agents.",
-    avatarUrl: "https://avatars.githubusercontent.com/u/58493",
-    location: "Vienna, Austria",
-    website: "https://steipete.com",
-    github: "https://github.com/steipete",
-    isVerified: true,
-    joinedDate: "November 2025",
-    stats: { skills: 12, downloads: 890000, stars: 145000 },
-    skills: [
-      { slug: "browser-automation", name: "Browser Automation", description: "Playwright-based browser control for web scraping and automation", downloads: 125000, stars: 4200 },
-      { slug: "email-digest", name: "Email Digest", description: "Daily inbox summarization and smart filtering", downloads: 89000, stars: 2100 },
-      { slug: "calendar-sync", name: "Calendar Sync", description: "Intelligent calendar management across platforms", downloads: 67000, stars: 1800 },
-    ],
-    bio: "Peter Steinberger is an Austrian software developer and entrepreneur. He founded PSPDFKit, a PDF SDK company that was acquired for approximately $100 million. In November 2025, he launched OpenClaw (originally Clawdbot), an open-source AI agent that can control your computer via messaging apps like WhatsApp, Telegram, and Discord. OpenClaw quickly became one of the fastest-growing open-source projects, reaching 145,000+ GitHub stars and spawning a thriving ecosystem of 3,000+ community-built skills on ClawHub.",
-  },
-};
+  isPartner: boolean;
+  partnerRole: string | null;
+  tagline: string | null;
+  rating: number;
+}
+
+interface SkillData {
+  id: string;
+  slug: string;
+  name: string;
+  description: string;
+  downloads: number;
+  stars: number;
+  authorUsername: string;
+}
+
+interface ServiceData {
+  id: string;
+  slug: string;
+  name: string;
+  description: string | null;
+  category: string;
+  pricingType: string;
+  pricingLabel: string | null;
+}
 
 export default function ProviderProfilePage() {
   const params = useParams();
   const handle = (params.username as string)?.replace("@", "");
-  const provider = FEATURED_PROVIDERS[handle];
+  const [provider, setProvider] = useState<ProviderData | null>(null);
+  const [skills, setSkills] = useState<SkillData[]>([]);
+  const [services, setServices] = useState<ServiceData[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  if (!provider) {
+  useEffect(() => {
+    async function fetchProvider() {
+      try {
+        const res = await fetch(`/api/providers/browse?handle=${handle}`);
+        if (!res.ok) {
+          setError("Failed to load provider");
+          return;
+        }
+        const data = await res.json();
+        if (!data || data.length === 0) {
+          setError("Provider not found");
+          return;
+        }
+        setProvider(data[0]);
+
+        const providerId = data[0].id;
+        const [skillsRes, servicesRes] = await Promise.all([
+          fetch(`/api/skills?author=${handle}`),
+          fetch(`/api/services?providerId=${providerId}`),
+        ]);
+
+        if (skillsRes.ok) {
+          const skillsData = await skillsRes.json();
+          setSkills(Array.isArray(skillsData) ? skillsData : []);
+        }
+        if (servicesRes.ok) {
+          const servicesData = await servicesRes.json();
+          setServices(Array.isArray(servicesData) ? servicesData : []);
+        }
+      } catch {
+        setError("Failed to load provider");
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchProvider();
+  }, [handle]);
+
+  if (loading) {
+    return (
+      <Layout>
+        <div className="flex items-center justify-center min-h-[60vh]">
+          <div className="animate-pulse text-muted-foreground">Loading profile...</div>
+        </div>
+      </Layout>
+    );
+  }
+
+  if (error || !provider) {
     return (
       <Layout>
         <div className="flex flex-col items-center justify-center min-h-[60vh] gap-4">
-          <Users className="w-12 h-12 text-muted-foreground" />
-          <h1 className="text-2xl font-bold">Provider not found</h1>
+          <AlertTriangle className="w-12 h-12 text-yellow-500" />
+          <h1 className="text-2xl font-bold">{error || "Provider not found"}</h1>
           <p className="text-muted-foreground">The provider you're looking for doesn't exist yet.</p>
           <Button onClick={() => window.history.back()}>Go Back</Button>
         </div>
       </Layout>
     );
   }
+
+  const totalDownloads = skills.reduce((sum, s) => sum + s.downloads, 0);
+  const totalStars = skills.reduce((sum, s) => sum + s.stars, 0);
 
   return (
     <Layout>
@@ -81,12 +138,18 @@ export default function ProviderProfilePage() {
           <CardContent className="p-6 -mt-16">
             <div className="flex flex-col md:flex-row gap-6">
               <div className="flex-shrink-0">
-                <img
-                  src={provider.avatarUrl}
-                  alt={provider.displayName}
-                  className="w-32 h-32 rounded-2xl border-4 border-background shadow-xl"
-                  data-testid="provider-avatar"
-                />
+                {provider.avatarUrl ? (
+                  <img
+                    src={provider.avatarUrl}
+                    alt={provider.displayName}
+                    className="w-32 h-32 rounded-2xl border-4 border-background shadow-xl"
+                    data-testid="provider-avatar"
+                  />
+                ) : (
+                  <div className="w-32 h-32 rounded-2xl border-4 border-background shadow-xl bg-gradient-to-br from-primary/30 to-primary/10 flex items-center justify-center" data-testid="provider-avatar">
+                    <Users className="w-12 h-12 text-primary" />
+                  </div>
+                )}
               </div>
               <div className="flex-1 space-y-4 pt-8 md:pt-0">
                 <div className="flex items-start justify-between flex-wrap gap-4">
@@ -104,34 +167,35 @@ export default function ProviderProfilePage() {
                     </p>
                   </div>
                   <div className="flex gap-2">
-                    <Button variant="outline" size="sm" className="gap-1" asChild>
-                      <a href={provider.github} target="_blank" rel="noopener noreferrer">
-                        <Github className="w-4 h-4" />
-                        GitHub
-                      </a>
-                    </Button>
-                    <Button variant="outline" size="sm" className="gap-1" asChild>
-                      <a href={provider.website} target="_blank" rel="noopener noreferrer">
-                        <Globe className="w-4 h-4" />
-                        Website
-                      </a>
-                    </Button>
+                    {provider.website && (
+                      <Button variant="outline" size="sm" className="gap-1" asChild>
+                        <a href={provider.website.startsWith("http") ? provider.website : `https://${provider.website}`} target="_blank" rel="noopener noreferrer">
+                          {provider.website.includes("github.com") ? <Github className="w-4 h-4" /> : <Globe className="w-4 h-4" />}
+                          {provider.website.includes("github.com") ? "GitHub" : "Website"}
+                        </a>
+                      </Button>
+                    )}
                   </div>
                 </div>
 
-                <p className="text-foreground/80" data-testid="provider-description">
-                  {provider.description}
-                </p>
+                {provider.description && (
+                  <p className="text-foreground/80" data-testid="provider-description">
+                    {provider.description}
+                  </p>
+                )}
 
                 <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
-                  <div className="flex items-center gap-1">
-                    <MapPin className="w-4 h-4" />
-                    <span>{provider.location}</span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <Calendar className="w-4 h-4" />
-                    <span>Joined {provider.joinedDate}</span>
-                  </div>
+                  {provider.location && (
+                    <div className="flex items-center gap-1">
+                      <MapPin className="w-4 h-4" />
+                      <span>{provider.location}</span>
+                    </div>
+                  )}
+                  {provider.tagline && (
+                    <div className="text-xs text-muted-foreground/70 italic">
+                      {provider.tagline}
+                    </div>
+                  )}
                 </div>
 
                 <div className="flex flex-wrap gap-2">
@@ -141,84 +205,126 @@ export default function ProviderProfilePage() {
                       Verified Provider
                     </Badge>
                   )}
-                  <Badge variant="secondary" className="gap-1">
-                    <Package className="w-3 h-3" />
-                    {provider.stats.skills} Skills
-                  </Badge>
+                  {provider.isPartner && provider.partnerRole && (
+                    <Badge className="bg-blue-500/20 text-blue-400 border-blue-500/30 gap-1">
+                      <Package className="w-3 h-3" />
+                      {provider.partnerRole}
+                    </Badge>
+                  )}
+                  {skills.length > 0 && (
+                    <Badge variant="secondary" className="gap-1">
+                      <Package className="w-3 h-3" />
+                      {skills.length} Skill{skills.length !== 1 ? "s" : ""}
+                    </Badge>
+                  )}
+                  {services.length > 0 && (
+                    <Badge variant="secondary" className="gap-1">
+                      <Globe className="w-3 h-3" />
+                      {services.length} Service{services.length !== 1 ? "s" : ""}
+                    </Badge>
+                  )}
                 </div>
               </div>
             </div>
           </CardContent>
         </Card>
 
-        <div className="grid grid-cols-3 gap-4">
-          <Card className="border-border/50 bg-card/50">
-            <CardContent className="p-6 text-center">
-              <Star className="w-8 h-8 text-yellow-500 mx-auto mb-2" />
-              <div className="text-2xl font-bold">{provider.stats.stars.toLocaleString()}</div>
-              <div className="text-sm text-muted-foreground">Total Stars</div>
-            </CardContent>
-          </Card>
-          <Card className="border-border/50 bg-card/50">
-            <CardContent className="p-6 text-center">
-              <Download className="w-8 h-8 text-primary mx-auto mb-2" />
-              <div className="text-2xl font-bold">{provider.stats.downloads.toLocaleString()}</div>
-              <div className="text-sm text-muted-foreground">Downloads</div>
-            </CardContent>
-          </Card>
-          <Card className="border-border/50 bg-card/50">
-            <CardContent className="p-6 text-center">
-              <Package className="w-8 h-8 text-blue-500 mx-auto mb-2" />
-              <div className="text-2xl font-bold">{provider.stats.skills}</div>
-              <div className="text-sm text-muted-foreground">Published Skills</div>
-            </CardContent>
-          </Card>
-        </div>
+        {(skills.length > 0 || totalStars > 0) && (
+          <div className="grid grid-cols-3 gap-4">
+            <Card className="border-border/50 bg-card/50">
+              <CardContent className="p-6 text-center">
+                <Star className="w-8 h-8 text-yellow-500 mx-auto mb-2" />
+                <div className="text-2xl font-bold">{totalStars.toLocaleString()}</div>
+                <div className="text-sm text-muted-foreground">Total Stars</div>
+              </CardContent>
+            </Card>
+            <Card className="border-border/50 bg-card/50">
+              <CardContent className="p-6 text-center">
+                <Download className="w-8 h-8 text-primary mx-auto mb-2" />
+                <div className="text-2xl font-bold">{totalDownloads.toLocaleString()}</div>
+                <div className="text-sm text-muted-foreground">Downloads</div>
+              </CardContent>
+            </Card>
+            <Card className="border-border/50 bg-card/50">
+              <CardContent className="p-6 text-center">
+                <Package className="w-8 h-8 text-blue-500 mx-auto mb-2" />
+                <div className="text-2xl font-bold">{skills.length}</div>
+                <div className="text-sm text-muted-foreground">Published Skills</div>
+              </CardContent>
+            </Card>
+          </div>
+        )}
 
-        <Card className="border-border/50 bg-card/50">
-          <CardHeader className="border-b border-border/50">
-            <h2 className="text-lg font-semibold">About</h2>
-          </CardHeader>
-          <CardContent className="p-6">
-            <p className="text-foreground/80 leading-relaxed">{provider.bio}</p>
-          </CardContent>
-        </Card>
+        {skills.length > 0 && (
+          <Card className="border-border/50 bg-card/50">
+            <CardHeader className="border-b border-border/50">
+              <h2 className="text-lg font-semibold">Published Skills</h2>
+            </CardHeader>
+            <CardContent className="p-0">
+              <div className="divide-y divide-border/50">
+                {skills.map((skill) => (
+                  <Link
+                    key={skill.slug}
+                    href={`/@${provider.handle}/${skill.slug}`}
+                    className="flex items-center justify-between p-4 hover:bg-muted/30 transition-colors group"
+                    data-testid={`skill-${skill.slug}`}
+                  >
+                    <div className="flex-1 min-w-0">
+                      <div className="font-medium text-foreground group-hover:text-primary transition-colors">
+                        {skill.name}
+                      </div>
+                      <p className="text-sm text-muted-foreground truncate">{skill.description}</p>
+                    </div>
+                    <div className="flex items-center gap-4 text-sm text-muted-foreground ml-4">
+                      <div className="flex items-center gap-1">
+                        <Star className="w-4 h-4 text-yellow-500" />
+                        {skill.stars.toLocaleString()}
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <Download className="w-4 h-4" />
+                        {skill.downloads.toLocaleString()}
+                      </div>
+                      <ExternalLink className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        )}
 
-        <Card className="border-border/50 bg-card/50">
-          <CardHeader className="border-b border-border/50">
-            <h2 className="text-lg font-semibold">Published Skills</h2>
-          </CardHeader>
-          <CardContent className="p-0">
-            <div className="divide-y divide-border/50">
-              {provider.skills.map((skill) => (
-                <Link
-                  key={skill.slug}
-                  href={`/@${provider.handle}/${skill.slug}`}
-                  className="flex items-center justify-between p-4 hover:bg-muted/30 transition-colors group"
-                  data-testid={`skill-${skill.slug}`}
-                >
-                  <div className="flex-1 min-w-0">
-                    <div className="font-medium text-foreground group-hover:text-primary transition-colors">
-                      {skill.name}
+        {services.length > 0 && (
+          <Card className="border-border/50 bg-card/50">
+            <CardHeader className="border-b border-border/50">
+              <h2 className="text-lg font-semibold">Services</h2>
+            </CardHeader>
+            <CardContent className="p-0">
+              <div className="divide-y divide-border/50">
+                {services.map((service) => (
+                  <div
+                    key={service.slug}
+                    className="flex items-center justify-between p-4"
+                    data-testid={`service-${service.slug}`}
+                  >
+                    <div className="flex-1 min-w-0">
+                      <div className="font-medium text-foreground">
+                        {service.name}
+                      </div>
+                      {service.description && (
+                        <p className="text-sm text-muted-foreground truncate">{service.description}</p>
+                      )}
                     </div>
-                    <p className="text-sm text-muted-foreground truncate">{skill.description}</p>
+                    <div className="flex items-center gap-2 ml-4">
+                      {service.pricingLabel && (
+                        <Badge variant="outline" className="text-xs">{service.pricingLabel}</Badge>
+                      )}
+                    </div>
                   </div>
-                  <div className="flex items-center gap-4 text-sm text-muted-foreground ml-4">
-                    <div className="flex items-center gap-1">
-                      <Star className="w-4 h-4 text-yellow-500" />
-                      {skill.stars.toLocaleString()}
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Download className="w-4 h-4" />
-                      {skill.downloads.toLocaleString()}
-                    </div>
-                    <ExternalLink className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        )}
       </div>
     </Layout>
   );
