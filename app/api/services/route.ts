@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth/session";
 import { db } from "@/server/db";
-import { services, providers, categories, insertServiceSchema } from "@/shared/schema";
-import { eq, desc, and } from "drizzle-orm";
+import { services, providers, categories, serviceCategories, insertServiceSchema } from "@/shared/schema";
+import { eq, desc, and, inArray, sql } from "drizzle-orm";
 
 export async function GET(request: NextRequest) {
   try {
@@ -11,12 +11,26 @@ export async function GET(request: NextRequest) {
     const categorySlug = searchParams.get("categorySlug");
     const providerId = searchParams.get("providerId");
 
+    let serviceIds: string[] | null = null;
+
+    if (categorySlug) {
+      const catRows = await db
+        .select({ serviceId: serviceCategories.serviceId })
+        .from(serviceCategories)
+        .innerJoin(categories, eq(serviceCategories.categoryId, categories.id))
+        .where(eq(categories.slug, categorySlug));
+      serviceIds = catRows.map((r) => r.serviceId);
+      if (serviceIds.length === 0) {
+        return NextResponse.json([]);
+      }
+    }
+
     const conditions = [];
     if (category) conditions.push(eq(services.category, category));
     if (providerId) conditions.push(eq(services.providerId, providerId));
-    if (categorySlug) conditions.push(eq(categories.slug, categorySlug));
+    if (serviceIds) conditions.push(inArray(services.id, serviceIds));
 
-    const result = await db
+    const rows = await db
       .select({
         id: services.id,
         providerId: services.providerId,
@@ -25,8 +39,6 @@ export async function GET(request: NextRequest) {
         description: services.description,
         category: services.category,
         categoryId: services.categoryId,
-        categoryName: categories.name,
-        categorySlug: categories.slug,
         slug: services.slug,
         url: services.url,
         pricingType: services.pricingType,
@@ -40,9 +52,40 @@ export async function GET(request: NextRequest) {
       })
       .from(services)
       .leftJoin(providers, eq(services.providerId, providers.id))
-      .leftJoin(categories, eq(services.categoryId, categories.id))
       .where(conditions.length > 0 ? and(...conditions) : undefined)
       .orderBy(desc(services.createdAt));
+
+    const allServiceIds = rows.map((r) => r.id);
+    let categoriesMap: Record<string, Array<{ id: string; name: string; slug: string }>> = {};
+
+    if (allServiceIds.length > 0) {
+      const catJoins = await db
+        .select({
+          serviceId: serviceCategories.serviceId,
+          categoryId: categories.id,
+          categoryName: categories.name,
+          categorySlug: categories.slug,
+        })
+        .from(serviceCategories)
+        .innerJoin(categories, eq(serviceCategories.categoryId, categories.id))
+        .where(inArray(serviceCategories.serviceId, allServiceIds));
+
+      for (const row of catJoins) {
+        if (!categoriesMap[row.serviceId]) categoriesMap[row.serviceId] = [];
+        categoriesMap[row.serviceId].push({
+          id: row.categoryId,
+          name: row.categoryName,
+          slug: row.categorySlug,
+        });
+      }
+    }
+
+    const result = rows.map((r) => ({
+      ...r,
+      categories: categoriesMap[r.id] || [],
+      categoryName: categoriesMap[r.id]?.[0]?.name || null,
+      categorySlug: categoriesMap[r.id]?.[0]?.slug || null,
+    }));
 
     return NextResponse.json(result);
   } catch (error) {
@@ -69,13 +112,26 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json();
+    const { categoryIds, ...serviceData } = body;
+
     const parsed = insertServiceSchema.parse({
-      ...body,
+      ...serviceData,
       providerId: provider[0].id,
     });
 
     const result = await db.insert(services).values(parsed).returning();
-    return NextResponse.json(result[0]);
+    const newService = result[0];
+
+    if (categoryIds && Array.isArray(categoryIds) && categoryIds.length > 0) {
+      await db.insert(serviceCategories).values(
+        categoryIds.map((catId: string) => ({
+          serviceId: newService.id,
+          categoryId: catId,
+        }))
+      );
+    }
+
+    return NextResponse.json(newService);
   } catch (error) {
     console.error("Error creating service:", error);
     return NextResponse.json({ error: "Failed to create service" }, { status: 500 });

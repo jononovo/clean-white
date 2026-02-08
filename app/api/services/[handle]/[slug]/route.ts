@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/server/db";
-import { services, providers, categories } from "@/shared/schema";
+import { services, providers, categories, serviceCategories, providerRoles } from "@/shared/schema";
 import { eq, and } from "drizzle-orm";
 
 export async function GET(
@@ -27,8 +27,6 @@ export async function GET(
         description: services.description,
         category: services.category,
         categoryId: services.categoryId,
-        categoryName: categories.name,
-        categorySlug: categories.slug,
         slug: services.slug,
         url: services.url,
         pricingType: services.pricingType,
@@ -42,7 +40,6 @@ export async function GET(
       })
       .from(services)
       .innerJoin(providers, eq(services.providerId, providers.id))
-      .leftJoin(categories, eq(services.categoryId, categories.id))
       .where(
         and(
           eq(providers.handle, handle),
@@ -55,7 +52,31 @@ export async function GET(
       return NextResponse.json({ error: "Service not found" }, { status: 404 });
     }
 
-    return NextResponse.json(result[0]);
+    const service = result[0];
+
+    const [cats, roles] = await Promise.all([
+      db
+        .select({
+          id: categories.id,
+          name: categories.name,
+          slug: categories.slug,
+        })
+        .from(serviceCategories)
+        .innerJoin(categories, eq(serviceCategories.categoryId, categories.id))
+        .where(eq(serviceCategories.serviceId, service.id)),
+      db
+        .select({ role: providerRoles.role })
+        .from(providerRoles)
+        .where(eq(providerRoles.providerId, service.providerId)),
+    ]);
+
+    return NextResponse.json({
+      ...service,
+      categories: cats,
+      categoryName: cats[0]?.name || null,
+      categorySlug: cats[0]?.slug || null,
+      providerRoles: roles.map((r) => r.role),
+    });
   } catch (error) {
     console.error("Error fetching service:", error);
     return NextResponse.json({ error: "Failed to fetch service" }, { status: 500 });

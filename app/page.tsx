@@ -125,16 +125,20 @@ export default function Home() {
     const grouped: Record<string, Array<{ name: string; url: string; handle?: string; slug?: string; rating: number; popularity: number }>> = {};
     for (const svc of dbServices) {
       if (!svc.isActive) continue;
-      const catSlug = svc.categorySlug || svc.category;
-      if (!grouped[catSlug]) grouped[catSlug] = [];
-      grouped[catSlug].push({
+      const svcEntry = {
         name: svc.name.replace(/ (VPS|Setup|Installation|Droplet|Cloud Compute|Managed Hosting|Consulting|Partnership|Open Source|Billing|Payments|Install Guide|Official Docs)$/i, "").replace(/ (Service|Platform)$/i, ""),
         url: svc.url || "#",
         handle: svc.providerHandle,
         slug: svc.slug || undefined,
         rating: (svc.rating || 40) / 10,
         popularity: svc.popularity || 5,
-      });
+      };
+      const catSlugs = svc.categories?.map((c: any) => c.slug) || [];
+      if (catSlugs.length === 0) catSlugs.push(svc.categorySlug || svc.category);
+      for (const slug of catSlugs) {
+        if (!grouped[slug]) grouped[slug] = [];
+        grouped[slug].push(svcEntry);
+      }
     }
     return SERVICE_CATEGORIES.map((cat) => ({
       ...cat,
@@ -154,7 +158,11 @@ export default function Home() {
   const vpsServices = useMemo(() => {
     if (!dbServices || !Array.isArray(dbServices)) return null;
     return dbServices
-      .filter((s: any) => (s.categorySlug === "devops-cloud" || s.category === "managed_hosting") && s.isActive)
+      .filter((s: any) => {
+        if (!s.isActive) return false;
+        const catSlugs = s.categories?.map((c: any) => c.slug) || [];
+        return catSlugs.includes("devops-cloud") || s.categorySlug === "devops-cloud" || s.category === "managed_hosting";
+      })
       .sort((a: any, b: any) => (b.rating || 0) - (a.rating || 0))
       .slice(0, 5);
   }, [dbServices]);
