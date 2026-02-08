@@ -44,21 +44,20 @@ function ManagedClawBanner() {
 
   return (
     <div className="relative" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-      <Link href="/deploy" className="block rounded-2xl bg-foreground text-background hover:shadow-2xl transition-all duration-300 group cursor-pointer relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-white/[0.04] via-transparent to-white/[0.04] pointer-events-none" />
-        <div className="py-8 px-8 md:py-10 md:px-12 relative z-10">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="flex-1 space-y-3 text-center md:text-left">
-              <p className="text-xs font-semibold uppercase tracking-widest text-background/50">Managed Service</p>
-              <h3 className="font-display font-bold text-2xl md:text-3xl text-background leading-tight">120+ hours saved per month.</h3>
-              <p className="text-sm text-background/60 max-w-lg">We set up your OpenClaw bot, configure your skills, and keep everything running. You focus on your business. From <span className="font-semibold text-background/80">$79/mo</span>.</p>
-            </div>
-            <div className="shrink-0">
-              <span className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-background text-foreground font-bold text-sm group-hover:scale-[1.03] transition-transform duration-200 shadow-xl">
-                Get Started <ArrowUpRight className="w-4 h-4" />
-              </span>
+      <Link href="/deploy" className="block py-3.5 px-5 rounded-xl bg-gradient-to-r from-yellow-500/10 via-amber-500/15 to-yellow-500/10 dark:from-yellow-500/5 dark:via-amber-500/10 dark:to-yellow-500/5 border border-yellow-500/30 hover:border-yellow-500/50 hover:shadow-lg hover:shadow-yellow-500/5 transition-all duration-300 group cursor-pointer relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/0 via-yellow-400/5 to-yellow-400/0 group-hover:via-yellow-400/10 transition-all duration-500" />
+        <div className="flex items-center justify-between relative z-10">
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 flex-wrap">
+              <div className="p-1.5 rounded-lg bg-yellow-500/15 dark:bg-yellow-500/10">
+                <Zap className="w-4 h-4 text-yellow-600 dark:text-yellow-500" />
+              </div>
+              <span className="font-display font-bold text-sm text-foreground group-hover:text-yellow-600 dark:group-hover:text-yellow-500 transition-colors">High-powered Managed Claw</span>
+              <ArrowUpRight className="w-4 h-4 text-yellow-600/60 dark:text-yellow-500/60 group-hover:text-yellow-600 dark:group-hover:text-yellow-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+              <span className="text-xs text-muted-foreground/70">Starting at <span className="font-semibold text-foreground/80">$79/month</span> <span className="italic">(Incl. $15 tokens)</span></span>
             </div>
           </div>
+          <span className="text-xs text-muted-foreground/70 hidden sm:block shrink-0 text-right leading-relaxed">We set it up and help you run it.<br /><span className="italic font-medium text-foreground/60">Make business simple with Clawd.bot</span></span>
         </div>
       </Link>
 
@@ -70,31 +69,34 @@ function ManagedClawBanner() {
         onMouseEnter={handleTooltipEnter}
         onMouseLeave={handleTooltipLeave}
       >
-        <Card className="p-5 shadow-2xl border-border/60 bg-card/98 backdrop-blur-md cursor-pointer">
-          <div className="flex items-center gap-2 mb-3">
-            <Bot className="w-4 h-4 text-muted-foreground" />
-            <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">What&apos;s included</span>
+        <Card className="p-4 shadow-2xl border-yellow-500/30 bg-gradient-to-br from-card via-card to-yellow-500/5 dark:to-yellow-500/3 backdrop-blur-md cursor-pointer relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-40 h-40 bg-yellow-500/5 rounded-full -mr-16 -mt-16 blur-3xl pointer-events-none" />
+          <div className="flex items-center gap-2 mb-3 relative z-10">
+            <div className="p-1.5 rounded-lg bg-gradient-to-br from-yellow-500/20 to-amber-500/20">
+              <Bot className="w-4 h-4 text-yellow-600 dark:text-yellow-500" />
+            </div>
+            <span className="text-xs font-bold uppercase tracking-wider text-yellow-700 dark:text-yellow-400">Business Automation on Steroids</span>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 mb-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1.5 mb-3 relative z-10">
             {[
-              { icon: Phone, text: "Calls, texting, and outreach automation" },
-              { icon: Mail, text: "Email replies and rep management" },
-              { icon: FileSearch, text: "Research, scraping, and scheduling" },
-              { icon: Sparkles, text: "Video creation, new skills, on-the-go coding" },
-              { icon: CalendarClock, text: "Calendar sync and bot scheduling" },
-              { icon: Video, text: "Reports, presentations, and content" },
+              { icon: Phone, text: "Handle research calls, texting, and recommended outreach" },
+              { icon: Mail, text: "Email outreach and rep replies on your behalf" },
+              { icon: FileSearch, text: "Find information, scrape from sites, suggest meeting times" },
+              { icon: Sparkles, text: "Learn new skills, create videos, program on the go" },
+              { icon: CalendarClock, text: "Manage your schedule and create a schedule for your bot" },
+              { icon: Video, text: "Generate content, reports, and presentations automatically" },
             ].map((item, i) => (
-              <div key={i} className="flex items-center gap-2.5 py-1">
-                <item.icon className="w-3.5 h-3.5 text-muted-foreground/50 shrink-0" />
-                <span className="text-xs text-muted-foreground">{item.text}</span>
+              <div key={i} className="flex items-start gap-2 py-1">
+                <item.icon className="w-3.5 h-3.5 text-yellow-600/60 dark:text-yellow-500/50 mt-0.5 shrink-0" />
+                <span className="text-[11px] text-muted-foreground leading-snug">{item.text}</span>
               </div>
             ))}
           </div>
-          <div className="pt-3 border-t border-border/40 flex items-center justify-between">
-            <span className="text-xs text-muted-foreground/60">Managed gold service package</span>
+          <div className="pt-3 border-t border-yellow-500/20 flex items-center justify-between relative z-10">
+            <span className="text-[11px] text-muted-foreground italic">All with the managed, gold service package.</span>
             <Link href="/deploy">
-              <Button size="sm" className="h-8 px-5 text-xs font-semibold bg-foreground text-background hover:bg-foreground/90 transition-all">
-                Learn more <ArrowUpRight className="w-3 h-3 ml-1.5" />
+              <Button size="sm" className="h-8 px-4 text-[11px] font-bold bg-gradient-to-r from-yellow-500 to-amber-500 hover:from-yellow-400 hover:to-amber-400 text-black shadow-lg shadow-yellow-500/20 hover:shadow-yellow-500/30 transition-all">
+                Get Started <ArrowUpRight className="w-3.5 h-3.5 ml-1" />
               </Button>
             </Link>
           </div>
@@ -165,97 +167,99 @@ export default function Home() {
         onLoginRequired={() => setShowAuthDrawer(true)}
       />
 
-      <div className="space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-500">
+      <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
         
-        <div className="relative py-12 md:py-16">
-          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="space-y-8">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-border/60 text-xs font-medium text-muted-foreground">
+        <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-background via-muted to-accent/20 border border-border ring-1 ring-white/10 dark:ring-white/5 transition-colors duration-300 p-8 md:p-12 shadow-xl shadow-muted/60 dark:shadow-none">
+          <div className="absolute inset-0 bg-[linear-gradient(currentColor_1px,transparent_1px),linear-gradient(90deg,currentColor_1px,transparent_1px)] bg-[size:24px_24px] opacity-[0.03] text-foreground pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent pointer-events-none" />
+          
+          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="space-y-6">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-card border border-border text-xs font-medium text-foreground shadow-sm">
                 <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                12,402 audits verified
+                Network Secure • 12,402 Audits Verified
               </div>
               
-              <div className="space-y-5">
-                <h1 className="text-4xl md:text-5xl lg:text-[3.25rem] font-display font-bold tracking-tight text-foreground leading-[1.08]">
-                  Secure OpenClaw<br />for Business
+              <div className="space-y-4">
+                <h1 className="text-4xl md:text-5xl font-display font-bold tracking-tight text-foreground leading-[1.1]">
+                  The Business Hub for <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-500 dark:from-emerald-400 dark:to-teal-300">OpenClaw</span>
                 </h1>
                 <p className="text-lg text-muted-foreground max-w-md leading-relaxed">
-                  Verified skills, managed bots, and enterprise-grade security. Everything your business needs to run OpenClaw with confidence.
+                  The OpenClaw Hub for Business: Community, jobs, news and secure, enterprise-ready OpenClaw Bots.
                 </p>
               </div>
 
-              <div className="flex flex-wrap items-center gap-3">
+              <div className="flex flex-wrap items-center gap-3 pt-2">
                 <Link href="/publish">
-                  <Button size="lg" className="h-12 px-6 bg-foreground text-background hover:bg-foreground/90 font-semibold shadow-lg transition-all cursor-pointer">
+                  <Button size="lg" className="h-12 px-5 bg-primary text-primary-foreground hover:bg-primary/90 border-none font-semibold shadow-lg shadow-primary/10 transition-all cursor-pointer">
+                    <Shield className="w-4 h-4 mr-1.5" />
                     Publish a Skill
                   </Button>
                 </Link>
                 <Link href="/deploy">
-                  <Button size="lg" variant="outline" className="h-12 px-6 border-border/60 text-foreground hover:bg-muted/50 cursor-pointer">
-                    Deploy Now
+                  <Button size="lg" variant="outline" className="h-12 px-5 bg-card border-border text-foreground hover:bg-muted shadow-sm cursor-pointer">
+                    <Zap className="w-4 h-4 mr-1.5" />
+                    1-Click-Setup
                   </Button>
                 </Link>
               </div>
               
-              <div className="flex items-center gap-6 text-xs text-muted-foreground">
+              <div className="flex items-center gap-6 text-xs text-muted-foreground pt-4">
                 <div className="flex items-center gap-2">
-                  <Shield className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-500" />
-                  <span>Threat Monitoring</span>
+                  <CheckCircle className="w-4 h-4 text-emerald-600 dark:text-emerald-500" />
+                  <span>OpenClaw Threat Monitor</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-500" />
-                  <span>Code Review</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Lock className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-500" />
-                  <span>SOC2</span>
+                  <CheckCircle className="w-4 h-4 text-emerald-600 dark:text-emerald-500" />
+                  <span>Manual Code Review</span>
                 </div>
               </div>
             </div>
 
             <div className="hidden lg:block relative">
-               <div className="relative bg-card border border-border/60 rounded-2xl p-6 shadow-sm">
-                  <div className="flex items-center justify-between mb-6 pb-4 border-b border-border/40">
+               <div className="absolute -inset-1 bg-gradient-to-r from-emerald-500/10 to-blue-500/10 rounded-xl blur-xl opacity-60" />
+               <div className="relative bg-card/80 backdrop-blur-xl border border-border rounded-xl p-6 shadow-xl shadow-muted/50 dark:shadow-none">
+                  <div className="flex items-center justify-between mb-6 pb-4 border-b border-border">
                     <div className="flex items-center gap-3">
-                       <Activity className="w-4 h-4 text-muted-foreground" />
-                       <span className="font-mono text-xs font-semibold text-muted-foreground uppercase tracking-wider">Live Security Feed</span>
+                       <Activity className="w-5 h-5 text-muted-foreground" />
+                       <span className="font-mono font-bold text-sm text-foreground">LIVE SECURITY FEED</span>
                     </div>
                   </div>
                   
                   <div className="space-y-5">
                      <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
-                           <div className="p-2 rounded-lg bg-muted/50 text-muted-foreground">
+                           <div className="p-2 rounded bg-muted text-muted-foreground border border-border">
                              <AlertTriangle className="w-4 h-4" />
                            </div>
                            <div>
                              <div className="text-2xl font-bold font-mono text-foreground">342</div>
-                             <div className="text-[11px] text-muted-foreground">Threats Blocked (24h)</div>
+                             <div className="text-xs text-muted-foreground font-medium">Threats Blocked (24h)</div>
                            </div>
                         </div>
-                        <div className="h-8 w-px bg-border/40" />
+                        <div className="h-8 w-px bg-border" />
                         <div className="flex items-center gap-3">
-                           <div className="p-2 rounded-lg bg-muted/50 text-muted-foreground">
+                           <div className="p-2 rounded bg-muted text-muted-foreground border border-border">
                              <Terminal className="w-4 h-4" />
                            </div>
                            <div>
                              <div className="text-2xl font-bold font-mono text-foreground">14.2M</div>
-                             <div className="text-[11px] text-muted-foreground">Lines Audited</div>
+                             <div className="text-xs text-muted-foreground font-medium">Lines Audited</div>
                            </div>
                         </div>
                      </div>
                      
                      <div className="pt-3 space-y-3">
-                        <div className="p-3 rounded-lg bg-muted/30 border border-border/40">
+                        <div className="p-3 rounded bg-muted/50 border border-border shadow-inner">
                             <div className="flex justify-between items-center mb-2">
-                                <span className="text-xs font-semibold text-foreground flex items-center gap-1.5">
+                                <span className="text-xs font-bold text-foreground flex items-center gap-1.5">
                                     <Globe className="w-3 h-3 text-muted-foreground" />
-                                    Threat Index
+                                    OpenClaw Threat Index
                                 </span>
-                                <span className="text-[10px] font-mono text-destructive font-semibold">HIGH</span>
+                                <span className="text-[10px] font-mono text-destructive font-bold">HIGH RISK</span>
                             </div>
-                            <div className="h-1 w-full bg-muted rounded-full overflow-hidden">
-                               <div className="h-full w-[75%] bg-destructive/80 rounded-full" />
+                            <div className="h-1.5 w-full bg-muted rounded-full overflow-hidden">
+                               <div className="h-full w-[75%] bg-destructive rounded-full" />
                             </div>
                         </div>
                         <ThreatTicker />
@@ -268,13 +272,14 @@ export default function Home() {
 
         <ManagedClawBanner />
 
-        <div className="py-8">
-          <div className="flex items-center justify-between mb-5 px-1">
-            <h3 className="text-sm font-semibold uppercase tracking-wider flex items-center gap-2 text-muted-foreground">
-              Services Marketplace
+        <div className="py-6 border-b border-border/40">
+          <div className="flex items-center justify-between mb-4 px-1">
+            <h3 className="text-sm font-bold uppercase tracking-wider flex items-center gap-2 text-foreground/80">
+              <Handshake className="w-3.5 h-3.5 text-muted-foreground" />
+              Claw/Agent Services Marketplace
             </h3>
-            <span className="text-xs text-muted-foreground/60 hover:text-foreground cursor-pointer transition-colors">
-              Browse All
+            <span className="text-[10px] font-medium text-primary hover:underline cursor-pointer">
+              Browse All Services
             </span>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
@@ -299,10 +304,11 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="py-8 border-t border-border/30">
-          <div className="flex items-center justify-between mb-5 px-1">
-            <h3 className="text-sm font-semibold uppercase tracking-wider flex items-center gap-2 text-muted-foreground">
-              Featured Today
+        <div className="py-6 border-b border-border/40">
+          <div className="flex items-center justify-between mb-4 px-1">
+            <h3 className="text-sm font-bold uppercase tracking-wider flex items-center gap-2 text-foreground/80">
+              <Sparkles className="w-3.5 h-3.5 text-muted-foreground" />
+              Claw Eco-System - Featured Today
               <span className="text-[11px] font-medium normal-case tracking-normal text-muted-foreground/60">
                 | {new Date().toLocaleDateString("en-US", { day: "2-digit", month: "short", year: "numeric", timeZone: "America/New_York" })}
               </span>
@@ -355,11 +361,12 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 py-8 border-t border-border/30">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pb-8 border-b border-border/40">
            <div>
-              <div className="flex items-center justify-between mb-4 px-1">
-                 <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
-                   VPS Services
+              <div className="flex items-center justify-between mb-3 px-1">
+                 <h3 className="text-sm font-bold uppercase tracking-wider flex items-center gap-2 text-foreground/80">
+                   <Server className="w-3.5 h-3.5 text-muted-foreground" />
+                   Top Claw VPS Services
                  </h3>
               </div>
               <div className="bg-white/50 dark:bg-card/50 border border-border/60 rounded-lg p-3 shadow-sm backdrop-blur-sm">
@@ -395,9 +402,10 @@ export default function Home() {
            </div>
 
            <div>
-              <div className="flex items-center justify-between mb-4 px-1">
-                 <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
-                   Top Skills
+              <div className="flex items-center justify-between mb-3 px-1">
+                 <h3 className="text-sm font-bold uppercase tracking-wider flex items-center gap-2 text-foreground/80">
+                   <Star className="w-3.5 h-3.5 text-muted-foreground" />
+                   Highest Productivity Skills
                  </h3>
               </div>
               <div className="bg-white/50 dark:bg-card/50 border border-border/60 rounded-lg p-3 shadow-sm backdrop-blur-sm">
@@ -431,8 +439,9 @@ export default function Home() {
 
         <div>
           <div className="flex items-center justify-between mb-4 px-1">
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
-              Partners
+            <h3 className="text-sm font-bold uppercase tracking-wider flex items-center gap-2 text-foreground/80">
+              <Handshake className="w-3.5 h-3.5 text-muted-foreground" />
+              Our Partners
             </h3>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -491,7 +500,8 @@ export default function Home() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
            <div className="lg:col-span-2 space-y-4">
               <div className="flex items-center justify-between">
-                 <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+                 <h3 className="font-display font-bold text-lg flex items-center gap-2">
+                    <Shield className="w-5 h-5 text-primary" />
                     Verified Directory
                  </h3>
                  <div className="flex gap-2">
@@ -590,8 +600,8 @@ export default function Home() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 pb-8">
            <div className="lg:col-span-2">
               <div className="flex items-center justify-between mb-3 px-1">
-                 <h3 className="text-sm font-semibold uppercase tracking-wider flex items-center gap-2 text-destructive">
-                   <AlertTriangle className="w-3.5 h-3.5" />
+                 <h3 className="text-sm font-bold uppercase tracking-wider flex items-center gap-2 text-destructive">
+                   <AlertTriangle className="w-4 h-4" />
                    Active Threats
                  </h3>
                  <span className="text-[10px] font-mono text-muted-foreground">Updated hourly</span>
@@ -621,7 +631,8 @@ export default function Home() {
 
            <div>
               <div className="flex items-center justify-between mb-3 px-1">
-                 <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+                 <h3 className="text-sm font-bold uppercase tracking-wider flex items-center gap-2 text-foreground/80">
+                   <Server className="w-4 h-4 text-slate-500" />
                    Top Providers
                  </h3>
               </div>

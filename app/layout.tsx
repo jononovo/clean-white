@@ -4,19 +4,19 @@ import { Toaster } from "@/components/ui/toaster";
 import { GoogleAnalytics } from "@next/third-parties/google";
 
 export const metadata: Metadata = {
-  title: "CreditClaw — Secure OpenClaw for Business",
-  description: "Verified skills, managed bots, and enterprise-grade security for the OpenClaw ecosystem.",
+  title: "SecureClawHub - The Business Hub for OpenClaw",
+  description: "The OpenClaw Hub for Business: Community, jobs, news and secure, enterprise-ready OpenClaw Bots.",
   openGraph: {
-    title: "CreditClaw — Secure OpenClaw for Business",
-    description: "Verified skills, managed bots, and enterprise-grade security for the OpenClaw ecosystem.",
+    title: "SecureClawHub - The Business Hub for OpenClaw",
+    description: "The OpenClaw Hub for Business: Community, jobs, news and secure, enterprise-ready OpenClaw Bots.",
     type: "website",
     images: ["/social/og-image.png"],
   },
   twitter: {
     card: "summary_large_image",
     site: "@openclaw",
-    title: "CreditClaw — Secure OpenClaw for Business",
-    description: "Verified skills, managed bots, and enterprise-grade security for the OpenClaw ecosystem.",
+    title: "SecureClawHub - The Business Hub for OpenClaw",
+    description: "The OpenClaw Hub for Business: Community, jobs, news and secure, enterprise-ready OpenClaw Bots.",
     images: ["/social/og-image.png"],
   },
 };

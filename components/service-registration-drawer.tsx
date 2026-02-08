@@ -345,7 +345,7 @@ export function ServiceRegistrationDrawer({
                       <p className="text-xs text-destructive">This handle is already taken</p>
                     )}
                     <p className="text-xs text-muted-foreground">
-                      Your profile URL: creditclaw.com/@{providerForm.handle || "yourname"}
+                      Your profile URL: secureclawhub.com/@{providerForm.handle || "yourname"}
                     </p>
                   </div>
                 )}
