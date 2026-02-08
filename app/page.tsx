@@ -1,13 +1,13 @@
 "use client";
 
 import { Layout } from "@/components/layout";
-import { topScorers, latestSubmissions, communitySubmissions, infrastructureProviders } from "@/lib/mock-data";
+import { topScorers, latestSubmissions, communitySubmissions } from "@/lib/mock-data";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { FullPageModal, ConfirmationModal } from "@/components/modals";
 import { AuthDrawer } from "@/components/auth-drawer";
 import { useState, useRef, useCallback, useMemo } from "react";
-import { Shield, CheckCircle, ExternalLink, Calendar, AlertTriangle, ChevronRight, Zap, Globe, Server, Activity, ArrowUpRight, Mail, Box, Cloud, Search, Newspaper, Sparkles, Star, Terminal, Lock, Handshake, Bot, Phone, FileSearch, CalendarClock, Video, Code } from "lucide-react";
+import { Shield, CheckCircle, ExternalLink, Calendar, AlertTriangle, ChevronRight, Zap, Globe, Server, Activity, ArrowUpRight, Mail, Box, Cloud, Search, Newspaper, Sparkles, Star, Terminal, Lock, Handshake, Bot, Phone, FileSearch, CalendarClock, Video, Code, Mic } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
@@ -651,33 +651,37 @@ export default function Home() {
            <div>
               <div className="flex items-center justify-between mb-3 px-1">
                  <h3 className="text-sm font-bold uppercase tracking-wider flex items-center gap-2 text-foreground/80">
-                   <Server className="w-4 h-4 text-slate-500" />
-                   Top Providers
+                   <Mic className="w-4 h-4 text-slate-500" />
+                   Top Claw Voices
                  </h3>
               </div>
-              <div className="bg-card border border-border/60 rounded-xl shadow-sm p-4 space-y-4">
-                 {infrastructureProviders.map((prov, i) => (
-                    <div key={prov.id} className="flex items-center justify-between group cursor-pointer hover:bg-slate-50 dark:hover:bg-muted/50 rounded-lg p-2 -mx-2 transition-colors">
+              <div className="bg-card border border-border/60 rounded-xl shadow-sm p-4 space-y-3">
+                 {[
+                   { handle: "steipete", name: "Peter Steinberger", blurb: "Creator of OpenClaw. Vibe-coding pioneer.", url: "https://x.com/steipete" },
+                   { handle: "mitsuhiko", name: "Armin Ronacher", blurb: "Flask creator. Core OpenClaw contributor.", url: "https://x.com/mitsuhiko" },
+                   { handle: "cpojer", name: "Christoph Nakazawa", blurb: "Jest & Metro creator. Signed commits advocate.", url: "https://x.com/cpojer" },
+                   { handle: "shanselman", name: "Scott Hanselman", blurb: "VP Dev Community @ Microsoft. OpenClaw contributor.", url: "https://x.com/shanselman" },
+                   { handle: "xanderatallah", name: "Alex Atallah", blurb: "CEO of OpenRouter. Built the LLM routing layer.", url: "https://x.com/xanderatallah" },
+                   { handle: "MattPRD", name: "Matt Schlicht", blurb: "Built Moltbook. AI-only social network creator.", url: "https://x.com/MattPRD" },
+                   { handle: "dguido", name: "Dan Guido", blurb: "Trail of Bits CEO. OpenClaw security advisor.", url: "https://x.com/dguido" },
+                   { handle: "simecek", name: "Petr Simecek", blurb: "Keboola co-founder. Core contributor.", url: "https://x.com/simecek" },
+                 ].map((voice, i) => (
+                    <a key={voice.handle} href={voice.url} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between group cursor-pointer hover:bg-slate-50 dark:hover:bg-muted/50 rounded-lg p-2 -mx-2 transition-colors" data-testid={`voice-${voice.handle}`}>
                        <div className="flex items-center gap-3">
                           <span className="text-xs font-mono text-muted-foreground w-3">{i + 1}</span>
                           <div>
                              <div className="flex items-center gap-1.5">
-                                <span className="text-xs font-bold text-foreground group-hover:text-primary transition-colors">{prov.name}</span>
-                                {prov.badges[0] && (
-                                   <span className="text-[8px] px-1 py-px rounded bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-400 font-bold">{prov.badges[0].label}</span>
-                                )}
+                                <span className="text-xs font-bold text-foreground group-hover:text-primary transition-colors">{voice.name}</span>
                              </div>
-                             <div className="text-[10px] text-muted-foreground">{prov.description} • {prov.downloads} Uptime</div>
+                             <div className="text-[10px] text-muted-foreground">@{voice.handle} · {voice.blurb}</div>
                           </div>
                        </div>
                        <div className="text-right">
-                          <div className="flex items-center gap-0.5 text-xs font-medium text-foreground">
-                             {prov.rating} <Star className="w-2.5 h-2.5 fill-amber-400 text-amber-400" />
-                          </div>
+                          <ExternalLink className="w-3 h-3 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
                        </div>
-                    </div>
+                    </a>
                  ))}
-                 <Button variant="outline" size="sm" className="w-full text-xs h-8 mt-2">View Full Rankings</Button>
+                 <Button variant="outline" size="sm" className="w-full text-xs h-8 mt-2" onClick={() => window.open('https://x.com/openclaw', '_blank')}>Follow @openclaw</Button>
               </div>
            </div>
 
