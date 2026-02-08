@@ -560,6 +560,76 @@ export default function Home() {
               </div>
            </div>
 
+           <div>
+              <div className="flex items-center justify-between mb-3 px-1">
+                 <h3 className="text-sm font-bold uppercase tracking-wider flex items-center gap-2 text-foreground/80">
+                   <Mic className="w-4 h-4 text-slate-500" />
+                   Top Claw Voices
+                 </h3>
+              </div>
+              <div className="bg-card border border-border/60 rounded-xl shadow-sm p-4 space-y-3">
+                 {[
+                   { handle: "steipete", name: "Peter Steinberger", blurb: "Creator of OpenClaw. Vibe-coding pioneer.", url: "https://x.com/steipete" },
+                   { handle: "mitsuhiko", name: "Armin Ronacher", blurb: "Flask creator. Core OpenClaw contributor.", url: "https://x.com/mitsuhiko" },
+                   { handle: "cpojer", name: "Christoph Nakazawa", blurb: "Jest & Metro creator. Signed commits advocate.", url: "https://x.com/cpojer" },
+                   { handle: "shanselman", name: "Scott Hanselman", blurb: "VP Dev Community @ Microsoft. OpenClaw contributor.", url: "https://x.com/shanselman" },
+                   { handle: "xanderatallah", name: "Alex Atallah", blurb: "CEO of OpenRouter. Built the LLM routing layer.", url: "https://x.com/xanderatallah" },
+                   { handle: "MattPRD", name: "Matt Schlicht", blurb: "Built Moltbook. AI-only social network creator.", url: "https://x.com/MattPRD" },
+                   { handle: "dguido", name: "Dan Guido", blurb: "Trail of Bits CEO. OpenClaw security advisor.", url: "https://x.com/dguido" },
+                   { handle: "simecek", name: "Petr Simecek", blurb: "Keboola co-founder. Core contributor.", url: "https://x.com/simecek" },
+                 ].map((voice, i) => (
+                    <a key={voice.handle} href={voice.url} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between group cursor-pointer hover:bg-slate-50 dark:hover:bg-muted/50 rounded-lg p-2 -mx-2 transition-colors" data-testid={`voice-${voice.handle}`}>
+                       <div className="flex items-center gap-3">
+                          <span className="text-xs font-mono text-muted-foreground w-3">{i + 1}</span>
+                          <div>
+                             <div className="flex items-center gap-1.5">
+                                <span className="text-xs font-bold text-foreground group-hover:text-primary transition-colors">{voice.name}</span>
+                             </div>
+                             <div className="text-[10px] text-muted-foreground">@{voice.handle} · {voice.blurb}</div>
+                          </div>
+                       </div>
+                       <div className="text-right">
+                          <ExternalLink className="w-3 h-3 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+                       </div>
+                    </a>
+                 ))}
+                 <Button variant="outline" size="sm" className="w-full text-xs h-8 mt-2" onClick={() => window.open('https://x.com/openclaw', '_blank')}>Follow @openclaw</Button>
+              </div>
+           </div>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 pb-8">
+           <div className="lg:col-span-2">
+              <div className="flex items-center justify-between mb-3 px-1">
+                 <h3 className="text-sm font-bold uppercase tracking-wider flex items-center gap-2 text-amber-600 dark:text-amber-400">
+                   <Sparkles className="w-4 h-4" />
+                   Community Submitted
+                 </h3>
+                 <span className="text-[10px] font-mono text-muted-foreground">Latest from the community</span>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                 {communitySubmissions.map(item => (
+                    <div key={item.id} className="bg-amber-50/50 dark:bg-amber-950/10 border border-amber-200/40 dark:border-amber-800/20 rounded-lg p-3 flex items-start gap-3 hover:bg-amber-100/50 dark:hover:bg-amber-950/20 transition-colors group cursor-pointer" data-testid={`community-submission-${item.id}`}>
+                       <div className="shrink-0 pt-0.5">
+                          <Box className="w-4 h-4 text-amber-500 dark:text-amber-400" />
+                       </div>
+                       <div>
+                          <div className="flex items-center gap-2 mb-0.5">
+                             <h4 className="text-sm font-bold text-foreground">{item.name}</h4>
+                             <span className="text-[10px] px-1.5 py-px rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 font-medium">{item.subcategory}</span>
+                          </div>
+                          <p className="text-xs text-muted-foreground mb-1 leading-snug">{item.description}</p>
+                          <p className="text-[10px] font-mono text-muted-foreground/70">by {item.author}</p>
+                       </div>
+                    </div>
+                 ))}
+                 <div className="bg-muted/30 border border-border border-dashed rounded-lg p-3 flex flex-col items-center justify-center text-center gap-2">
+                    <span className="text-xs font-medium text-muted-foreground">Submit a service/skill</span>
+                    <Button size="sm" variant="outline" className="h-7 text-xs" onClick={() => setShowServiceDrawer(true)} data-testid="submit-service-skill-btn">Submit a service/skill</Button>
+                 </div>
+              </div>
+           </div>
+
            <div className="space-y-6">
               <Card className="p-5 border-primary/10 shadow-sm bg-gradient-to-b from-white to-slate-50/50 dark:from-card dark:to-card/50 dark:border-border">
                  <h4 className="font-bold text-sm mb-4 flex items-center gap-2">
@@ -613,76 +683,6 @@ export default function Home() {
                     </Button>
                  </div>
               </Card>
-           </div>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 pb-8">
-           <div className="lg:col-span-2">
-              <div className="flex items-center justify-between mb-3 px-1">
-                 <h3 className="text-sm font-bold uppercase tracking-wider flex items-center gap-2 text-amber-600 dark:text-amber-400">
-                   <Sparkles className="w-4 h-4" />
-                   Community Submitted
-                 </h3>
-                 <span className="text-[10px] font-mono text-muted-foreground">Latest from the community</span>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                 {communitySubmissions.map(item => (
-                    <div key={item.id} className="bg-amber-50/50 dark:bg-amber-950/10 border border-amber-200/40 dark:border-amber-800/20 rounded-lg p-3 flex items-start gap-3 hover:bg-amber-100/50 dark:hover:bg-amber-950/20 transition-colors group cursor-pointer" data-testid={`community-submission-${item.id}`}>
-                       <div className="shrink-0 pt-0.5">
-                          <Box className="w-4 h-4 text-amber-500 dark:text-amber-400" />
-                       </div>
-                       <div>
-                          <div className="flex items-center gap-2 mb-0.5">
-                             <h4 className="text-sm font-bold text-foreground">{item.name}</h4>
-                             <span className="text-[10px] px-1.5 py-px rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 font-medium">{item.subcategory}</span>
-                          </div>
-                          <p className="text-xs text-muted-foreground mb-1 leading-snug">{item.description}</p>
-                          <p className="text-[10px] font-mono text-muted-foreground/70">by {item.author}</p>
-                       </div>
-                    </div>
-                 ))}
-                 <div className="bg-muted/30 border border-border border-dashed rounded-lg p-3 flex flex-col items-center justify-center text-center gap-2">
-                    <span className="text-xs font-medium text-muted-foreground">Submit a service/skill</span>
-                    <Button size="sm" variant="outline" className="h-7 text-xs" onClick={() => setShowServiceDrawer(true)} data-testid="submit-service-skill-btn">Submit a service/skill</Button>
-                 </div>
-              </div>
-           </div>
-
-           <div>
-              <div className="flex items-center justify-between mb-3 px-1">
-                 <h3 className="text-sm font-bold uppercase tracking-wider flex items-center gap-2 text-foreground/80">
-                   <Mic className="w-4 h-4 text-slate-500" />
-                   Top Claw Voices
-                 </h3>
-              </div>
-              <div className="bg-card border border-border/60 rounded-xl shadow-sm p-4 space-y-3">
-                 {[
-                   { handle: "steipete", name: "Peter Steinberger", blurb: "Creator of OpenClaw. Vibe-coding pioneer.", url: "https://x.com/steipete" },
-                   { handle: "mitsuhiko", name: "Armin Ronacher", blurb: "Flask creator. Core OpenClaw contributor.", url: "https://x.com/mitsuhiko" },
-                   { handle: "cpojer", name: "Christoph Nakazawa", blurb: "Jest & Metro creator. Signed commits advocate.", url: "https://x.com/cpojer" },
-                   { handle: "shanselman", name: "Scott Hanselman", blurb: "VP Dev Community @ Microsoft. OpenClaw contributor.", url: "https://x.com/shanselman" },
-                   { handle: "xanderatallah", name: "Alex Atallah", blurb: "CEO of OpenRouter. Built the LLM routing layer.", url: "https://x.com/xanderatallah" },
-                   { handle: "MattPRD", name: "Matt Schlicht", blurb: "Built Moltbook. AI-only social network creator.", url: "https://x.com/MattPRD" },
-                   { handle: "dguido", name: "Dan Guido", blurb: "Trail of Bits CEO. OpenClaw security advisor.", url: "https://x.com/dguido" },
-                   { handle: "simecek", name: "Petr Simecek", blurb: "Keboola co-founder. Core contributor.", url: "https://x.com/simecek" },
-                 ].map((voice, i) => (
-                    <a key={voice.handle} href={voice.url} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between group cursor-pointer hover:bg-slate-50 dark:hover:bg-muted/50 rounded-lg p-2 -mx-2 transition-colors" data-testid={`voice-${voice.handle}`}>
-                       <div className="flex items-center gap-3">
-                          <span className="text-xs font-mono text-muted-foreground w-3">{i + 1}</span>
-                          <div>
-                             <div className="flex items-center gap-1.5">
-                                <span className="text-xs font-bold text-foreground group-hover:text-primary transition-colors">{voice.name}</span>
-                             </div>
-                             <div className="text-[10px] text-muted-foreground">@{voice.handle} · {voice.blurb}</div>
-                          </div>
-                       </div>
-                       <div className="text-right">
-                          <ExternalLink className="w-3 h-3 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
-                       </div>
-                    </a>
-                 ))}
-                 <Button variant="outline" size="sm" className="w-full text-xs h-8 mt-2" onClick={() => window.open('https://x.com/openclaw', '_blank')}>Follow @openclaw</Button>
-              </div>
            </div>
 
         </div>
