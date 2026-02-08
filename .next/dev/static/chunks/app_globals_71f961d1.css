@@ -4159,10 +4159,6 @@
     mask-repeat: repeat;
   }
 
-  .fill-amber-400 {
-    fill: var(--color-amber-400);
-  }
-
   .fill-amber-500 {
     fill: var(--color-amber-500);
   }
@@ -4522,10 +4518,6 @@
     font-size: 2rem;
   }
 
-  .text-\[8px\] {
-    font-size: 8px;
-  }
-
   .text-\[9px\] {
     font-size: 9px;
   }
@@ -4733,10 +4725,6 @@
 
   .text-emerald-700 {
     color: var(--color-emerald-700);
-  }
-
-  .text-emerald-800 {
-    color: var(--color-emerald-800);
   }
 
   .text-emerald-900 {
