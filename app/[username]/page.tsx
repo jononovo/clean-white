@@ -302,13 +302,14 @@ export default function ProviderProfilePage() {
             <CardContent className="p-0">
               <div className="divide-y divide-border/50">
                 {services.map((service) => (
-                  <div
+                  <Link
                     key={service.slug}
-                    className="flex items-center justify-between p-4"
+                    href={`/@${provider.handle}/services/${service.slug}`}
+                    className="flex items-center justify-between p-4 hover:bg-muted/30 transition-colors group"
                     data-testid={`service-${service.slug}`}
                   >
                     <div className="flex-1 min-w-0">
-                      <div className="font-medium text-foreground">
+                      <div className="font-medium text-foreground group-hover:text-primary transition-colors">
                         {service.name}
                       </div>
                       {service.description && (
@@ -319,8 +320,9 @@ export default function ProviderProfilePage() {
                       {service.pricingLabel && (
                         <Badge variant="outline" className="text-xs">{service.pricingLabel}</Badge>
                       )}
+                      <ExternalLink className="w-4 h-4 text-muted-foreground/30 group-hover:text-primary transition-colors" />
                     </div>
-                  </div>
+                  </Link>
                 ))}
               </div>
             </CardContent>
