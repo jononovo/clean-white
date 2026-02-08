@@ -219,46 +219,61 @@ export default function Home() {
             <div className="hidden lg:block relative">
                <div className="absolute -inset-1 bg-gradient-to-r from-amber-500/10 to-emerald-500/10 rounded-xl blur-xl opacity-60" />
                <div className="relative bg-card/80 backdrop-blur-xl border border-border rounded-xl p-6 shadow-xl shadow-muted/50 dark:shadow-none" data-testid="hero-vps-pitch">
-                  <div className="flex items-center gap-2 mb-5 pb-4 border-b border-border">
-                     <div className="p-1.5 rounded-md bg-amber-100 dark:bg-amber-900/30">
-                        <Zap className="w-4 h-4 text-amber-600 dark:text-amber-400" />
+                  <div className="flex items-center justify-between mb-3">
+                     <div className="flex items-center gap-2">
+                        <div className="p-1.5 rounded-md bg-amber-100 dark:bg-amber-900/30">
+                           <Zap className="w-4 h-4 text-amber-600 dark:text-amber-400" />
+                        </div>
+                        <span className="font-mono font-bold text-xs text-foreground uppercase tracking-wide">Ready-to-Run</span>
                      </div>
-                     <span className="font-mono font-bold text-sm text-foreground uppercase tracking-wide">Ready-to-Run</span>
+                     <div className="flex items-center gap-1.5 text-[10px] text-emerald-600 dark:text-emerald-400 font-medium">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                        Available Now
+                     </div>
                   </div>
 
-                  <div className="space-y-5">
-                     <div>
-                        <h3 className="text-lg font-bold text-foreground leading-snug mb-1">
-                           Preinstalled OpenClaw + n8n setups on VPS
+                  <div className="relative rounded-lg overflow-hidden mb-4 border border-border/40">
+                     <img
+                        src="/images/openclaw-n8n-hero.png"
+                        alt="OpenClaw + n8n automation setup"
+                        className="w-full h-32 object-cover"
+                     />
+                     <div className="absolute inset-0 bg-gradient-to-t from-card/90 via-transparent to-transparent" />
+                     <div className="absolute bottom-2 left-3 right-3">
+                        <h3 className="text-base font-bold text-white leading-snug drop-shadow-md">
+                           OpenClaw + n8n on VPS
                         </h3>
-                        <p className="text-xs text-muted-foreground leading-relaxed">
-                           Have Claw setup and manage your workplace automations.
-                        </p>
                      </div>
+                  </div>
 
-                     <div className="p-4 rounded-lg bg-muted/40 border border-border/60">
-                        <p className="text-sm italic text-foreground/90 leading-relaxed mb-2.5">
+                  <div className="space-y-4">
+                     <p className="text-xs text-muted-foreground leading-relaxed">
+                        Have Claw setup and manage your workplace automations. Preinstalled, preconfigured, ready to go.
+                     </p>
+
+                     <div className="p-3 rounded-lg bg-gradient-to-r from-amber-50/50 to-emerald-50/30 dark:from-amber-950/15 dark:to-emerald-950/10 border border-amber-200/30 dark:border-amber-800/15">
+                        <p className="text-[13px] italic text-foreground/90 leading-relaxed mb-1.5">
                            &ldquo;...the ultimate productivity hack&rdquo;
                         </p>
-                        <p className="text-[11px] font-medium text-muted-foreground">
+                        <p className="text-[10px] font-semibold text-amber-700 dark:text-amber-400">
                            &mdash; Jason Goldberg
                         </p>
                      </div>
 
-                     <div className="flex items-center gap-3 pt-1">
-                        <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                           <Cloud className="w-3.5 h-3.5 text-emerald-500" />
+                     <div className="flex items-center justify-between pt-1 px-0.5">
+                        <div className="flex items-center gap-1.5 text-[10px] text-muted-foreground">
+                           <Cloud className="w-3 h-3 text-emerald-500" />
                            <span>VPS Hosted</span>
                         </div>
                         <div className="h-3 w-px bg-border" />
-                        <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                           <Bot className="w-3.5 h-3.5 text-amber-500" />
+                        <div className="flex items-center gap-1.5 text-[10px] text-muted-foreground">
+                           <Bot className="w-3 h-3 text-amber-500" />
                            <span>OpenClaw + n8n</span>
                         </div>
                         <div className="h-3 w-px bg-border" />
-                        <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                           <Zap className="w-3.5 h-3.5 text-blue-500" />
-                           <span>1-Click Deploy</span>
+                        <div className="flex items-center gap-1.5 text-[10px] text-muted-foreground">
+                           <Zap className="w-3 h-3 text-blue-500" />
+                           <span>1-Click</span>
                         </div>
                      </div>
                   </div>
