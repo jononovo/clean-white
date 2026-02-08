@@ -571,9 +571,7 @@ export default function Home() {
                  {[
                    { handle: "steipete", name: "Peter Steinberger", blurb: "Creator of OpenClaw. Vibe-coding pioneer.", url: "https://x.com/steipete" },
                    { handle: "mitsuhiko", name: "Armin Ronacher", blurb: "Flask creator. Core OpenClaw contributor.", url: "https://x.com/mitsuhiko" },
-                   { handle: "cpojer", name: "Christoph Nakazawa", blurb: "Jest & Metro creator. Signed commits advocate.", url: "https://x.com/cpojer" },
                    { handle: "shanselman", name: "Scott Hanselman", blurb: "VP Dev Community @ Microsoft. OpenClaw contributor.", url: "https://x.com/shanselman" },
-                   { handle: "xanderatallah", name: "Alex Atallah", blurb: "CEO of OpenRouter. Built the LLM routing layer.", url: "https://x.com/xanderatallah" },
                    { handle: "MattPRD", name: "Matt Schlicht", blurb: "Built Moltbook. AI-only social network creator.", url: "https://x.com/MattPRD" },
                    { handle: "dguido", name: "Dan Guido", blurb: "Trail of Bits CEO. OpenClaw security advisor.", url: "https://x.com/dguido" },
                    { handle: "simecek", name: "Petr Simecek", blurb: "Keboola co-founder. Core contributor.", url: "https://x.com/simecek" },
