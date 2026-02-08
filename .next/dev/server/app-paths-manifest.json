@@ -1,13 +1,10 @@
 {
-  "/[username]/[slug]/page": "app/[username]/[slug]/page.js",
-  "/api/categories/[slug]/route": "app/api/categories/[slug]/route.js",
+  "/[username]/page": "app/[username]/page.js",
   "/api/categories/route": "app/api/categories/route.js",
   "/api/featured/route": "app/api/featured/route.js",
   "/api/providers/browse/route": "app/api/providers/browse/route.js",
   "/api/services/route": "app/api/services/route.js",
-  "/api/skills/[username]/[slug]/route": "app/api/skills/[username]/[slug]/route.js",
   "/api/skills/route": "app/api/skills/route.js",
-  "/categories/[slug]/page": "app/categories/[slug]/page.js",
   "/categories/page": "app/categories/page.js",
   "/page": "app/page.js"
 }
