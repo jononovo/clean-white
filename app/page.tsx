@@ -18,7 +18,7 @@ import { SERVICE_CATEGORIES, ServiceRegistrationDrawer, ServiceCategoryCard } fr
 import type { ServiceCategory } from "@/features/services";
 import { AuditBadge, FeaturedCard, CompressedListRow } from "@/features/skills";
 import { ThreatTicker } from "@/features/threats";
-import { useServices, useFeaturedItems, usePartners } from "@/hooks/use-homepage-data";
+import { useServices, useFeaturedItems, usePartners, useProductivitySkills } from "@/hooks/use-homepage-data";
 
 
 function ManagedClawBanner() {
@@ -118,6 +118,7 @@ export default function Home() {
   const { data: dbServices } = useServices();
   const { data: dbFeatured } = useFeaturedItems();
   const { data: dbPartners } = usePartners();
+  const { data: dbProductivitySkills } = useProductivitySkills();
 
   const serviceCategories = useMemo(() => {
     if (!dbServices || !Array.isArray(dbServices) || dbServices.length === 0) return SERVICE_CATEGORIES;
@@ -159,6 +160,11 @@ export default function Home() {
     if (!dbPartners || !Array.isArray(dbPartners) || dbPartners.length === 0) return null;
     return dbPartners;
   }, [dbPartners]);
+
+  const productivitySkills = useMemo(() => {
+    if (!dbProductivitySkills || !Array.isArray(dbProductivitySkills) || dbProductivitySkills.length === 0) return null;
+    return dbProductivitySkills.sort((a: any, b: any) => (b.downloads || 0) - (a.downloads || 0)).slice(0, 5);
+  }, [dbProductivitySkills]);
 
   const handleServiceCategoryClick = (categoryId: string) => {
     setSelectedServiceCategory(categoryId);
@@ -402,13 +408,13 @@ export default function Home() {
               <div className="bg-white/50 dark:bg-card/50 border border-border/60 rounded-lg p-3 shadow-sm backdrop-blur-sm">
                  <div className="space-y-0.5">
                     {(vpsServices || [
-                      { name: "BoostedHost VPS", description: "Turnkey pre-installed setup", rating: 49, pricingLabel: "Custom", url: "https://boostedhost.com" },
-                      { name: "DigitalOcean Droplet", description: "Official 1-Click Deploy", rating: 47, pricingLabel: "From $6/mo", url: "https://digitalocean.com" },
-                      { name: "Hostinger VPS", description: "Best budget option", rating: 45, pricingLabel: "From $5/mo", url: "https://hostinger.com" },
-                      { name: "Vultr Cloud Compute", description: "DIY flexibility, great pricing", rating: 44, pricingLabel: "From $6/mo", url: "https://vultr.com" },
-                      { name: "Linode VPS", description: "Best raw performance", rating: 43, pricingLabel: "From $5/mo", url: "https://linode.com" },
+                      { name: "BoostedHost VPS", description: "Turnkey pre-installed setup", rating: 49, pricingLabel: "Custom", providerHandle: "boostedhost" },
+                      { name: "DigitalOcean Droplet", description: "Official 1-Click Deploy", rating: 47, pricingLabel: "From $6/mo", providerHandle: "digitalocean" },
+                      { name: "Hostinger VPS", description: "Best budget option", rating: 45, pricingLabel: "From $5/mo", providerHandle: "hostinger" },
+                      { name: "Vultr Cloud Compute", description: "DIY flexibility, great pricing", rating: 44, pricingLabel: "From $6/mo", providerHandle: "vultr" },
+                      { name: "Linode VPS", description: "Best raw performance", rating: 43, pricingLabel: "From $5/mo", providerHandle: "linode" },
                     ]).map((vps: any, i: number) => (
-                      <a key={vps.name} href={vps.url || "#"} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 py-2 border-b border-border/40 last:border-0 hover:bg-muted/30 px-2 rounded-sm transition-colors group cursor-pointer" data-testid={`vps-row-${i}`}>
+                      <Link key={vps.name} href={vps.providerHandle ? `/@${vps.providerHandle}` : "#"} className="flex items-center gap-3 py-2 border-b border-border/40 last:border-0 hover:bg-muted/30 px-2 rounded-sm transition-colors group cursor-pointer" data-testid={`vps-row-${i}`}>
                         <span className="w-4 text-xs font-mono text-muted-foreground text-center">{i + 1}</span>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2">
@@ -421,7 +427,7 @@ export default function Home() {
                           <Star className="w-3 h-3 fill-amber-500 text-amber-500" />
                           {((vps.rating || 40) / 10).toFixed(1)}
                         </div>
-                      </a>
+                      </Link>
                     ))}
                  </div>
                  <a href="https://boostedhost.com/blog/en/how-to-install-openclaw-get-started-guide/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 mt-3 pt-3 border-t border-border/40 text-[11px] font-medium text-primary hover:underline">
@@ -440,21 +446,21 @@ export default function Home() {
               </div>
               <div className="bg-white/50 dark:bg-card/50 border border-border/60 rounded-lg p-3 shadow-sm backdrop-blur-sm">
                  <div className="space-y-0.5">
-                    {[
-                      { name: "GitHub", author: "@steipete", downloads: 7504, stars: 14, desc: "Issues, PRs, CI runs, and advanced queries via gh CLI", slug: "github", hubUrl: "https://clawhub.ai/steipete/github" },
-                      { name: "Home Assistant", author: "@dbhurley", downloads: 4602, stars: 26, desc: "Smart plugs, lights, scenes, automations — full smart home control", slug: "home-assistant", hubUrl: "https://clawhub.ai/dbhurley/homeassistant" },
-                      { name: "CalDAV Calendar", author: "@Asleep123", downloads: 3658, stars: 4, desc: "Sync iCloud, Google, Fastmail, Nextcloud calendars on Linux", slug: "caldav-calendar", hubUrl: "https://clawhub.ai/Asleep123/caldav-calendar" },
-                      { name: "Notion", author: "@steipete", downloads: 3430, stars: 11, desc: "Create and manage pages, databases, and blocks via Notion API", slug: "notion", hubUrl: "https://clawhub.ai/steipete/notion" },
-                      { name: "Email", author: "@0xterrybit", downloads: 3120, stars: 8, desc: "Send, read, search, and organize emails across multiple providers", slug: "email", hubUrl: "https://clawhub.ai/0xterrybit/email" },
-                    ].map((skill, i) => (
-                      <Link key={skill.name} href={`/categories/productivity`} className="flex items-center gap-3 py-2 border-b border-border/40 last:border-0 hover:bg-muted/30 px-2 rounded-sm transition-colors group cursor-pointer">
+                    {(productivitySkills || [
+                      { name: "GitHub", authorUsername: "steipete", downloads: 7504, stars: 14, description: "Issues, PRs, CI runs, and advanced queries via gh CLI", slug: "github" },
+                      { name: "Home Assistant", authorUsername: "dbhurley", downloads: 4602, stars: 26, description: "Smart plugs, lights, scenes, automations — full smart home control", slug: "home-assistant" },
+                      { name: "CalDAV Calendar", authorUsername: "Asleep123", downloads: 3658, stars: 4, description: "Sync iCloud, Google, Fastmail, Nextcloud calendars on Linux", slug: "caldav-calendar" },
+                      { name: "Notion", authorUsername: "steipete", downloads: 3430, stars: 11, description: "Create and manage pages, databases, and blocks via Notion API", slug: "notion" },
+                      { name: "Email", authorUsername: "0xterrybit", downloads: 3120, stars: 8, description: "Send, read, search, and organize emails across multiple providers", slug: "email" },
+                    ]).map((skill: any, i: number) => (
+                      <Link key={skill.name} href={`/@${skill.authorUsername}/${skill.slug}`} className="flex items-center gap-3 py-2 border-b border-border/40 last:border-0 hover:bg-muted/30 px-2 rounded-sm transition-colors group cursor-pointer" data-testid={`productivity-skill-${i}`}>
                         <span className="w-4 text-xs font-mono text-muted-foreground text-center">{i + 1}</span>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2">
                             <span className="font-semibold text-sm truncate text-foreground group-hover:text-primary transition-colors">{skill.name}</span>
-                            <span className="text-[10px] text-muted-foreground/60">{skill.downloads.toLocaleString()} downloads</span>
+                            <span className="text-[10px] text-muted-foreground/60">{(skill.downloads || 0).toLocaleString()} downloads</span>
                           </div>
-                          <div className="text-[10px] text-muted-foreground mt-0.5">{skill.desc}</div>
+                          <div className="text-[10px] text-muted-foreground mt-0.5">{skill.description}</div>
                         </div>
                         <div className="flex items-center gap-1 text-xs font-medium text-amber-600 dark:text-amber-400 shrink-0">
                           <Star className="w-3 h-3 fill-amber-500 text-amber-500" />

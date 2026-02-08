@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth/session";
 import { db } from "@/server/db";
 import { services, providers, insertServiceSchema } from "@/shared/schema";
-import { eq, desc } from "drizzle-orm";
+import { eq, desc, and } from "drizzle-orm";
 
 export async function GET(request: NextRequest) {
   try {
@@ -10,17 +10,34 @@ export async function GET(request: NextRequest) {
     const category = searchParams.get("category");
     const providerId = searchParams.get("providerId");
 
-    let query = db.select().from(services);
+    const conditions = [];
+    if (category) conditions.push(eq(services.category, category));
+    if (providerId) conditions.push(eq(services.providerId, providerId));
 
-    if (category) {
-      query = query.where(eq(services.category, category)) as typeof query;
-    }
+    const result = await db
+      .select({
+        id: services.id,
+        providerId: services.providerId,
+        providerHandle: providers.handle,
+        name: services.name,
+        description: services.description,
+        category: services.category,
+        slug: services.slug,
+        url: services.url,
+        pricingType: services.pricingType,
+        pricingLabel: services.pricingLabel,
+        priceMin: services.priceMin,
+        priceMax: services.priceMax,
+        rating: services.rating,
+        popularity: services.popularity,
+        isActive: services.isActive,
+        createdAt: services.createdAt,
+      })
+      .from(services)
+      .leftJoin(providers, eq(services.providerId, providers.id))
+      .where(conditions.length > 0 ? and(...conditions) : undefined)
+      .orderBy(desc(services.createdAt));
 
-    if (providerId) {
-      query = query.where(eq(services.providerId, providerId)) as typeof query;
-    }
-
-    const result = await query.orderBy(desc(services.createdAt));
     return NextResponse.json(result);
   } catch (error) {
     console.error("Error fetching services:", error);

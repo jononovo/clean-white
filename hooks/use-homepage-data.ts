@@ -32,3 +32,15 @@ export function usePartners() {
     },
   });
 }
+
+export function useProductivitySkills() {
+  return useQuery({
+    queryKey: ["/api/skills", "productivity"],
+    queryFn: async () => {
+      const res = await fetch("/api/skills?category=productivity&limit=5");
+      if (!res.ok) throw new Error("Failed to fetch productivity skills");
+      const data = await res.json();
+      return data.skills || [];
+    },
+  });
+}
