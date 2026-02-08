@@ -221,6 +221,41 @@ export const insertServiceSchema = createInsertSchema(services).omit({
 export type InsertService = z.infer<typeof insertServiceSchema>;
 export type Service = typeof services.$inferSelect;
 
+export const serviceCategories = pgTable("service_categories", {
+  serviceId: varchar("service_id").notNull().references(() => services.id, { onDelete: "cascade" }),
+  categoryId: varchar("category_id").notNull().references(() => categories.id, { onDelete: "cascade" }),
+}, (table) => [
+  primaryKey({ columns: [table.serviceId, table.categoryId] }),
+]);
+
+export const insertServiceCategorySchema = createInsertSchema(serviceCategories);
+export type InsertServiceCategory = z.infer<typeof insertServiceCategorySchema>;
+export type ServiceCategoryJoin = typeof serviceCategories.$inferSelect;
+
+export const skillCategoriesJoin = pgTable("skill_categories", {
+  skillId: varchar("skill_id").notNull().references(() => skills.id, { onDelete: "cascade" }),
+  categoryId: varchar("category_id").notNull().references(() => categories.id, { onDelete: "cascade" }),
+}, (table) => [
+  primaryKey({ columns: [table.skillId, table.categoryId] }),
+]);
+
+export const insertSkillCategorySchema = createInsertSchema(skillCategoriesJoin);
+export type InsertSkillCategory = z.infer<typeof insertSkillCategorySchema>;
+export type SkillCategoryJoin = typeof skillCategoriesJoin.$inferSelect;
+
+export const PROVIDER_ROLES = ["consultant", "partner", "trainer", "sponsor", "ambassador", "reseller"] as const;
+
+export const providerRoles = pgTable("provider_roles", {
+  providerId: varchar("provider_id").notNull().references(() => providers.id, { onDelete: "cascade" }),
+  role: text("role").notNull(),
+}, (table) => [
+  primaryKey({ columns: [table.providerId, table.role] }),
+]);
+
+export const insertProviderRoleSchema = createInsertSchema(providerRoles);
+export type InsertProviderRole = z.infer<typeof insertProviderRoleSchema>;
+export type ProviderRole = typeof providerRoles.$inferSelect;
+
 export const apps = pgTable("apps", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   slug: text("slug").notNull().unique(),
