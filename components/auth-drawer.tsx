@@ -29,7 +29,7 @@ interface AuthDrawerProps {
 export function AuthDrawer({ open, onOpenChange, defaultTab = "login" }: AuthDrawerProps) {
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState<string | null>(null);
-  const { signInWithGoogle, signInWithGithub, sendMagicLink, error, clearError, magicLinkSent, user } = useAuth();
+  const { signInWithGoogle, signInWithGithub, sendMagicLink, error, clearError, magicLinkSent, user, isConfigured } = useAuth();
 
   const handleGoogleSignIn = async () => {
     setIsLoading("google");
@@ -78,45 +78,42 @@ export function AuthDrawer({ open, onOpenChange, defaultTab = "login" }: AuthDra
 
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
-      <SheetContent side="right" className="w-full sm:max-w-md p-0 border-l border-neutral-200 bg-[hsl(210_40%_98%)]/95 backdrop-blur-xl">
+      <SheetContent side="right" className="w-full sm:max-w-md p-0 border-l border-border/50 bg-background/95 backdrop-blur-xl">
         <div className="flex flex-col h-full">
-          <div className="p-6 border-b border-neutral-100">
+          <div className="p-6 border-b border-border/40">
             <SheetHeader className="text-left space-y-1">
-              <div className="flex items-center gap-3 mb-2">
-                <img src="/images/creditclaw/logo-claw-chip.png" alt="CreditClaw" className="w-10 h-10 object-contain" />
-                <SheetTitle className="text-2xl font-extrabold text-neutral-900">Welcome to CreditClaw</SheetTitle>
-              </div>
-              <SheetDescription className="text-neutral-500 font-medium">
-                Sign in to manage your Claw Agent's spending power.
+              <SheetTitle className="text-2xl font-display font-bold">Welcome Back</SheetTitle>
+              <SheetDescription>
+                Sign in to access your verified skills and services.
               </SheetDescription>
             </SheetHeader>
           </div>
 
           <div className="flex-1 overflow-y-auto p-6">
             <Tabs defaultValue={defaultTab} className="w-full">
-              <TabsList className="grid w-full grid-cols-2 mb-6 rounded-full h-12 bg-neutral-100 p-1">
-                <TabsTrigger value="login" className="rounded-full font-bold data-[state=active]:bg-white data-[state=active]:shadow-sm">Login</TabsTrigger>
-                <TabsTrigger value="register" className="rounded-full font-bold data-[state=active]:bg-white data-[state=active]:shadow-sm">Create Account</TabsTrigger>
+              <TabsList className="grid w-full grid-cols-2 mb-6">
+                <TabsTrigger value="login">Login</TabsTrigger>
+                <TabsTrigger value="register">Create Account</TabsTrigger>
               </TabsList>
 
               <TabsContent value="login" className="space-y-4 outline-none">
                 {error && (
-                  <div className="p-3 rounded-2xl bg-red-50 border border-red-200 text-red-600 text-sm font-medium">
+                  <div className="p-3 rounded-lg bg-destructive/10 border border-destructive/20 text-destructive text-sm">
                     {error}
                   </div>
                 )}
 
                 {magicLinkSent ? (
                   <div className="text-center py-8 space-y-4">
-                    <div className="mx-auto w-16 h-16 rounded-full bg-green-100 flex items-center justify-center">
-                      <CheckCircle className="w-8 h-8 text-green-600" />
+                    <div className="mx-auto w-16 h-16 rounded-full bg-emerald-500/10 flex items-center justify-center">
+                      <CheckCircle className="w-8 h-8 text-emerald-500" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-lg text-neutral-900">Check your email!</h3>
-                      <p className="text-neutral-500 text-sm mt-1 font-medium">
-                        We sent a magic link to <strong className="text-neutral-800">{email}</strong>
+                      <h3 className="font-semibold text-lg">Check your email!</h3>
+                      <p className="text-muted-foreground text-sm mt-1">
+                        We sent a magic link to <strong>{email}</strong>
                       </p>
-                      <p className="text-neutral-400 text-xs mt-2 font-medium">
+                      <p className="text-muted-foreground text-xs mt-2">
                         Click the link in your email to sign in. You can close this window.
                       </p>
                     </div>
@@ -125,26 +122,25 @@ export function AuthDrawer({ open, onOpenChange, defaultTab = "login" }: AuthDra
                   <>
                     <form onSubmit={handleMagicLink} className="space-y-4">
                       <div className="space-y-2">
-                        <Label htmlFor="email" className="text-neutral-700 font-bold text-sm">Email</Label>
+                        <Label htmlFor="email">Email</Label>
                         <div className="relative">
-                          <Mail className="absolute left-4 top-3.5 h-4 w-4 text-neutral-400" />
-                          <Input
-                            id="email"
-                            placeholder="name@example.com"
-                            className="pl-10 h-12 rounded-xl bg-white border-2 border-neutral-100 text-neutral-900 placeholder:text-neutral-400 focus-visible:ring-primary focus-visible:border-primary transition-all"
+                          <Mail className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
+                          <Input 
+                            id="email" 
+                            placeholder="name@example.com" 
+                            className="pl-9" 
                             type="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             disabled={isLoading !== null}
-                            data-testid="input-email-login"
                           />
                         </div>
                       </div>
-                      <Button
-                        type="submit"
-                        className="w-full h-12 rounded-full bg-primary text-white hover:bg-primary/90 font-bold shadow-lg shadow-primary/20 text-base"
+                      <Button 
+                        type="submit" 
+                        className="w-full font-bold shadow-md" 
+                        size="lg"
                         disabled={isLoading !== null || !email}
-                        data-testid="button-magic-link-login"
                       >
                         {isLoading === "email" ? (
                           <>
@@ -162,19 +158,19 @@ export function AuthDrawer({ open, onOpenChange, defaultTab = "login" }: AuthDra
 
                     <div className="relative my-6">
                       <div className="absolute inset-0 flex items-center">
-                        <span className="w-full border-t border-neutral-200" />
+                        <span className="w-full border-t border-border/50" />
                       </div>
                       <div className="relative flex justify-center text-xs uppercase">
-                        <span className="bg-[hsl(210_40%_98%)] px-3 text-neutral-400 font-bold tracking-wider">
+                        <span className="bg-background px-2 text-muted-foreground font-medium">
                           Or continue with
                         </span>
                       </div>
                     </div>
 
                     <div className="grid grid-cols-2 gap-3">
-                      <Button
-                        variant="outline"
-                        className="w-full gap-2 h-12 rounded-xl border-2 border-neutral-100 bg-white hover:bg-neutral-50 font-bold text-neutral-700"
+                      <Button 
+                        variant="outline" 
+                        className="w-full gap-2"
                         onClick={handleGithubSignIn}
                         disabled={isLoading !== null}
                         data-testid="button-github-signin"
@@ -186,9 +182,9 @@ export function AuthDrawer({ open, onOpenChange, defaultTab = "login" }: AuthDra
                         )}
                         GitHub
                       </Button>
-                      <Button
-                        variant="outline"
-                        className="w-full gap-2 h-12 rounded-xl border-2 border-neutral-100 bg-white hover:bg-neutral-50 font-bold text-neutral-700"
+                      <Button 
+                        variant="outline" 
+                        className="w-full gap-2"
                         onClick={handleGoogleSignIn}
                         disabled={isLoading !== null}
                         data-testid="button-google-signin"
@@ -207,21 +203,21 @@ export function AuthDrawer({ open, onOpenChange, defaultTab = "login" }: AuthDra
 
               <TabsContent value="register" className="space-y-4 outline-none">
                 {error && (
-                  <div className="p-3 rounded-2xl bg-red-50 border border-red-200 text-red-600 text-sm font-medium">
+                  <div className="p-3 rounded-lg bg-destructive/10 border border-destructive/20 text-destructive text-sm">
                     {error}
                   </div>
                 )}
 
                 <div className="text-center py-4">
-                  <p className="text-neutral-500 text-sm mb-6 font-medium">
-                    Create your account instantly. No password required!
+                  <p className="text-muted-foreground text-sm mb-6">
+                    Create your account instantly using one of the options below. No password required!
                   </p>
                 </div>
 
                 <div className="space-y-3">
-                  <Button
-                    variant="outline"
-                    className="w-full gap-2 h-12 rounded-xl border-2 border-neutral-100 bg-white hover:bg-neutral-50 font-bold text-neutral-700"
+                  <Button 
+                    variant="outline" 
+                    className="w-full gap-2 h-12"
                     onClick={handleGithubSignIn}
                     disabled={isLoading !== null}
                     data-testid="button-github-register"
@@ -233,9 +229,9 @@ export function AuthDrawer({ open, onOpenChange, defaultTab = "login" }: AuthDra
                     )}
                     Continue with GitHub
                   </Button>
-                  <Button
-                    variant="outline"
-                    className="w-full gap-2 h-12 rounded-xl border-2 border-neutral-100 bg-white hover:bg-neutral-50 font-bold text-neutral-700"
+                  <Button 
+                    variant="outline" 
+                    className="w-full gap-2 h-12"
                     onClick={handleGoogleSignIn}
                     disabled={isLoading !== null}
                     data-testid="button-google-register"
@@ -251,10 +247,10 @@ export function AuthDrawer({ open, onOpenChange, defaultTab = "login" }: AuthDra
 
                 <div className="relative my-6">
                   <div className="absolute inset-0 flex items-center">
-                    <span className="w-full border-t border-neutral-200" />
+                    <span className="w-full border-t border-border/50" />
                   </div>
                   <div className="relative flex justify-center text-xs uppercase">
-                    <span className="bg-[hsl(210_40%_98%)] px-3 text-neutral-400 font-bold tracking-wider">
+                    <span className="bg-background px-2 text-muted-foreground font-medium">
                       Or use email
                     </span>
                   </div>
@@ -262,26 +258,25 @@ export function AuthDrawer({ open, onOpenChange, defaultTab = "login" }: AuthDra
 
                 <form onSubmit={handleMagicLink} className="space-y-4">
                   <div className="space-y-2">
-                    <Label htmlFor="email-register" className="text-neutral-700 font-bold text-sm">Email</Label>
+                    <Label htmlFor="email-register">Email</Label>
                     <div className="relative">
-                      <Mail className="absolute left-4 top-3.5 h-4 w-4 text-neutral-400" />
-                      <Input
-                        id="email-register"
-                        placeholder="name@example.com"
-                        className="pl-10 h-12 rounded-xl bg-white border-2 border-neutral-100 text-neutral-900 placeholder:text-neutral-400 focus-visible:ring-primary focus-visible:border-primary transition-all"
+                      <Mail className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
+                      <Input 
+                        id="email-register" 
+                        placeholder="name@example.com" 
+                        className="pl-9" 
                         type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         disabled={isLoading !== null}
-                        data-testid="input-email-register"
                       />
                     </div>
                   </div>
-                  <Button
-                    type="submit"
-                    className="w-full h-12 rounded-full bg-primary text-white hover:bg-primary/90 font-bold shadow-lg shadow-primary/20 text-base"
+                  <Button 
+                    type="submit" 
+                    className="w-full font-bold shadow-md" 
+                    size="lg"
                     disabled={isLoading !== null || !email}
-                    data-testid="button-magic-link-register"
                   >
                     {isLoading === "email" ? (
                       <>
@@ -296,21 +291,21 @@ export function AuthDrawer({ open, onOpenChange, defaultTab = "login" }: AuthDra
                     )}
                   </Button>
                 </form>
-
-                <p className="text-center text-xs text-neutral-400 mt-4 font-medium">
+                
+                <p className="text-center text-xs text-muted-foreground mt-4">
                   By clicking continue, you agree to our{" "}
-                  <a href="#" className="underline hover:text-primary transition-colors">Terms of Service</a>
+                  <a href="#" className="underline hover:text-primary">Terms of Service</a>
                   {" "}and{" "}
-                  <a href="#" className="underline hover:text-primary transition-colors">Privacy Policy</a>.
+                  <a href="#" className="underline hover:text-primary">Privacy Policy</a>.
                 </p>
               </TabsContent>
             </Tabs>
           </div>
-
-          <div className="p-6 border-t border-neutral-100 bg-neutral-50/50">
-            <div className="flex items-center justify-center gap-2 text-xs text-neutral-400 font-bold">
-              <Shield className="w-3.5 h-3.5 text-green-500" />
-              <span>Secured by Firebase Authentication</span>
+          
+          <div className="p-6 border-t border-border/40 bg-muted/20">
+            <div className="flex items-center justify-center gap-2 text-xs text-muted-foreground">
+               <Shield className="w-3 h-3 text-emerald-600" />
+               <span>Secured by Firebase Authentication</span>
             </div>
           </div>
         </div>

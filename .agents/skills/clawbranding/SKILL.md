@@ -1,160 +1,147 @@
 ---
 name: clawbranding
-description: >-
-  CreditClaw brand identity and design system with "Fun Consumer" theme, color
-  palette, typography, and UI conventions. Use when building or modifying UI
-  components for this project.
-enabled: true
+description: SecureClawHub design system with theme variables, typography scale, and styling conventions. Use when building or modifying UI components for this project.
 ---
 
-# CreditClaw Brand Identity & Design System
+# SecureClawHub Branding & Design System
 
-CreditClaw is a fun, consumer-facing service that gives AI agents ("Claw Agents") secure spending power. The brand is playful, approachable, and designed to feel like a modern fintech product for the AI era—without the cold, corporate feel of traditional finance or the complex jargon of crypto.
+This skill documents the complete design system for SecureClawHub, including dual theme support (Slate/Warm × Light/Dark), typography scale, and component styling conventions.
 
-## Core Identity
+## Theme System
 
-- **Name:** CreditClaw
-- **Tagline:** Pocket money for your bots!
-- **Mission:** The fun, safe way to give your OpenClaw agent an allowance.
-- **Tone:** Playful, helpful, lighthearted, trustworthy, "consumer-tech" (not "enterprise-saas").
+SecureClawHub supports 4 theme combinations:
+- **Slate Light** (default)
+- **Slate Dark**
+- **Warm Light**
+- **Warm Dark**
 
-## Visual Language
+Themes are controlled via:
+- `data-theme="slate"` or `data-theme="warm"` on `<html>`
+- `.dark` class on `<html>` for dark mode
 
-The visual style is defined by "Soft Clay 3D" aesthetics, rounded geometry, and a vibrant pastel color palette. It feels tactile, friendly, and modern.
+### Theme CSS Variables (app/globals.css)
 
-### Logo & Iconography
-- **Primary Logo:** "The Golden Claw Chip" – A golden credit card EMV chip where the internal metallic lines subtly form the shape of a lobster claw.
-- **Mascot:** A friendly 3D clay-style lobster (often just the claw/pincer) holding a credit card.
-- **Style:** Minimalist 3D render, soft lighting, "claymation" texture, isometric views.
-
-### Typography
-
-Rounded, geometric sans-serifs to maintain the friendly, modern vibe.
-
-- **Primary Font (Headings):** `Plus Jakarta Sans`
-  - Weights: Bold (700), ExtraBold (800)
-  - Usage: Headlines, major calls to action, hero text.
-- **Secondary Font (Body):** `Plus Jakarta Sans` (or fallback to system sans)
-  - Weights: Regular (400), Medium (500)
-  - Usage: Body copy, UI elements, buttons.
-- **Monospace (Code/Data):** `JetBrains Mono`
-  - Usage: Transaction IDs, code snippets, technical data.
-
-### CSS Font Variables
-```css
---font-sans: 'Plus Jakarta Sans', sans-serif;
---font-mono: 'JetBrains Mono', monospace;
-```
-
-## Color Palette
-
-The palette is vibrant but soft, avoiding harsh neons. Uses "Lobster Orange" as the primary brand color, supported by ocean blues and fun purples.
-
-| Color Name | HSL Value | CSS Variable | Usage |
-| :--- | :--- | :--- | :--- |
-| **Lobster Orange** | `hsl(10 85% 55%)` | `--primary` | Primary actions, brand accents, the "Claw" |
-| **Ocean Blue** | `hsl(200 95% 60%)` | `--secondary` | Secondary actions, trust indicators |
-| **Fun Purple** | `hsl(260 90% 65%)` | `--accent` | Accents, gradients, "magic" moments |
-| **Deep Navy** | `hsl(222 47% 11%)` | `--foreground` | Primary text, strong contrast elements |
-| **Soft Cloud** | `hsl(210 40% 98%)` | `--background` | Page backgrounds, subtle surfaces |
-| **White** | `hsl(0 0% 100%)` | `--card` | Cards, input fields, popovers |
-| **Muted** | `hsl(210 40% 96%)` | `--muted` | Muted backgrounds |
-| **Muted Text** | `hsl(215 16% 47%)` | `--muted-foreground` | Secondary text, descriptions |
-| **Border** | `hsl(214 32% 91%)` | `--border` | Borders, dividers |
-
-### Color Usage in Code
 All colors use HSL format without the `hsl()` wrapper. Usage: `hsl(var(--variable-name))`
 
-```jsx
-<p className="text-foreground">Primary text (Deep Navy)</p>
-<p className="text-muted-foreground">Secondary text</p>
-<span className="text-primary">Lobster Orange accent</span>
-<span className="text-secondary">Ocean Blue accent</span>
-<span className="text-accent">Fun Purple accent</span>
-```
-
-## UI Design System ("Fun Consumer")
-
-### Theme
-- **Single theme only** – light mode, no dark mode
-- Theme variables defined in `app/globals.css` under `:root`
-
-### Rounded Corners
-Generous border radius (`1rem` / `16px`) on buttons, cards, and inputs.
+#### Slate Light (Default)
 ```css
---radius: 1rem;
+--background: 210 20% 98%;
+--foreground: 220 15% 10%;
+--card: 0 0% 100%;
+--muted-foreground: 220 10% 45%;
+--accent: 150 60% 95%;
+--accent-foreground: 160 84% 39%;
 ```
 
-### Depth & Effects
-- Soft, colorful shadows: `shadow-xl shadow-primary/20`
-- Backdrop blurs: `backdrop-blur-md` for glassmorphism on nav bars and floating elements
-- Grainy noise-textured gradients for dark section backgrounds
+#### Slate Dark
+```css
+--background: 240 5% 8%;
+--foreground: 240 5% 96%;
+--card: 240 4% 12%;
+--muted-foreground: 240 5% 65%;
+```
+
+#### Warm Light
+```css
+--background: 40 20% 97%;
+--foreground: 30 15% 15%;
+--card: 42 30% 100%;
+--muted-foreground: 30 10% 45%;
+```
+
+#### Warm Dark
+```css
+--background: 30 12% 14%;
+--foreground: 42 30% 95%;
+--card: 30 20% 4%;
+--muted-foreground: 30 12% 68%;
+--input: 30 12% 20%;
+--placeholder: 30 8% 45%;
+```
+
+### Card Gradient Pattern
+
+Use this gradient pattern for consistent card styling across all themes:
+```jsx
+className="bg-gradient-to-b from-card to-card/50 border border-border"
+```
+
+This ensures cards adapt properly to all theme combinations.
+
+## Typography Scale
+
+Use semantic HTML heading tags. Defined in `app/globals.css`:
+
+| Tag | Size | Weight | Use Cases |
+|-----|------|--------|-----------|
+| `h1` | 30px (text-3xl) | Bold | Page titles, hero headings |
+| `h2` | 24px (text-2xl) | Bold | Section headers, modal titles |
+| `h3` | 20px (text-xl) | Semibold | Card titles (large), panel headers |
+| `h4` | 18px (text-lg) | Semibold | Card titles (standard), list headers |
+| `h5` | 16px (text-base) | Medium | Card subtitles, form labels |
+| `h6` | 14px (text-sm) | Medium | Meta text, badges, timestamps |
+| `p` | 16px (text-base) | Regular | Body text, descriptions |
+
+Additional sizes: `text-sm` (14px), `text-xs` (12px)
+
+## Font Stack
+
+```css
+--font-sans: 'Inter', sans-serif;        /* UI/Body text */
+--font-display: 'Plus Jakarta Sans';     /* Headings */
+--font-mono: 'JetBrains Mono';           /* Code/data */
+```
+
+## Color Semantics
+
+| Role | Variable | Usage |
+|------|----------|-------|
+| Trust/Safe | `--accent` / `emerald-500` | Security scores, success states |
+| Warning/Risk | `--destructive` / `red-500` | Threats, critical alerts |
+| Primary text | `--foreground` | Headings, important text |
+| Secondary text | `--muted-foreground` | Descriptions, labels |
+
+## Component Conventions
 
 ### Buttons
-- **Primary:** Solid Lobster Orange with rounded full caps
-  ```jsx
-  <Button className="rounded-full bg-primary text-white hover:bg-primary/90 font-bold shadow-lg shadow-primary/25">
-  ```
-- **Secondary/Ghost:** White with subtle borders
-  ```jsx
-  <Button variant="ghost" className="font-bold text-neutral-600 hover:bg-neutral-50">
-  ```
-- **Icon Buttons:** Circular, transparent until hovered
-  ```jsx
-  <Button size="icon" className="rounded-full bg-transparent hover:bg-neutral-900 hover:text-white">
-  ```
+- Primary: `bg-primary text-primary-foreground`
+- Secondary: `bg-secondary text-secondary-foreground border`
+- Accent: `bg-accent text-accent-foreground`
 
 ### Cards
-```jsx
-<div className="p-8 rounded-3xl bg-neutral-50 hover:bg-white hover:shadow-xl transition-all border border-neutral-100">
-```
+- Standard: `bg-gradient-to-b from-card to-card/50 border border-border`
+- Glass effect: `bg-card/80 backdrop-blur-xl border border-border`
 
 ### Inputs
-```jsx
-<Input className="h-16 rounded-full bg-white border-2 border-neutral-100 shadow-xl text-xl focus-visible:ring-primary focus-visible:border-primary" />
-```
+- Use `bg-input` (not `bg-transparent`) for proper theme support
+- Placeholder colors are theme-aware via `--placeholder` variable
 
 ### Interactive Elements
 - All clickable elements must have `cursor-pointer`
-- Generous hover transitions: `transition-all duration-300`
-- Scale on hover for icons: `group-hover:scale-110 transition-transform`
-
-## Animations
-
-Defined in `app/globals.css`:
-
-| Class | Effect | Usage |
-| :--- | :--- | :--- |
-| `animate-fade-in-up` | Fade in + slide up (0.5s) | Staggered content reveals |
-| `animate-pop-in` | Rotate + scale bounce (0.8s) | Hero images, cards |
-| `animate-float` | Gentle vertical float (4s loop) | Floating badges, decorative elements |
-| `animate-float-delayed` | Float with 1s delay (5s loop) | Secondary floating elements |
-
-Stagger with inline `animationDelay`:
-```jsx
-<div style={{ animationDelay: '0.2s' }} className="animate-fade-in-up">
-```
-
-## Brand Assets
-
-Located in `public/images/creditclaw/`:
-
-| File | Description |
-| :--- | :--- |
-| `logo-claw-chip.png` | The Golden Claw Chip logo (favicon) |
-| `logo-claw.png` | Full logo mark |
-| `fun-lobster-black-card.png` | Hero image – lobster with black card |
-| `fun-claw-card.png` | OG/social media card image |
-| `fun-lobster-pink-card.png` | Pink card variant |
-| `fun-whole-lobster-card.png` | Full lobster with card |
-| `avatar_1.jpg` - `avatar_3.jpg` | Community avatars |
+- Use `hover:text-primary` or `hover:text-accent` for link hovers
 
 ## Key Files
 
-- `app/globals.css` - Theme variables, animations, base styles
-- `app/layout.tsx` - Fonts, metadata, favicon
-- `components/landing/` - Landing page section components
-- `components/ui/` - shadcn/ui primitives
+- `app/globals.css` - Theme variables and base styles
+- `docs/branding.md` - Full branding guidelines
+- `components/ui/` - shadcn/ui components
+- `tailwind.config.ts` - Tailwind configuration
 
----
-*Created: February 2026*
+## Common Patterns
+
+### Text that adapts to themes
+```jsx
+<p className="text-foreground">Primary text</p>
+<p className="text-muted-foreground">Secondary text</p>
+```
+
+### Accent/highlight text
+```jsx
+<span className="text-accent-foreground">Emerald accent</span>
+<span className="text-destructive">Red warning</span>
+```
+
+### Border colors
+```jsx
+<div className="border border-border">Theme-aware border</div>
+```

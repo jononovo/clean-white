@@ -7,7 +7,4 @@ vite.config.ts.*
 .next
 CURRENT
 LOG
-COMMENT
-LOCK
-MANIFEST-*
 *.log
