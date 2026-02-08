@@ -232,18 +232,27 @@ export default function Home() {
                      </div>
                   </div>
 
-                  <div className="relative rounded-lg overflow-hidden mb-4 border border-border/40">
-                     <img
-                        src="/images/openclaw-n8n-hero.png"
-                        alt="OpenClaw + n8n automation setup"
-                        className="w-full h-32 object-cover"
-                     />
-                     <div className="absolute inset-0 bg-gradient-to-t from-card/90 via-transparent to-transparent" />
-                     <div className="absolute bottom-2 left-3 right-3">
-                        <h3 className="text-base font-bold text-white leading-snug drop-shadow-md">
-                           OpenClaw + n8n on VPS
-                        </h3>
+                  <div className="relative rounded-lg overflow-hidden mb-4 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 border border-border/40 p-5">
+                     <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(251,191,36,0.08),transparent_70%)]" />
+                     <div className="relative flex items-center justify-center gap-4">
+                        <img
+                           src="/images/openclaw-logo.png"
+                           alt="OpenClaw"
+                           className="w-14 h-14 object-contain drop-shadow-lg"
+                        />
+                        <div className="flex flex-col items-center gap-0.5">
+                           <span className="text-amber-400 text-lg font-bold">+</span>
+                           <div className="w-8 h-px bg-gradient-to-r from-transparent via-amber-500/50 to-transparent" />
+                        </div>
+                        <img
+                           src="/images/n8n-logo.png"
+                           alt="n8n"
+                           className="w-14 h-14 object-contain drop-shadow-lg"
+                        />
                      </div>
+                     <h3 className="text-center text-sm font-bold text-white mt-3 drop-shadow-md">
+                        OpenClaw + n8n on VPS
+                     </h3>
                   </div>
 
                   <div className="space-y-4">
