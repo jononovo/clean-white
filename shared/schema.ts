@@ -174,6 +174,7 @@ export const services = pgTable("services", {
   name: text("name").notNull(),
   description: text("description").notNull(),
   category: text("category").notNull(),
+  categoryId: varchar("category_id").references(() => categories.id),
   slug: text("slug"),
   url: text("url"),
   pricingType: text("pricing_type").notNull().default("contact"),
