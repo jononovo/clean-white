@@ -209,7 +209,7 @@ export default function Home() {
             <Link href="/deploy" className="hidden lg:block relative cursor-pointer group">
                <div className="absolute -inset-1 bg-gradient-to-r from-amber-500/10 to-emerald-500/10 rounded-xl blur-xl opacity-60 group-hover:opacity-80 transition-opacity" />
                <div className="relative bg-card/80 backdrop-blur-xl border border-border rounded-xl p-6 shadow-xl shadow-muted/50 dark:shadow-none group-hover:border-amber-500/30 transition-colors" data-testid="hero-vps-pitch">
-                  <div className="relative rounded-lg overflow-hidden mb-4 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 border border-border/40 p-5">
+                  <div className="relative rounded-lg overflow-hidden mb-4 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 border border-border/40 p-5 cursor-pointer transition-all duration-300 hover:border-amber-500/30 hover:shadow-lg hover:shadow-amber-500/5 hover:scale-[1.01]">
                      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(251,191,36,0.08),transparent_70%)]" />
                      <div className="relative flex items-center justify-center gap-4">
                         <img
@@ -233,11 +233,11 @@ export default function Home() {
                   </div>
 
                   <div className="space-y-4">
-                     <p className="text-xs text-muted-foreground leading-relaxed">
+                     <p className="text-xs text-muted-foreground leading-relaxed cursor-pointer transition-all duration-300 hover:text-foreground/80">
                         Have Claw setup and manage your workplace automations. Preinstalled, preconfigured, ready to go.
                      </p>
 
-                     <div className="p-3 rounded-lg bg-gradient-to-r from-amber-50/50 to-emerald-50/30 dark:from-amber-950/15 dark:to-emerald-950/10 border border-amber-200/30 dark:border-amber-800/15">
+                     <div className="p-3 rounded-lg bg-gradient-to-r from-amber-50/50 to-emerald-50/30 dark:from-amber-950/15 dark:to-emerald-950/10 border border-amber-200/30 dark:border-amber-800/15 cursor-pointer transition-all duration-300 hover:scale-[1.01] hover:border-amber-300/40 dark:hover:border-amber-700/25 hover:shadow-sm">
                         <p className="text-[13px] italic text-foreground/90 leading-relaxed mb-1.5">
                            &ldquo;...the ultimate productivity hack&rdquo;
                         </p>
@@ -246,18 +246,18 @@ export default function Home() {
                         </p>
                      </div>
 
-                     <div className="flex items-center justify-between pt-1 px-0.5">
-                        <div className="flex items-center gap-1.5 text-[10px] text-muted-foreground">
+                     <div className="flex items-center justify-between pt-1 px-0.5 cursor-pointer">
+                        <div className="flex items-center gap-1.5 text-[10px] text-muted-foreground transition-all duration-300 hover:text-emerald-500">
                            <Cloud className="w-3 h-3 text-emerald-500" />
                            <span>VPS Hosted</span>
                         </div>
                         <div className="h-3 w-px bg-border" />
-                        <div className="flex items-center gap-1.5 text-[10px] text-muted-foreground">
+                        <div className="flex items-center gap-1.5 text-[10px] text-muted-foreground transition-all duration-300 hover:text-amber-500">
                            <Bot className="w-3 h-3 text-amber-500" />
                            <span>OpenClaw + n8n</span>
                         </div>
                         <div className="h-3 w-px bg-border" />
-                        <div className="flex items-center gap-1.5 text-[10px] text-muted-foreground">
+                        <div className="flex items-center gap-1.5 text-[10px] text-muted-foreground transition-all duration-300 hover:text-blue-500">
                            <Zap className="w-3 h-3 text-blue-500" />
                            <span>1-Click</span>
                         </div>
