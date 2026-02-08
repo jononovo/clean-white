@@ -123,9 +123,9 @@ export default function ServiceDetailPage() {
     <Layout>
       <div className="max-w-4xl mx-auto space-y-6">
         <div className="flex items-center gap-2 text-sm text-muted-foreground">
-          <Link href={`/@${service.providerHandle}`} className="hover:text-primary transition-colors flex items-center gap-1" data-testid="breadcrumb-provider">
+          <Link href={`/${service.providerHandle}`} className="hover:text-primary transition-colors flex items-center gap-1" data-testid="breadcrumb-provider">
             <ArrowLeft className="w-3.5 h-3.5" />
-            @{service.providerHandle}
+            {service.providerHandle}
           </Link>
           <span>/</span>
           <span className="text-foreground">services</span>
@@ -220,7 +220,7 @@ export default function ServiceDetailPage() {
           </CardHeader>
           <CardContent className="p-0">
             <Link
-              href={`/@${service.providerHandle}`}
+              href={`/${service.providerHandle}`}
               className="flex items-center gap-4 p-6 hover:bg-muted/30 transition-colors group"
               data-testid="provider-link"
             >

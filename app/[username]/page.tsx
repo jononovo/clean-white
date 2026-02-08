@@ -304,7 +304,7 @@ export default function ProviderProfilePage() {
                 {services.map((service) => (
                   <Link
                     key={service.slug}
-                    href={`/@${provider.handle}/services/${service.slug}`}
+                    href={`/${provider.handle}/services/${service.slug}`}
                     className="flex items-center justify-between p-4 hover:bg-muted/30 transition-colors group"
                     data-testid={`service-${service.slug}`}
                   >
