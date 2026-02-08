@@ -217,3 +217,34 @@ export const insertServiceSchema = createInsertSchema(services).omit({
 
 export type InsertService = z.infer<typeof insertServiceSchema>;
 export type Service = typeof services.$inferSelect;
+
+export const apps = pgTable("apps", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  slug: text("slug").notNull().unique(),
+  name: text("name").notNull(),
+  tagline: text("tagline"),
+  description: text("description").notNull(),
+  logoUrl: text("logo_url"),
+  authorHandle: text("author_handle").notNull(),
+  website: text("website"),
+  github: text("github"),
+  isVerified: boolean("is_verified").notNull().default(false),
+  isOpenSource: boolean("is_open_source").notNull().default(false),
+  stars: integer("stars").notNull().default(0),
+  downloads: integer("downloads").notNull().default(0),
+  users: integer("users").notNull().default(0),
+  platforms: text("platforms").array(),
+  features: text("features").array(),
+  integrations: text("integrations").array(),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
+});
+
+export const insertAppSchema = createInsertSchema(apps).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export type InsertApp = z.infer<typeof insertAppSchema>;
+export type App = typeof apps.$inferSelect;
