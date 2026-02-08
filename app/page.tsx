@@ -1,7 +1,7 @@
 "use client";
 
 import { Layout } from "@/components/layout";
-import { topScorers, latestSubmissions, threats, infrastructureProviders } from "@/lib/mock-data";
+import { topScorers, latestSubmissions, communitySubmissions, infrastructureProviders } from "@/lib/mock-data";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { FullPageModal, ConfirmationModal } from "@/components/modals";
@@ -590,31 +590,31 @@ export default function Home() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 pb-8">
            <div className="lg:col-span-2">
               <div className="flex items-center justify-between mb-3 px-1">
-                 <h3 className="text-sm font-bold uppercase tracking-wider flex items-center gap-2 text-destructive">
-                   <AlertTriangle className="w-4 h-4" />
-                   Active Threats
+                 <h3 className="text-sm font-bold uppercase tracking-wider flex items-center gap-2 text-amber-600 dark:text-amber-400">
+                   <Sparkles className="w-4 h-4" />
+                   Community Submitted
                  </h3>
-                 <span className="text-[10px] font-mono text-muted-foreground">Updated hourly</span>
+                 <span className="text-[10px] font-mono text-muted-foreground">Latest from the community</span>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                 {threats.map(item => (
-                    <div key={item.id} className="bg-destructive/5 border border-destructive/20 rounded-lg p-3 flex items-start gap-3 hover:bg-destructive/10 transition-colors group cursor-pointer">
+                 {communitySubmissions.map(item => (
+                    <div key={item.id} className="bg-amber-50/50 dark:bg-amber-950/10 border border-amber-200/40 dark:border-amber-800/20 rounded-lg p-3 flex items-start gap-3 hover:bg-amber-100/50 dark:hover:bg-amber-950/20 transition-colors group cursor-pointer" data-testid={`community-submission-${item.id}`}>
                        <div className="shrink-0 pt-0.5">
-                          <AlertTriangle className="w-4 h-4 text-destructive" />
+                          <Box className="w-4 h-4 text-amber-500 dark:text-amber-400" />
                        </div>
                        <div>
                           <div className="flex items-center gap-2 mb-0.5">
                              <h4 className="text-sm font-bold text-foreground">{item.name}</h4>
-                             {item.threatLevel === 'critical' && <Badge variant="destructive" className="h-4 px-1 text-[9px]">CRITICAL</Badge>}
+                             <span className="text-[10px] px-1.5 py-px rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 font-medium">{item.subcategory}</span>
                           </div>
                           <p className="text-xs text-muted-foreground mb-1 leading-snug">{item.description}</p>
-                          <p className="text-[10px] font-mono text-destructive/80 uppercase">Status: {item.malwareScan}</p>
+                          <p className="text-[10px] font-mono text-muted-foreground/70">by {item.author}</p>
                        </div>
                     </div>
                  ))}
                  <div className="bg-muted/30 border border-border border-dashed rounded-lg p-3 flex flex-col items-center justify-center text-center gap-2">
-                    <span className="text-xs font-medium text-muted-foreground">Report a suspicious skill</span>
-                    <Button size="sm" variant="outline" className="h-7 text-xs">Submit Report</Button>
+                    <span className="text-xs font-medium text-muted-foreground">Submit a service/skill</span>
+                    <Button size="sm" variant="outline" className="h-7 text-xs" onClick={() => setShowServiceDrawer(true)} data-testid="submit-service-skill-btn">Submit a service/skill</Button>
                  </div>
               </div>
            </div>
