@@ -61,9 +61,9 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     label: "Partnerships",
     icon: Handshake,
     providers: [
-      { name: "ClawHub", url: "https://clawhub.ai", rating: 4.8, popularity: 10 },
+      { name: "SendClaw", url: "https://sendclaw.com", rating: 4.7, popularity: 8 },
+      { name: "CreditClaw", url: "https://creditclaw.com", rating: 4.6, popularity: 7 },
       { name: "VoltAgent", url: "https://github.com/VoltAgent/voltagent", rating: 4.5, popularity: 7 },
-      { name: "Clawd.bot", url: "https://clawd.bot", rating: 4.6, popularity: 7 },
     ],
   },
   {
