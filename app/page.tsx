@@ -501,31 +501,32 @@ export default function Home() {
            <div className="lg:col-span-2 space-y-4">
               <div className="flex items-center justify-between">
                  <h3 className="font-display font-bold text-lg flex items-center gap-2">
-                    <Shield className="w-5 h-5 text-primary" />
-                    Verified Directory
+                    <Zap className="w-5 h-5 text-primary" />
+                    Top Business Skills
                  </h3>
-                 <div className="flex gap-2">
-                    <Button size="sm" variant="outline" className="h-7 text-xs">Skills</Button>
-                    <Button size="sm" variant="outline" className="h-7 text-xs">Services</Button>
-                    <Button size="sm" variant="ghost" className="h-7 text-xs">View All</Button>
-                 </div>
+                 <a href="https://clawhub.ai/skills" target="_blank" rel="noopener noreferrer">
+                    <Button size="sm" variant="ghost" className="h-7 text-xs gap-1 cursor-pointer" data-testid="link-clawhub-browse">
+                      Browse All on ClawHub <ExternalLink className="w-3 h-3" />
+                    </Button>
+                 </a>
               </div>
               
               <div className="bg-card border border-border/60 rounded-xl shadow-sm overflow-hidden">
-                 {latestSubmissions.slice(0, 4).map((item) => (
-                    <div key={item.id} className="flex items-start md:items-center gap-4 p-4 border-b border-border/40 last:border-0 hover:bg-muted/20 transition-colors group cursor-pointer">
+                 {latestSubmissions.slice(0, 6).map((item) => (
+                    <a key={item.id} href={item.url || "https://clawhub.ai/skills"} target="_blank" rel="noopener noreferrer" className="flex items-start md:items-center gap-4 p-4 border-b border-border/40 last:border-0 hover:bg-muted/20 transition-colors group cursor-pointer" data-testid={`skill-row-${item.id}`}>
                        <div className="w-12 h-12 rounded-lg bg-secondary/80 flex items-center justify-center shrink-0 border border-border/50">
-                          {item.category === 'skill' ? <Box className="w-6 h-6 text-slate-600 dark:text-slate-400" /> : <Globe className="w-6 h-6 text-slate-600 dark:text-slate-400" />}
+                          <Box className="w-6 h-6 text-slate-600 dark:text-slate-400" />
                        </div>
                        <div className="flex-1 min-w-0">
                           <div className="flex flex-wrap items-center gap-2 mb-1">
-                             <h4 className="font-bold text-sm text-foreground group-hover:text-primary">{item.name}</h4>
+                             <h4 className="font-bold text-sm text-foreground group-hover:text-primary transition-colors">{item.name}</h4>
                              <Badge variant="secondary" className="text-[10px] h-5 px-1.5 bg-secondary border-border/50 font-mono text-muted-foreground">{item.subcategory}</Badge>
                              {item.badges.map((b, i) => (
                                 <Badge key={i} variant="outline" className="text-[9px] h-5 px-1.5 gap-1 bg-white dark:bg-slate-900 dark:border-white/10">
                                   {b.icon && <b.icon className="w-2.5 h-2.5" />} {b.label}
                                 </Badge>
                              ))}
+                             <ExternalLink className="w-3 h-3 text-muted-foreground/40 group-hover:text-primary transition-colors" />
                           </div>
                           <p className="text-xs text-muted-foreground line-clamp-1">{item.description}</p>
                        </div>
@@ -533,10 +534,14 @@ export default function Home() {
                           <AuditBadge level={item.auditLevel} />
                           <div className="text-[10px] text-muted-foreground font-mono">{item.downloads} installs</div>
                        </div>
-                    </div>
+                    </a>
                  ))}
                  <div className="p-2 bg-muted/20 text-center">
-                    <Button variant="ghost" size="sm" className="text-xs text-muted-foreground w-full h-8">Browse 400+ Verified Listings</Button>
+                    <a href="https://clawhub.ai/skills" target="_blank" rel="noopener noreferrer">
+                      <Button variant="ghost" size="sm" className="text-xs text-muted-foreground w-full h-8 gap-1 cursor-pointer" data-testid="link-clawhub-browse-all">
+                        Browse 5,700+ Skills on ClawHub <ExternalLink className="w-3 h-3" />
+                      </Button>
+                    </a>
                  </div>
               </div>
            </div>
