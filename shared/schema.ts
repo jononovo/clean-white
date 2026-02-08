@@ -94,6 +94,8 @@ export const insertSkillSchema = createInsertSchema(skills).omit({
   id: true,
   createdAt: true,
   updatedAt: true,
+}).extend({
+  categoryId: z.string().min(1, "categoryId is required"),
 });
 
 export type InsertSkill = z.infer<typeof insertSkillSchema>;
