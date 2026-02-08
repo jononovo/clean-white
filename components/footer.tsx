@@ -11,11 +11,11 @@ export function Footer() {
           {/* Brand Column */}
           <div className="space-y-4">
             <div className="flex items-center gap-2">
-              <img src="/logo_v2.png" alt="SecureClawHub" className="w-10 h-10 object-contain" />
-              <span className="font-display font-bold text-lg">SecureClawHub</span>
+              <img src="/logo_v2.png" alt="CreditClaw" className="w-10 h-10 object-contain" />
+              <span className="font-display font-bold text-lg">CreditClaw</span>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
-              The OpenClaw Hub for community, jobs, news and secure, enterprise-ready OpenClaw Bots.
+              Verified skills, managed bots, and enterprise-grade security for the OpenClaw ecosystem.
             </p>
             <div className="flex items-center gap-4 pt-2">
               <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
@@ -76,7 +76,7 @@ export function Footer() {
       <div className="border-t border-border/50 bg-muted/20">
         <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-xs text-muted-foreground">
-            © {CURRENT_YEAR} OpenClaw Security. All rights reserved.
+            © {CURRENT_YEAR} CreditClaw. All rights reserved.
           </p>
           <div className="flex items-center gap-2 text-xs text-muted-foreground/80 bg-background/50 px-3 py-1.5 rounded-full border border-border/50">
             <Shield className="w-3 h-3 text-emerald-600" />

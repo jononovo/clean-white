@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { FullPageModal, ConfirmationModal } from "@/components/modals";
 import { AuthDrawer } from "@/components/auth-drawer";
 import { useState, useRef, useCallback } from "react";
-import { Shield, CheckCircle, ExternalLink, Calendar, AlertTriangle, ChevronRight, Zap, Globe, Server, Activity, ArrowUpRight, Mail, Box, Cloud, Search, Newspaper, Sparkles, Star, Terminal, Lock, Handshake, Bot, Phone, FileSearch, CalendarClock, Video, Code, CreditCard, TrendingUp, TrendingDown, DollarSign, Wifi } from "lucide-react";
+import { Shield, CheckCircle, ExternalLink, Calendar, AlertTriangle, ChevronRight, Zap, Globe, Server, Activity, ArrowUpRight, Mail, Box, Cloud, Search, Newspaper, Sparkles, Star, Terminal, Lock, Handshake, Bot, Phone, FileSearch, CalendarClock, Video, Code } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
@@ -19,7 +19,7 @@ import { AuditBadge, FeaturedCard, CompressedListRow } from "@/features/skills";
 import { ThreatTicker } from "@/features/threats";
 
 
-function CreditClawBanner() {
+function ManagedClawBanner() {
   const [showTooltip, setShowTooltip] = useState(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -44,79 +44,19 @@ function CreditClawBanner() {
 
   return (
     <div className="relative" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-      <Link href="/deploy" className="block rounded-xl bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 dark:from-black dark:via-slate-900 dark:to-black hover:shadow-2xl hover:shadow-amber-500/15 transition-all duration-300 group cursor-pointer relative overflow-hidden border border-slate-700/50 dark:border-slate-700/30">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_0%,rgba(251,191,36,0.12),transparent_60%)] pointer-events-none" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_0%_100%,rgba(251,191,36,0.06),transparent_50%)] pointer-events-none" />
-
-        <div className="py-5 px-5 md:py-6 md:px-8 relative z-10">
-          <div className="flex flex-col md:flex-row items-center gap-6">
-
-            <div className="relative shrink-0">
-              <div className="w-[220px] h-[138px] rounded-xl bg-gradient-to-br from-amber-400 via-yellow-500 to-amber-600 shadow-xl shadow-amber-500/20 p-4 relative overflow-hidden transform -rotate-3 group-hover:rotate-0 transition-transform duration-500">
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_20%,rgba(255,255,255,0.3),transparent_60%)] pointer-events-none" />
-                <div className="relative z-10 h-full flex flex-col justify-between">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-bold text-black/60 uppercase tracking-widest">CreditClaw</span>
-                    <Wifi className="w-4 h-4 text-black/40 rotate-90" />
-                  </div>
-                  <div className="space-y-1">
-                    <div className="flex gap-2">
-                      <div className="w-7 h-5 rounded bg-amber-300/60" />
-                      <div className="w-7 h-5 rounded bg-amber-300/40" />
-                    </div>
-                    <p className="text-[11px] font-mono text-black/50 tracking-[0.25em]">•••• •••• •••• 4821</p>
-                  </div>
-                  <div className="flex items-end justify-between">
-                    <span className="text-[9px] text-black/40 font-medium">CLAW BUSINESS</span>
-                    <div className="flex -space-x-1.5">
-                      <div className="w-4 h-4 rounded-full bg-red-500/70" />
-                      <div className="w-4 h-4 rounded-full bg-orange-400/70" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="absolute -top-2 -right-3 w-[140px] bg-white dark:bg-slate-800 rounded-lg shadow-xl shadow-black/15 border border-slate-200/80 dark:border-slate-700/80 p-2.5 transform rotate-2 group-hover:rotate-0 transition-transform duration-500">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-[8px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">This Month</span>
-                  <Activity className="w-2.5 h-2.5 text-emerald-500" />
-                </div>
-                <div className="space-y-1.5">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-1">
-                      <TrendingUp className="w-2.5 h-2.5 text-emerald-500" />
-                      <span className="text-[9px] text-slate-600 dark:text-slate-300">Income</span>
-                    </div>
-                    <span className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 font-mono">$12,480</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-1">
-                      <TrendingDown className="w-2.5 h-2.5 text-red-400" />
-                      <span className="text-[9px] text-slate-600 dark:text-slate-300">Expenses</span>
-                    </div>
-                    <span className="text-[10px] font-bold text-red-500 dark:text-red-400 font-mono">$3,215</span>
-                  </div>
-                  <div className="h-px bg-slate-200 dark:bg-slate-600" />
-                  <div className="flex items-center justify-between">
-                    <span className="text-[9px] font-bold text-slate-700 dark:text-slate-200">Net</span>
-                    <span className="text-[10px] font-extrabold text-emerald-600 dark:text-emerald-400 font-mono">+$9,265</span>
-                  </div>
-                </div>
-              </div>
+      <Link href="/deploy" className="block rounded-2xl bg-foreground text-background hover:shadow-2xl transition-all duration-300 group cursor-pointer relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-white/[0.04] via-transparent to-white/[0.04] pointer-events-none" />
+        <div className="py-8 px-8 md:py-10 md:px-12 relative z-10">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="flex-1 space-y-3 text-center md:text-left">
+              <p className="text-xs font-semibold uppercase tracking-widest text-background/50">Managed Service</p>
+              <h3 className="font-display font-bold text-2xl md:text-3xl text-background leading-tight">120+ hours saved per month.</h3>
+              <p className="text-sm text-background/60 max-w-lg">We set up your OpenClaw bot, configure your skills, and keep everything running. You focus on your business. From <span className="font-semibold text-background/80">$79/mo</span>.</p>
             </div>
-
-            <div className="flex-1 text-center md:text-left">
-              <div className="flex items-center gap-2 justify-center md:justify-start mb-2">
-                <span className="text-[10px] font-bold uppercase tracking-widest text-amber-400/80">CreditClaw.com</span>
-              </div>
-              <h3 className="font-display font-extrabold text-xl md:text-2xl text-white leading-tight">Your finances on autopilot.<br /><span className="text-amber-400">One dashboard. Zero stress.</span></h3>
-              <p className="text-sm text-slate-400 mt-2 font-medium max-w-md">Track income, expenses, and cash flow in real time. Built for businesses that move fast.</p>
-              <div className="mt-4 flex items-center gap-3 justify-center md:justify-start">
-                <span className="inline-flex items-center gap-2 px-7 py-3 rounded-lg bg-gradient-to-r from-amber-400 to-yellow-500 text-black font-extrabold text-sm shadow-xl shadow-amber-500/25 group-hover:shadow-amber-500/40 group-hover:scale-105 transition-all duration-200">
-                  Start Free <ArrowUpRight className="w-4 h-4" />
-                </span>
-                <span className="text-xs text-slate-500 font-medium">From $79/mo after trial</span>
-              </div>
+            <div className="shrink-0">
+              <span className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-background text-foreground font-bold text-sm group-hover:scale-[1.03] transition-transform duration-200 shadow-xl">
+                Get Started <ArrowUpRight className="w-4 h-4" />
+              </span>
             </div>
           </div>
         </div>
@@ -130,34 +70,31 @@ function CreditClawBanner() {
         onMouseEnter={handleTooltipEnter}
         onMouseLeave={handleTooltipLeave}
       >
-        <Card className="p-4 shadow-2xl border-amber-500/20 bg-gradient-to-br from-card via-card to-amber-500/5 dark:to-amber-500/3 backdrop-blur-md cursor-pointer relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-40 h-40 bg-amber-500/5 rounded-full -mr-16 -mt-16 blur-3xl pointer-events-none" />
-          <div className="flex items-center gap-2 mb-3 relative z-10">
-            <div className="p-1.5 rounded-lg bg-gradient-to-br from-amber-500/20 to-yellow-500/20">
-              <CreditCard className="w-4 h-4 text-amber-600 dark:text-amber-500" />
-            </div>
-            <span className="text-xs font-bold uppercase tracking-wider text-amber-700 dark:text-amber-400">Smart Financial Automation</span>
+        <Card className="p-5 shadow-2xl border-border/60 bg-card/98 backdrop-blur-md cursor-pointer">
+          <div className="flex items-center gap-2 mb-3">
+            <Bot className="w-4 h-4 text-muted-foreground" />
+            <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">What&apos;s included</span>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1.5 mb-3 relative z-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 mb-4">
             {[
-              { icon: DollarSign, text: "Automated invoicing and payment tracking across all channels" },
-              { icon: TrendingUp, text: "Real-time cash flow monitoring with predictive insights" },
-              { icon: FileSearch, text: "Smart expense categorization and receipt scanning" },
-              { icon: CalendarClock, text: "Scheduled reports, tax prep, and deadline reminders" },
-              { icon: Bot, text: "AI-powered financial assistant for instant answers" },
-              { icon: Shield, text: "Bank-grade encryption and SOC2 compliant infrastructure" },
+              { icon: Phone, text: "Calls, texting, and outreach automation" },
+              { icon: Mail, text: "Email replies and rep management" },
+              { icon: FileSearch, text: "Research, scraping, and scheduling" },
+              { icon: Sparkles, text: "Video creation, new skills, on-the-go coding" },
+              { icon: CalendarClock, text: "Calendar sync and bot scheduling" },
+              { icon: Video, text: "Reports, presentations, and content" },
             ].map((item, i) => (
-              <div key={i} className="flex items-start gap-2 py-1">
-                <item.icon className="w-3.5 h-3.5 text-amber-600/60 dark:text-amber-500/50 mt-0.5 shrink-0" />
-                <span className="text-[11px] text-muted-foreground leading-snug">{item.text}</span>
+              <div key={i} className="flex items-center gap-2.5 py-1">
+                <item.icon className="w-3.5 h-3.5 text-muted-foreground/50 shrink-0" />
+                <span className="text-xs text-muted-foreground">{item.text}</span>
               </div>
             ))}
           </div>
-          <div className="pt-3 border-t border-amber-500/20 flex items-center justify-between relative z-10">
-            <span className="text-[11px] text-muted-foreground italic">Trusted by 2,400+ businesses worldwide.</span>
+          <div className="pt-3 border-t border-border/40 flex items-center justify-between">
+            <span className="text-xs text-muted-foreground/60">Managed gold service package</span>
             <Link href="/deploy">
-              <Button size="sm" className="h-8 px-4 text-[11px] font-bold bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 text-black shadow-lg shadow-amber-500/20 hover:shadow-amber-500/30 transition-all">
-                Get Started <ArrowUpRight className="w-3.5 h-3.5 ml-1" />
+              <Button size="sm" className="h-8 px-5 text-xs font-semibold bg-foreground text-background hover:bg-foreground/90 transition-all">
+                Learn more <ArrowUpRight className="w-3 h-3 ml-1.5" />
               </Button>
             </Link>
           </div>
@@ -228,163 +165,116 @@ export default function Home() {
         onLoginRequired={() => setShowAuthDrawer(true)}
       />
 
-      <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+      <div className="space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-500">
         
-        <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-background via-muted to-accent/20 border border-border ring-1 ring-white/10 dark:ring-white/5 transition-colors duration-300 p-8 md:p-12 shadow-xl shadow-muted/60 dark:shadow-none">
-          <div className="absolute inset-0 bg-[linear-gradient(currentColor_1px,transparent_1px),linear-gradient(90deg,currentColor_1px,transparent_1px)] bg-[size:24px_24px] opacity-[0.03] text-foreground pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent pointer-events-none" />
-          
-          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-card border border-border text-xs font-medium text-foreground shadow-sm">
-                <div className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
-                2,400+ Businesses • $8.2M Tracked This Month
+        <div className="relative py-12 md:py-16">
+          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="space-y-8">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-border/60 text-xs font-medium text-muted-foreground">
+                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                12,402 audits verified
               </div>
               
-              <div className="space-y-4">
-                <h1 className="text-4xl md:text-5xl font-display font-bold tracking-tight text-foreground leading-[1.1]">
-                  Smart Finances for <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-yellow-500 dark:from-amber-400 dark:to-yellow-300">CreditClaw</span>
+              <div className="space-y-5">
+                <h1 className="text-4xl md:text-5xl lg:text-[3.25rem] font-display font-bold tracking-tight text-foreground leading-[1.08]">
+                  Secure OpenClaw<br />for Business
                 </h1>
                 <p className="text-lg text-muted-foreground max-w-md leading-relaxed">
-                  Track income, expenses, invoices and receipts in one place. Built for freelancers and businesses that move fast.
+                  Verified skills, managed bots, and enterprise-grade security. Everything your business needs to run OpenClaw with confidence.
                 </p>
               </div>
 
-              <div className="flex flex-wrap items-center gap-3 pt-2">
-                <Link href="/deploy">
-                  <Button size="lg" className="h-12 px-5 bg-gradient-to-r from-amber-500 to-yellow-500 text-black hover:from-amber-400 hover:to-yellow-400 border-none font-bold shadow-lg shadow-amber-500/20 transition-all cursor-pointer">
-                    <CreditCard className="w-4 h-4 mr-1.5" />
-                    Start Free Trial
+              <div className="flex flex-wrap items-center gap-3">
+                <Link href="/publish">
+                  <Button size="lg" className="h-12 px-6 bg-foreground text-background hover:bg-foreground/90 font-semibold shadow-lg transition-all cursor-pointer">
+                    Publish a Skill
                   </Button>
                 </Link>
-                <Link href="/publish">
-                  <Button size="lg" variant="outline" className="h-12 px-5 bg-card border-border text-foreground hover:bg-muted shadow-sm cursor-pointer">
-                    <DollarSign className="w-4 h-4 mr-1.5" />
-                    See Pricing
+                <Link href="/deploy">
+                  <Button size="lg" variant="outline" className="h-12 px-6 border-border/60 text-foreground hover:bg-muted/50 cursor-pointer">
+                    Deploy Now
                   </Button>
                 </Link>
               </div>
               
-              <div className="flex items-center gap-6 text-xs text-muted-foreground pt-4">
+              <div className="flex items-center gap-6 text-xs text-muted-foreground">
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-amber-600 dark:text-amber-500" />
-                  <span>Real-Time Cash Flow</span>
+                  <Shield className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-500" />
+                  <span>Threat Monitoring</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-amber-600 dark:text-amber-500" />
-                  <span>Bank-Grade Security</span>
+                  <CheckCircle className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-500" />
+                  <span>Code Review</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Lock className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-500" />
+                  <span>SOC2</span>
                 </div>
               </div>
             </div>
 
             <div className="hidden lg:block relative">
-               <div className="absolute -inset-1 bg-gradient-to-r from-amber-500/10 to-yellow-500/10 rounded-xl blur-xl opacity-60" />
-               <div className="relative">
-                  <div className="w-[300px] h-[188px] mx-auto rounded-2xl bg-gradient-to-br from-amber-400 via-yellow-500 to-amber-600 shadow-2xl shadow-amber-500/20 p-6 relative overflow-hidden">
-                    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_20%,rgba(255,255,255,0.3),transparent_60%)] pointer-events-none" />
-                    <div className="absolute bottom-0 left-0 w-48 h-48 bg-amber-300/20 rounded-full -ml-20 -mb-20 blur-2xl pointer-events-none" />
-                    <div className="relative z-10 h-full flex flex-col justify-between">
-                      <div className="flex items-center justify-between">
-                        <span className="text-xs font-bold text-black/70 uppercase tracking-[0.2em]">CreditClaw</span>
-                        <Wifi className="w-5 h-5 text-black/30 rotate-90" />
-                      </div>
-                      <div className="space-y-1.5">
-                        <div className="flex gap-2.5">
-                          <div className="w-9 h-6 rounded-md bg-amber-300/60 border border-amber-600/20" />
-                          <div className="w-9 h-6 rounded-md bg-amber-300/40 border border-amber-600/10" />
-                        </div>
-                        <p className="text-sm font-mono text-black/50 tracking-[0.3em]">•••• •••• •••• 4821</p>
-                      </div>
-                      <div className="flex items-end justify-between">
-                        <div>
-                          <p className="text-[8px] text-black/30 uppercase tracking-wider">Cardholder</p>
-                          <span className="text-[11px] text-black/50 font-bold tracking-wide">CLAW BUSINESS</span>
-                        </div>
-                        <div className="flex -space-x-2">
-                          <div className="w-6 h-6 rounded-full bg-red-500/80" />
-                          <div className="w-6 h-6 rounded-full bg-orange-400/80" />
-                        </div>
-                      </div>
+               <div className="relative bg-card border border-border/60 rounded-2xl p-6 shadow-sm">
+                  <div className="flex items-center justify-between mb-6 pb-4 border-b border-border/40">
+                    <div className="flex items-center gap-3">
+                       <Activity className="w-4 h-4 text-muted-foreground" />
+                       <span className="font-mono text-xs font-semibold text-muted-foreground uppercase tracking-wider">Live Security Feed</span>
                     </div>
                   </div>
-
-                  <div className="absolute -top-4 -right-2 w-[200px] bg-card/95 backdrop-blur-xl border border-border rounded-xl shadow-2xl shadow-black/10 dark:shadow-black/30 p-4">
-                    <div className="flex items-center justify-between mb-3 pb-2 border-b border-border">
-                      <span className="text-[10px] font-bold text-foreground uppercase tracking-wider">Recent Activity</span>
-                      <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                    </div>
-                    <div className="space-y-2.5">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                          <div className="p-1 rounded bg-emerald-500/10"><TrendingUp className="w-3 h-3 text-emerald-500" /></div>
-                          <div>
-                            <p className="text-[10px] font-medium text-foreground leading-tight">Invoice #1042</p>
-                            <p className="text-[9px] text-muted-foreground">Web dev project</p>
-                          </div>
+                  
+                  <div className="space-y-5">
+                     <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                           <div className="p-2 rounded-lg bg-muted/50 text-muted-foreground">
+                             <AlertTriangle className="w-4 h-4" />
+                           </div>
+                           <div>
+                             <div className="text-2xl font-bold font-mono text-foreground">342</div>
+                             <div className="text-[11px] text-muted-foreground">Threats Blocked (24h)</div>
+                           </div>
                         </div>
-                        <span className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 font-mono">+$2,400</span>
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                          <div className="p-1 rounded bg-red-500/10"><TrendingDown className="w-3 h-3 text-red-400" /></div>
-                          <div>
-                            <p className="text-[10px] font-medium text-foreground leading-tight">AWS Hosting</p>
-                            <p className="text-[9px] text-muted-foreground">Monthly server</p>
-                          </div>
+                        <div className="h-8 w-px bg-border/40" />
+                        <div className="flex items-center gap-3">
+                           <div className="p-2 rounded-lg bg-muted/50 text-muted-foreground">
+                             <Terminal className="w-4 h-4" />
+                           </div>
+                           <div>
+                             <div className="text-2xl font-bold font-mono text-foreground">14.2M</div>
+                             <div className="text-[11px] text-muted-foreground">Lines Audited</div>
+                           </div>
                         </div>
-                        <span className="text-[10px] font-bold text-red-500 dark:text-red-400 font-mono">-$189</span>
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                          <div className="p-1 rounded bg-emerald-500/10"><TrendingUp className="w-3 h-3 text-emerald-500" /></div>
-                          <div>
-                            <p className="text-[10px] font-medium text-foreground leading-tight">Consulting fee</p>
-                            <p className="text-[9px] text-muted-foreground">Strategy session</p>
-                          </div>
+                     </div>
+                     
+                     <div className="pt-3 space-y-3">
+                        <div className="p-3 rounded-lg bg-muted/30 border border-border/40">
+                            <div className="flex justify-between items-center mb-2">
+                                <span className="text-xs font-semibold text-foreground flex items-center gap-1.5">
+                                    <Globe className="w-3 h-3 text-muted-foreground" />
+                                    Threat Index
+                                </span>
+                                <span className="text-[10px] font-mono text-destructive font-semibold">HIGH</span>
+                            </div>
+                            <div className="h-1 w-full bg-muted rounded-full overflow-hidden">
+                               <div className="h-full w-[75%] bg-destructive/80 rounded-full" />
+                            </div>
                         </div>
-                        <span className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 font-mono">+$850</span>
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                          <div className="p-1 rounded bg-red-500/10"><TrendingDown className="w-3 h-3 text-red-400" /></div>
-                          <div>
-                            <p className="text-[10px] font-medium text-foreground leading-tight">Figma Pro</p>
-                            <p className="text-[9px] text-muted-foreground">Design tools</p>
-                          </div>
-                        </div>
-                        <span className="text-[10px] font-bold text-red-500 dark:text-red-400 font-mono">-$15</span>
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                          <div className="p-1 rounded bg-emerald-500/10"><TrendingUp className="w-3 h-3 text-emerald-500" /></div>
-                          <div>
-                            <p className="text-[10px] font-medium text-foreground leading-tight">Receipt #887</p>
-                            <p className="text-[9px] text-muted-foreground">Bot automation</p>
-                          </div>
-                        </div>
-                        <span className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 font-mono">+$1,200</span>
-                      </div>
-                    </div>
-                    <div className="mt-3 pt-2 border-t border-border flex items-center justify-between">
-                      <span className="text-[9px] text-muted-foreground">This month</span>
-                      <span className="text-[11px] font-extrabold text-emerald-600 dark:text-emerald-400 font-mono">+$4,246</span>
-                    </div>
+                        <ThreatTicker />
+                     </div>
                   </div>
                </div>
             </div>
           </div>
         </div>
 
-        <CreditClawBanner />
+        <ManagedClawBanner />
 
-        <div className="py-6 border-b border-border/40">
-          <div className="flex items-center justify-between mb-4 px-1">
-            <h3 className="text-sm font-bold uppercase tracking-wider flex items-center gap-2 text-foreground/80">
-              <Handshake className="w-3.5 h-3.5 text-muted-foreground" />
-              Claw/Agent Services Marketplace
+        <div className="py-8">
+          <div className="flex items-center justify-between mb-5 px-1">
+            <h3 className="text-sm font-semibold uppercase tracking-wider flex items-center gap-2 text-muted-foreground">
+              Services Marketplace
             </h3>
-            <span className="text-[10px] font-medium text-primary hover:underline cursor-pointer">
-              Browse All Services
+            <span className="text-xs text-muted-foreground/60 hover:text-foreground cursor-pointer transition-colors">
+              Browse All
             </span>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
@@ -409,11 +299,10 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="py-6 border-b border-border/40">
-          <div className="flex items-center justify-between mb-4 px-1">
-            <h3 className="text-sm font-bold uppercase tracking-wider flex items-center gap-2 text-foreground/80">
-              <Sparkles className="w-3.5 h-3.5 text-muted-foreground" />
-              Claw Eco-System - Featured Today
+        <div className="py-8 border-t border-border/30">
+          <div className="flex items-center justify-between mb-5 px-1">
+            <h3 className="text-sm font-semibold uppercase tracking-wider flex items-center gap-2 text-muted-foreground">
+              Featured Today
               <span className="text-[11px] font-medium normal-case tracking-normal text-muted-foreground/60">
                 | {new Date().toLocaleDateString("en-US", { day: "2-digit", month: "short", year: "numeric", timeZone: "America/New_York" })}
               </span>
@@ -466,12 +355,11 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pb-8 border-b border-border/40">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 py-8 border-t border-border/30">
            <div>
-              <div className="flex items-center justify-between mb-3 px-1">
-                 <h3 className="text-sm font-bold uppercase tracking-wider flex items-center gap-2 text-foreground/80">
-                   <Server className="w-3.5 h-3.5 text-muted-foreground" />
-                   Top Claw VPS Services
+              <div className="flex items-center justify-between mb-4 px-1">
+                 <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+                   VPS Services
                  </h3>
               </div>
               <div className="bg-white/50 dark:bg-card/50 border border-border/60 rounded-lg p-3 shadow-sm backdrop-blur-sm">
@@ -507,10 +395,9 @@ export default function Home() {
            </div>
 
            <div>
-              <div className="flex items-center justify-between mb-3 px-1">
-                 <h3 className="text-sm font-bold uppercase tracking-wider flex items-center gap-2 text-foreground/80">
-                   <Star className="w-3.5 h-3.5 text-muted-foreground" />
-                   Highest Productivity Skills
+              <div className="flex items-center justify-between mb-4 px-1">
+                 <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+                   Top Skills
                  </h3>
               </div>
               <div className="bg-white/50 dark:bg-card/50 border border-border/60 rounded-lg p-3 shadow-sm backdrop-blur-sm">
@@ -544,9 +431,8 @@ export default function Home() {
 
         <div>
           <div className="flex items-center justify-between mb-4 px-1">
-            <h3 className="text-sm font-bold uppercase tracking-wider flex items-center gap-2 text-foreground/80">
-              <Handshake className="w-3.5 h-3.5 text-muted-foreground" />
-              Our Partners
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+              Partners
             </h3>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -605,8 +491,7 @@ export default function Home() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
            <div className="lg:col-span-2 space-y-4">
               <div className="flex items-center justify-between">
-                 <h3 className="font-display font-bold text-lg flex items-center gap-2">
-                    <Shield className="w-5 h-5 text-primary" />
+                 <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
                     Verified Directory
                  </h3>
                  <div className="flex gap-2">
@@ -705,8 +590,8 @@ export default function Home() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 pb-8">
            <div className="lg:col-span-2">
               <div className="flex items-center justify-between mb-3 px-1">
-                 <h3 className="text-sm font-bold uppercase tracking-wider flex items-center gap-2 text-destructive">
-                   <AlertTriangle className="w-4 h-4" />
+                 <h3 className="text-sm font-semibold uppercase tracking-wider flex items-center gap-2 text-destructive">
+                   <AlertTriangle className="w-3.5 h-3.5" />
                    Active Threats
                  </h3>
                  <span className="text-[10px] font-mono text-muted-foreground">Updated hourly</span>
@@ -736,8 +621,7 @@ export default function Home() {
 
            <div>
               <div className="flex items-center justify-between mb-3 px-1">
-                 <h3 className="text-sm font-bold uppercase tracking-wider flex items-center gap-2 text-foreground/80">
-                   <Server className="w-4 h-4 text-slate-500" />
+                 <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
                    Top Providers
                  </h3>
               </div>
