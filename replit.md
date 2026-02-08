@@ -34,22 +34,28 @@ Preferred communication style: Simple, everyday language.
 - Providers are separate from users (supports future team/multi-user management)
 - **GitHub login**: Auto-creates provider with GitHub username as handle
 - **Google/Email login**: User chooses handle when first publishing skill or listing service
-- URL pattern: `/@handle` for provider profile, `/@handle/skill-slug` for skills
+- URL pattern: `/{handle}` for provider profile, `/{handle}/{slug}` for skills/services (no @ prefix)
 
 **Database Tables:**
 - `providers`: id, userId (nullable), handle (unique), displayName, description, avatarUrl, location, website, contactEmail, isVerified, isPartner, partnerRole, tagline, rating
-- `services`: id, providerId, name, description, category, slug, url, pricingType (one_time/monthly/contact), pricingLabel, priceMin, priceMax, rating, popularity, isActive
+- `services`: id, providerId, name, description, category (legacy text), categoryId (FK→categories), slug, url, pricingType, pricingLabel, priceMin, priceMax, rating, popularity, isActive
+- `categories`: id, slug (unique), name, description, icon, examples (subcategory keywords array), parentId, sortOrder
 - `featured_items`: id, type (hero/app/skill/service), name, description, imageUrl, href, sourceUrl, subtitle, author, isVerified, isActive, sortOrder
 - `skills.providerId`: Links skills to providers
+- `skills.categoryId`: Links skills to unified categories
 
-**Service Categories:**
-- setup_installation, managed_hosting, consulting, training, partnerships, finance_tax
+**Unified Category System (Updated: February 2026):**
+- 38 content categories shared by skills and services
+- Services mapped: managed_hosting→DevOps & Cloud, setup_installation→Self-Hosted & Automation, finance_tax→Finance, training→Education & Learning
+- Consulting/partnerships are provider roles (partnerRole), services mapped by subject matter
+- Category pages show skills + services + providers with filter tabs
+- `categories.examples` contains subcategory keywords (VPS hosting, tax, DeFi, etc.)
 
 **Homepage Database Integration (Added: February 2026):**
 - Sections 3-7 now fetch from database with hardcoded fallbacks
-- Service Categories Marketplace: 6 categories with 21 services from 18 providers
+- Service Categories Marketplace: 6 unified categories with 23 services
 - Featured of the Day: 4 rotating items (hero, app, skill, service) from featured_items table
-- Top VPS Services: Filtered from services where category=managed_hosting
+- Top VPS Services: Filtered from services where categorySlug=devops-cloud
 - Our Partners: Filtered from providers where isPartner=true
 - Seed script: `scripts/seed-homepage.ts`
 
