@@ -219,19 +219,6 @@ export default function Home() {
             <div className="hidden lg:block relative">
                <div className="absolute -inset-1 bg-gradient-to-r from-amber-500/10 to-emerald-500/10 rounded-xl blur-xl opacity-60" />
                <div className="relative bg-card/80 backdrop-blur-xl border border-border rounded-xl p-6 shadow-xl shadow-muted/50 dark:shadow-none" data-testid="hero-vps-pitch">
-                  <div className="flex items-center justify-between mb-3">
-                     <div className="flex items-center gap-2">
-                        <div className="p-1.5 rounded-md bg-amber-100 dark:bg-amber-900/30">
-                           <Zap className="w-4 h-4 text-amber-600 dark:text-amber-400" />
-                        </div>
-                        <span className="font-mono font-bold text-xs text-foreground uppercase tracking-wide">Ready-to-Run</span>
-                     </div>
-                     <div className="flex items-center gap-1.5 text-[10px] text-emerald-600 dark:text-emerald-400 font-medium">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                        Available Now
-                     </div>
-                  </div>
-
                   <div className="relative rounded-lg overflow-hidden mb-4 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 border border-border/40 p-5">
                      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(251,191,36,0.08),transparent_70%)]" />
                      <div className="relative flex items-center justify-center gap-4">
