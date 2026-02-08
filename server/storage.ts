@@ -88,8 +88,8 @@ export class DatabaseStorage implements IStorage {
     return result[0];
   }
 
-  async getSkills(options?: { limit?: number; offset?: number; category?: string; categoryId?: string; search?: string }): Promise<Skill[]> {
-    const { limit = 50, offset = 0, category, categoryId, search } = options || {};
+  async getSkills(options?: { limit?: number; offset?: number; category?: string; categoryId?: string; search?: string; author?: string }): Promise<Skill[]> {
+    const { limit = 50, offset = 0, category, categoryId, search, author } = options || {};
     
     let query = db.select().from(skills);
     
@@ -101,6 +101,10 @@ export class DatabaseStorage implements IStorage {
     
     if (search) {
       query = query.where(like(skills.name, `%${search}%`)) as typeof query;
+    }
+
+    if (author) {
+      query = query.where(eq(skills.authorUsername, author)) as typeof query;
     }
     
     return query

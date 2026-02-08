@@ -9,8 +9,9 @@ export async function GET(request: NextRequest) {
     const offset = parseInt(searchParams.get("offset") || "0");
     const category = searchParams.get("category") || undefined;
     const search = searchParams.get("search") || undefined;
+    const author = searchParams.get("author") || undefined;
 
-    const skills = await storage.getSkills({ limit, offset, category, search });
+    const skills = await storage.getSkills({ limit, offset, category, search, author });
     const total = await storage.getSkillCount();
 
     return NextResponse.json({ skills, total, limit, offset });

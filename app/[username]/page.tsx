@@ -89,7 +89,8 @@ export default function ProviderProfilePage() {
 
         if (skillsRes.ok) {
           const skillsData = await skillsRes.json();
-          setSkills(Array.isArray(skillsData) ? skillsData : []);
+          const skillsList = skillsData?.skills || skillsData;
+          setSkills(Array.isArray(skillsList) ? skillsList : []);
         }
         if (servicesRes.ok) {
           const servicesData = await servicesRes.json();
