@@ -37,17 +37,21 @@ Preferred communication style: Simple, everyday language.
 - URL pattern: `/{handle}` for provider profile, `/{handle}/{slug}` for skills/services (no @ prefix)
 
 **Database Tables:**
-- `providers`: id, userId (nullable), handle (unique), displayName, description, avatarUrl, location, website, contactEmail, isVerified, isPartner, partnerRole, tagline, rating
-- `services`: id, providerId, name, description, category (legacy text), categoryId (FK→categories), slug, url, pricingType, pricingLabel, priceMin, priceMax, rating, popularity, isActive
+- `providers`: id, userId (nullable), handle (unique), displayName, description, avatarUrl, location, website, contactEmail, isVerified, isPartner, partnerRole (legacy), tagline, rating
+- `services`: id, providerId, name, description, category (legacy text), categoryId (legacy FK), slug, url, pricingType, pricingLabel, priceMin, priceMax, rating, popularity, isActive
 - `categories`: id, slug (unique), name, description, icon, examples (subcategory keywords array), parentId, sortOrder
 - `featured_items`: id, type (hero/app/skill/service), name, description, imageUrl, href, sourceUrl, subtitle, author, isVerified, isActive, sortOrder
-- `skills.providerId`: Links skills to providers
-- `skills.categoryId`: Links skills to unified categories
+
+**Many-to-Many Junction Tables (Added: February 2026):**
+- `service_categories`: serviceId + categoryId (composite PK) — services can belong to multiple categories
+- `skill_categories`: skillId + categoryId (composite PK) — skills can belong to multiple categories
+- `provider_roles`: providerId + role (composite PK) — providers can have multiple roles (consultant, partner, trainer, sponsor, ambassador, reseller)
 
 **Unified Category System (Updated: February 2026):**
-- 38 content categories shared by skills and services
+- 38 content categories shared by skills and services via junction tables
 - Services mapped: managed_hosting→DevOps & Cloud, setup_installation→Self-Hosted & Automation, finance_tax→Finance, training→Education & Learning
-- Consulting/partnerships are provider roles (partnerRole), services mapped by subject matter
+- Consulting/partnerships are provider roles (stored in provider_roles table), services mapped by subject matter
+- A service or skill can appear in up to 3-4 categories; a provider can have up to 5-6 roles
 - Category pages show skills + services + providers with filter tabs
 - `categories.examples` contains subcategory keywords (VPS hosting, tax, DeFi, etc.)
 
