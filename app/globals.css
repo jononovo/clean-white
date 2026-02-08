@@ -34,8 +34,10 @@
     --destructive-foreground: 210 20% 98%;
 
     --border: 220 10% 90%;
-    --input: 220 10% 90%;
+    --input: 220 10% 85%;
     --ring: 220 15% 10%;
+    
+    --placeholder: 220 10% 55%;
     
     --radius: 0.5rem;
   }
@@ -66,8 +68,10 @@
     --destructive-foreground: 240 5% 96%;
 
     --border: 240 4% 16%;
-    --input: 240 4% 16%;
+    --input: 240 4% 22%;
     --ring: 240 5% 84%;
+    
+    --placeholder: 240 5% 50%;
   }
 
   /* --- Warm / Comfort Theme --- */
@@ -100,40 +104,44 @@
     --destructive-foreground: 40 20% 98%;
 
     --border: 30 15% 88%;
-    --input: 30 15% 88%;
+    --input: 30 15% 82%;
     --ring: 25 15% 20%;
+    
+    --placeholder: 25 10% 60%;
     
     --radius: 0.75rem;
   }
 
   [data-theme="warm"].dark, [data-theme="warm"] .dark {
-    --background: 30 15% 9%;
-    --foreground: 38 30% 96%;
+    --background: 30 12% 14%;
+    --foreground: 42 30% 95%;
     
-    --card: 30 12% 11%;
-    --card-foreground: 38 30% 96%;
+    --card: 30 20% 4%;
+    --card-foreground: 42 30% 95%;
     
-    --popover: 30 12% 11%;
-    --popover-foreground: 38 30% 96%;
+    --popover: 30 20% 4%;
+    --popover-foreground: 42 30% 95%;
     
-    --primary: 38 30% 96%;
-    --primary-foreground: 30 15% 9%;
+    --primary: 42 30% 95%;
+    --primary-foreground: 30 20% 4%;
     
-    --secondary: 30 12% 14%;
-    --secondary-foreground: 38 30% 96%;
+    --secondary: 30 12% 11%;
+    --secondary-foreground: 42 30% 95%;
     
-    --muted: 30 12% 14%;
-    --muted-foreground: 30 10% 60%;
+    --muted: 30 10% 18%;
+    --muted-foreground: 30 14% 78%;
     
-    --accent: 160 60% 30%;
-    --accent-foreground: 38 30% 96%;
+    --accent: 160 70% 42%;
+    --accent-foreground: 30 20% 4%;
     
-    --destructive: 0 60% 40%;
-    --destructive-foreground: 38 30% 96%;
+    --destructive: 0 65% 45%;
+    --destructive-foreground: 42 30% 95%;
 
-    --border: 30 12% 18%;
-    --input: 30 12% 18%;
-    --ring: 30 15% 9%;
+    --border: 30 10% 22%;
+    --input: 30 12% 20%;
+    --ring: 42 30% 95%;
+    
+    --placeholder: 30 12% 58%;
   }
 }
 
@@ -165,6 +173,7 @@
   --color-border: hsl(var(--border));
   --color-input: hsl(var(--input));
   --color-ring: hsl(var(--ring));
+  --color-placeholder: hsl(var(--placeholder));
   
   --radius: var(--radius);
   
@@ -179,6 +188,18 @@
   * {
     @apply border-border;
   }
+
+  a, button, [role="button"] {
+    cursor: pointer;
+  }
+  
+  /* Input placeholder styling */
+  input::placeholder,
+  textarea::placeholder {
+    color: hsl(var(--placeholder));
+    opacity: 1;
+  }
+  
   body {
     @apply font-sans antialiased text-foreground bg-background;
     background-image: radial-gradient(circle at 50% 0%, hsl(210 30% 96%) 0%, hsl(210 20% 98%) 40%, hsl(210 20% 98%) 100%);
@@ -194,9 +215,50 @@
   [data-theme="warm"].dark body, [data-theme="warm"] .dark body {
     background-image: radial-gradient(circle at 50% 0%, hsl(30 15% 11%) 0%, hsl(30 15% 9%) 40%, hsl(30 15% 9%) 100%);
   }
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-display tracking-tight;
+  /* ===========================================
+     TYPOGRAPHY SCALE
+     Use semantic HTML tags for consistent sizing.
+     =========================================== */
+  
+  /* h1 - 30px bold: Page titles, hero headings, main section headers */
+  h1 {
+    @apply font-display tracking-tight text-3xl font-bold;
   }
+  
+  /* h2 - 24px bold: Section headers, modal titles, major subsections */
+  h2 {
+    @apply font-display tracking-tight text-2xl font-bold;
+  }
+  
+  /* h3 - 20px semibold: Card titles (large), panel headers, sidebar sections */
+  h3 {
+    @apply font-display tracking-tight text-xl font-semibold;
+  }
+  
+  /* h4 - 18px semibold: Card titles (standard), list item headers, table headers */
+  h4 {
+    @apply font-display tracking-tight text-lg font-semibold;
+  }
+  
+  /* h5 - 16px medium: Card subtitles, form labels, navigation items */
+  h5 {
+    @apply font-display tracking-tight text-base font-medium;
+  }
+  
+  /* h6 - 14px medium: Meta text headers, badges, small labels, timestamps */
+  h6 {
+    @apply font-display tracking-tight text-sm font-medium;
+  }
+  
+  /* p - 16px regular: Body text, descriptions, form help text */
+  p {
+    @apply text-base;
+  }
+  
+  /* Additional text utilities:
+     - text-sm (14px): Secondary body text, card descriptions, subcategory links
+     - text-xs (12px): Captions, footnotes, very small labels
+  */
 
   ::-webkit-scrollbar {
     width: 6px;

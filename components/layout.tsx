@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { categories } from "@/lib/mock-data";
-import { Search, Shield, Bell, Menu, LayoutGrid, Sun, Moon, Palette, PanelLeftOpen, PanelLeftClose, LogIn, AlertTriangle } from "lucide-react";
+import { categories as mockCategories } from "@/lib/mock-data";
+import { Search, Shield, Bell, Menu, LayoutGrid, Sun, Moon, Palette, PanelLeftOpen, PanelLeftClose, LogIn, AlertTriangle, Box, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
@@ -19,6 +19,7 @@ import {
 
 import { AuthDrawer } from "@/components/auth-drawer";
 import { Footer } from "@/components/footer";
+import type { Category } from "@/shared/schema";
 
 const DEFAULT_THEME = { style: "warm" as const, mode: "dark" as const };
 
@@ -28,6 +29,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [mounted, setMounted] = useState(false);
   const [theme, setTheme] = useState<{ style: "slate" | "warm"; mode: "light" | "dark" }>(DEFAULT_THEME);
+  const [dbCategories, setDbCategories] = useState<Category[]>([]);
 
   useEffect(() => {
     setMounted(true);
@@ -40,6 +42,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
     } catch (e) {
       console.error("Failed to parse theme preference", e);
     }
+    
+    fetch("/api/categories")
+      .then(res => res.json())
+      .then(data => {
+        if (Array.isArray(data)) {
+          setDbCategories(data);
+        }
+      })
+      .catch(() => {});
   }, []);
 
   useEffect(() => {
@@ -83,19 +94,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 { label: "Enterprise", href: "#" },
                 { label: "Jobs", href: "#" },
                 { label: "Community", href: "/community" },
-                { label: "Discord", href: "https://discord.gg/gduUaXMQ", external: true },
                 { label: "Feedback", href: "#" },
-                { label: "Security Advisory", href: "#" },
-                { label: "Media Advisory", href: "/media" },
-                { label: "Submit Threat", href: "/threats", className: "text-destructive hover:text-destructive hover:bg-destructive/10" }
+                { label: "Media Advisory", href: "/media" }
               ].map((link) => (
                 <Link key={link.label} href={link.href}>
                   <Button
                     variant="ghost"
-                    className={cn(
-                      "w-full justify-start text-sm font-medium h-9 px-2 text-foreground/80 hover:text-foreground hover:bg-muted cursor-pointer",
-                      link.className
-                    )}
+                    className="w-full justify-start text-sm font-medium h-9 px-2 text-foreground/80 hover:text-foreground hover:bg-muted cursor-pointer"
                   >
                     {link.label}
                   </Button>
@@ -104,25 +109,66 @@ export function Layout({ children }: { children: React.ReactNode }) {
             </div>
         </div>
 
-        {categories.map((section) => (
-          <div key={section.title}>
-            <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3 px-2 flex items-center gap-2">
-              <section.icon className="w-3.5 h-3.5" />
-              {section.title}
-            </h3>
+        {dbCategories.length > 0 ? (
+          <div>
+            <div className="flex items-center justify-between mb-3 px-2">
+              <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-2">
+                <Box className="w-3.5 h-3.5" />
+                Categories
+              </h3>
+              <Link href="/categories" className="text-[10px] text-primary hover:underline flex items-center gap-0.5">
+                View all <ChevronRight className="w-3 h-3" />
+              </Link>
+            </div>
             <div className="space-y-0.5">
-              {section.items.map((item) => (
-                <Button
-                  key={item}
-                  variant="ghost"
-                  className="w-full justify-start text-sm font-medium h-8 px-2 text-foreground/80 hover:text-foreground hover:bg-muted cursor-pointer"
-                >
-                  {item}
-                </Button>
+              {dbCategories.slice(0, 12).map((cat) => (
+                <Link key={cat.id} href={`/categories/${cat.slug}`}>
+                  <Button
+                    variant="ghost"
+                    className="w-full justify-start text-sm font-medium h-8 px-2 text-foreground/80 hover:text-foreground hover:bg-muted cursor-pointer"
+                  >
+                    {cat.name}
+                    {cat.isNew && (
+                      <span className="ml-auto text-[9px] px-1.5 py-0.5 rounded bg-primary/10 text-primary font-semibold">NEW</span>
+                    )}
+                  </Button>
+                </Link>
               ))}
+              {dbCategories.length > 12 && (
+                <Link href="/categories">
+                  <Button
+                    variant="ghost"
+                    className="w-full justify-start text-sm font-medium h-8 px-2 text-primary hover:text-primary hover:bg-primary/5 cursor-pointer"
+                  >
+                    +{dbCategories.length - 12} more categories
+                  </Button>
+                </Link>
+              )}
             </div>
           </div>
-        ))}
+        ) : (
+          <>
+            {mockCategories.map((section) => (
+              <div key={section.title}>
+                <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3 px-2 flex items-center gap-2">
+                  <section.icon className="w-3.5 h-3.5" />
+                  {section.title}
+                </h3>
+                <div className="space-y-0.5">
+                  {section.items.map((item) => (
+                    <Button
+                      key={item}
+                      variant="ghost"
+                      className="w-full justify-start text-sm font-medium h-8 px-2 text-foreground/80 hover:text-foreground hover:bg-muted cursor-pointer"
+                    >
+                      {item}
+                    </Button>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </>
+        )}
         
         <div>
            <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3 px-2">
@@ -286,29 +332,20 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <AuthDrawer open={authOpen} onOpenChange={setAuthOpen} />
 
         <div className="flex-1 p-6 md:p-8 max-w-7xl mx-auto w-full">
-            <div className="hidden md:flex items-center gap-1 text-[11px] text-muted-foreground font-medium mb-6 px-1 relative z-20 overflow-x-auto">
-              <Link href="#" className="hover:text-primary transition-colors hover:underline whitespace-nowrap">Developer Hub</Link>
-              <span className="text-border mx-2">|</span>
-              <Link href="/news" className="hover:text-primary transition-colors hover:underline whitespace-nowrap">News</Link>
-              <span className="text-border mx-2">|</span>
-              <Link href="#" className="hover:text-primary transition-colors hover:underline whitespace-nowrap">Enterprise</Link>
-              <span className="text-border mx-2">|</span>
-              <Link href="#" className="hover:text-primary transition-colors hover:underline whitespace-nowrap">Jobs</Link>
-              <span className="text-border mx-2">|</span>
-              <Link href="/community" className="hover:text-primary transition-colors hover:underline whitespace-nowrap">Community</Link>
-              <span className="text-border mx-2">|</span>
-              <a href="https://discord.gg/gduUaXMQ" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors hover:underline whitespace-nowrap">Discord</a>
-              <span className="text-border mx-2">|</span>
-              <Link href="#" className="hover:text-primary transition-colors hover:underline whitespace-nowrap">Feedback</Link>
-              <span className="text-border mx-2">|</span>
-              <Link href="#" className="hover:text-primary transition-colors hover:underline whitespace-nowrap">Security Advisory</Link>
-              <span className="text-border mx-2">|</span>
-              <Link href="/media" className="hover:text-primary transition-colors hover:underline whitespace-nowrap">Media Advisory</Link>
-              <span className="text-border mx-2">|</span>
-              <Link href="/threats" className="hover:text-destructive transition-colors hover:underline flex items-center gap-1 group whitespace-nowrap">
-                <AlertTriangle className="w-3 h-3 text-muted-foreground group-hover:text-destructive transition-colors" />
-                Submit Threat
-              </Link>
+            <div className="hidden md:flex items-center text-[11px] text-muted-foreground font-medium mb-6 relative z-20 overflow-x-auto">
+              <Link href="#" className="inline-block py-2 px-2 -my-2 hover:text-primary transition-colors hover:underline whitespace-nowrap">Developer Hub</Link>
+              <span className="text-border">|</span>
+              <Link href="/news" className="inline-block py-2 px-2 -my-2 hover:text-primary transition-colors hover:underline whitespace-nowrap">News</Link>
+              <span className="text-border">|</span>
+              <Link href="#" className="inline-block py-2 px-2 -my-2 hover:text-primary transition-colors hover:underline whitespace-nowrap">Enterprise</Link>
+              <span className="text-border">|</span>
+              <Link href="#" className="inline-block py-2 px-2 -my-2 hover:text-primary transition-colors hover:underline whitespace-nowrap">Jobs</Link>
+              <span className="text-border">|</span>
+              <Link href="/community" className="inline-block py-2 px-2 -my-2 hover:text-primary transition-colors hover:underline whitespace-nowrap">Community</Link>
+              <span className="text-border">|</span>
+              <Link href="#" className="inline-block py-2 px-2 -my-2 hover:text-primary transition-colors hover:underline whitespace-nowrap">Feedback</Link>
+              <span className="text-border">|</span>
+              <Link href="/media" className="inline-block py-2 px-2 -my-2 hover:text-primary transition-colors hover:underline whitespace-nowrap">Media Advisory</Link>
             </div>
           {children}
         </div>

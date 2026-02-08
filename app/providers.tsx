@@ -3,6 +3,7 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { useState, useEffect, createContext, useContext } from "react";
+import { AuthProvider } from "@/lib/auth/auth-context";
 
 const MountedContext = createContext(false);
 
@@ -29,7 +30,9 @@ export function Providers({ children }: { children: React.ReactNode }) {
     <MountedContext.Provider value={mounted}>
       <QueryClientProvider client={queryClient}>
         <TooltipProvider>
-          {children}
+          <AuthProvider>
+            {children}
+          </AuthProvider>
         </TooltipProvider>
       </QueryClientProvider>
     </MountedContext.Provider>

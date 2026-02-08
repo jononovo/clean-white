@@ -52,6 +52,34 @@ We use a tri-font stack to differentiate between marketing, UI, and data.
 - **Usage:** Version numbers, audit hashes, package names, "lines of code" stats.
 - **Why:** Monospaced font implies technical precision and developer focus.
 
+### 4. Typography Size Scale
+
+Use semantic HTML heading tags for consistent sizing across the application. These are defined in `app/globals.css`.
+
+| Tag | Size | Weight | Use Cases |
+|-----|------|--------|-----------|
+| `h1` | 30px (text-3xl) | Bold | Page titles, hero headings, main section headers |
+| `h2` | 24px (text-2xl) | Bold | Section headers, modal titles, major subsections |
+| `h3` | 20px (text-xl) | Semibold | Card titles (large), panel headers, sidebar sections |
+| `h4` | 18px (text-lg) | Semibold | Card titles (standard), list item headers, table headers |
+| `h5` | 16px (text-base) | Medium | Card subtitles, form labels, navigation items |
+| `h6` | 14px (text-sm) | Medium | Meta text headers, badges, small labels, timestamps |
+| `p` | 16px (text-base) | Regular | Body text, descriptions, form help text |
+
+**Additional Tailwind utilities:**
+- `text-sm` (14px): Secondary body text, card descriptions, subcategory links
+- `text-xs` (12px): Captions, footnotes, very small labels
+
+**Quick Reference by Component:**
+- **Page header:** `<h1>`
+- **Section header:** `<h2>`
+- **Card title (featured/large):** `<h3>`
+- **Card title (standard):** `<h4>`
+- **Card subtitle/label:** `<h5>`
+- **Meta info/timestamp:** `<h6>`
+- **Body content:** `<p>` or `text-base`
+- **Secondary text:** `text-sm`
+
 ## 4. Components & Styling
 
 ### Buttons
