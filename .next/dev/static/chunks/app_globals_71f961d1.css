@@ -5874,6 +5874,12 @@
     }
   }
 
+  @media (hover: hover) {
+    .group-hover\/row\:text-primary:is(:where(.group\/row):hover *) {
+      color: hsl(var(--primary));
+    }
+  }
+
   .group-has-data-\[sidebar\=menu-action\]\/menu-item\:pr-8:is(:where(.group\/menu-item):has([data-sidebar="menu-action"]) *) {
     padding-right: calc(var(--spacing) * 8);
   }
@@ -6373,6 +6379,18 @@
     @supports (color: color-mix(in lab, red, red)) {
       .hover\:bg-muted\/30:hover {
         background-color: color-mix(in oklab, hsl(var(--muted)) 30%, transparent);
+      }
+    }
+  }
+
+  @media (hover: hover) {
+    .hover\:bg-muted\/40:hover {
+      background-color: hsl(var(--muted));
+    }
+
+    @supports (color: color-mix(in lab, red, red)) {
+      .hover\:bg-muted\/40:hover {
+        background-color: color-mix(in oklab, hsl(var(--muted)) 40%, transparent);
       }
     }
   }
