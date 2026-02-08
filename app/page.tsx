@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { FullPageModal, ConfirmationModal } from "@/components/modals";
 import { AuthDrawer } from "@/components/auth-drawer";
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useMemo } from "react";
 import { Shield, CheckCircle, ExternalLink, Calendar, AlertTriangle, ChevronRight, Zap, Globe, Server, Activity, ArrowUpRight, Mail, Box, Cloud, Search, Newspaper, Sparkles, Star, Terminal, Lock, Handshake, Bot, Phone, FileSearch, CalendarClock, Video, Code } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
@@ -15,8 +15,10 @@ import Link from "next/link";
 
 import { FeaturedOfTheDayCard, FEATURED_OF_THE_DAY } from "@/features/featured";
 import { SERVICE_CATEGORIES, ServiceRegistrationDrawer, ServiceCategoryCard } from "@/features/services";
+import type { ServiceCategory } from "@/features/services";
 import { AuditBadge, FeaturedCard, CompressedListRow } from "@/features/skills";
 import { ThreatTicker } from "@/features/threats";
+import { useServices, useFeaturedItems, usePartners } from "@/hooks/use-homepage-data";
 
 
 function ManagedClawBanner() {
@@ -112,6 +114,51 @@ export default function Home() {
   const [showAuthDrawer, setShowAuthDrawer] = useState(false);
   const [showServiceDrawer, setShowServiceDrawer] = useState(false);
   const [selectedServiceCategory, setSelectedServiceCategory] = useState<string | undefined>();
+
+  const { data: dbServices } = useServices();
+  const { data: dbFeatured } = useFeaturedItems();
+  const { data: dbPartners } = usePartners();
+
+  const serviceCategories = useMemo(() => {
+    if (!dbServices || !Array.isArray(dbServices) || dbServices.length === 0) return SERVICE_CATEGORIES;
+    const grouped: Record<string, Array<{ name: string; url: string; rating: number; popularity: number }>> = {};
+    for (const svc of dbServices) {
+      if (!svc.isActive) continue;
+      if (!grouped[svc.category]) grouped[svc.category] = [];
+      grouped[svc.category].push({
+        name: svc.name.replace(/ (VPS|Setup|Installation|Droplet|Cloud Compute|Managed Hosting|Consulting|Partnership|Open Source|Billing|Payments|Install Guide|Official Docs)$/i, "").replace(/ (Service|Platform)$/i, ""),
+        url: svc.url || "#",
+        rating: (svc.rating || 40) / 10,
+        popularity: svc.popularity || 5,
+      });
+    }
+    return SERVICE_CATEGORIES.map((cat) => ({
+      ...cat,
+      providers: grouped[cat.id] || cat.providers || [],
+    }));
+  }, [dbServices]);
+
+  const featuredData = useMemo(() => {
+    if (!dbFeatured || !Array.isArray(dbFeatured) || dbFeatured.length === 0) return null;
+    const map: Record<string, any> = {};
+    for (const item of dbFeatured) {
+      map[item.type] = item;
+    }
+    return map;
+  }, [dbFeatured]);
+
+  const vpsServices = useMemo(() => {
+    if (!dbServices || !Array.isArray(dbServices)) return null;
+    return dbServices
+      .filter((s: any) => s.category === "managed_hosting" && s.isActive)
+      .sort((a: any, b: any) => (b.rating || 0) - (a.rating || 0))
+      .slice(0, 5);
+  }, [dbServices]);
+
+  const partners = useMemo(() => {
+    if (!dbPartners || !Array.isArray(dbPartners) || dbPartners.length === 0) return null;
+    return dbPartners;
+  }, [dbPartners]);
 
   const handleServiceCategoryClick = (categoryId: string) => {
     setSelectedServiceCategory(categoryId);
@@ -281,7 +328,7 @@ export default function Home() {
             </span>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {SERVICE_CATEGORIES.map((cat) => (
+            {serviceCategories.map((cat) => (
               <ServiceCategoryCard key={cat.id} category={cat} />
             ))}
           </div>
@@ -302,44 +349,44 @@ export default function Home() {
               type="hero"
               title="Hero"
               subtitle="of the Day"
-              name={FEATURED_OF_THE_DAY.hero.handle}
-              description={FEATURED_OF_THE_DAY.hero.description}
-              href={`https://github.com/${FEATURED_OF_THE_DAY.hero.handle}`}
-              imageUrl={FEATURED_OF_THE_DAY.hero.imageUrl}
-              sourceUrl={FEATURED_OF_THE_DAY.hero.sourceUrl}
-              isVerified={FEATURED_OF_THE_DAY.hero.isVerified}
+              name={featuredData?.hero?.name || FEATURED_OF_THE_DAY.hero.handle}
+              description={featuredData?.hero?.description || FEATURED_OF_THE_DAY.hero.description}
+              href={featuredData?.hero?.href || `https://github.com/${FEATURED_OF_THE_DAY.hero.handle}`}
+              imageUrl={featuredData?.hero?.imageUrl || FEATURED_OF_THE_DAY.hero.imageUrl}
+              sourceUrl={featuredData?.hero?.sourceUrl || FEATURED_OF_THE_DAY.hero.sourceUrl}
+              isVerified={featuredData?.hero?.isVerified ?? FEATURED_OF_THE_DAY.hero.isVerified}
             />
             <FeaturedOfTheDayCard
               type="app"
               title="Claw App"
               subtitle="of the Day"
-              name={FEATURED_OF_THE_DAY.app.name}
-              description={FEATURED_OF_THE_DAY.app.description}
-              href={FEATURED_OF_THE_DAY.app.sourceUrl || `/apps/${FEATURED_OF_THE_DAY.app.slug}`}
-              imageUrl={FEATURED_OF_THE_DAY.app.imageUrl}
-              sourceUrl={FEATURED_OF_THE_DAY.app.sourceUrl}
-              isVerified={FEATURED_OF_THE_DAY.app.isVerified}
+              name={featuredData?.app?.name || FEATURED_OF_THE_DAY.app.name}
+              description={featuredData?.app?.description || FEATURED_OF_THE_DAY.app.description}
+              href={featuredData?.app?.href || FEATURED_OF_THE_DAY.app.sourceUrl || `/apps/${FEATURED_OF_THE_DAY.app.slug}`}
+              imageUrl={featuredData?.app?.imageUrl || FEATURED_OF_THE_DAY.app.imageUrl}
+              sourceUrl={featuredData?.app?.sourceUrl || FEATURED_OF_THE_DAY.app.sourceUrl}
+              isVerified={featuredData?.app?.isVerified ?? FEATURED_OF_THE_DAY.app.isVerified}
             />
             <FeaturedOfTheDayCard
               type="skill"
               title="Skill"
               subtitle="of the Day"
-              name={FEATURED_OF_THE_DAY.skill.name}
-              description={FEATURED_OF_THE_DAY.skill.description}
-              href={`/@${FEATURED_OF_THE_DAY.skill.author}/${FEATURED_OF_THE_DAY.skill.slug}`}
-              imageUrl={FEATURED_OF_THE_DAY.skill.imageUrl}
-              isVerified={FEATURED_OF_THE_DAY.skill.isVerified}
+              name={featuredData?.skill?.name || FEATURED_OF_THE_DAY.skill.name}
+              description={featuredData?.skill?.description || FEATURED_OF_THE_DAY.skill.description}
+              href={featuredData?.skill?.href || `/@${FEATURED_OF_THE_DAY.skill.author}/${FEATURED_OF_THE_DAY.skill.slug}`}
+              imageUrl={featuredData?.skill?.imageUrl || FEATURED_OF_THE_DAY.skill.imageUrl}
+              isVerified={featuredData?.skill?.isVerified ?? FEATURED_OF_THE_DAY.skill.isVerified}
             />
             <FeaturedOfTheDayCard
               type="service"
               title="Service"
               subtitle="of the Day"
-              name={FEATURED_OF_THE_DAY.service.name}
-              description={FEATURED_OF_THE_DAY.service.description}
-              href={FEATURED_OF_THE_DAY.service.website}
-              imageUrl={FEATURED_OF_THE_DAY.service.imageUrl}
-              sourceUrl={FEATURED_OF_THE_DAY.service.sourceUrl}
-              isVerified={FEATURED_OF_THE_DAY.service.isVerified}
+              name={featuredData?.service?.name || FEATURED_OF_THE_DAY.service.name}
+              description={featuredData?.service?.description || FEATURED_OF_THE_DAY.service.description}
+              href={featuredData?.service?.href || FEATURED_OF_THE_DAY.service.website}
+              imageUrl={featuredData?.service?.imageUrl || FEATURED_OF_THE_DAY.service.imageUrl}
+              sourceUrl={featuredData?.service?.sourceUrl || FEATURED_OF_THE_DAY.service.sourceUrl}
+              isVerified={featuredData?.service?.isVerified ?? FEATURED_OF_THE_DAY.service.isVerified}
             />
           </div>
         </div>
@@ -354,25 +401,25 @@ export default function Home() {
               </div>
               <div className="bg-white/50 dark:bg-card/50 border border-border/60 rounded-lg p-3 shadow-sm backdrop-blur-sm">
                  <div className="space-y-0.5">
-                    {[
-                      { name: "BoostedHost", desc: "Turnkey pre-installed setup", rating: 4.9, price: "Custom", url: "https://boostedhost.com" },
-                      { name: "DigitalOcean", desc: "Official 1-Click Deploy", rating: 4.7, price: "From $6/mo", url: "https://digitalocean.com" },
-                      { name: "Hostinger", desc: "Best budget option", rating: 4.5, price: "From $5/mo", url: "https://hostinger.com" },
-                      { name: "Vultr", desc: "DIY flexibility, great pricing", rating: 4.4, price: "From $6/mo", url: "https://vultr.com" },
-                      { name: "Linode", desc: "Best raw performance", rating: 4.3, price: "From $5/mo", url: "https://linode.com" },
-                    ].map((vps, i) => (
-                      <a key={vps.name} href={vps.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 py-2 border-b border-border/40 last:border-0 hover:bg-muted/30 px-2 rounded-sm transition-colors group cursor-pointer">
+                    {(vpsServices || [
+                      { name: "BoostedHost VPS", description: "Turnkey pre-installed setup", rating: 49, pricingLabel: "Custom", url: "https://boostedhost.com" },
+                      { name: "DigitalOcean Droplet", description: "Official 1-Click Deploy", rating: 47, pricingLabel: "From $6/mo", url: "https://digitalocean.com" },
+                      { name: "Hostinger VPS", description: "Best budget option", rating: 45, pricingLabel: "From $5/mo", url: "https://hostinger.com" },
+                      { name: "Vultr Cloud Compute", description: "DIY flexibility, great pricing", rating: 44, pricingLabel: "From $6/mo", url: "https://vultr.com" },
+                      { name: "Linode VPS", description: "Best raw performance", rating: 43, pricingLabel: "From $5/mo", url: "https://linode.com" },
+                    ]).map((vps: any, i: number) => (
+                      <a key={vps.name} href={vps.url || "#"} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 py-2 border-b border-border/40 last:border-0 hover:bg-muted/30 px-2 rounded-sm transition-colors group cursor-pointer" data-testid={`vps-row-${i}`}>
                         <span className="w-4 text-xs font-mono text-muted-foreground text-center">{i + 1}</span>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2">
-                            <span className="font-semibold text-sm truncate text-foreground group-hover:text-primary transition-colors">{vps.name}</span>
-                            <span className="text-[10px] text-muted-foreground/70">{vps.price}</span>
+                            <span className="font-semibold text-sm truncate text-foreground group-hover:text-primary transition-colors">{vps.name.replace(/ (VPS|Droplet|Cloud Compute|Managed Hosting)$/i, "")}</span>
+                            <span className="text-[10px] text-muted-foreground/70">{vps.pricingLabel || "Custom"}</span>
                           </div>
-                          <div className="text-[10px] text-muted-foreground mt-0.5">{vps.desc}</div>
+                          <div className="text-[10px] text-muted-foreground mt-0.5">{vps.description}</div>
                         </div>
                         <div className="flex items-center gap-1 text-xs font-medium text-amber-600 dark:text-amber-400 shrink-0">
                           <Star className="w-3 h-3 fill-amber-500 text-amber-500" />
-                          {vps.rating}
+                          {((vps.rating || 40) / 10).toFixed(1)}
                         </div>
                       </a>
                     ))}
@@ -428,46 +475,30 @@ export default function Home() {
             </h3>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              {
-                name: "xCloud",
-                role: "Managed Hosting Partner",
-                description: "One-click managed OpenClaw hosting with 24/7 support. Founded by M Asif Rahman.",
-                url: "https://xcloud.host",
-                color: "emerald" as const,
-              },
-              {
-                name: "BoostedHost",
-                role: "VPS Infrastructure Partner",
-                description: "Turnkey pre-installed OpenClaw VPS. Zero-friction deployment with optimized configs.",
-                url: "https://boostedhost.com",
-                color: "blue" as const,
-              },
-              {
-                name: "DigitalOcean",
-                role: "Cloud Platform Partner",
-                description: "Official 1-Click Deploy for OpenClaw. Enterprise-grade droplets with strong documentation.",
-                url: "https://digitalocean.com",
-                color: "indigo" as const,
-              },
-            ].map((partner) => {
+            {(partners || [
+              { displayName: "xCloud", partnerRole: "Managed Hosting Partner", description: "One-click managed OpenClaw hosting with 24/7 support. Founded by M Asif Rahman.", website: "https://xcloud.host" },
+              { displayName: "BoostedHost", partnerRole: "VPS Infrastructure Partner", description: "Turnkey pre-installed OpenClaw VPS. Zero-friction deployment with optimized configs.", website: "https://boostedhost.com" },
+              { displayName: "DigitalOcean", partnerRole: "Cloud Platform Partner", description: "Official 1-Click Deploy for OpenClaw. Enterprise-grade droplets with strong documentation.", website: "https://digitalocean.com" },
+            ]).map((partner: any, idx: number) => {
+              const colorOptions = ["emerald", "blue", "indigo"] as const;
+              const color = colorOptions[idx % colorOptions.length];
               const colorClasses = {
                 emerald: "from-emerald-50/50 to-white border-emerald-100/60 dark:from-emerald-950/20 dark:to-card dark:border-emerald-900/40",
                 blue: "from-blue-50/50 to-white border-blue-100/60 dark:from-blue-950/20 dark:to-card dark:border-blue-900/40",
                 indigo: "from-indigo-50/50 to-white border-indigo-100/60 dark:from-indigo-950/20 dark:to-card dark:border-indigo-900/40",
               };
               return (
-                <a key={partner.name} href={partner.url} target="_blank" rel="noopener noreferrer">
-                  <Card className={cn("p-4 bg-gradient-to-br border shadow-sm hover:shadow-md transition-all duration-300 relative overflow-hidden group cursor-pointer dark:bg-card h-full", colorClasses[partner.color])}>
+                <a key={partner.displayName || partner.handle} href={partner.website || "#"} target="_blank" rel="noopener noreferrer" data-testid={`partner-card-${idx}`}>
+                  <Card className={cn("p-4 bg-gradient-to-br border shadow-sm hover:shadow-md transition-all duration-300 relative overflow-hidden group cursor-pointer dark:bg-card h-full", colorClasses[color])}>
                     <div className="absolute -right-6 -top-6 w-24 h-24 bg-current opacity-[0.03] rounded-full blur-2xl group-hover:opacity-[0.06] transition-opacity" />
                     <div className="flex items-center gap-2 mb-3 relative z-10">
                       <div className="w-10 h-10 rounded-lg bg-white shadow-sm border border-border/50 flex items-center justify-center dark:bg-card">
                         <Globe className="w-5 h-5 text-muted-foreground" />
                       </div>
-                      <span className="text-[9px] font-bold uppercase tracking-wider text-muted-foreground bg-muted/50 px-2 py-0.5 rounded">{partner.role}</span>
+                      <span className="text-[9px] font-bold uppercase tracking-wider text-muted-foreground bg-muted/50 px-2 py-0.5 rounded">{partner.partnerRole || "Partner"}</span>
                     </div>
-                    <h3 className="font-display font-bold text-lg mb-1 group-hover:text-primary transition-colors">{partner.name}</h3>
-                    <p className="text-xs text-muted-foreground line-clamp-2 mb-3">{partner.description}</p>
+                    <h3 className="font-display font-bold text-lg mb-1 group-hover:text-primary transition-colors">{partner.displayName}</h3>
+                    <p className="text-xs text-muted-foreground line-clamp-2 mb-3">{partner.description || partner.tagline}</p>
                     <div className="flex items-center justify-end text-xs text-muted-foreground relative z-10">
                       <Button size="sm" variant="ghost" className="h-6 px-2 text-[10px] hover:bg-primary/5 -mr-2">
                         Visit <ExternalLink className="w-3 h-3 ml-1" />
