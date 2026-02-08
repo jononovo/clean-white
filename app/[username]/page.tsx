@@ -266,7 +266,7 @@ export default function ProviderProfilePage() {
                 {skills.map((skill) => (
                   <Link
                     key={skill.slug}
-                    href={`/@${provider.handle}/${skill.slug}`}
+                    href={`/${provider.handle}/${skill.slug}`}
                     className="flex items-center justify-between p-4 hover:bg-muted/30 transition-colors group"
                     data-testid={`skill-${skill.slug}`}
                   >

@@ -379,7 +379,7 @@ export default function Home() {
               subtitle="of the Day"
               name={featuredData?.skill?.name || FEATURED_OF_THE_DAY.skill.name}
               description={featuredData?.skill?.description || FEATURED_OF_THE_DAY.skill.description}
-              href={featuredData?.skill?.href || `/@${FEATURED_OF_THE_DAY.skill.author}/${FEATURED_OF_THE_DAY.skill.slug}`}
+              href={featuredData?.skill?.href || `/${FEATURED_OF_THE_DAY.skill.author}/${FEATURED_OF_THE_DAY.skill.slug}`}
               imageUrl={featuredData?.skill?.imageUrl || FEATURED_OF_THE_DAY.skill.imageUrl}
               isVerified={featuredData?.skill?.isVerified ?? FEATURED_OF_THE_DAY.skill.isVerified}
             />
@@ -414,7 +414,7 @@ export default function Home() {
                       { name: "Vultr Cloud Compute", description: "DIY flexibility, great pricing", rating: 44, pricingLabel: "From $6/mo", providerHandle: "vultr" },
                       { name: "Linode VPS", description: "Best raw performance", rating: 43, pricingLabel: "From $5/mo", providerHandle: "linode" },
                     ]).map((vps: any, i: number) => (
-                      <Link key={vps.name} href={vps.providerHandle ? `/@${vps.providerHandle}` : "#"} className="flex items-center gap-3 py-2 border-b border-border/40 last:border-0 hover:bg-muted/30 px-2 rounded-sm transition-colors group cursor-pointer" data-testid={`vps-row-${i}`}>
+                      <Link key={vps.name} href={vps.providerHandle ? `/${vps.providerHandle}` : "#"} className="flex items-center gap-3 py-2 border-b border-border/40 last:border-0 hover:bg-muted/30 px-2 rounded-sm transition-colors group cursor-pointer" data-testid={`vps-row-${i}`}>
                         <span className="w-4 text-xs font-mono text-muted-foreground text-center">{i + 1}</span>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2">
@@ -453,7 +453,7 @@ export default function Home() {
                       { name: "Notion", authorUsername: "steipete", downloads: 3430, stars: 11, description: "Create and manage pages, databases, and blocks via Notion API", slug: "notion" },
                       { name: "Email", authorUsername: "0xterrybit", downloads: 3120, stars: 8, description: "Send, read, search, and organize emails across multiple providers", slug: "email" },
                     ]).map((skill: any, i: number) => (
-                      <Link key={skill.name} href={`/@${skill.authorUsername}/${skill.slug}`} className="flex items-center gap-3 py-2 border-b border-border/40 last:border-0 hover:bg-muted/30 px-2 rounded-sm transition-colors group cursor-pointer" data-testid={`productivity-skill-${i}`}>
+                      <Link key={skill.name} href={`/${skill.authorUsername}/${skill.slug}`} className="flex items-center gap-3 py-2 border-b border-border/40 last:border-0 hover:bg-muted/30 px-2 rounded-sm transition-colors group cursor-pointer" data-testid={`productivity-skill-${i}`}>
                         <span className="w-4 text-xs font-mono text-muted-foreground text-center">{i + 1}</span>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2">

@@ -129,7 +129,7 @@ export default function AppDetailPage() {
 
                 <div className="flex items-center gap-2">
                   <span className="text-sm text-muted-foreground">by</span>
-                  <Link href={`/@${app.authorHandle}`} className="text-sm font-medium text-primary hover:underline" data-testid="app-author">
+                  <Link href={`/${app.authorHandle}`} className="text-sm font-medium text-primary hover:underline" data-testid="app-author">
                     @{app.authorHandle}
                   </Link>
                 </div>
