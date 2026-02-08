@@ -14,7 +14,7 @@ import { Input } from "@/components/ui/input";
 import Link from "next/link";
 
 import { FeaturedOfTheDayCard, FEATURED_OF_THE_DAY } from "@/features/featured";
-import { SERVICE_CATEGORIES, ServiceRegistrationDrawer } from "@/features/services";
+import { SERVICE_CATEGORIES, ServiceRegistrationDrawer, ServiceCategoryCard } from "@/features/services";
 import { AuditBadge, FeaturedCard, CompressedListRow } from "@/features/skills";
 import { ThreatTicker } from "@/features/threats";
 
@@ -282,25 +282,10 @@ export default function Home() {
               Browse All Services
             </span>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
-            {SERVICE_CATEGORIES.map((cat) => {
-              const Icon = cat.icon;
-              return (
-                <button
-                  key={cat.id}
-                  onClick={() => handleServiceCategoryClick(cat.id)}
-                  className="group flex flex-col items-center gap-2 p-4 rounded-xl bg-gradient-to-b from-card to-card/50 border border-border hover:border-primary/40 hover:shadow-md transition-all duration-200 cursor-pointer"
-                  data-testid={`service-category-${cat.id}`}
-                >
-                  <div className="p-2.5 rounded-lg bg-muted/50 group-hover:bg-primary/10 transition-colors">
-                    <Icon className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
-                  </div>
-                  <span className="text-xs font-medium text-center text-foreground/80 group-hover:text-foreground transition-colors">
-                    {cat.label}
-                  </span>
-                </button>
-              );
-            })}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {SERVICE_CATEGORIES.map((cat) => (
+              <ServiceCategoryCard key={cat.id} category={cat} />
+            ))}
           </div>
         </div>
 

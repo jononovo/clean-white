@@ -4124,10 +4124,6 @@
     padding: calc(var(--spacing) * 2);
   }
 
-  .p-2\.5 {
-    padding: calc(var(--spacing) * 2.5);
-  }
-
   .p-3 {
     padding: calc(var(--spacing) * 3);
   }
@@ -5810,18 +5806,6 @@
   }
 
   @media (hover: hover) {
-    .group-hover\:bg-primary\/10:is(:where(.group):hover *) {
-      background-color: hsl(var(--primary));
-    }
-
-    @supports (color: color-mix(in lab, red, red)) {
-      .group-hover\:bg-primary\/10:is(:where(.group):hover *) {
-        background-color: color-mix(in oklab, hsl(var(--primary)) 10%, transparent);
-      }
-    }
-  }
-
-  @media (hover: hover) {
     .group-hover\:via-yellow-400\/10:is(:where(.group):hover *) {
       --tw-gradient-via: #fac8001a;
     }
@@ -5835,12 +5819,6 @@
     .group-hover\:via-yellow-400\/10:is(:where(.group):hover *) {
       --tw-gradient-via-stops: var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-via) var(--tw-gradient-via-position), var(--tw-gradient-to) var(--tw-gradient-to-position);
       --tw-gradient-stops: var(--tw-gradient-via-stops);
-    }
-  }
-
-  @media (hover: hover) {
-    .group-hover\:text-foreground:is(:where(.group):hover *) {
-      color: hsl(var(--foreground));
     }
   }
 
@@ -7479,12 +7457,6 @@
   }
 
   @media (min-width: 40rem) {
-    .sm\:grid-cols-3 {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-  }
-
-  @media (min-width: 40rem) {
     .sm\:flex-col {
       flex-direction: column;
     }
@@ -7617,12 +7589,6 @@
   @media (min-width: 48rem) {
     .md\:grid-cols-4 {
       grid-template-columns: repeat(4, minmax(0, 1fr));
-    }
-  }
-
-  @media (min-width: 48rem) {
-    .md\:grid-cols-6 {
-      grid-template-columns: repeat(6, minmax(0, 1fr));
     }
   }
 
