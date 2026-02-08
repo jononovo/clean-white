@@ -5894,6 +5894,18 @@
   }
 
   @media (hover: hover) {
+    .group-hover\:border-amber-500\/30:is(:where(.group):hover *) {
+      border-color: #f99c004d;
+    }
+
+    @supports (color: color-mix(in lab, red, red)) {
+      .group-hover\:border-amber-500\/30:is(:where(.group):hover *) {
+        border-color: color-mix(in oklab, var(--color-amber-500) 30%, transparent);
+      }
+    }
+  }
+
+  @media (hover: hover) {
     .group-hover\:bg-muted-foreground\/50:is(:where(.group):hover *) {
       background-color: hsl(var(--muted-foreground));
     }
@@ -5931,6 +5943,12 @@
   @media (hover: hover) {
     .group-hover\:text-yellow-600:is(:where(.group):hover *) {
       color: var(--color-yellow-600);
+    }
+  }
+
+  @media (hover: hover) {
+    .group-hover\:opacity-80:is(:where(.group):hover *) {
+      opacity: .8;
     }
   }
 

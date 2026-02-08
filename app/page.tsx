@@ -206,9 +206,9 @@ export default function Home() {
               
             </div>
 
-            <div className="hidden lg:block relative">
-               <div className="absolute -inset-1 bg-gradient-to-r from-amber-500/10 to-emerald-500/10 rounded-xl blur-xl opacity-60" />
-               <div className="relative bg-card/80 backdrop-blur-xl border border-border rounded-xl p-6 shadow-xl shadow-muted/50 dark:shadow-none" data-testid="hero-vps-pitch">
+            <Link href="/deploy" className="hidden lg:block relative cursor-pointer group">
+               <div className="absolute -inset-1 bg-gradient-to-r from-amber-500/10 to-emerald-500/10 rounded-xl blur-xl opacity-60 group-hover:opacity-80 transition-opacity" />
+               <div className="relative bg-card/80 backdrop-blur-xl border border-border rounded-xl p-6 shadow-xl shadow-muted/50 dark:shadow-none group-hover:border-amber-500/30 transition-colors" data-testid="hero-vps-pitch">
                   <div className="relative rounded-lg overflow-hidden mb-4 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 border border-border/40 p-5">
                      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(251,191,36,0.08),transparent_70%)]" />
                      <div className="relative flex items-center justify-center gap-4">
@@ -264,7 +264,7 @@ export default function Home() {
                      </div>
                   </div>
                </div>
-            </div>
+            </Link>
           </div>
         </div>
 
