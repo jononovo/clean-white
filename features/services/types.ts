@@ -20,9 +20,9 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     label: "Setup & Install",
     icon: Wrench,
     providers: [
-      { name: "BoostedHost", url: "https://boostedhost.com/openclaw-vps-hosting/", rating: 4.9, popularity: 9 },
-      { name: "xCloud", url: "https://xcloud.host/best-openclaw-hosting-providers", rating: 4.6, popularity: 7 },
-      { name: "Hostinger", url: "https://www.hostinger.com/vps/docker/openclaw", rating: 4.5, popularity: 8 },
+      { name: "SimpleClaw", url: "https://simpleclaw.com", rating: 4.8, popularity: 9 },
+      { name: "SetupClaw", url: "https://setupclaw.com", rating: 4.7, popularity: 8 },
+      { name: "TribeClaw", url: "https://tribeclaw.com", rating: 4.6, popularity: 7 },
     ],
   },
   {
