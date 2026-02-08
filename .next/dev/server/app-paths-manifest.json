@@ -1,11 +1,1 @@
-{
-  "/[username]/page": "app/[username]/page.js",
-  "/_not-found/page": "app/_not-found/page.js",
-  "/api/categories/route": "app/api/categories/route.js",
-  "/api/featured/route": "app/api/featured/route.js",
-  "/api/providers/browse/route": "app/api/providers/browse/route.js",
-  "/api/services/route": "app/api/services/route.js",
-  "/api/skills/route": "app/api/skills/route.js",
-  "/categories/page": "app/categories/page.js",
-  "/page": "app/page.js"
-}
+{}

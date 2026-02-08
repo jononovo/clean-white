@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/server/db";
-import { services, providers } from "@/shared/schema";
+import { services, providers, categories } from "@/shared/schema";
 import { eq, and } from "drizzle-orm";
 
 export async function GET(
@@ -26,6 +26,9 @@ export async function GET(
         name: services.name,
         description: services.description,
         category: services.category,
+        categoryId: services.categoryId,
+        categoryName: categories.name,
+        categorySlug: categories.slug,
         slug: services.slug,
         url: services.url,
         pricingType: services.pricingType,
@@ -39,6 +42,7 @@ export async function GET(
       })
       .from(services)
       .innerJoin(providers, eq(services.providerId, providers.id))
+      .leftJoin(categories, eq(services.categoryId, categories.id))
       .where(
         and(
           eq(providers.handle, handle),

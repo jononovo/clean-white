@@ -1,8 +1,10 @@
-import { Wrench, Database, Users, GraduationCap, Handshake, Receipt, LucideIcon } from "lucide-react";
+import { Wrench, Database, Users, GraduationCap, Handshake, Receipt, LucideIcon, Cloud, Bot, MessageSquare, Code } from "lucide-react";
 
 export interface ServiceProvider {
   name: string;
   url: string;
+  handle?: string;
+  slug?: string;
   rating: number;
   popularity: number;
 }
@@ -11,14 +13,16 @@ export interface ServiceCategory {
   id: string;
   label: string;
   icon: LucideIcon;
+  categorySlug?: string;
   providers?: ServiceProvider[];
 }
 
 export const SERVICE_CATEGORIES: ServiceCategory[] = [
   {
-    id: "setup_installation",
+    id: "self-hosted-automation",
     label: "Setup & Install",
     icon: Wrench,
+    categorySlug: "self-hosted-automation",
     providers: [
       { name: "SimpleClaw", url: "https://simpleclaw.com", rating: 4.8, popularity: 9 },
       { name: "SetupClaw", url: "https://setupclaw.com", rating: 4.7, popularity: 8 },
@@ -26,9 +30,10 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     ],
   },
   {
-    id: "managed_hosting",
-    label: "Managed Hosting",
-    icon: Database,
+    id: "devops-cloud",
+    label: "DevOps & Cloud",
+    icon: Cloud,
+    categorySlug: "devops-cloud",
     providers: [
       { name: "BoostedHost", url: "https://boostedhost.com/openclaw-vps-hosting/", rating: 4.9, popularity: 9 },
       { name: "DigitalOcean", url: "https://digitalocean.com", rating: 4.7, popularity: 9 },
@@ -37,19 +42,21 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     ],
   },
   {
-    id: "consulting",
-    label: "Consulting",
-    icon: Users,
+    id: "finance",
+    label: "Finance",
+    icon: Receipt,
+    categorySlug: "finance",
     providers: [
-      { name: "VoltAgent", url: "https://voltagent.dev", rating: 4.7, popularity: 7 },
-      { name: "Clawd.bot", url: "https://clawd.bot", rating: 4.8, popularity: 8 },
-      { name: "Seahawk Media", url: "https://seahawkmedia.com", rating: 4.3, popularity: 6 },
+      { name: "Bankr", url: "https://bankr.dev", rating: 4.6, popularity: 8 },
+      { name: "CreditClaw", url: "https://creditclaw.com", rating: 4.5, popularity: 7 },
+      { name: "Proxy", url: "https://useproxy.com", rating: 4.4, popularity: 7 },
     ],
   },
   {
-    id: "training",
-    label: "Training",
+    id: "education-learning",
+    label: "Education & Learning",
     icon: GraduationCap,
+    categorySlug: "education-learning",
     providers: [
       { name: "OpenClaw Docs", url: "https://docs.openclaw.ai", rating: 4.8, popularity: 10 },
       { name: "BoostedHost Guide", url: "https://boostedhost.com/blog/en/how-to-install-openclaw-get-started-guide/", rating: 4.6, popularity: 8 },
@@ -57,23 +64,21 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     ],
   },
   {
-    id: "partnerships",
-    label: "Partnerships",
-    icon: Handshake,
+    id: "coding-agents-ides",
+    label: "Coding Agents",
+    icon: Code,
+    categorySlug: "coding-agents-ides",
     providers: [
-      { name: "SendClaw", url: "https://sendclaw.com", rating: 4.7, popularity: 8 },
-      { name: "CreditClaw", url: "https://creditclaw.com", rating: 4.6, popularity: 7 },
-      { name: "VoltAgent", url: "https://github.com/VoltAgent/voltagent", rating: 4.5, popularity: 7 },
+      { name: "VoltAgent", url: "https://github.com/VoltAgent/voltagent", rating: 4.7, popularity: 7 },
     ],
   },
   {
-    id: "finance_tax",
-    label: "Finance & Tax",
-    icon: Receipt,
+    id: "communication",
+    label: "Communication",
+    icon: MessageSquare,
+    categorySlug: "communication",
     providers: [
-      { name: "Chargebee", url: "https://www.chargebee.com", rating: 4.6, popularity: 8 },
-      { name: "Stripe", url: "https://stripe.com", rating: 4.9, popularity: 10 },
-      { name: "Square", url: "https://squareup.com", rating: 4.5, popularity: 8 },
+      { name: "SendClaw", url: "https://sendclaw.com", rating: 4.7, popularity: 8 },
     ],
   },
 ];

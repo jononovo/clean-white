@@ -1,18 +1,20 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth/session";
 import { db } from "@/server/db";
-import { services, providers, insertServiceSchema } from "@/shared/schema";
+import { services, providers, categories, insertServiceSchema } from "@/shared/schema";
 import { eq, desc, and } from "drizzle-orm";
 
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
     const category = searchParams.get("category");
+    const categorySlug = searchParams.get("categorySlug");
     const providerId = searchParams.get("providerId");
 
     const conditions = [];
     if (category) conditions.push(eq(services.category, category));
     if (providerId) conditions.push(eq(services.providerId, providerId));
+    if (categorySlug) conditions.push(eq(categories.slug, categorySlug));
 
     const result = await db
       .select({
@@ -22,6 +24,9 @@ export async function GET(request: NextRequest) {
         name: services.name,
         description: services.description,
         category: services.category,
+        categoryId: services.categoryId,
+        categoryName: categories.name,
+        categorySlug: categories.slug,
         slug: services.slug,
         url: services.url,
         pricingType: services.pricingType,
@@ -35,6 +40,7 @@ export async function GET(request: NextRequest) {
       })
       .from(services)
       .leftJoin(providers, eq(services.providerId, providers.id))
+      .leftJoin(categories, eq(services.categoryId, categories.id))
       .where(conditions.length > 0 ? and(...conditions) : undefined)
       .orderBy(desc(services.createdAt));
 

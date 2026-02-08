@@ -122,20 +122,23 @@ export default function Home() {
 
   const serviceCategories = useMemo(() => {
     if (!dbServices || !Array.isArray(dbServices) || dbServices.length === 0) return SERVICE_CATEGORIES;
-    const grouped: Record<string, Array<{ name: string; url: string; rating: number; popularity: number }>> = {};
+    const grouped: Record<string, Array<{ name: string; url: string; handle?: string; slug?: string; rating: number; popularity: number }>> = {};
     for (const svc of dbServices) {
       if (!svc.isActive) continue;
-      if (!grouped[svc.category]) grouped[svc.category] = [];
-      grouped[svc.category].push({
+      const catSlug = svc.categorySlug || svc.category;
+      if (!grouped[catSlug]) grouped[catSlug] = [];
+      grouped[catSlug].push({
         name: svc.name.replace(/ (VPS|Setup|Installation|Droplet|Cloud Compute|Managed Hosting|Consulting|Partnership|Open Source|Billing|Payments|Install Guide|Official Docs)$/i, "").replace(/ (Service|Platform)$/i, ""),
         url: svc.url || "#",
+        handle: svc.providerHandle,
+        slug: svc.slug || undefined,
         rating: (svc.rating || 40) / 10,
         popularity: svc.popularity || 5,
       });
     }
     return SERVICE_CATEGORIES.map((cat) => ({
       ...cat,
-      providers: grouped[cat.id] || cat.providers || [],
+      providers: grouped[cat.categorySlug || cat.id] || cat.providers || [],
     }));
   }, [dbServices]);
 
@@ -151,7 +154,7 @@ export default function Home() {
   const vpsServices = useMemo(() => {
     if (!dbServices || !Array.isArray(dbServices)) return null;
     return dbServices
-      .filter((s: any) => s.category === "managed_hosting" && s.isActive)
+      .filter((s: any) => (s.categorySlug === "devops-cloud" || s.category === "managed_hosting") && s.isActive)
       .sort((a: any, b: any) => (b.rating || 0) - (a.rating || 0))
       .slice(0, 5);
   }, [dbServices]);
@@ -414,7 +417,7 @@ export default function Home() {
                       { name: "Vultr Cloud Compute", description: "DIY flexibility, great pricing", rating: 44, pricingLabel: "From $6/mo", providerHandle: "vultr" },
                       { name: "Linode VPS", description: "Best raw performance", rating: 43, pricingLabel: "From $5/mo", providerHandle: "linode" },
                     ]).map((vps: any, i: number) => (
-                      <Link key={vps.name} href={vps.providerHandle ? `/${vps.providerHandle}` : "#"} className="flex items-center gap-3 py-2 border-b border-border/40 last:border-0 hover:bg-muted/30 px-2 rounded-sm transition-colors group cursor-pointer" data-testid={`vps-row-${i}`}>
+                      <Link key={vps.name} href={vps.providerHandle && vps.slug ? `/${vps.providerHandle}/${vps.slug}` : vps.providerHandle ? `/${vps.providerHandle}` : "#"} className="flex items-center gap-3 py-2 border-b border-border/40 last:border-0 hover:bg-muted/30 px-2 rounded-sm transition-colors group cursor-pointer" data-testid={`vps-row-${i}`}>
                         <span className="w-4 text-xs font-mono text-muted-foreground text-center">{i + 1}</span>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2">
